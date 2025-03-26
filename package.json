@@ -1,12 +1,23 @@
 {
   "name": "fitness-app",
   "version": "1.0.0",
+  "description": "Fitness App - MERN Stack",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priyanshu-solon/fitness-app.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/priyanshu-solon/fitness-app/issues"
+  },
+  "homepage": "https://github.com/priyanshu-solon/fitness-app#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.11.3"
+  }
 }
