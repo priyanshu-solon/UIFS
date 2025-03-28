@@ -41,13 +41,86 @@
             padding-left: 5px;
             padding-right: 5px;
         }
+        article {
+            background-color: black;
+            color:white;
+            padding: 15px;
+            text-align: center;
+            font-family: Arial;
+            font-size: 16px;
+        }
+        .bi-lightning-fill {
+            color:gold;
+        }
+        main {
+            height: 450px;
+            display: grid;
+            grid-template-columns: 4fr 4fr 4fr;
+            margin-top: 10px;
+        }
+        .women-fashion {
+            background-image: url("./public/images/women-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .men-fashion {
+            background-image: url("./public/images/men-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .kids-fashion {
+            background-image: url("./public/images/kids-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .main-title {
+            font-family: Arial;
+            font-size: 50px;
+            font-weight: bold;
+            color:white;
+            text-shadow: 2px 2px 2px black;
+        }
+        .btn-shop {
+            background-color: white;
+            padding: 10px;
+            width: 140px;
+            font-family: Arial;
+            text-align: center;
+            box-shadow: 2px 2px 2px black;
+            border-radius: 5px;
+        }
+        .women-fashion:hover, .men-fashion:hover, .kids-fashion:hover {
+            opacity: 1;
+            cursor: grab;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: 3fr 3fr 3fr 3fr;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .services .bi-truck, .bi-tag, .bi-lock, .bi-arrow-left-right {
+            color:red;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-row-1">
             <div>
-                <span class="bi bi-truck"> FREE SHIPPING WORLDWIDE </span> 
+                <span class="bi bi-truck"> FREE SHIPPING WORLDWIDE </span>
                 <span>United States <span class="bi bi-chevron-down"></span> </span>
                 <span>USD <span class="bi bi-chevron-down"></span> </span>
                 <span>English <span class="bi bi-chevron-down"></span> </span>
@@ -88,5 +161,46 @@
             </div>
         </div>
     </header>
+    <section>
+        <article>
+            <span class="bi bi-lightning-fill"></span>
+            <span>HAPPY HOLIDAY DEALS ON EVERYTHING</span>
+            <span class="bi bi-lightning-fill"></span>
+        </article>
+        <main>
+            <div class="women-fashion">
+                <div class="main-title">Women</div>
+                <div class="btn-shop">
+                    Shop Women <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+            <div class="men-fashion">
+                <div class="main-title">Men</div>
+                <div class="btn-shop">
+                    Shop Men <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+            <div class="kids-fashion">
+                <div class="main-title">Kids</div>
+                <div class="btn-shop">
+                    Shop Kids <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+        </main>
+        <div class="services">
+            <div>
+                <span class="bi bi-truck">  </span> FREE SHIPPING
+            </div>
+            <div>
+                <span class="bi bi-arrow-left-right">  </span> FREE RETURNS
+            </div>
+            <div>
+                <span class="bi bi-lock">  </span> SECURE SHOPPING
+            </div>
+            <div>
+                <span class="bi bi-tag">  </span> OVER 10,000 STYLES
+            </div>
+        </div>
+    </section>
 </body>
 </html>
