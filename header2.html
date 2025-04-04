@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            padding: 10px;
+            font-family: Arial;
+            font-size: 16px;
+            background-color: blueviolet;
+            color:white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        header span {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .bi-bootstrap-fill {
+            font-size: 22px;
+        }
+        .search-bar {
+            background-color: #620c9c;
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .ctrl-button {
+            background-color: #1a0329;
+            border-radius: 2px;
+            padding: 2px;
+        }
+        .ctrl {
+            font-size: 14px;
+        }
+        nav span {
+            font-size: 18px;
+        }
+
+        .btn {
+           width: 20px;
+           padding: 5px;
+           position: relative;
+        }
+        .badge {
+           font-size: 10px;
+           font-family: Arial;
+           width: 10px;
+           height: 10px;
+           border-radius: 10px;
+           background-color: red;
+           color:white;
+           text-align: center;
+           display: inline-block;
+           padding: 2px;
+           position: absolute;
+           left: 14px;
+           top: -2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <nav>
+                <span class="bi bi-bootstrap-fill"></span>
+                <span>Docs</span>
+                <span>Examples</span>
+                <span>Icons</span>
+                <span>Themes</span>
+                <span>Blog</span>
+            </nav>
+        </div>
+        <div>
+            <div class="search-bar">
+                <span class="bi bi-search"> Search </span>
+                <span class="ctrl-button"> <span class="ctrl">Ctrl</span> K </span>
+            </div>
+        </div>
+        <div>
+            <span class="bi bi-github"></span>
+            <span class="bi bi-twitter"></span>
+            <span class="bi bi-opencollective"></span>
+            <span> | </span>
+            <span> v5.3 <span class="bi bi-caret-down-fill"></span> </span>
+            <span> | </span>
+            <span class="bi bi-sun-fill"> <span class="bi bi-caret-down-fill"></span> </span>
+        </div>
+    </header>
+    <div class="btn bi bi-bell-fill">
+        <span class="badge">2</span>
+    </div>
+</body>
+</html>

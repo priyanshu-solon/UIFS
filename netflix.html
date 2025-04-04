@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            height: 100vh;
+            background-image: linear-gradient(rgb(0, 0, 0) 50%, rgb(222, 194, 194), rgb(0, 0, 0));
+        }
+        section {
+            background-image: url("./public/images/netflix-bg.jpg");
+            background-size: cover;
+            margin: 20px;
+            height: 450px;
+            border-radius: 40px;
+            border:1px solid white;
+        }
+        .shade {
+            background-color: rgba(0,0,0,0.6);
+            height: 100%;
+            border-radius: 40px;
+            text-align: center;
+            color:white;
+        }
+        header {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: Arial;
+        }
+        .brand-title {
+            font-size: 50px;
+            color:red;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px white;
+        }
+        .language {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .signin {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 10px;
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 60px;
+            font-family: Arial;
+            font-weight: bold;
+            padding-top: 50px;
+        }
+        .section-subtitle {
+            font-size: 20px;
+            font-family: Arial;
+            padding-top: 20px;
+        }
+        main {
+            font-family: Arial;
+        }
+        .main-title{
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .email {
+            background-color: rgba(126, 125, 125, 0.744);
+            padding: 20px;
+            display: inline-block;
+            width: 300px;
+            text-align: left;
+            border:1px solid white;
+            border-radius: 30px;
+            font-size: 20px;
+        }
+        .btn-start {
+            background-color: red;
+            padding: 20px;
+            display: inline-block;
+            width: 170px;
+            border-radius: 30px;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="brand-title">NETFLIX</span>
+        </div>
+        <div>
+            <span class="language"><span class="bi bi-translate"> Language <span class="bi bi-caret-down-fill"></span> </span></span>
+            <span class="signin">Sign In</span>
+        </div>
+    </header>
+    <section>
+      <div class="shade">
+          <div class="section-title">
+            Unlimited movies, TV<br> shows and more
+          </div>
+          <div class="section-subtitle">
+            Starts at ₹149. Cancel at any time.
+          </div>
+          <main>
+             <div class="main-title">
+                Ready to watch? Enter your email to create or restart your membership.
+            </div>
+            <div>
+                <span class="email"> Email Address</span>
+                <span class="btn-start"> Get Started <span class="bi bi-chevron-right"></span> </span>
+            </div>
+          </main>
+      </div>
+    </section>
+</body>
+</html>

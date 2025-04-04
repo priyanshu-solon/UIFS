@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX | CLONE</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100vh;
+            background-image: linear-gradient(black ,rgb(41, 11, 11));
+        }
+        header{
+            padding: 20px;;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .brand-banner{
+            color: red;
+            font-weight: bold;
+            font-size: 38px;
+        }
+        .lang-sign{
+            align-content: center;
+        }
+        .language, .sign-in{
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+        .shade{
+            text-align: center;
+            background-color: black;
+            height: 100%;
+            border-radius: 40px;
+            opacity: 0.8;
+        }
+        section{
+            background-size: cover;
+            background-image: url("./public/images/netflix-bg.jpg");
+            height: 450px;
+            margin: 20px;
+            border-radius: 40px;
+            color: white;
+            border: 1px solid white;
+        }
+        .section-title{
+            padding-top:40px;
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .section-subtitle{
+            font-size: 20px;
+            padding-top: 10px;
+        }
+        .main-title{
+            font-size: 20px;
+            padding-top: 20px;
+        }
+        .btn-email{
+            padding-top:30px;
+        }
+        .email{
+            background-color:gray;
+            padding: 20px;
+            border-radius: 30px;
+            display: inline-block;
+            text-align: left;
+            width: 300px;
+            font-size: 20px;
+            border: 1px solid white;
+        }
+        .btn-start{
+            width: 170px;
+            background-color: red;
+            padding:20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-banner">
+            <span>NETFLIX</span>
+        </div>
+        <div class="lang-sign">
+            <span class="language">Language</span>
+            <span class="sign-in">Sign in</span>
+        </div>
+    </header>
+    <section>
+        <div class="shade">
+            <div class="section-title">
+                Unlimited movies, TV
+                <br> shows and more
+            </div>
+            <div class="section-subtitle">
+                Starts at ₹149. Cancel at any time.
+            </div>
+            <main>
+                <div class="main-title">
+                    Ready to watch? Enter your email to create or restart your membership.
+                </div>
+                <div class="btn-email">
+                    <span class="email">Email-Address</span>
+                    <span class="btn-start">Get Started</span>
+                </div>
+            </main>
+        </div>
+    </section>
+</body>
+</html>
