@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        dialog {
+            border:none;
+            padding: 0px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            width: 500px;
+        }
+        .dialog-header {
+            background-color: orangered;
+            color:white;
+            height: 100px;
+            padding: 20px;
+            font-size: 50px;
+            font-family: Arial;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .dialog-body {
+            background-color: white;
+            border-radius: 20px;
+            margin-top: -40px;
+            padding: 50px;
+            font-size: 16px;
+            font-family: Arial;
+            height: 250px;
+        }
+        .dialog-footer {
+            padding: 20px;
+            border-top: 1px solid gray;
+            font-size: 14px;
+            color:rgb(180, 180, 180);
+        }
+        body {
+            background-color: black;
+        }
+     </style>
+</head>
+<body>
+    <dialog open>
+        <div class="dialog-header">
+            <span class="bi bi-person-circle"> <span>Naresh IT</span> </span>
+            <span class="bi bi-x-circle-fill"></span>
+        </div>
+        <div class="dialog-body">
+           <div> Naresh IT</div>
+           <div>Hello , Good Afternoon</div>
+            <div>
+                Appear that you are visiting our pages! Can we help you find any suitable course ?
+                <br>
+                How may I help you ?
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <span>Type your message and hit enter</span>
+        </div>
+    </dialog>
+</body>
+</html>
+

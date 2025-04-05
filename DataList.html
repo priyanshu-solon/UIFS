@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dt {
+            font-weight: bold;
+            font-family: Arial;
+            background-color: black;
+            color:white;
+            padding: 2px;
+            margin-bottom: 2px;
+        }
+        dl {
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+        }
+        dd {
+            padding: 2px;
+            margin-bottom: 5px;
+        }
+        .control {
+            width: 200px;
+            height: 25px;
+            background-color: white;
+            border:1px solid black;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><div class="control">John</div></dd>
+        <dt>Password</dt>
+        <dd><div class="control"> **** </div></dd>
+        <dt>Date of Birth</dt>
+        <dd><div class="control"></div></dd>
+        <dt>City</dt>
+        <dd><div class="control"></div></dd>
+    </dl>
+</body>
+</html>

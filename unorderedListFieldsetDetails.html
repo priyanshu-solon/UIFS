@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            list-style-image: url("./images/bullet.gif");
+            font-size: 30px;
+        }
+        details div {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        .control {
+          border:1px solid black;
+          width: 200px;
+          height: 22px;
+          margin-bottom: 5px;
+          background-color: white;
+       }
+       dl {
+        display: grid;
+        grid-template-columns: 2fr 8fr;
+       }
+       fieldset {
+         margin: 20px;
+         width: 500px;
+         box-shadow: 4px 4px 4px black;
+         background-color: rgb(200, 238, 238);
+         border-radius: 10px;
+       }
+       legend {
+         background-color:rgb(1, 113, 113);
+         color:white;
+         padding: 4px;
+         width: 130px;
+         text-align: center;
+         border-radius: 10px;
+         box-shadow: 2px 2px 2px gray;
+       }
+       field {
+            background-color: white;
+            height: 300px;
+            border-radius: 50px;
+            margin-top: 100px;
+        }
+        leg {
+            text-align: center;
+            width: 80%;
+            padding: 30px;
+            height: 40px;
+            border: 1px solid gray;
+            background-color: white;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 5px 5px 2px black;
+        }
+        leg span {
+            font-size: 50px;
+        }
+    </style>
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+   <ul>
+     <li> HTML</li>
+     <li> CSS</li>
+     <li> JavaScript </li>
+   </ul>
+
+   <ul>
+    <li class="bi bi-person-fill"> Sign In </li>
+    <li class="bi bi-gift"> Offers </li>
+    <li class="bi bi-translate"> Language </li>
+    <li class="bi bi-envelope-fill"> Email </li>
+</ul>
+<ul>
+    <li class="bi bi-tag-fill">Axis Bank Offer 20% OFF</li>
+    <li class="bi bi-tag-fill">HDFC Bank Offer 100 Cash Back</li>
+    <li class="bi bi-tag-fill">IDFC zero cost EMI Offer</li>
+</ul>
+
+<ul>
+    <li> HTML
+         <ol type="a">
+            <li>Normal Elements</li>
+            <li>Void Elements</li>
+         </ol>
+    </li>
+    <li> CSS</li>
+    <li> JavaScript </li>
+  </ul>
+
+  <details>
+    <summary> Need Help in Sign in? </summary>
+    <div>Forgot Password</div>
+    <div>Recover Id</div>
+    <div>Other Issues</div>
+</details>
+<details open>
+  <summary>Electronics</summary>
+  <div>Televisions</div>
+  <div>Mobiles</div>
+  <div>Watches</div>
+</details>
+
+<fieldset>
+    <legend>Personal Details</legend>
+    <dl>
+        <dt>First Name</dt>
+        <dd class="control"></dd>
+        <dt>Last Name</dt>
+        <dd class="control"></dd>
+        <dt>Date of Birth</dt>
+        <dd class="control"></dd>
+     </dl>
+ </fieldset>
+ <fieldset>
+    <legend>Contact Details</legend>
+    <dl>
+        <dt>City</dt>
+        <dd class="control"></dd>
+        <dt>State</dt>
+        <dd class="control"></dd>
+        <dt>Postal Code</dt>
+        <dd class="control"></dd>
+     </dl>
+ </fieldset>
+
+ <fieldset class="field">
+  <legend class="leg">
+    <span class="bi bi-airplane"></span>
+    <span class="bi bi-train-lightrail-front-fill"></span>
+    <span class="bi bi-bus-front"></span>
+    <span class="bi bi-umbrella"></span>
+  </legend>
+</fieldset>
+</body>
+</html>
