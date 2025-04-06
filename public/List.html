@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       .breadcrumb {
+          list-style: none;
+          display: flex;
+       }
+       .breadcrumb li::after {
+          content: " > ";
+          padding-left: 5px;
+          color:gray;
+       }
+       .breadcrumb li::before {
+          content: " ";
+          padding-right: 5px;
+       }
+        .child-list {
+          columns: 2;
+          margin-top: 10px;
+      }
+  </style>
 </head>
 <body>
+    <nav>
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>Mobiles & Accessories</li>
+            <li>Mobiles</li>
+            <li>Apple Mobile</li>
+            <li>Apple 16</li>
+        </ol>
+    </nav>
     <ol type="1">
         <li>HTML
             <ol type="a">
@@ -22,6 +50,17 @@
             <ol type="a">
                 <li>Variables</li>
                 <li>Data Types</li>
+            </ol>
+        </li>
+    </ol>
+    <br>
+    <ol type="1">
+        <li>__________ elements doesn't require end token.
+            <ol type="a" class="child-list">
+                <li>Normal</li>
+                <li>RC Data</li>
+                <li>Void</li>
+                <li>Raw Text</li>
             </ol>
         </li>
     </ol>
