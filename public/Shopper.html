@@ -6,6 +6,9 @@
     <title>Shopper</title>
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
         .header-row-1 {
             background-color: #e6e4e4;
             padding: 15px;
@@ -52,7 +55,7 @@
         .bi-lightning-fill {
             color:gold;
         }
-        main {
+        .main1 {
             height: 450px;
             display: grid;
             grid-template-columns: 4fr 4fr 4fr;
@@ -114,31 +117,47 @@
         .services .bi-truck, .bi-tag, .bi-lock, .bi-arrow-left-right {
             color:red;
         }
-        footer {
+        .panel {
             background-color: black;
             color:white;
             font-size: 20px;
-            padding: 10px;
             display: grid;
-            grid-template-columns: 6fr 6fr;
             height: 300px;
-        }
-        .left-panel {
-            display: grid;
-            grid-template-columns: 3fr 3fr 3fr 3fr;
-        }
-        .right-panel {
-            display: grid;
-            grid-template-columns: 6fr 6fr;
-            border-left: 1px solid white;
-            padding-left: 20px;
+            padding: 100px;
+            padding-top: 40px;
+            grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
         }
         .main2{
             background-color: black;
             color: white;
+            padding-top: 40px;
         }
         h2{
             text-align: center;
+        }
+        .email {
+            text-align: center;
+            background-color: rgba(105, 105, 105, 0.37);
+            color:rgb(105, 105, 105);
+            text-align: left;
+            font-size: 15px;
+            padding: 20px;
+            width: 300px;
+        }
+        .subscribe{
+            background-color: rgb(105, 105, 105);
+            font-size: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 90px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        .e-sub{
+            padding: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
     </style>
 </head>
@@ -193,7 +212,7 @@
             <span>HAPPY HOLIDAY DEALS ON EVERYTHING</span>
             <span class="bi bi-lightning-fill"></span>
         </article>
-        <main>
+        <main class="main1">
             <div class="women-fashion">
                 <div class="main-title">Women</div>
                 <div class="btn-shop">
@@ -236,21 +255,29 @@
         </div>
         <main class="main2">
             <h2>Want style Ideas and Treats?</h2>
-            <br>
-            <div class="email">Enter Email *</div>
-            <div class="subscribe">Subscribe</div>
+            <div class="e-sub">
+                <span class="email">Enter Email *</span>
+                <span class="subscribe">Subscribe</span>
+            </div>
         </main>
     </section>
     <footer>
-        <div class="left-panel">
-            <div>Col-1</div>
-            <div>Col-2</div>
-            <div>Col-3</div>
-            <div>Col-4</div>
-        </div>
-        <div class="right-panel">
-            <div>Col-1</div>
-            <div>Col-2</div>
+        <div class="panel">
+            <div>
+                <span>Shopper.</span>
+            </div>
+            <div>
+                <span>Support</span>
+            </div>
+            <div>
+                <span>Shop<span>
+            </div>
+            <div>
+                <span>Company</span>
+            </div>
+            <div>
+                <span>Contact</span>
+            </div>
         </div>
     </footer>
 </body>
