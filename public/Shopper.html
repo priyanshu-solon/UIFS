@@ -118,19 +118,19 @@
             color:red;
         }
         .panel {
-            background-color: black;
+            background-color: #202020;
             color:white;
             font-size: 20px;
             display: grid;
-            height: 300px;
+            height: 130px;
             padding: 100px;
             padding-top: 40px;
             grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
         }
         .main2{
-            background-color: black;
+            background-color: #202020;
             color: white;
-            padding-top: 40px;
+            padding-top: 60px;
         }
         h2{
             text-align: center;
@@ -158,6 +158,19 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
+        }
+        .footer-first {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .footer-second span{
+            display: block;
+            padding-top: 10px;
+            font-size: 12px;
+            color: rgb(206, 206, 206);
+        }
+        address{
+            font-style: normal;
         }
     </style>
 </head>
@@ -265,19 +278,53 @@
         <div class="panel">
             <div>
                 <span>Shopper.</span>
+                <br><br>
+                <aside>
+                    <span class="bi bi-facebook"></span>
+                    <span class="bi bi-twitter"></span>
+                    <span class="bi bi-instagram"></span>
+                    <span class="bi bi-youtube"></span>
+                   </aside>
             </div>
             <div>
-                <span>Support</span>
+                <span class="footer-first">Support</span>
+                <br><br>
+                <div class="footer-second">
+                    <span>Contact Us</span>
+                    <span>FAQs</span>
+                    <span>Size Guide</span>
+                    <span>Shipping & Returns</span>
+                </div>
             </div>
             <div>
-                <span>Shop<span>
+                <span class="footer-first">Shop</span>
+                <br><br>
+                <div class="footer-second">
+                    <span>Men's Shopping</span>
+                    <span>Women's Shopping</span>
+                    <span>Kid's Shopping</span>
+                    <span>Discounts</span>
+                </div>
             </div>
             <div>
-                <span>Company</span>
+                <span class="footer-first">Company</span>
+                <br><br>
+                <div class="footer-second">
+                <span>Our Story</span>
+                <span>Careers</span>
+                <span>Terms & Conditions</span>
+                <span>Privacy & Cookie policy</span>
+                </div>
             </div>
-            <div>
-                <span>Contact</span>
-            </div>
+            <address>
+                <span class="footer-first">Contact</span>
+                <br><br>
+                <div class="footer-second">
+                <span>1-202-555-0105</span>
+                <span>1-202-555-0106</span>
+                <span>help@shopper.com</span>
+                </div>
+            </address>
         </div>
     </footer>
 </body>
