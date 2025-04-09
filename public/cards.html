@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naresh IT</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .card {
+            width: 250px;
+            margin: 20px;
+            border-radius: 10px;
+            border:1px solid gray;
+            box-shadow: 2px 2px 2px black;
+            font-family: Arial;
+        }
+        .card-img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 150px;
+        }
+        .card-header {
+          height: 150px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }    
+        .rating {
+            text-align: center;
+            color:goldenrod;
+            padding-top: 20px;
+        }
+        ul {
+            list-style: none;
+            margin-left: -40px;
+        }
+        li {
+            line-height: 30px;
+        }
+        .card-footer {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+            text-align: center;
+        }
+        .btn-enroll {
+            background-color: blue;
+            color:white;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .btn-share {
+            background-color: whitesmoke;
+            padding: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card2 {
+            width: 400px;
+            border:1px solid gray;
+            box-shadow: 3px 3px 2px black;
+            border-radius: 5px;
+            margin: 20px;
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+            height: 200px;
+        }
+        .card-img2 {
+            height: 200px;
+            width: 100%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .card-header2 {
+            text-align: center;
+            padding: 20px;
+            font-family: Arial;
+        }
+
+        .card-title2 {
+            font-size: 30px;
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+        .bi-chevron-bar-left {
+            font-size: 25px;
+        }
+        .bi-chevron-bar-right {
+            font-size: 25px;
+        }
+        .bi-play-fill {
+            font-size: 50px;
+        }
+        .controls2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+   <section>
+      <div class="card">
+         <div class="card-header">
+            <img src="./images/power-bi.png" class="card-img">
+         </div>
+         <div class="card-body">
+            <div>
+                <div class="card-title">Power PI</div>
+                <div class="rating">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li class="bi bi-calendar-date"> <span>Start Date</span> <span>:</span> <span>10 Apr 2025</span> </li>
+                    <li class="bi bi-person"> <span>By</span> <span>:</span> <span>Mr.Someone</span> </li>
+                    <li class="bi bi-clock"> <span>Duration</span> <span>:</span> <span> 60 Days </span> </li>
+                </ul>
+            </div>
+         </div>
+         <div class="card-footer">
+            <div class="btn-enroll">
+                Enroll
+            </div>
+            <div class="btn-share">
+               <span class="bi bi-share"></span> Share
+            </div>
+         </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-header">
+           <img src="./images/python.png" class="card-img">
+        </div>
+        <div class="card-body">
+           <div>
+               <div class="card-title">Python</div>
+               <div class="rating">
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+               </div>
+           </div>
+           <div>
+               <ul>
+                   <li class="bi bi-calendar-date"> <span>Start Date</span> <span>:</span> <span>10 Apr 2025</span> </li>
+                   <li class="bi bi-person"> <span>By</span> <span>:</span> <span>Mr.Someone</span> </li>
+                   <li class="bi bi-clock"> <span>Duration</span> <span>:</span> <span> 60 Days </span> </li>
+               </ul>
+           </div>
+        </div>
+        <div class="card-footer">
+           <div class="btn-enroll">
+               Enroll
+           </div>
+           <div class="btn-share">
+              <span class="bi bi-share"></span> Share
+           </div>
+        </div>
+     </div>
+
+     <div class="card">
+        <div class="card-header">
+           <img src="./images/react.png" class="card-img">
+        </div>
+        <div class="card-body">
+           <div>
+               <div class="card-title">React JS</div>
+               <div class="rating">
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+               </div>
+           </div>
+           <div>
+               <ul>
+                   <li class="bi bi-calendar-date"> <span>Start Date</span> <span>:</span> <span>10 Apr 2025</span> </li>
+                   <li class="bi bi-person"> <span>By</span> <span>:</span> <span>Mr.Someone</span> </li>
+                   <li class="bi bi-clock"> <span>Duration</span> <span>:</span> <span> 60 Days </span> </li>
+               </ul>
+           </div>
+        </div>
+        <div class="card-footer">
+           <div class="btn-enroll">
+               Enroll
+           </div>
+           <div class="btn-share">
+              <span class="bi bi-share"></span> Share
+           </div>
+        </div>
+     </div>
+
+     <div class="card">
+        <div class="card-header">
+           <img src="./images/data sci.png" class="card-img">
+        </div>
+        <div class="card-body">
+           <div>
+               <div class="card-title">Data Science</div>
+               <div class="rating">
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+                   <span class="bi bi-star-fill"></span>
+               </div>
+           </div>
+           <div>
+               <ul>
+                   <li class="bi bi-calendar-date"> <span>Start Date</span> <span>:</span> <span>10 Apr 2025</span> </li>
+                   <li class="bi bi-person"> <span>By</span> <span>:</span> <span>Mr.Someone</span> </li>
+                   <li class="bi bi-clock"> <span>Duration</span> <span>:</span> <span> 60 Days </span> </li>
+               </ul>
+           </div>
+        </div>
+        <div class="card-footer">
+           <div class="btn-enroll">
+               Enroll
+           </div>
+           <div class="btn-share">
+              <span class="bi bi-share"></span> Share
+           </div>
+        </div>
+     </div>
+   </section>
+   
+   <div class="card2">
+    <div class="card-header2">
+         <div class="card-title2">Honey Singh</div>
+         <div class="controls2">
+             <span class="bi bi-chevron-bar-left"></span>
+             <span class="bi bi-play-fill"></span>
+             <span class="bi bi-chevron-bar-right"></span>
+         </div>
+    </div>
+    <div class="card-body2">
+       <img src="./images/pawan-singh.jpg" class="card-img2">
+    </div>
+</div>
+
+<div class="card2">
+ <div class="card-header2">
+      <div class="card-title2">Badshah</div>
+      <div class="controls2">
+          <span class="bi bi-chevron-bar-left"></span>
+          <span class="bi bi-play-fill"></span>
+          <span class="bi bi-chevron-bar-right"></span>
+      </div>
+ </div>
+ <div class="card-body2">
+    <img src="./images/Khesari.jpg" class="card-img2">
+ </div>
+</div>
+</body>
+</html>
