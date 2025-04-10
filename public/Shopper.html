@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopper</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> -->
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         body{
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
         .header-row-1 {
             background-color: #e6e4e4;
             padding: 15px;
-            font-family: Arial;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 14px;
             display: flex;
             flex-direction: row;
@@ -30,7 +30,7 @@
             align-items: center;
             padding: 40px;
             font-size: 20px;
-            font-family: Arial;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
         .brand-title {
             font-size: 30px;
@@ -50,7 +50,7 @@
             color:white;
             padding: 15px;
             text-align: center;
-            font-family: Arial;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 16px;
         }
         .bi-lightning-fill {
@@ -90,7 +90,7 @@
             opacity: 0.8;
         }
         .main-title {
-            font-family: Arial;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 50px;
             font-weight: bold;
             color:white;
@@ -100,7 +100,7 @@
             background-color: white;
             padding: 10px;
             width: 140px;
-            font-family: Arial;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-align: center;
             box-shadow: 2px 2px 2px black;
             border-radius: 5px;
@@ -110,6 +110,7 @@
             cursor: grab;
         }
         .services {
+            border-bottom: 1px solid rgb(204, 204, 204);
             display: grid;
             grid-template-columns: 3fr 3fr 3fr 3fr;
             padding: 20px;
@@ -173,6 +174,81 @@
         address{
             font-style: normal;
         }
+        .header-second-section{
+         text-align: center;   
+         color: rgb(88, 88, 88);
+         padding: 40px;
+        }
+        .header-second-section-rimg{
+            display: grid;
+            grid-template-columns: 4fr 8fr;
+            justify-content: center;
+            padding: 40px;
+            padding-bottom: 05px;
+            text-shadow: 2px 2px 2px black;
+        }
+        .bag{
+            background-image: url("./images/women-bag.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color:white;
+            font-size: 30px;
+            font-weight: bold;
+            margin:10px;
+            height:400px;
+        }
+        .men-shirt{
+            margin-bottom: -10px;
+            margin:10px;
+            height:400px;
+            background-image: url("./images/men-fashion2.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color:white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .header-second-section-limg{
+            display: grid;
+            grid-template-columns: 8fr 4fr;
+            justify-content: center;
+            padding: 40px;
+            padding-top: 05px;
+            text-shadow: 2px 2px 2px black;
+        }
+        .women-dresses{
+            margin:10px;
+            height:400px;
+            background-image: url("./images/women-fashion2.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color:white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .sweatshirt{
+            background-image: url("./images/sweatshirt.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height:300px; 
+            color:white;
+            font-size: 30px;
+            font-weight: bold;
+            margin:10px;
+            height:400px;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +296,7 @@
             </div>
         </div>
     </header>
-    <section>
+    <section class="first-section">
         <article>
             <span class="bi bi-lightning-fill"></span>
             <span>HAPPY HOLIDAY DEALS ON EVERYTHING</span>
@@ -267,6 +343,41 @@
                 We have everything you need
             </div>
         </div>
+
+        <section class="second-section">
+            <div class="header-second-section">
+                <br><br><br>
+                New Collection
+                <br><br>
+                <font size="6" color="black">Best Picks 2019</font>
+                <br><br>
+    Appear, dry there darkness they're seas, dry waters thing fly midst. <br> Beast, above fly brought Very green.
+            </div>
+            <div class="header-second-section-rimg">
+                <span class="bag">Bag's Collection
+                    <p>Shop now</p>
+                </span>
+                <span class="men-shirt">Printed men's Shirt
+                    <p>Shop now</p>
+                </span>
+            </div>
+            
+            <div class="header-second-section-limg">
+                <span class="women-dresses">Basic Women's Dresses
+                    <p>Shop now</p>
+                </span>
+                <span class="sweatshirt">SweatShirt
+                    <p>Shop now</p>
+                </span>
+            </div>
+        </section>
+    
+        <section class="third-section"></section>
+    
+        <section class="fourth-section"></section>
+    
+        <section class="fifth-section"></section>
+
         <main class="main2">
             <h2>Want style Ideas and Treats?</h2>
             <div class="e-sub">
@@ -275,6 +386,7 @@
             </div>
         </main>
     </section>
+
     <footer>
         <div class="panel">
             <div>
