@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube | Naresh IT</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            font-family: Arial;
+        }
+        .bi-justify {
+            font-size: 30px;
+        }
+        .search-bar {
+            display: flex;
+            flex-direction: row;
+            width: 400px;
+            justify-content: space-between;
+            border:1px solid gray;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .search-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 500px;
+            align-items: center;
+        }
+        .bi-mic-fill {
+            font-size: 20px;
+            background-color: lightgray;
+            padding: 5px;
+            border-radius: 100%;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+        }
+        .bi-three-dots-vertical {
+            font-size: 22px;
+        }
+        .btn-signin {
+            border:1px solid blue;
+            padding: 10px;
+            border-radius: 20px;
+            color:blue;
+        }
+        section {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 11fr;
+        }
+        .banner {
+            border-radius: 20px;
+        }
+        nav {
+            font-family: Arial;
+        }
+        .nav-item{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            margin-left: -40px;
+        }
+        .nav-text {
+            font-size: 12px;
+        }
+        .nav-icon {
+            font-size: 18px;
+        }
+        main {
+            height: 500px;
+            overflow: auto;
+        }
+        article {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+            margin-top: 20px;
+            font-family: Arial;
+        }
+        .logo {
+            border:1px solid red;
+            border-radius: 100%;
+            padding: 5px;
+        }
+        .article-title {
+            font-weight: bold;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+        .article-subtitle {
+            font-size: 15px;
+            color:gray;
+            margin-bottom: 20px;
+        }
+        .article-text {
+            margin-bottom: 10px;
+        }
+        .btn-subscribe {
+            margin-top: 10px;
+            display: block;
+            background-color: black;
+            color:white;
+            border-radius: 20px;
+            width: 100px;
+            padding: 10px;
+        }
+        .services {
+            margin-top: 20px;
+            font-family: Arial;
+        }
+        .services-menu span {
+            font-size: 20px;
+            padding-left: 30px;
+        }
+        .services-menu span:first-child {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .services-menu .bi-search {
+            color:gray;
+        }
+        .services-menu {
+            margin-bottom: 20px;
+        }
+        .live-video {
+            padding-left: 30px;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+            grid-gap: 30px;
+        }
+        .live-text {
+            width: 80%;
+            margin-top: 20px;
+        }
+        .live-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+        .live-subtitle {
+            color:gray;
+        }
+        .videos {
+            display: grid;
+            grid-template-columns: 2.4fr 2.4fr 2.4fr 2.4fr 2.4fr;
+        }
+        .videos iframe {
+            width: 210px;
+        }
+        .card-footer {
+            padding-top: 20px;
+        }
+        .card-body{
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="bi bi-justify"></span>
+            <img src="./images/youtube-logo.jpg" width="100">
+        </div>
+        <div class="search-container">
+            <div class="search-bar"> <span>Search</span> <span class="bi bi-search"></span> </div>
+            <span class="bi bi-mic-fill"></span>
+        </div>
+        <div>
+            <span class="bi bi-three-dots-vertical"></span>
+            <span class="btn-signin"> <span class="bi bi-person-circle"></span> Sign in </span>
+        </div>
+    </header>
+    <section>
+        <nav>
+          <div class="nav-item">
+             <span class="bi bi-house-door nav-icon"></span>
+             <br>
+             <span class="nav-text">Home</span>
+          </div>
+          <div class="nav-item">
+            <span class="bi bi-camera-video nav-icon"></span>
+            <br>
+            <span class="nav-text">Videos</span>
+         </div>
+         <div class="nav-item">
+            <span class="bi bi-play-btn nav-icon"></span>
+            <br>
+            <span class="nav-text">Subscription</span>
+         </div>
+         <div class="nav-item">
+            <span class="bi bi-person-circle nav-icon"></span>
+            <br>
+            <span class="nav-text">Profile</span>
+         </div>
+        </nav>
+        <main>
+            <img class="banner" src="./images/channel_banner.jpg" width="90%">
+            <article>
+                <div>
+                    <img class="logo" src="./images/nit-logo.jpg">
+                </div>
+                <div>
+                    <div class="article-title">Naresh i Technologies</div>
+                    <div class="article-subtitle">
+                        @NareshIT• 1.32M subscribers • 3.4K videos
+                    </div>
+                    <div class="article-text">
+                        We are one of the software training organization With a library of 200+ courses
+                    </div>
+                    <div>
+                        <a href="instagram.com/nareshitech">instagram.com/nareshitech</a> and 7 more links
+                    </div>
+                    <div>
+                        <span class="btn-subscribe"> <span class="bi bi-bell-fill"></span> Subscribe</span>
+                    </div>
+                </div>
+            </article>
+            <div class="services">
+                <div class="services-menu">
+                    <span>Home</span>
+                    <span>Videos</span>
+                    <span>Shorts</span>
+                    <span>Live</span>
+                    <span>Playlists</span>
+                    <span>Posts</span>
+                    <span class="bi bi-search"></span>
+                </div>
+                <hr noshade width="95%" size="0.5" color="gray">
+                <div class="live-video">
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/F_LARJNfJz4"></iframe>
+                    </div>
+                    <div>
+                        <div class="live-title">Playwright Automation | Mr. Sumanth | Naresh IT</div>
+                        <div class="live-subtitle">
+                            Naresh i Technologies • 14 watching
+                        </div>
+                        <div class="live-text">
+                            https://chat.whatsapp.com/K5VsfaOdAO0BYgLe7JgnFd Introduction to Playwright Automation | Mr. Sumanth ** For Online Training Registration: https://goo.gl/r6kJbB ► Call: +91-8179191999 ...
+                        </div>
+                    </div>
+                </div>
+                <h3>Videos</h3>
+                <div class="videos">
+                    <div class="video-card">
+                        <div class="card-header">
+                            <iframe src="https://www.youtube.com/embed/HDte6jsic0U"></iframe>
+                        </div>
+                        <div class="card-body">
+                            Mastering Centralized Cloud Networking with AWS
+                        </div>
+                        <div class="card-footer">
+                            <span class="bi bi-eye-fill"> 900 views</span>
+                            <span> 5 days ago </span>
+                        </div>
+                    </div>
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/OzltVfNBKt4"></iframe>
+                    </div>
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/F_LARJNfJz4"></iframe>
+                    </div>
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/F_LARJNfJz4"></iframe>
+                    </div>
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/F_LARJNfJz4"></iframe>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+</html>

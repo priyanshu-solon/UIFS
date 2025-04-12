@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe & Hyperlinks</title>
+    <style>
+        section {
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+        }
+        frame {
+            border:none;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav>
+            <ol>
+                <li> <a href="./images/women-fashion.jpg"> Women Fashion | This page opens as the next page </a> </li>
+                <li> <a href="./images/kids-fashion.jpg" target="_blank"> Kids Fashion | This page opens in a new tab </a> </li>
+                <li> <a href="javascript:window.open('./images/men-fashion.jpg','Men','width=300 height=400')"> Men Fashion | Opens in a new Window</a> </li>
+                <li> <a href="./docs/Course Content _ UI Full Stack_React JS.pdf" target="main-frame"> Document | Inside the Frame</a></li>
+                <li> <a href="./images/nit-logo.jpg" target="main-frame"> <img src="./images/nit-logo.jpg" width="50" height="50"><br> Inside the frame </a> </li>
+                <li> <a href="./shopper-template.html" target="main-frame">Shopper | Inside the Frame</a> </li>
+                <li> <a href="https://www.youtube.com/embed/pLkzLBCBeuA>" target="main-frame"> Java Functions | Inside the Frame</a> </li>
+                <li> <a href="https://www.youtube.com/embed/OzltVfNBKt4>" target="main-frame"> AWS Workshop | Inside the Frame</a> </li>
+              </ol>
+        </nav>
+           <main>
+                <iframe name="main-frame" width="100%" height="550"></iframe>
+           </main>
+    </section>
+</body>
+</html>
