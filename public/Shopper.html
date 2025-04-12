@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopper</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> 
+     Change to Correct MDN Link so that this feature of logo can be used when live-->
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         body{
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
         }
         .header-row-1 {
             background-color: #e6e4e4;
             padding: 15px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
             font-size: 14px;
             display: flex;
             flex-direction: row;
@@ -30,7 +31,7 @@
             align-items: center;
             padding: 40px;
             font-size: 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
         }
         .brand-title {
             font-size: 30px;
@@ -50,7 +51,7 @@
             color:white;
             padding: 15px;
             text-align: center;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
             font-size: 16px;
         }
         .bi-lightning-fill {
@@ -90,7 +91,7 @@
             opacity: 0.8;
         }
         .main-title {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
             font-size: 50px;
             font-weight: bold;
             color:white;
@@ -100,7 +101,7 @@
             background-color: white;
             padding: 10px;
             width: 140px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: Arial;
             text-align: center;
             box-shadow: 2px 2px 2px black;
             border-radius: 5px;
@@ -183,9 +184,11 @@
             display: grid;
             grid-template-columns: 4fr 8fr;
             justify-content: center;
-            padding: 40px;
-            padding-bottom: 05px;
+            grid-gap:20px;
             text-shadow: 2px 2px 2px black;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
         }
         .bag{
             background-image: url("./images/women-bag.jpg");
@@ -197,12 +200,9 @@
             color:white;
             font-size: 30px;
             font-weight: bold;
-            margin:10px;
             height:400px;
         }
         .men-shirt{
-            margin-bottom: -10px;
-            margin:10px;
             height:400px;
             background-image: url("./images/men-fashion2.jpg");
             background-size: cover;
@@ -218,13 +218,13 @@
             display: grid;
             grid-template-columns: 8fr 4fr;
             justify-content: center;
-            padding: 40px;
-            padding-top: 05px;
-            margin-bottom: 10px;
+            grid-gap:20px;
             text-shadow: 2px 2px 2px black;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 90px;
         }
         .women-dresses{
-            margin:10px;
             height:400px;
             background-image: url("./images/women-fashion2.jpg");
             background-size: cover;
@@ -247,7 +247,6 @@
             color:white;
             font-size: 30px;
             font-weight: bold;
-            margin:10px;
             height:400px;
         }
         .header-third-section{
@@ -335,6 +334,50 @@
         }
         .timer{
             padding: 30px;  
+        }
+        .title-fifth{
+            font-size: 16px;
+            color: grey;
+            text-align: center;
+        }
+        .subtitle-fifth{
+            font-size: 38px;
+            color: black;
+            text-align: center;
+        }
+        .fifth-section-cards{
+            display: grid;
+            grid-template-columns: 4fr 4fr 4fr;
+            justify-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        .fifth-card{
+            padding: 20px;
+            width: 300px;
+            border: 1px solid rgb(206, 206, 206);
+        }
+        .fifth-img img{
+            width: 90px;
+            height: 90px;
+            padding-right: 20px;
+        }
+        .fifth-header{
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+        }
+        .fifth-title{
+            color: grey;
+            padding-bottom: 5px ;
+        }
+        .bi-star-fill{
+            color: orange;
+        }
+        .fifth-body,.fifth-footer{
+            color: grey;
+            padding-bottom: 10px ;
         }
     </style>
 </head>
@@ -463,7 +506,7 @@
             <div class="header-third-section">
                 Top month Sellers 
             </div>
-            <nav class="nav-third">
+            <nav class="nav-third"><!-- Remove nav and change to anchor tag -->
                     <li>Women</li>
                     <li>Men</li>
                     <li>Kids</li>
@@ -577,7 +620,138 @@
         </section>
         <br><br>
         <br><br>
-        <section class="fifth-section"></section>
+
+
+        <section class="fifth-section">
+            <div class="title-fifth">
+                What buyers say
+            </div>
+            <br>
+            <div class="subtitle-fifth">
+                Latest buyers Reviews
+            </div>
+            <div class="fifth-section-cards">
+                <div class="fifth-card">
+                    <div class="fifth-header">
+                        <div class="fifth-img">
+                            <img src="./images/bag-fifth.jpg" alt="">
+                        </div>
+                        <div class="fifth-summary">
+                            <div class="fifth-title">
+                                Bags & Accessories
+                            </div>
+                            <div class="fifth-subtitle">
+                                Bag
+                            </div>
+                            <br>
+                            <div class="rating">
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="fifth-body">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero error labore quia maiores quae mollitia esse ipsum nihil minus omnis! Dignissimos nobis delectus possimus illum inventore aperiam est id quidem.
+                    </div>
+                    <br>
+                    <div class="fifth-footer">
+                        Priyanshu Solon, 12 April 2025
+                    </div>
+                </div>
+
+                <div class="fifth-card">
+                    <div class="fifth-header">
+                        <div class="fifth-img">
+                            <img src="./images/sunglasses.jpg" alt="">
+                        </div>
+                        <div class="fifth-summary">
+                            <div class="fifth-title">
+                                Sunglasses & Accessories
+                            </div>
+                            <div class="fifth-subtitle">
+                                Black Sunglasses
+                            </div>
+                            <br>
+                            <div class="rating">
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="fifth-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sint fuga incidunt iure obcaecati doloremque officia eius totam voluptatem laborum facilis recusandae debitis, expedita quam!                    
+                    </div>
+                    <br>
+                    <div class="fifth-footer">
+                        Priyanshu Solon, 12 April 2025
+                    </div>
+                </div>
+
+                <div class="fifth-card">
+                    <div class="fifth-header">
+                        <div class="fifth-img">
+                            <img src="./images/watch.jpg" alt="">
+                        </div>
+                        <div class="fifth-summary">
+                            <div class="fifth-title">
+                                Watches & Accessories
+                            </div>
+                            <div class="fifth-subtitle">
+                                Smart Watch
+                            </div>
+                            <br>
+                            <div class="rating">
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                                <span class="bi bi-star-fill"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>    
+                    <div class="fifth-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, facilis nostrum tempora mollitia alias, eius odio repellat earum dolorem, dolores accusantium?    
+                    </div>
+                        <br>
+                    <div class="fifth-footer">
+                            Priyanshu Solon, 12 April 2025
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="last-section">
+            <div class="last-header">
+                <div class="last-title">@shopper</div>
+                <div class="last-subtitle">Appear, dry there darkness they're seas, dry waters.</div>
+            </div>
+            <div class="last-body">
+                <div class="last-img"><img src="./images/women-fashion2.jpg"></div>
+                <div class="last-img"><img src="./images/watch.jpg"></div>
+                <div class="last-img"><img src="./images/sunglasses.jpg"></div>
+                <div class="last-img"><img src="./images/men-fashion2.jpg"></div>
+                <div class="last-img"><img src="./images/women-bag.jpg"></div>
+                <div class="last-img"><img src="./images/snickers.jpg"></div>
+            </div>
+            <div class="last-footer">
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+                <div class="last-logo"></div>
+            </div>
+        </section> -->
 
         <main class="main2">
             <h2>Want style Ideas and Treats?</h2>
