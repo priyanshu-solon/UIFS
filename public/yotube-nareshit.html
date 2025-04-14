@@ -68,8 +68,18 @@
             border-radius: 30px;
             background-color: rgb(48, 48, 48);
         }
+        nav{
+            height: 600px;
+            overflow-y: auto;
+        }
+        main{
+            height: 600px;
+            overflow: auto;
+            padding-left: 30px;
+        }
         .nav1{
             padding-top: 18px;
+            margin-right: 40px;
             border-bottom: 1.5px solid rgb(48,48,48);
         }
         .nav-icon{
@@ -86,6 +96,59 @@
         footer{
             font-size:12px;
             color: rgb(139, 139, 139)
+        }
+        section{
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        .banner{
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        .logo img{
+            height: 150px;
+            width: 150px;
+            border-radius: 100%;
+        }
+        article{
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+            margin-top: 20px;
+        }
+        .article-title{
+            font-weight: bold;
+            font-size: 18px;
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+        .article-subtitle{
+            margin-bottom: 14px;
+            font-size: 12px;
+        }
+        .article-subtitle span{
+            font-size: 15px;
+            color: rgb(139, 139, 139);
+            
+        }
+        .article-text{
+            font-size: 15px;
+            font-size: 12px;
+            color: rgb(139, 139, 139);
+            margin-bottom: 7px;
+        }
+        .article-link{
+            font-size: 12px;
+        }
+        .btn-subscribe{
+            font-weight: bold;
+            background-color: white;
+            font-size: 12px;
+            color: black;
+            margin-top:10px;
+            padding: 8px;
+            border-radius: 20px;
+            width: 75px;
+            text-align: center;
         }
     </style>
 </head>
@@ -105,10 +168,6 @@
             <span class="bi bi-person"></span>
         </div>
     </header>
-    <!-- 
-    color: rgb(139, 139, 139);
-    background-color: rgb(48, 48, 48);
-     -->
 
     <section>
         <!-- Navigation Section -->
@@ -254,12 +313,7 @@
                     <span class="nav-text">Send Feedback</span>
                 </div>
             </div>
-        </nav>
-
-
-
-    </section>
-
+            
     <footer><br>
         <div class="about">
             About Press Copyright <br>Contact us Creator Advertise <br>Developers
@@ -271,6 +325,27 @@
             © 2025 Google LLC
         </div>
     </footer>
-    
+        </nav>
+
+        <main>
+            <img class="banner" src="./images/channel_banner.jpg" width="90%">
+            <article>
+                <div class="logo"><img src="./images/nit-logo.jpg" alt=""></div>
+                <div>
+                    <div class="article-title">Naresh i Technologies</div>
+                <div class="article-subtitle">@NareshIT <span>• 1.32M subscribers • 3.4K videos</span></div>
+                <div class="article-text">
+                    We are one of the software training organization With a library of 200+ courses, we have ...more
+                </div>
+                <div class="article-link">
+                    <a href="instagram.com/nareshitech">instagram.com/nareshitech</a> and 7 more links
+                </div>
+                <div class="btn-subscribe">Subscribe</div>
+                </div>
+            </article>
+
+        </main>
+
+    </section>
 </body>
 </html>
