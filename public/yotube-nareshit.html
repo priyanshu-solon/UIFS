@@ -3,20 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube | Naresh IT</title>
+    <title>Naresh i Technologies - Youtube</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        header{
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+        }
+        header div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .bi-justify{
+            padding-right: 15px;
+            font-size: 20px;
+            color: rgb(139, 139, 139);
+        }
+        .search-container{
+            color: rgb(139, 139, 139);
+        }
+        .search-bar{
+            border: 1px solid rgb(48, 48, 48);
+            width: 500px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .bi-search{
+            border-left: 1px solid rgb(139, 139, 139);
+            padding-left: 7px;
+            color: rgb(139, 139, 139);
+            /* background-color: rgb(53, 53, 53); */
+            
+        }
+        .bi-mic-fill{
+            padding:10px;
+            margin-left: 10px;
+            border-radius: 30px;
+            color: rgb(139, 139, 139);
+            background-color: rgb(48, 48, 48);
+        }
+        .bi-plus{
+            padding:7px;
+            margin-right: 15px;
+            border-radius: 30px;
+            background-color: rgb(48, 48, 48);
+        }
+        .bi-bell{
+            margin-right:15px;
+        }
+        .bi-person{
+            padding:8px;
+            border-radius: 30px;
+            background-color: rgb(48, 48, 48);
+        }
+        .nav1{
+            padding-top: 18px;
+            border-bottom: 1.5px solid rgb(48,48,48);
+        }
+        .nav-icon{
+            font-size: 18px;
+            padding-right: 20px;
+        }
+        .nav1 div{
+            padding-bottom: 14px;
+            align-items: center;
+        }
+        .nav-text{
+            font-size:12px;
+        }
+        footer{
+            font-size:12px;
+            color: rgb(139, 139, 139)
+        }
+    </style>
 </head>
 <body>
-
     <header>
-
+        <div>
+            <span class="bi bi-justify"></span>
+            <img src="./images/youtube-logo.jpg">
+        </div>
+        <div class="search-container">
+            <div class="search-bar"><span>Search</span><span class="bi bi-search"></span></div>
+            <span class="bi bi-mic-fill"></span>
+        </div>
+        <div>
+            <span class="bi bi-plus">Create</span>
+            <span class="bi bi-bell"></span>
+            <span class="bi bi-person"></span>
+        </div>
     </header>
+    <!-- 
+    color: rgb(139, 139, 139);
+    background-color: rgb(48, 48, 48);
+     -->
 
     <section>
-        
+        <!-- Navigation Section -->
+        <nav>
+            <div class="nav1">
+                <div>
+                    <span class="bi bi-house-door nav-icon"></span>
+                    <span class="nav-text">Home</span>
+                </div>
+                <div>
+                    <span class="bi bi-play nav-icon"></span>
+                    <span class="nav-text">Shorts</span>
+                </div>
+                <div>
+                    <span class="bi bi-play-btn nav-icon"></span>
+                    <span class="nav-text">Subscriptions</span>
+                </div>
+            </div>
+            <div class="nav1">
+                <div>You <span class="bi-chevron-right"></span></div>
+                <div>
+                    <span class="bi bi-clock-history nav-icon"></span>
+                    <span class="nav-text">History</span>
+                </div>
+                <div>
+                    <span class="bi bi-list-task nav-icon"></span>
+                    <span class="nav-text">Playlist</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-video nav-icon"></span>
+                    <span class="nav-text">Your videos</span>
+                </div>
+                <div>
+                    <span class="bi bi-camera-video nav-icon"></span>
+                    <span class="nav-text">Your movies</span>
+                </div>
+                <div>
+                    <span class="bi bi-book nav-icon"></span>
+                    <span class="nav-text">Your courses</span>
+                </div>
+                <div>
+                    <span class="bi bi-clock nav-icon"></span>
+                    <span class="nav-text">Watch Later</span>
+                </div>
+                <div>
+                    <span class="bi bi-hand-thumbs-up nav-icon"></span>
+                    <span class="nav-text">Liked Videos</span>
+                </div>
+            </div>
+            <div class="nav1">
+                <div>Subscriptions</div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-person-badge nav-icon"></span>
+                    <span class="nav-text">NareshIT</span>
+                </div>
+                <div>
+                    <span class="bi bi-chevron-down nav-icon"></span>
+                    <span class="nav-text">Show more</span>
+                </div>
+            </div>
+            <div class="nav1">
+                <div>Explore</div>
+                <div>
+                    <span class="bi bi-fire nav-icon"></span>
+                    <span class="nav-text">Trending</span>
+                </div>
+                <div>
+                    <span class="bi bi-bag nav-icon"></span>
+                    <span class="nav-text">Shopping</span>
+                </div>
+                <div>
+                    <span class="bi bi-music-note-beamed nav-icon"></span>
+                    <span class="nav-text">Music</span>
+                </div>
+                <div>
+                    <span class="bi bi-camera-video nav-icon"></span>
+                    <span class="nav-text">Films</span>
+                </div>
+                <div>
+                    <span class="bi bi-broadcast nav-icon"></span>
+                    <span class="nav-text">Live</span>
+                </div>
+                <div>
+                    <span class="bi bi-controller nav-icon"></span>
+                    <span class="nav-text">Gaming</span>
+                </div>
+                <div>
+                    <span class="bi bi-newspaper nav-icon"></span>
+                    <span class="nav-text">News</span>
+                </div>
+                <div>
+                    <span class="bi bi-car-front nav-icon"></span>
+                    <span class="nav-text">Sport</span>
+                </div>
+                <div>
+                    <span class="bi bi-book nav-icon"></span>
+                    <span class="nav-text">Courses</span>
+                </div>
+                <div>
+                    <span class="bi bi-handbag nav-icon"></span>
+                    <span class="nav-text">Fashion & beauty</span>
+                </div>
+                <div>
+                    <span class="bi bi-broadcast-pin nav-icon"></span>
+                    <span class="nav-text">Podcast</span>
+                </div>
+            </div>
+            <div class="nav1">
+                <div>
+                    <span class="bi bi-nut nav-icon"></span>
+                    <span class="nav-text">Setting</span>
+                </div>
+                <div>
+                    <span class="bi bi-flag nav-icon"></span>
+                    <span class="nav-text">Report history</span>
+                </div>
+                <div>
+                    <span class="bi bi-question-circle nav-icon"></span>
+                    <span class="nav-text">help</span>
+                </div>
+                <div>
+                    <span class="bi bi-send-exclamation nav-icon"></span>
+                    <span class="nav-text">Send Feedback</span>
+                </div>
+            </div>
+        </nav>
+
+
+
     </section>
 
-    <footer>
-
+    <footer><br>
+        <div class="about">
+            About Press Copyright <br>Contact us Creator Advertise <br>Developers
+        </div><br>
+        <div class="terms">
+            Terms Privacy Policy & Safety <br>How YouTube works <br>Test new features
+        </div><br>
+        <div class="copyright">
+            © 2025 Google LLC
+        </div>
     </footer>
     
 </body>
