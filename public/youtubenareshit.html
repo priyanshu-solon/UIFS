@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naresh i Technologies - Youtube</title>
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        body{
+        body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #0f0f0f;
             color: white;
             margin-left: 20px;
             margin-right: 20px;
         }
-        header{
+
+        header {
             display: flex;
-            flex-direction:row;
+            flex-direction: row;
             justify-content: space-between;
         }
-        header div{
+
+        header div {
             display: flex;
             flex-direction: row;
             align-items: center;
         }
-        .bi-justify{
+
+        .bi-justify {
             padding-right: 15px;
             font-size: 20px;
             color: rgb(139, 139, 139);
         }
-        .search-container{
+
+        .search-container {
             color: rgb(139, 139, 139);
         }
-        .search-bar{
+
+        .search-bar {
             border: 1px solid rgb(48, 48, 48);
             width: 500px;
             border-radius: 25px;
@@ -40,118 +46,200 @@
             justify-content: space-between;
             padding: 10px;
         }
-        .bi-search{
-            border-left: 1px solid rgb(139, 139, 139);
+
+        .bi-search {
             padding-left: 7px;
             color: rgb(139, 139, 139);
-            /* background-color: rgb(53, 53, 53); */
-            
         }
-        .bi-mic-fill{
-            padding:10px;
+
+        .bi-mic-fill {
+            padding: 10px;
             margin-left: 10px;
             border-radius: 30px;
             color: rgb(139, 139, 139);
             background-color: rgb(48, 48, 48);
         }
-        .bi-plus{
-            padding:7px;
+
+        .bi-plus {
+            padding: 7px;
             margin-right: 15px;
             border-radius: 30px;
             background-color: rgb(48, 48, 48);
         }
-        .bi-bell{
-            margin-right:15px;
+
+        .bi-bell {
+            margin-right: 15px;
         }
-        .bi-person{
-            padding:8px;
+
+        .bi-person {
+            padding: 8px;
             border-radius: 30px;
             background-color: rgb(48, 48, 48);
         }
-        nav{
+
+        nav {
             height: 600px;
             overflow-y: auto;
         }
-        main{
+
+        main {
             height: 600px;
             overflow: auto;
             padding-left: 30px;
         }
-        .nav1{
+
+        .nav1 {
             padding-top: 18px;
             margin-right: 40px;
-            border-bottom: 1.5px solid rgb(48,48,48);
+            border-bottom: 1.5px solid rgb(48, 48, 48);
         }
-        .nav-icon{
+
+        .nav-icon {
             font-size: 18px;
             padding-right: 20px;
         }
-        .nav1 div{
+
+        .nav1 div {
             padding-bottom: 14px;
             align-items: center;
         }
-        .nav-text{
-            font-size:12px;
+
+        .nav-text {
+            font-size: 12px;
         }
-        footer{
-            font-size:12px;
+
+        footer {
+            font-size: 12px;
             color: rgb(139, 139, 139)
         }
-        section{
+
+        section {
             display: grid;
             grid-template-columns: 2fr 10fr;
         }
-        .banner{
+
+        .banner {
             border-radius: 20px;
             margin-top: 10px;
         }
-        .logo img{
+
+        .logo img {
             height: 150px;
             width: 150px;
             border-radius: 100%;
         }
-        article{
+
+        article {
             display: grid;
             grid-template-columns: 2fr 10fr;
             margin-top: 20px;
         }
-        .article-title{
+
+        .article-title {
             font-weight: bold;
             font-size: 18px;
             font-size: 30px;
             margin-bottom: 7px;
         }
-        .article-subtitle{
+
+        .article-subtitle {
             margin-bottom: 14px;
             font-size: 12px;
         }
-        .article-subtitle span{
+
+        .article-subtitle span {
             font-size: 15px;
             color: rgb(139, 139, 139);
-            
+
         }
-        .article-text{
+
+        .article-text {
             font-size: 15px;
             font-size: 12px;
             color: rgb(139, 139, 139);
             margin-bottom: 7px;
         }
-        .article-link{
+
+        .article-link {
             font-size: 12px;
         }
-        .btn-subscribe{
+
+        .btn-subscribe {
             font-weight: bold;
             background-color: white;
             font-size: 12px;
             color: black;
-            margin-top:10px;
+            margin-top: 10px;
             padding: 8px;
             border-radius: 20px;
             width: 75px;
             text-align: center;
         }
+
+        .services {
+            margin-top: 30px;
+        }
+
+        .services span {
+            padding: 10px;
+        }
+
+        .live-video {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+            margin-top: 20px;
+            grid-gap: 30px;
+        }
+
+        .live-video iframe {
+            width: 381px;
+            height: 190px;
+        }
+
+        .live-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .live-subtitle {
+            color: gray;
+        }
+
+        .links {
+            padding-top: 20px;
+            font-size: 14px;
+        }
+
+        .for-you {
+            margin-top: 20px;
+            grid-gap: 30px;
+        }
+        .card{
+            display: grid;
+            grid-template-columns: 4fr 4fr 4fr;
+            grid-gap: 30px;
+        }
+        iframe{
+            border-radius: 15px;
+        }
+        .card-header{
+            font-size: 14px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+        .card-subtitle{
+            font-size: 12px;
+            padding-top: 5px;
+            color: gray;
+        }
+        .card1 iframe{
+            width: 321px;
+            height: 180px;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <div>
@@ -313,18 +401,18 @@
                     <span class="nav-text">Send Feedback</span>
                 </div>
             </div>
-            
-    <footer><br>
-        <div class="about">
-            About Press Copyright <br>Contact us Creator Advertise <br>Developers
-        </div><br>
-        <div class="terms">
-            Terms Privacy Policy & Safety <br>How YouTube works <br>Test new features
-        </div><br>
-        <div class="copyright">
-            © 2025 Google LLC
-        </div>
-    </footer>
+
+            <footer><br>
+                <div class="about">
+                    About Press Copyright <br>Contact us Creator Advertise <br>Developers
+                </div><br>
+                <div class="terms">
+                    Terms Privacy Policy & Safety <br>How YouTube works <br>Test new features
+                </div><br>
+                <div class="copyright">
+                    © 2025 Google LLC
+                </div>
+            </footer>
         </nav>
 
         <main>
@@ -333,19 +421,73 @@
                 <div class="logo"><img src="./images/nit-logo.jpg" alt=""></div>
                 <div>
                     <div class="article-title">Naresh i Technologies</div>
-                <div class="article-subtitle">@NareshIT <span>• 1.32M subscribers • 3.4K videos</span></div>
-                <div class="article-text">
-                    We are one of the software training organization With a library of 200+ courses, we have ...more
-                </div>
-                <div class="article-link">
-                    <a href="instagram.com/nareshitech">instagram.com/nareshitech</a> and 7 more links
-                </div>
-                <div class="btn-subscribe">Subscribe</div>
+                    <div class="article-subtitle">@NareshIT <span>• 1.32M subscribers • 3.4K videos</span></div>
+                    <div class="article-text">
+                        We are one of the software training organization With a library of 200+ courses, we have ...more
+                    </div>
+                    <div class="article-link">
+                        <a href="instagram.com/nareshitech">instagram.com/nareshitech</a> and 7 more links
+                    </div>
+                    <div class="btn-subscribe">Subscribe</div>
                 </div>
             </article>
-
+            <div class="services">
+                <span>Home</span>
+                <span>Videos</span>
+                <span>Shorts</span>
+                <span>Live</span>
+                <span>Playlist</span>
+                <span>Post</span>
+                <span class="bi bi-search"></span>
+            </div>
+            <hr noshade size="0.5" color="gray">
+            <div class="live-video">
+                <div>
+                    <iframe src="https://www.youtube.com/embed/F_LARJNfJz4  "></iframe>
+                </div>
+                <div class="live-content">
+                    <div class="live-title">Playwright Automation | Mr. Sumanth | Naresh IT</div>
+                    <div class="live-subtitle">Naresh i Technologies • 14 watching</div>
+                    <div class="links">https://chat.whatsapp.com/K5VsfaOdAO0BYgLe7JgnFd Introduction to Playwright
+                        Automation | Mr. Sumanth ** For Online Training Registration: https://goo.gl/r6kJbB ► Call:
+                        +91-8179191999...</div>
+                </div>
+            </div>
+            <div class="for-you">
+                <div>For You</div><br>
+                <div class="card">
+                    <div class="card1">
+                        <iframe src="https://www.youtube.com/embed/OzltVfNBKt4"></iframe>
+                        <div class="card-header">
+                            Mastering Centralized Cloud Networking with AWS
+                        </div>
+                        <div class="card-subtitle">
+                            1.1K views Streamed 3 days ago
+                        </div>
+                    </div>
+                    <div class="card1">
+                        <iframe src="https://www.youtube.com/embed/OzltVfNBKt4"></iframe>
+                        <div class="card-header">
+                            Mastering Centralized Cloud Networking with AWS
+                        </div>
+                        <div class="card-subtitle">
+                            1.1K views Streamed 3 days ago
+                        </div>
+                    </div>
+                    <div class="card1">
+                        <iframe src="https://www.youtube.com/embed/OzltVfNBKt4"></iframe>
+                        <div class="card-header">
+                            Mastering Centralized Cloud Networking with AWS
+                        </div>
+                        <div class="card-subtitle">
+                            1.1K views Streamed 3 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
     </section>
 </body>
+
 </html>
