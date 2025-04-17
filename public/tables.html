@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        th,
+        .input {
+            background-color: rgb(244, 244, 244);
+        }
+        .row1 {
+            background-color: rgb(235, 235, 235);
+        }
+        .id {
+            width: 51px;
+        }
+        .footer{
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table frame="box" rules="all" cellpadding="5" height="" align="left" width="100%">
+        <thead>
+            <th align="left" class="id">ID</th>
+            <th align="left" class="name">Name</th>
+            <th align="left" class="cat">Category</th>
+            <th align="left" class="prc">Price</th>
+            <th align="left" class="stk">In Stock</th>
+            <th align="left" class="dis">Discontinued</th>
+        </thead>
+        <tbody>
+            <tr class="input">
+                <td></td>
+                <td><input type="text" size="105"></td>
+                <td><input type="text" size="15"></td>
+                <td><input type="text" size="10"></td>
+                <td><input type="text" size="10"></td>
+                <td><input type="text" size="10"></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Chai</td>
+                <td>Beverages</td>
+                <td>18</td>
+                <td>39</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>2</td>
+                <td>Chang</td>
+                <td>Beverages</td>
+                <td>19</td>
+                <td>17</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Beverages</td>
+                <td>Condiments</td>
+                <td>10</td>
+                <td>13</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>4</td>
+                <td>Chai</td>
+                <td>Beverages</td>
+                <td>18</td>
+                <td>39</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chang</td>
+                <td>Beverages</td>
+                <td>19</td>
+                <td>17</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>6</td>
+                <td>Beverages</td>
+                <td>Condiments</td>
+                <td>10</td>
+                <td>13</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Chai</td>
+                <td>Beverages</td>
+                <td>18</td>
+                <td>39</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>8</td>
+                <td>Chang</td>
+                <td>Beverages</td>
+                <td>19</td>
+                <td>17</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Beverages</td>
+                <td>Condiments</td>
+                <td>10</td>
+                <td>13</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>10</td>
+                <td>Chai</td>
+                <td>Beverages</td>
+                <td>18</td>
+                <td>39</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Chang</td>
+                <td>Beverages</td>
+                <td>19</td>
+                <td>17</td>
+                <td>false</td>
+            </tr>
+            <tr class="row1">
+                <td>12</td>
+                <td>Beverages</td>
+                <td>Condiments</td>
+                <td>10</td>
+                <td>13</td>
+                <td>false</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" >
+                    <div class="footer">
+                        <span class="left">
+                            1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5 &nbsp; 6
+                        </span>
+                        <span class="right">
+                            1-10 of 1000 items
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+
+</html>
