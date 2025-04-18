@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form>
+         <dl>
+            <dt>User Name</dt>
+            <dd><input type="text"  name="txtName" required minlength="4" maxlength="10" placeholder="Name in block letters"></dd>
+            <dt>Mobile</dt>
+            <dd><input type="text" autofocus name="txtMobile" pattern="\+\(1\)\(\d{3}\)\s\d{3}-\d{4}" placeholder="US: +1(000) 0000-000"></dd>
+            <dt>OTP</dt>
+            <dd><input type="text" name="txtOTP" size="4"  maxlength="4"></dd>
+            <dt>Your Course</dt>
+            <dd>
+                <input type="text" name="txtCourse" list="courses">
+                <datalist id="courses">
+                    <option>Java</option>
+                    <option>JavaScript</option>
+                    <option>Oracle</option>
+                    <option>AWS</option>
+                    <option>UI Front End</option>
+                    <option>UI Full Stack</option>
+                    <option>Azure</option>
+                </datalist>
+            </dd>
+         </dl>
+         <button>Submit</button>
+    </form>
+</body>
+</html>
