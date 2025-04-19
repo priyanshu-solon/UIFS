@@ -3,215 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Flipkart</title>
     <style>
-        table {
-            font-family: Arial;
+        body {
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+            padding-top: 30px;
         }
-        caption {
-            text-align: left;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color:gray;
-        }
-        .img-team {
-            width: 20px;
-            padding-right: 10px;
-        }
-        .won {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 15px;
-            border: 1px solid green;
+        .rating {
+            background-color: green;
+            color:white;
             padding: 5px;
-            text-align: center;
-            font-size: 14px;
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            margin-left: -40px;
+        }
+        li {
+            line-height: 30px;
             color:green;
         }
-        .lost {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 15px;
-            border: 1px solid red;
-            padding: 5px;
-            text-align: center;
-            font-size: 14px;
-            color:red;
-        }
     </style>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 <body>
-    <table width="100%"  border="0" rules="rows" frame="void" cellspacing="5" cellpadding="10">
-        <caption>IPL Points Table</caption>
-        <colgroup span="11"></colgroup>
-        <thead>
-            <tr>
-                <th colspan="12">IPL - 2025</th>
-            </tr>
-            <tr >
-                <th width="20">POS</th>
-                <th>&nbsp;</th>
-                <th>TEAM</th>
-                <th>P</th>
-                <th>W</th>
-                <th>L</th>
-                <th>NR</th>
-                <th>NRR</th>
-                <th>FOR</th>
-                <th>AGAINST</th>
-                <th>PTS</th>
-                <th width="150">RECENT FORM</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr align="center" valign="center">
-                <td>1</td>
-                <td><span class="bi bi-dash"></span></td>
-                <td> <img src="./images/GT.png" align="left" class="img-team"> <span>GT</span> </td>
-                <td>6</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-                <td>1.081</td>
-                <td>1148/114.3</td>
-                <td>1069/119.3</td>
-                <td>8</td>
-                <td align="center">
-                    <span class="lost">L</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                </td>
-            </tr>
-            <tr align="center" valign="center">
-                <td>2</td>
-                <td><span class="bi bi-dash"></span></td>
-                <td> <img src="./images/DC.png" align="left" class="img-team"> <span>DC</span> </td>
-                <td>5</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-                <td>1.081</td>
-                <td>1148/114.3</td>
-                <td>1069/119.3</td>
-                <td>8</td>
-                <td align="center">
-                    <span class="lost">L</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                    <span class="won">W</span>
-                </td>
-            </tr>
-            <tr align="center" valign="center">
-                <td>3</td>
-                <td><span class="bi bi-dash"></span></td>
-                <td> <img src="./images/RCB.png" align="left" class="img-team"> <span>RCB</span> </td>
-                <td>6</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-                <td>1.081</td>
-                <td>1148/114.3</td>
-                <td>1069/119.3</td>
-                <td>8</td>
-                <td align="center">
-                    <span class="lost">L</span>
-                    <span class="won">W</span>
-                    <span class="lost">L</span>
-                    <span class="won">W</span>
-                    <span class="lost">L</span>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="12">
-                    <div>W  - Won</div>
-                    <div>L  - Lost</div>
-                    <div>NR - No Result</div>
-                    <div>NRR- Net Run Rate</div>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div>
 
-
-<br>
-<hr>
-<br>
-
-
-    <table border="1" width="100%">
-        <thead>
-            <tr>
-                <th colspan="2">Name</th>
-                <th colspan="3">Address</th>
-            </tr>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Postal Code</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td rowspan="7" align="center"> D<br>E<br>L<br>H<br>I </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5" align="center">&copy; copyright 2025</td>
-            </tr>
-        </tfoot>
-    </table>
-
-
+    </div>
+    <div>
+        <div> <font size="5" face="Arial">Apple 16 (White 128 GB)</font> </div>
+        <br>
+        <div>
+            <font face="Arial"><span class="rating">4.6<span class="bi bi-star-fill"></span></span></font>
+            <font color="gray" face="Arial" size="4"><b> 2,500 ratings & 300 reviews </b></font>
+        </div>
+        <br>
+        <div>
+            <font size="6" face="Arial"><b>&#8377; 6,242/month</b></font>
+            <br><br>
+            <div>
+                <font face="Arial">12 months No Cost EMI Plan with Bajaj Finserv</font>
+                <font color="blue" face="Arial">Details</font>
+            </div>
+            <br><br>
+            <font face="Arial" color="green"> <b>Extra &#8377; 5,000 Off</b> </font>
+            <br><br>
+            <font face="Arial" size="5"><b> &#8377; 74,900</b> <font color="gray"><strike>&#8377; 79,900/-</strike></font> </font>
+        </div>
+        <div>
+            <h4><font face="Arial">Available Offers</font></h4>
+            <font face="Arial">
+                <ul>
+                    <li class="bi bi-tag-fill">  <font color="gray"><b>Bank Offer5%</b> Unlimited Cashback on Flipkart Axis Bank Credit Card</font> </li>
+                    <li class="bi bi-tag-fill">  <font color=gray><b>Bank Offer </b> ₹2500 Off On Flipkart Axis Bank Credit Card Non EMI Transactions</font> </li>
+                    <li class="bi bi-tag-fill">  <font color="gray"><b>Bank Offer</b> ₹4000 Off On Axis Bank Credit Card Transactions.</font> </li>
+                    <li class="bi bi-tag-fill">  <font color="gray"><b>Special Price</b> Get extra ₹5000 off (price inclusive of cashback/coupon)</font> </li>
+                </ul>
+            </font>
+        </div>
+    </div>
 </body>
 </html>
