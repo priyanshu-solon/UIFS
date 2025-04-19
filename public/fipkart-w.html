@@ -81,7 +81,7 @@
         section {
             display: grid;
             grid-template-columns: 4fr 8fr;
-            height: 100vh;
+            height: 80vh;
         }
 
         .product-details {
@@ -91,7 +91,7 @@
 
         .pictures img {
             padding-top: 50px;
-            padding-left: 120px;
+            padding-left: 90px;
         }
 
         .rating {
@@ -112,6 +112,42 @@
         }
         .product{
             padding-left: 80px;
+        }
+        .bi-lightning-fill{
+            color:white;
+        }
+        .cartplus{
+            padding:20px;
+            padding-left:30px;
+            padding-right:30px;
+            border: 1px solid lightgrey;
+            font-weight: bold;
+        }
+        .emi{
+            padding:20px;
+            padding-left:40px;
+            padding-right:40px;
+            font-weight: bold;
+            border: 1px solid lightgrey;
+        }
+        .buy{
+            background-color: orangered;
+            color: white;
+            padding: 20px;
+            padding-left:40px;
+            padding-right:40px;
+            border: none;
+        }
+        .action {
+            display: flex;
+            flex-direction: row;
+            justify-content:space-between;
+            align-items: center;
+            padding-left: 37px;
+            padding-top: 20px;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -147,9 +183,9 @@
     <section>
         <div class="pictures">
             <img src="./images/gshock.jpeg" height="60%">
-            <button><span class="bi bi-cart-plus"></span></button>
-            <button>PAY WITh EMI</button>
-            <button>BUY NOW <span class="bi bi-lightning-fill"></span></button>
+            <div class="action">            <button class="cartplus"><span class="bi bi-cart-plus"></span></button>
+                <button class="emi">PAY WITh EMI</button>
+                <button class="buy"><span class="bi bi-lightning-fill"></span> BUY NOW</span></button></div>
         </div>
         <div class="product-details">
             <div class="product">
@@ -184,19 +220,19 @@
                         <ul>
                             <li class="bi bi-tag-fill">
                                 <font color="gray"><b>Bank Offer5%</b> Unlimited Cashback on Flipkart Axis Bank Credit
-                                    Card</font><a href="#">T&C</a>
+                                    Card </font><a href="#">T&C</a>
                             </li>
                             <li class="bi bi-tag-fill">
                                 <font color=gray><b>Bank Offer </b> ₹2500 Off On Flipkart Axis Bank Credit Card Non EMI
                                     Transactions</font><a href="#">T&C</a>
                             </li>
                             <li class="bi bi-tag-fill">
-                                <font color="gray"><b>Bank Offer</b> ₹4000 Off On Axis Bank Credit Card Transactions.
+                                <font color="gray"><b>Bank Offer</b> ₹4000 Off On Axis Bank Credit Card Transactions
                                 </font><a href="#">T&C</a>
                             </li>
                             <li class="bi bi-tag-fill">
                                 <font color="gray"><b>Special Price</b> Get extra ₹5000 off (price inclusive of
-                                    cashback/coupon)</font><a href="#">T&C</a>
+                                    cashback/coupon) </font><a href="#">View Plans</a>
                             </li>
                         </ul>
                     </font>
