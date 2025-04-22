@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+    <style>
+        form{
+            display: flex;
+            justify-content: center;
+        }
+        fieldset{
+            width: 270px;
+;
+        }
+        .input{
+            width: 95%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        textarea{
+            width: 95%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button{
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+    <fieldset>
+        <legend>User personal information</legend>
+        <label for="Name">Enter your full name</label><br>
+        <input type="text" name="Name" class="input" placeholder="John Doe" required><br>
+        <label for="Email">Enter your email</label><br>
+        <input type="email" name="Email" class="input" placeholder="John123@doe.com" required><br>
+        <label for="Password">Enter your password</label><br>
+        <input type="password" name="Password" class="input" placeholder=" Uppercase/Lowercase/Number/Special "
+            pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[\W])[\w,\W]{4,15}" required><br>
+        <label for="Password Confirm">Confirm your password</label><br>
+        <input type="password" name="Password" class="input" placeholder=" Uppercase/Lowercase/Number/Special "
+            pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[\W])[\w,\W]{4,15}" required><br>
+        <dl>
+            <dt><label for="Gender">Enter your gender</label></dt>
+            <dd>
+                <input type="radio" checked value="Male" name="Gender"><label for="Male">Male</label>
+                <input type="radio" value="Female" name="Gender"><label for="Female">Female</label>
+            </dd>
+        </dl>
+        <Label for="DOB">Enter your Date of Birth</Label><br>
+        <input type="date" name="DOB" class="input" required><br>
+        <label for="Address">Enter your Address:</label><br>
+        <textarea name="Address" id="Address" cols="30" rows="3" placeholder="Enter your Address"></textarea><br>
+
+        <button type="submit">submit</button>
+    </fieldset>
+</form>
+</body>
+
+</html>
