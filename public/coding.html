@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majority Element | Practice</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        select {
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            width: 100px;
+            padding: 10px;
+        }
+
+        .search {
+            border: none;
+            width: 250px;
+            background-color: lightgrey;
+        }
+
+        .search-bar {
+            align-items: center;
+            color: grey;
+            border: 2px solid green;
+            background-color: lightgrey;
+            padding: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 850px;
+        }
+
+        .image {
+            display: inline-block;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons {
+            padding-left: 10px;
+        }
+
+        .person {
+            padding-right: 20px;
+            font-size: 25px;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+        }
+
+        .left-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: rgb(237, 255, 237);
+        }
+
+        .left-header a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .left-header a:active {
+            color: green;
+        }
+
+        .article1 {
+            padding: 10px;
+        }
+
+        .heading-article {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subhead-article {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            color: rgb(124, 124, 124);
+        }
+
+        .pre {
+            border: 1px solid gray;
+            padding: 10px;
+            line-height: 1.5;
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span class="dropdown">
+            <select name="" id="">
+                <option value="">Course</option>
+                <option value="">DSA</option>
+                <option value="">Gate Course</option>
+                <option value="">Get Certification</option>
+                <option value="">Newly Launched<span class="bi bi-chevron-right"></span></option>
+                <option value="">For WOrking Professional<span class="bi bi-chevron-right"></span></option>
+                <option value="">For Students<span class="bi bi-chevron-right"></span></option>
+                <option value="">Full Stack Development</option>
+                <option value="">Data Science Program</option>
+                <option value="">All Courses</option>
+            </select>
+            <select name="" id="">
+                <option value="">Tutorials</option>
+                <option value="">Data Structure & Algorithm</option>
+                <option value="">ML & Data Science</option>
+                <option value="">Interview Corner</option>
+                <option value="">Programming Language</option>
+                <option value="">Web Development</option>
+                <option value="">Gate</option>
+                <option value="">CS Subjects</option>
+                <option value="">DevOps and Linux</option>
+                <option value="">School Learning</option>
+            </select>
+            <select name="" id="">
+                <option value="">Practice</option>
+                <option value="">Practice Coding Problems</option>
+                <option value="">GFG 160</option>
+                <option value="">Problem of the Day</option>
+                <option value="">Discover Github Copilot</option>
+                <option value="">Build your AI Agent</option>
+            </select>
+            <select name="" id="">
+                <option value="">Content</option>
+                <option value="">Accenture Data & AI Week</option>
+                <option value="">GFG Weekly [Rated Contest]</option>
+                <option value="">Job-a-thon Hiring Challenge</option>
+                <option value="">Discover Github Copilot</option>
+                <option value="">ALl Contest and Events</option>
+            </select>
+        </span>
+        <span class="center">
+            <span class="image">
+                <img src="./images/gfg.png" style="width: 60px;height: 60px;" alt="GFG">
+            </span>
+            <span class="center-right">
+                <span class="search-bar">
+                    <span class="bi bi-search"></span>
+                    <input class="search" type="text" placeholder="Search...">
+                    <span class="bi bi-x"></span>
+                </span>
+                <span>
+                    <span class="bi bi-moon icons"></span>
+                    <span class="bi bi-bell icons"></span>
+                    <span class="bi bi-translate icons"></span>
+                </span>
+            </span>
+        </span>
+        <span class="bi bi-person-circle person"></span>
+    </header>
+    <section>
+        <div class="left-article">
+            <div class="left-header">
+                <span class="bi bi-justify"></span>
+                <a href="#"><span class="bi bi-code"></span> Problem</a>
+                <a href="#"><span class="bi bi-pen"></span> Editorial</a>
+                <a href="#"><span class="bi bi-clock"></span> Submissions</a>
+                <a href="#"><span class="bi bi-cloud"></span> Comments</a>
+            </div>
+            <article class="article1">
+                <span class="heading-article">
+                    <span>
+                        <h1 style="display: inline-block;">Majority Element</h1>
+                        <span class="bi bi-bookmark"></span>
+                    </span>
+                    <span class="bi bi-bug-fill"></span>
+                </span>
+                <br>
+                <span class="subhead-article">
+                    <span>Difficulty: <b>Medium</b></span>
+                    <span>Accuracy: <b>27.82%</b></span>
+                    <span>Submissions: <b>715K+</b></span>
+                    <span>Points: <b>4</b></span>
+                    <span>Average TIme: <b>59m</b></span>
+                </span>
+                <hr>
+                <br>
+                <p>Given an array <b>arr[]</b>. Find the <b>majority element</b> in the array. If no majority element
+                    exists, return <b>-1</b>.</p>
+                <br>
+                <p><b>Note:</b> A majority element in an array is an element that appears <b>strictly</b> more than
+                    <b>arr.size()/2</b> times in the array.</p>
+                <br>
+                <p><b>Examples:</b></p>
+                <br>
+                <div class="pre">
+                    <p><b>Input:</b> arr[] = [1, 1, 2, 1, 3, 5, 1]</p>
+                    <p><b>Output:</b> 1</p>
+                    <p><b>Explanation:</b> Since, 1 is present more than 7/2 times, so it is the majority element.</p>
+                </div>
+                <br>
+                <div class="pre">
+                    <p><b>Input:</b> arr[] = [7]</p>
+                    <p><b>Output:</b> 7</p>
+                    <p><b>Explanation:</b> Since, 7 is single element and present more than 1/2 times, so it is the majority element.</p>
+                </div>
+                <br>
+                <div class="pre">
+                    <p><b>Input:</b> arr[] = [2,13]</p>
+                    <p><b>Output:</b> -1</p>
+                    <p><b>Explanation:</b> Since, no element is present more than 2/2 times, so there is no majority element.</p>
+                </div>
+                <br>
+                <div class="constraints">
+                    <h3>Constraints:</h3>
+                    <p>1 ≤ arr.size() ≤ 10<sup>5</sup></p>
+                    <p>0 ≤ arr[i] ≤ 10<sup>5</sup></p>
+                </div>
+            </article>
+        </div>
+        <div class="right-article">
+
+        </div>
+    </section>
+</body>
+
+</html>
