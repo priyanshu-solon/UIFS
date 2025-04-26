@@ -21,6 +21,7 @@
             padding: 10px;
         }
 
+
         .search {
             border: none;
             width: 250px;
@@ -79,7 +80,6 @@
         .left-header a {
             text-decoration: none;
             color: black;
-            font-weight: bold;
         }
 
         .left-header a:active {
@@ -88,6 +88,10 @@
 
         .article1 {
             padding: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            height: 84vh;
+            overflow: auto;
         }
 
         .heading-article {
@@ -110,12 +114,46 @@
             line-height: 1.5;
             background-color: lightgrey;
         }
+
+        .btn-example{
+            background-color: white;
+            color: green;
+            padding: 10px;
+            padding-left: 18px;
+            padding-right: 18px;
+            border-radius: 5px;
+            border: 1px solid green;
+            font-size: 14px;
+            cursor: pointer;
+            cursor: pointer;
+            cursor: prightpadding-rightointer;
+        }
+
+        .dropdown-bottom div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .btn-issue{
+            display: block;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            color: white;
+            background-color:#fbbd08;
+            border: none;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <span class="dropdown">
+        <span class="dropdown"> <!-- Better use list on the place of dropdown for better styling -->
             <select name="" id="">
                 <option value="">Course</option>
                 <option value="">DSA</option>
@@ -180,10 +218,10 @@
         <div class="left-article">
             <div class="left-header">
                 <span class="bi bi-justify"></span>
-                <a href="#"><span class="bi bi-code"></span> Problem</a>
-                <a href="#"><span class="bi bi-pen"></span> Editorial</a>
+                <a href="#"><span class="bi bi-code-slash"></span> Problem</a>
+                <a href="#"><span class="bi bi-file-earmark-text"></span> Editorial</a>
                 <a href="#"><span class="bi bi-clock"></span> Submissions</a>
-                <a href="#"><span class="bi bi-cloud"></span> Comments</a>
+                <a href="#"><span class="bi bi-chat"></span> Comments</a>
             </div>
             <article class="article1">
                 <span class="heading-article">
@@ -211,6 +249,7 @@
                 <br>
                 <p><b>Examples:</b></p>
                 <br>
+                <!-- Did not use <pre> because of ease in styling. -->
                 <div class="pre">
                     <p><b>Input:</b> arr[] = [1, 1, 2, 1, 3, 5, 1]</p>
                     <p><b>Output:</b> 1</p>
@@ -234,8 +273,25 @@
                     <p>1 ≤ arr.size() ≤ 10<sup>5</sup></p>
                     <p>0 ≤ arr[i] ≤ 10<sup>5</sup></p>
                 </div>
-                <button class="submit" class="btn-example">Try more examples</button>
-                
+                <br>
+                <button class="submit btn-example">Try more examples</button>
+                <!-- Here is a dialog box -->
+                <br><br>
+                <div class="dropdown-bottom"> <!--these will be dropdown use list-->
+                    <div>
+                        <b>Expected Complexities</b> <span class="bi bi-chevron-down"></span>
+                    </div><br>
+                    <hr><br>
+                    <div><b>Company Tags</b><span class="bi bi-chevron-down"></span></div>
+                    <div><b>Topics Tags</b><span class="bi bi-chevron-down"></span></div>
+                    <div><b>Related Interview Experiences</b><span class="bi bi-chevron-down"></span></div>
+                    <div><b>Related Articles</b><span class="bi bi-chevron-down"></span></div>
+                </div>
+                <br>
+                <span>
+                <button class="btn-issue"><span class="bi bi-bug-fill"></span>Report An Issue</button>
+                <p style="text-align: center;">If you are facing any issue on this page. Please let us know.</p>
+                </span><br><br><br><br>
             </article>
         </div>
         <div class="right-article">
