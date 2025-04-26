@@ -13,7 +13,7 @@
             box-sizing: border-box;
         }
 
-        select {
+        .dropdown select {
             font-weight: bold;
             font-size: 14px;
             border: none;
@@ -74,16 +74,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
+            border-bottom: 1px solid gray;
             background-color: rgb(237, 255, 237);
         }
 
         .left-header a {
             text-decoration: none;
             color: black;
-        }
-
-        .left-header a:active {
-            color: green;
         }
 
         .article1 {
@@ -147,6 +144,53 @@
             color: white;
             background-color:#fbbd08;
             border: none;
+        }
+
+        .constraints {
+            border: 1px solid gray;
+            padding: 10px;
+            line-height: 1.5;
+            background-color: lightgrey;
+        }
+
+        .right-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px;
+            background-color: rgb(219, 219, 219);
+        }
+
+        .right-header .timer{
+            text-decoration: none;
+            border:1px solid green;
+            padding: 3px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .dropdown-right select {
+            border: none;
+            border-radius: 5px;
+        }
+
+        .icons-right {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 15px;
+            width: 150px;
+        }
+        .left-article{
+            border-right: 1px solid gray;
+        }
+        .coding-area {
+            border-top: 1px solid gray;
+            padding-left: 40px;
+            background-color: rgb(219, 219, 219);
+        }
+        li{
+            background-color: white;
         }
     </style>
 </head>
@@ -295,7 +339,70 @@
             </article>
         </div>
         <div class="right-article">
-
+            <div class="right-header">
+                <span class="dropdown-right">
+                    <select name="Language" id="">
+                        <option value="">C (gcc 5.4)</option>
+                        <option value="">C++ (g++ 5.4)</option>
+                        <option value="">Java (1.8)</option>
+                        <option value="">Python3</option>
+                    </select>
+                </span>
+                <span class="timer">
+                    <span class="bi bi-clock"></span>
+                    <span>Start Timer</span>
+                    <span class="bi bi-play-circle"></span>
+                </span>
+                <span class="icons-right">
+                    <span class="bi bi-copy"></span>
+                    <span class="bi bi-box-arrow-left"></span>
+                    <span class="bi bi-nut"></span>
+                    <span class="bi bi-arrow-counterclockwise"></span>
+                    <span class="bi bi-arrows-fullscreen"></span>
+                </span>
+            </div>
+            <div class="coding-area">
+            
+                    <ol>
+                        <li>#User function template for Python 3</li>
+                        <li></li>
+                        <li>class Solution:</li>
+                        <li>    def majorityElement(self, arr):</li>
+                        <li>        #code here</li>
+                        <li></li>
+                        <li>Driver Code Ends</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+                </div>
+                <div style="display: flex;justify-content: space-between;padding: 10px; background-color: rgb(219, 219, 219);" class="left-footer">
+                    <span style="padding-left: 40px;" class="bi bi-lightbulb"></span>
+                    <span>
+                        <span>Custom Input</span>
+                        <button style="color: white;background-color: gray;padding: 5px; border: none;border-radius: 5px;">Compile and Run</button>
+                        <button style="color: white;background-color: green; padding: 5px; border: none;border-radius: 5px;">Submit</button>
+                    </span>
+                </div>
+            </div>
         </div>
     </section>
 </body>
