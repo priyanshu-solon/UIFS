@@ -7,6 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
+        @media screen and (orientation:landscape) {
+            body{
+                display: none;
+            }
+        }
         @media screen and (orientation:portrait) {
             * {
                 font-family: Arial;
@@ -482,11 +487,14 @@
             footer>div.panel>address {
                 margin: 20px 0px 50px 0px;
             }
-
+            .alert{
+                display: none;
+            }
 
         }
     </style>
 </head>
+<h1 class="alert" style="justify-content: center; align-content: center;">This Website Only Work's on portrait mode</h1>
 
 <body>
     <header>
