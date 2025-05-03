@@ -246,6 +246,10 @@
                 color: rgb(211, 91, 91);
             }
 
+            .card-image{
+                background-image: url("./images/snickers.jpg");
+            }
+
             .card-image img {
                 width: 100%;
                 height: 280px;
@@ -702,11 +706,21 @@
                 justify-content: center;
                 grid-gap: 20px;
                 text-shadow: 2px 2px 2px black;
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-bottom: 20px;
+                padding: 0px 20px 20px 20px;
             }
 
+            .header-second-section-limg div ,
+            .header-second-section-rimg div {
+                overflow: hidden;
+            }
+
+            .bag:hover,
+            .men-shirt:hover,
+            .women-dresses:hover,
+            .sweatshirt:hover {
+                transform: translateX(-10px);
+                transition: 1s;
+            }
             .bag {
                 background-image: url("./images/women-bag.jpg");
                 background-size: cover;
@@ -717,10 +731,15 @@
                 color: white;
                 font-size: 30px;
                 font-weight: bold;
+                width: 105%;
                 height: 400px;
+                transform: translateX(0px);
+                transition: 1s;
             }
 
             .men-shirt {
+                transform: translateX(0px);
+                transition: 1s;
                 height: 400px;
                 background-image: url("./images/men-fashion2.jpg");
                 background-size: cover;
@@ -730,6 +749,7 @@
                 align-items: center;
                 color: white;
                 font-size: 30px;
+                width: 105%;
                 font-weight: bold;
             }
 
@@ -746,6 +766,9 @@
 
             .women-dresses {
                 height: 400px;
+                width: 105%;
+                transform: translateX(0px);
+                transition: 1s;
                 background-image: url("./images/women-fashion2.jpg");
                 background-size: cover;
                 display: flex;
@@ -758,6 +781,9 @@
             }
 
             .sweatshirt {
+                width: 105%;
+                transform: translateX(0px);
+                transition: 1s;
                 background-image: url("./images/sweatshirt.jpg");
                 background-size: cover;
                 display: flex;
@@ -962,12 +988,29 @@
                 margin-top: 50px;
                 margin-bottom: 100px;
             }
+            .list{
+                display: none;
+            }
+            
+            .third-section-card-second {
+                display: flex;
+                flex-direction: row;
+        justify-content: center;
+            }
+
+            .bi-eye,.bi-cart4,.bi-heart{
+                background-color: white;
+                color:black;
+                size: 20px;
+                padding: 10px;
+                border-radius: 20px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1 class="alert">This Website Only Work's on portrait mode</h1>
     <header>
         <div class="header-row-1">
             <div>
@@ -989,7 +1032,7 @@
                     <span class="bi bi-youtube"></span>
                 </aside>
             </div>
-            <div>
+            <div class="list">
                 <button class="bi bi-list"></button>
             </div>
         </div>
@@ -1013,7 +1056,7 @@
                 <span class="bi bi-heart"></span>
                 <span class="bi bi-cart4"></span>
             </div>
-            <div>
+            <div class="list">
                 <button class="bi bi-list"></button>
             </div>
         </div>
@@ -1078,21 +1121,33 @@
                     green.</span>
             </div>
             <div class="header-second-section-rimg">
-                <span class="bag">Bag's Collection
-                    <p>Shop now</p>
-                </span>
-                <span class="men-shirt">Printed men's Shirt
-                    <p>Shop now</p>
-                </span>
+                <div>
+                    <span class="bag">
+                        <p>Bag's Collection</p>
+                        <button>Shop now</button>
+                    </span>
+                </div>
+                <div>
+                    <span class="men-shirt">
+                        <p>Printed men's Shirt</p>
+                        <button>Shop now</button>
+                    </span>
+                </div>
             </div>
 
             <div class="header-second-section-limg">
-                <span class="women-dresses">Basic Women's Dresses
-                    <p>Shop now</p>
-                </span>
-                <span class="sweatshirt">SweatShirt
-                    <p>Shop now</p>
-                </span>
+                <div>
+                    <span class="women-dresses">
+                        <p>Basic Women's Dresses</p>
+                        <button>Shop now</button>
+                    </span>
+                </div>
+                <div>
+                    <span class="sweatshirt">
+                        <p>SweatShirt</p>
+                        <button>Shop now</button>
+                    </span>
+                </div>
             </div>
         </section>
 
@@ -1109,6 +1164,11 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="./images/snickers.jpg">
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Shoes</p>
