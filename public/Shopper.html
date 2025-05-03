@@ -1,435 +1,996 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopper</title>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-     <style>
-        body{
-            font-family: Arial;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        @media screen and (orientation:portrait) {
+            * {
+                font-family: Arial;
+                margin: 0;
+                padding: 0;
+            }
+
+            .bi-list {
+                border: none;
+                background-color: transparent;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .header-row-1 {
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+                padding: 10px 5px 10px 5px;
+                background-color: lightgray;
+            }
+
+            .header-row-1 div {
+                align-content: center;
+            }
+
+            .country,
+            .currency,
+            .language,
+            .faq,
+            .social-media {
+                display: none;
+            }
+
+            .brand-title {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .header-row-2 {
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+                padding: 20px 10px 20px 5px;
+            }
+
+            .header-row-2 nav,
+            .short-cuts {
+                display: none;
+            }
+
+            .first-section article {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                color: white;
+                padding: 10px;
+            }
+
+            .bi-lightning-fill {
+                color: gold;
+            }
+
+            .women-fashion {
+                background-image: url("./images/women-fashion.jpg");
+                height: 500px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                background-size: cover;
+            }
+
+            main {
+                padding: 20px 0px 20px 0px;
+            }
+
+            .main-title {
+                font-size: 50px;
+                font-weight: bold;
+                color: white;
+                text-shadow: 2px 2px 2px black;
+            }
+
+            .btn-shop {
+                background-color: white;
+                padding: 10px;
+                width: 140px;
+                text-align: center;
+                box-shadow: 2px 2px 2px black;
+                border-radius: 5px;
+            }
+
+            .women-fashion:hover {
+                opacity: 1;
+                cursor: grab;
+            }
+
+            .men-fashion,
+            .kids-fashion {
+                display: none;
+            }
+
+            .services {
+                display: grid;
+                grid-template-columns: 12fr;
+                justify-content: center;
+                text-align: center;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .services div {
+                padding: 10px;
+            }
+
+            .services span {
+                padding: 10px;
+                color: red;
+            }
+
+            .second-section {
+                text-align: center;
+                padding: 20px 20px 40px 20px;
+            }
+
+            .new-cl,
+            .appear {
+                color: gray;
+            }
+
+            .bag {
+                background-image: url("./images/women-bag.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                height: 400px;
+                margin: 20px 0px 10px 0px;
+
+            }
+
+            .men-shirt {
+                height: 400px;
+                margin: 10px 0px 10px 0px;
+                background-image: url("./images/men-fashion2.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+
+
+            .women-dresses {
+                height: 400px;
+                margin: 10px 0px 10px 0px;
+                background-image: url("./images/women-fashion2.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .sweatshirt {
+                background-image: url("./images/sweatshirt.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 400px;
+                margin: 10px 0px 20px 0px;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+
+            }
+
+            .third-section {
+                text-align: center;
+
+            }
+
+            .third-section-card {
+                float: left;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .third-section-card-second {
+                width: 50%;
+                float: right;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+
+            .header-third-section {
+                text-align: center;
+                color: black;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .nav-third {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+
+            nav li {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            li:hover {
+                cursor: pointer;
+                color: rgb(211, 91, 91);
+            }
+
+            .card-image img {
+                width: 100%;
+                height: 280px;
+            }
+
+            .card-heading {
+                color: #555555;
+                text-align: left;
+            }
+
+            .card-content {
+                font-weight: bold;
+                font-size: 15px;
+                text-align: left;
+            }
+
+            .money {
+                color: #555555;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .discover {
+                margin-top: 60px;
+                text-align: center;
+            }
+
+            .discover span {
+                font-weight: bold;
+                border-bottom: 1px solid black;
+            }
+
+
+            .fourth-section {
+                background-image: url("./images/shoe-banner.jpg");
+                height: 70vh;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: left;
+            }
+
+            .one {
+                font-size: 30px;
+                font-weight: bold;
+                color: black;
+            }
+
+            .two {
+                font-size: 40px;
+                font-weight: bold;
+                color: rgb(211, 91, 91);
+                text-shadow: 2px 2px 2px black;
+            }
+
+            .btn-shop2 {
+                margin-top: 10px;
+                background-color: black;
+                color: white;
+                padding: 20px;
+                padding-left: 50px;
+                padding-right: 50px;
+            }
+
+            .timer {
+                padding: 30px;
+            }
+
+
+            .title-fifth {
+                font-size: 14px;
+                color: grey;
+                text-align: center;
+            }
+
+            .subtitle-fifth {
+                font-size: 28px;
+                color: black;
+                text-align: center;
+            }
+
+            .fifth-section-cards {
+                justify-items: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+
+            .fifth-card {
+                padding: 10px;
+                border: 1px solid black;
+                width: 300px;
+                border: 1px solid rgb(206, 206, 206);
+            }
+
+            .fifth-card:nth-of-type(1n+2) {
+                display: none;
+            }
+
+            .fifth-img img {
+                width: 90px;
+                height: 90px;
+                padding-right: 20px;
+            }
+
+            .fifth-header {
+                display: grid;
+                grid-template-columns: 3fr 9fr;
+            }
+
+            .fifth-title {
+                color: grey;
+                padding-bottom: 5px;
+            }
+
+            .bi-star-fill {
+                color: orange;
+            }
+
+            .fifth-body,
+            .fifth-footer {
+                color: grey;
+                padding-bottom: 10px;
+            }
+
+
+            .last-title {
+                font-size: 28px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .last-subtitle {
+                font-size: 16px;
+                color: rgb(105, 105, 105);
+                text-align: center;
+            }
+
+            .last-body {
+                display: grid;
+                grid-gap: 10px;
+                grid-template-columns: 6fr 6fr;
+                justify-items: center;
+                margin: 40px 0px 20px 0px;
+            }
+
+            .last-img img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .last-footer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 50px;
+                margin-bottom: 100px;
+            }
+
+            .main2 {
+                background-color: #202020;
+                color: white;
+                padding-top: 60px;
+            }
+
+            .e-sub {
+                padding: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            .email {
+                text-align: center;
+                background-color: rgba(105, 105, 105, 0.37);
+                color: rgb(105, 105, 105);
+                text-align: left;
+                font-size: 15px;
+                padding: 20px;
+                width: 300px;
+            }
+
+            .subscribe {
+                background-color: rgb(105, 105, 105);
+                font-size: 15px;
+                padding: 20px;
+                text-align: center;
+                width: 90px;
+                margin-left: 20px;
+                cursor: pointer;
+            }
+
+            .footer-first {
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            .footer-second span {
+                display: block;
+                padding-top: 10px;
+                font-size: 12px;
+                color: rgb(206, 206, 206);
+            }
+
+            footer aside span {
+                padding-right: 10px;
+            }
+
+            address {
+                font-style: normal;
+            }
+
+            footer>div.panel {
+                background-color: #202020;
+                color: white;
+                font-size: 20px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            footer>div.panel>div:first-child {
+                grid-column: 1 / -1;
+            }
+
+            footer>div.panel>div:nth-child(2),
+            footer>div.panel>div:nth-child(3),
+            footer>div.panel>div:nth-child(4),
+            footer>div.panel>address {
+                margin: 20px 0px 50px 0px;
+            }
+
+            .alert {
+                display: none;
+            }
+
         }
-        .header-row-1 {
-            background-color: #e6e4e4;
-            padding: 15px;
-            font-family: Arial;
-            font-size: 14px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .header-row-1  span {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        .header-row-2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px;
-            font-size: 20px;
-            font-family: Arial;
-        }
-        .brand-title {
-            font-size: 30px;
-            font-weight: bold;
-        }
-        nav span {
-            padding-left: 15px;
-            padding-right: 15px;
-            font-size: 18px;
-        }
-        .short-cuts span {
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-        article {
-            background-color: black;
-            color:white;
-            padding: 15px;
-            text-align: center;
-            font-family: Arial;
-            font-size: 16px;
-        }
-        .bi-lightning-fill {
-            color:gold;
-        }
-        .main1 {
-            height: 450px;
-            display: grid;
-            grid-template-columns: 4fr 4fr 4fr;
-            margin-top: 10px;
-        }
-        .women-fashion {
-            background-image: url("./images/women-fashion.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            opacity: 0.8;
-        }
-        .men-fashion {
-            background-image: url("./images/men-fashion.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            opacity: 0.8;
-        }
-        .kids-fashion {
-            background-image: url("./images/kids-fashion.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            opacity: 0.8;
-        }
-        .main-title {
-            font-family: Arial;
-            font-size: 50px;
-            font-weight: bold;
-            color:white;
-            text-shadow: 2px 2px 2px black;
-        }
-        .btn-shop {
-            background-color: white;
-            padding: 10px;
-            width: 140px;
-            font-family: Arial;
-            text-align: center;
-            box-shadow: 2px 2px 2px black;
-            border-radius: 5px;
-        }
-        .women-fashion:hover, .men-fashion:hover, .kids-fashion:hover {
-            opacity: 1;
-            cursor: grab;
-        }
-        .services {
-            border-bottom: 1px solid rgb(204, 204, 204);
-            display: grid;
-            grid-template-columns: 3fr 3fr 3fr 3fr;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .services .bi-truck, .bi-tag, .bi-lock, .bi-arrow-left-right {
-            color:red;
-        }
-        .panel {
-            background-color: #202020;
-            color:white;
-            font-size: 20px;
-            display: grid;
-            height: 130px;
-            padding: 100px;
-            padding-top: 40px;
-            grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
-        }
-        .main2{
-            background-color: #202020;
-            color: white;
-            padding-top: 60px;
-        }
-        h2{
-            text-align: center;
-        }
-        .email {
-            text-align: center;
-            background-color: rgba(105, 105, 105, 0.37);
-            color:rgb(105, 105, 105);
-            text-align: left;
-            font-size: 15px;
-            padding: 20px;
-            width: 300px;
-        }
-        .subscribe{
-            background-color: rgb(105, 105, 105);
-            font-size: 15px;
-            padding: 20px;
-            text-align: center;
-            width: 90px;
-            margin-left: 20px;
-            cursor: pointer;
-        }
-        .e-sub{
-            padding: 30px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .footer-first {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .footer-second span{
-            display: block;
-            padding-top: 10px;
-            font-size: 12px;
-            color: rgb(206, 206, 206);
-        }
-        address{
-            font-style: normal;
-        }
-        .header-second-section{
-         text-align: center;   
-         color: rgb(88, 88, 88);
-         padding: 40px;
-        }
-        .header-second-section-rimg{
-            display: grid;
-            grid-template-columns: 4fr 8fr;
-            justify-content: center;
-            grid-gap:20px;
-            text-shadow: 2px 2px 2px black;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 20px;
-        }
-        .bag{
-            background-image: url("./images/women-bag.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color:white;
-            font-size: 30px;
-            font-weight: bold;
-            height:400px;
-        }
-        .men-shirt{
-            height:400px;
-            background-image: url("./images/men-fashion2.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color:white;
-            font-size: 30px;
-            font-weight: bold;
-        }
-        .header-second-section-limg{
-            display: grid;
-            grid-template-columns: 8fr 4fr;
-            justify-content: center;
-            grid-gap:20px;
-            text-shadow: 2px 2px 2px black;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 90px;
-        }
-        .women-dresses{
-            height:400px;
-            background-image: url("./images/women-fashion2.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color:white;
-            font-size: 30px;
-            font-weight: bold;
-        }
-        .sweatshirt{
-            background-image: url("./images/sweatshirt.jpg");
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height:300px; 
-            color:white;
-            font-size: 30px;
-            font-weight: bold;
-            height:400px;
-        }
-        .header-third-section{
-            text-align: center;   
-            color: black;
-            font-size: 30px;
-            font-weight: bold;
-        }
-        .nav-third{
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        nav li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        li:hover{
-            cursor: pointer;
-            color: rgb(211, 91, 91);
-        }
-        .card{
-            margin-top: 40px;
-            margin-right: 20px;
-            margin-left: 20px;
-            width:250px;
-            height: 500px;
-        }   
-        .card-image img{
-            width: 250px;
-            height: 350px;
-        }
-        .card-heading{
-            color:#555555;
-        }
-        .card-content{
-            font-weight: bold;
-            font-size: 15px;
-        }
-        .money{
-            color: #555555;
-            font-weight: bold;
-        }
-        .third-section-card{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .discover{
-            text-align:center;
-        }
-        .discover span{
-            font-weight:bold;
-            padding: 7px;
-            border-bottom: 1px solid black;
-        }
-        .fourth-section{
-            background-image: url("./images/shoe-banner.jpg");
-            height: 90vh;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: end;
-        }
-        .one{
-            font-size: 50px;
-            font-weight: bold;
-            color:black;
-        }
-        .two{
-            font-size: 60px;
-            font-weight: bold;
-            color: rgb(211, 91, 91);    
-        }
-        .btn-shop2{
-            margin-top: 10px;
-            background-color: black;
-            color: white;
-            padding: 20px;
-            padding-left: 50px;
-            padding-right: 50px;  
-        }
-        .timer{
-            padding: 30px;  
-        }
-        .title-fifth{
-            font-size: 16px;
-            color: grey;
-            text-align: center;
-        }
-        .subtitle-fifth{
-            font-size: 38px;
-            color: black;
-            text-align: center;
-        }
-        .fifth-section-cards{
-            display: grid;
-            grid-template-columns: 4fr 4fr 4fr;
-            justify-items: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .fifth-card{
-            padding: 20px;
-            width: 300px;
-            border: 1px solid rgb(206, 206, 206);
-        }
-        .fifth-img img{
-            width: 90px;
-            height: 90px;
-            padding-right: 20px;
-        }
-        .fifth-header{
-            display: grid;
-            grid-template-columns: 3fr 9fr;
-        }
-        .fifth-title{
-            color: grey;
-            padding-bottom: 5px ;
-        }
-        .bi-star-fill{
-            color: orange;
-        }
-        .fifth-body,.fifth-footer{
-            color: grey;
-            padding-bottom: 10px ;
-        }
-        .last-title{
-            font-size: 38px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .last-subtitle{
-            font-size: 16px;
-            color: rgb(105, 105, 105);
-            text-align: center;
-        }
-        .last-body{
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: 4fr 4fr 4fr 4fr 4fr 4fr;
-            justify-items: center;
-            margin-top: 70px;
-            margin-bottom: 20px;
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .last-img img{
-            width: 160px;
-            height: 160px;
-        }
-        .last-footer{
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-            margin-bottom: 100px;
+
+        @media screen and (orientation:landscape) {
+            body {
+                font-family: Arial;
+            }
+
+            .header-row-1 {
+                background-color: #e6e4e4;
+                padding: 15px;
+                font-family: Arial;
+                font-size: 14px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .header-row-1 span {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .header-row-2 {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 40px;
+                font-size: 20px;
+                font-family: Arial;
+            }
+
+            .brand-title {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            nav span {
+                padding-left: 15px;
+                padding-right: 15px;
+                font-size: 18px;
+            }
+
+            .short-cuts span {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            article {
+                background-color: black;
+                color: white;
+                padding: 15px;
+                text-align: center;
+                font-family: Arial;
+                font-size: 16px;
+            }
+
+            .bi-lightning-fill {
+                color: gold;
+            }
+
+            .main1 {
+                height: 450px;
+                display: grid;
+                grid-template-columns: 4fr 4fr 4fr;
+                margin-top: 10px;
+            }
+
+            .women-fashion {
+                background-image: url("./images/women-fashion.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                opacity: 0.8;
+            }
+
+            .men-fashion {
+                background-image: url("./images/men-fashion.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                opacity: 0.8;
+            }
+
+            .kids-fashion {
+                background-image: url("./images/kids-fashion.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                opacity: 0.8;
+            }
+
+            .main-title {
+                font-family: Arial;
+                font-size: 50px;
+                font-weight: bold;
+                color: white;
+                text-shadow: 2px 2px 2px black;
+            }
+
+            .btn-shop {
+                background-color: white;
+                padding: 10px;
+                width: 140px;
+                font-family: Arial;
+                text-align: center;
+                box-shadow: 2px 2px 2px black;
+                border-radius: 5px;
+            }
+
+            .women-fashion:hover,
+            .men-fashion:hover,
+            .kids-fashion:hover {
+                opacity: 1;
+                cursor: grab;
+            }
+
+            .services {
+                border-bottom: 1px solid rgb(204, 204, 204);
+                display: grid;
+                grid-template-columns: 3fr 3fr 3fr 3fr;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .services .bi-truck,
+            .bi-tag,
+            .bi-lock,
+            .bi-arrow-left-right {
+                color: red;
+            }
+
+            .panel {
+                background-color: #202020;
+                color: white;
+                font-size: 20px;
+                display: grid;
+                height: 130px;
+                padding: 100px;
+                padding-top: 40px;
+                grid-template-columns: 4fr 2fr 2fr 2fr 2fr;
+            }
+
+            .main2 {
+                background-color: #202020;
+                color: white;
+                padding-top: 60px;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            .email {
+                text-align: center;
+                background-color: rgba(105, 105, 105, 0.37);
+                color: rgb(105, 105, 105);
+                text-align: left;
+                font-size: 15px;
+                padding: 20px;
+                width: 300px;
+            }
+
+            .subscribe {
+                background-color: rgb(105, 105, 105);
+                font-size: 15px;
+                padding: 20px;
+                text-align: center;
+                width: 90px;
+                margin-left: 20px;
+                cursor: pointer;
+            }
+
+            .e-sub {
+                padding: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .footer-first {
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            .footer-second span {
+                display: block;
+                padding-top: 10px;
+                font-size: 12px;
+                color: rgb(206, 206, 206);
+            }
+
+            address {
+                font-style: normal;
+            }
+
+            .header-second-section {
+                text-align: center;
+                color: rgb(88, 88, 88);
+                padding: 40px;
+            }
+
+            .header-second-section-rimg {
+                display: grid;
+                grid-template-columns: 4fr 8fr;
+                justify-content: center;
+                grid-gap: 20px;
+                text-shadow: 2px 2px 2px black;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 20px;
+            }
+
+            .bag {
+                background-image: url("./images/women-bag.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                height: 400px;
+            }
+
+            .men-shirt {
+                height: 400px;
+                background-image: url("./images/men-fashion2.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .header-second-section-limg {
+                display: grid;
+                grid-template-columns: 8fr 4fr;
+                justify-content: center;
+                grid-gap: 20px;
+                text-shadow: 2px 2px 2px black;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 90px;
+            }
+
+            .women-dresses {
+                height: 400px;
+                background-image: url("./images/women-fashion2.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .sweatshirt {
+                background-image: url("./images/sweatshirt.jpg");
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 300px;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                height: 400px;
+            }
+
+            .header-third-section {
+                text-align: center;
+                color: black;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .nav-third {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+
+            nav li {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            li:hover {
+                cursor: pointer;
+                color: rgb(211, 91, 91);
+            }
+
+            .card {
+                margin-top: 40px;
+                margin-right: 20px;
+                margin-left: 20px;
+                width: 250px;
+                height: 500px;
+            }
+
+            .card-image img {
+                width: 250px;
+                height: 350px;
+            }
+
+            .card-heading {
+                color: #555555;
+            }
+
+            .card-content {
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            .money {
+                color: #555555;
+                font-weight: bold;
+            }
+
+            .third-section-card {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .discover {
+                text-align: center;
+            }
+
+            .discover span {
+                font-weight: bold;
+                padding: 7px;
+                border-bottom: 1px solid black;
+            }
+
+            .fourth-section {
+                background-image: url("./images/shoe-banner.jpg");
+                height: 90vh;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: end;
+            }
+
+            .one {
+                font-size: 50px;
+                font-weight: bold;
+                color: black;
+            }
+
+            .two {
+                font-size: 60px;
+                font-weight: bold;
+                color: rgb(211, 91, 91);
+            }
+
+            .btn-shop2 {
+                margin-top: 10px;
+                background-color: black;
+                color: white;
+                padding: 20px;
+                padding-left: 50px;
+                padding-right: 50px;
+            }
+
+            .timer {
+                padding: 30px;
+            }
+
+            .title-fifth {
+                font-size: 16px;
+                color: grey;
+                text-align: center;
+            }
+
+            .subtitle-fifth {
+                font-size: 38px;
+                color: black;
+                text-align: center;
+            }
+
+            .fifth-section-cards {
+                display: grid;
+                grid-template-columns: 4fr 4fr 4fr;
+                justify-items: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+
+            .fifth-card {
+                padding: 20px;
+                width: 300px;
+                border: 1px solid rgb(206, 206, 206);
+            }
+
+            .fifth-img img {
+                width: 90px;
+                height: 90px;
+                padding-right: 20px;
+            }
+
+            .fifth-header {
+                display: grid;
+                grid-template-columns: 3fr 9fr;
+            }
+
+            .fifth-title {
+                color: grey;
+                padding-bottom: 5px;
+            }
+
+            .bi-star-fill {
+                color: orange;
+            }
+
+            .fifth-body,
+            .fifth-footer {
+                color: grey;
+                padding-bottom: 10px;
+            }
+
+            .last-title {
+                font-size: 38px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .last-subtitle {
+                font-size: 16px;
+                color: rgb(105, 105, 105);
+                text-align: center;
+            }
+
+            .last-body {
+                display: grid;
+                grid-gap: 10px;
+                grid-template-columns: 4fr 4fr 4fr 4fr 4fr 4fr;
+                justify-items: center;
+                margin-top: 70px;
+                margin-bottom: 20px;
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+
+            .last-img img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .last-footer {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+                margin-bottom: 100px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <h1 class="alert">This Website Only Work's on portrait mode</h1>
     <header>
         <div class="header-row-1">
             <div>
                 <span class="bi bi-truck"> FREE SHIPPING WORLDWIDE </span>
-                <span>United States <span class="bi bi-chevron-down"></span> </span>
-                <span>USD <span class="bi bi-chevron-down"></span> </span>
-                <span>English <span class="bi bi-chevron-down"></span> </span>
+                <span class="country">United States <span class="bi bi-chevron-down"></span> </span>
+                <span class="currency">USD <span class="bi bi-chevron-down"></span> </span>
+                <span class="language">English <span class="bi bi-chevron-down"></span> </span>
             </div>
-            <div>
+            <div class="faq">
                 <span>Shipping</span>
                 <span>FAQ</span>
                 <span>Contact</span>
             </div>
             <div>
-               <aside>
-                <span class="bi bi-facebook"></span>
-                <span class="bi bi-twitter"></span>
-                <span class="bi bi-instagram"></span>
-                <span class="bi bi-youtube"></span>
-               </aside>
+                <aside class="social-media">
+                    <span class="bi bi-facebook"></span>
+                    <span class="bi bi-twitter"></span>
+                    <span class="bi bi-instagram"></span>
+                    <span class="bi bi-youtube"></span>
+                </aside>
+            </div>
+            <div>
+                <button class="bi bi-list"></button>
             </div>
         </div>
         <div class="header-row-2">
@@ -451,6 +1012,9 @@
                 <span class="bi bi-person"></span>
                 <span class="bi bi-heart"></span>
                 <span class="bi bi-cart4"></span>
+            </div>
+            <div>
+                <button class="bi bi-list"></button>
             </div>
         </div>
     </header>
@@ -482,21 +1046,21 @@
         </main>
         <div class="services">
             <div>
-                <span class="bi bi-truck">  </span>FREE SHIPPING
-                    <br>
-                    From all orders over $100
+                <span class="bi bi-truck"> </span>FREE SHIPPING
+                <br>
+                From all orders over $100
             </div>
             <div>
-                <span class="bi bi-arrow-left-right">  </span> FREE RETURNS
+                <span class="bi bi-arrow-left-right"> </span> FREE RETURNS
                 <br>
                 Return money within 30 days
             </div>
             <div>
-                <span class="bi bi-lock">  </span> SECURE SHOPPING
+                <span class="bi bi-lock"> </span> SECURE SHOPPING
                 <br>You're in safe hands
             </div>
             <div>
-                <span class="bi bi-tag">  </span> OVER 10,000 STYLES
+                <span class="bi bi-tag"> </span> OVER 10,000 STYLES
                 <br>
                 We have everything you need
             </div>
@@ -505,11 +1069,13 @@
         <section class="second-section">
             <div class="header-second-section">
                 <br><br><br>
-                New Collection
+                <span class="new-cl">New Collection</span>
                 <br><br>
                 <font size="6" color="black">Best Picks 2019</font>
                 <br><br>
-    Appear, dry there darkness they're seas, dry waters thing fly midst. <br> Beast, above fly brought Very green.
+                <span class="appear">Appear, dry there darkness they're seas, dry waters thing fly midst. <br> Beast,
+                    above fly brought Very
+                    green.</span>
             </div>
             <div class="header-second-section-rimg">
                 <span class="bag">Bag's Collection
@@ -519,7 +1085,7 @@
                     <p>Shop now</p>
                 </span>
             </div>
-            
+
             <div class="header-second-section-limg">
                 <span class="women-dresses">Basic Women's Dresses
                     <p>Shop now</p>
@@ -529,15 +1095,15 @@
                 </span>
             </div>
         </section>
-    
+
         <section class="third-section">
             <div class="header-third-section">
-                Top month Sellers 
+                Top month Sellers
             </div>
             <nav class="nav-third"><!-- Remove nav and change to anchor tag -->
-                    <li>Women</li>
-                    <li>Men</li>
-                    <li>Kids</li>
+                <li>Women</li>
+                <li>Men</li>
+                <li>Kids</li>
             </nav>
             <div class="third-section-card">
                 <div class="card">
@@ -585,7 +1151,7 @@
                 </div>
             </div>
 
-            <div class="third-section-card">
+            <div class="third-section-card-second">
                 <div class="card">
                     <div class="card-image">
                         <img src="./images/women-top.jpg">
@@ -632,165 +1198,171 @@
             </div>
         </section>
 
-        <p class="discover">
-            <span>Discover more</span>
-        </p>
-        <br><br>
-        <br><br>
-        <section class="fourth-section">
-            <div class="timer">
-            <span class="one">Get -50% from <br> Summer Collection</span>
-            <br>
-            <span class="two">264 : 07 : 09 : 43</span>
-            <br><br><br>
-            <span class="btn-shop2">Shop Now <span class=" bi bi-arrow-right1"></span> </span>
-            </div>
-        </section>
-        <br><br>
-        <br><br>
-
-
-        <section class="fifth-section">
-            <div class="title-fifth">
-                What buyers say
-            </div>
-            <br>
-            <div class="subtitle-fifth">
-                Latest buyers Reviews
-            </div>
-            <div class="fifth-section-cards">
-                <div class="fifth-card">
-                    <div class="fifth-header">
-                        <div class="fifth-img">
-                            <img src="./images/bag-fifth.jpg" alt="">
-                        </div>
-                        <div class="fifth-summary">
-                            <div class="fifth-title">
-                                Bags & Accessories
-                            </div>
-                            <div class="fifth-subtitle">
-                                Bag
-                            </div>
-                            <br>
-                            <div class="rating">
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                            </div>
-                        </div>
-                    </div>
+        <div>
+            <p class="discover">
+                <span>Discover more</span>
+            </p>
+            <br><br>
+            <br><br>
+            <section class="fourth-section">
+                <div class="timer">
+                    <span class="one">Get -50% from <br> Summer Collection</span>
                     <br>
-                    <div class="fifth-body">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero error labore quia maiores quae mollitia esse ipsum nihil minus omnis! Dignissimos nobis delectus possimus illum inventore aperiam est id quidem.
-                    </div>
-                    <br>
-                    <div class="fifth-footer">
-                        Priyanshu Solon, 12 April 2025
-                    </div>
+                    <span class="two">264 : 07 : 09 : 43</span>
+                    <br><br><br>
+                    <span class="btn-shop2">Shop Now <span class="bi bi-arrow-right"></span> </span>
                 </div>
+        </div>
+    </section>
+    <br><br>
+    <br><br>
 
-                <div class="fifth-card">
-                    <div class="fifth-header">
-                        <div class="fifth-img">
-                            <img src="./images/sunglasses.jpg" alt="">
-                        </div>
-                        <div class="fifth-summary">
-                            <div class="fifth-title">
-                                Sunglasses & Accessories
-                            </div>
-                            <div class="fifth-subtitle">
-                                Black Sunglasses
-                            </div>
-                            <br>
-                            <div class="rating">
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="fifth-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sint fuga incidunt iure obcaecati doloremque officia eius totam voluptatem laborum facilis recusandae debitis, expedita quam!                    
-                    </div>
-                    <br>
-                    <div class="fifth-footer">
-                        Priyanshu Solon, 12 April 2025
-                    </div>
-                </div>
 
-                <div class="fifth-card">
-                    <div class="fifth-header">
-                        <div class="fifth-img">
-                            <img src="./images/watch.jpg" alt="">
-                        </div>
-                        <div class="fifth-summary">
-                            <div class="fifth-title">
-                                Watches & Accessories
-                            </div>
-                            <div class="fifth-subtitle">
-                                Smart Watch
-                            </div>
-                            <br>
-                            <div class="rating">
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                                <span class="bi bi-star-fill"></span>
-                            </div>
-                        </div>
+    <section class="fifth-section">
+        <div class="title-fifth">
+            What buyers say
+        </div>
+        <br>
+        <div class="subtitle-fifth">
+            Latest buyers Reviews
+        </div>
+        <div class="fifth-section-cards">
+            <div class="fifth-card">
+                <div class="fifth-header">
+                    <div class="fifth-img">
+                        <img src="./images/bag-fifth.jpg" alt="">
                     </div>
-                    <br>    
-                    <div class="fifth-body">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, facilis nostrum tempora mollitia alias, eius odio repellat earum dolorem, dolores accusantium?    
-                    </div>
+                    <div class="fifth-summary">
+                        <div class="fifth-title">
+                            Bags & Accessories
+                        </div>
+                        <div class="fifth-subtitle">
+                            Bag
+                        </div>
                         <br>
-                    <div class="fifth-footer">
-                            Priyanshu Solon, 12 April 2025
+                        <div class="rating">
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <br>
-        <br>
-        <section class="last-section">
-            <div class="last-header">
-                <div class="last-title">@shopper</div>
                 <br>
-                <div class="last-subtitle">Appear, dry there darkness they're seas, dry waters.</div>
+                <div class="fifth-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero error labore quia maiores quae
+                    mollitia esse ipsum nihil minus omnis! Dignissimos nobis delectus possimus illum inventore
+                    aperiam est id quidem.
+                </div>
+                <br>
+                <div class="fifth-footer">
+                    Priyanshu Solon, 12 April 2025
+                </div>
             </div>
-            <div class="last-body">
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-                <div class="last-img"><img src="./images/watch.jpg"></div>
-            </div>
-            <div class="last-footer">
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-                <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
-            </div>
-        </section>
 
-        <main class="main2">
-            <h2>Want style Ideas and Treats?</h2>
-            <div class="e-sub">
-                <span class="email">Enter Email *</span>
-                <span class="subscribe">Subscribe</span>
+            <div class="fifth-card">
+                <div class="fifth-header">
+                    <div class="fifth-img">
+                        <img src="./images/sunglasses.jpg" alt="">
+                    </div>
+                    <div class="fifth-summary">
+                        <div class="fifth-title">
+                            Sunglasses & Accessories
+                        </div>
+                        <div class="fifth-subtitle">
+                            Black Sunglasses
+                        </div>
+                        <br>
+                        <div class="rating">
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="fifth-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sint fuga incidunt iure obcaecati
+                    doloremque officia eius totam voluptatem laborum facilis recusandae debitis, expedita quam!
+                </div>
+                <br>
+                <div class="fifth-footer">
+                    Priyanshu Solon, 12 April 2025
+                </div>
             </div>
-        </main>
+
+            <div class="fifth-card">
+                <div class="fifth-header">
+                    <div class="fifth-img">
+                        <img src="./images/watch.jpg" alt="">
+                    </div>
+                    <div class="fifth-summary">
+                        <div class="fifth-title">
+                            Watches & Accessories
+                        </div>
+                        <div class="fifth-subtitle">
+                            Smart Watch
+                        </div>
+                        <br>
+                        <div class="rating">
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                            <span class="bi bi-star-fill"></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="fifth-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, facilis nostrum tempora mollitia
+                    alias, eius odio repellat earum dolorem, dolores accusantium?
+                </div>
+                <br>
+                <div class="fifth-footer">
+                    Priyanshu Solon, 12 April 2025
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <section class="last-section">
+        <div class="last-header">
+            <div class="last-title">@shopper</div>
+            <br>
+            <div class="last-subtitle">Appear, dry there darkness they're seas, dry waters.</div>
+        </div>
+        <div class="last-body">
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+            <div class="last-img"><img src="./images/watch.jpg"></div>
+        </div>
+        <div class="last-footer">
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+            <div class="last-logo"><img src="./images/brands.jpg" alt=""></div>
+        </div>
+    </section>
+
+    <main class="main2">
+        <h2>Want style Ideas and Treats?</h2>
+        <div class="e-sub">
+            <span class="email">Enter Email *</span>
+            <span class="subscribe">Subscribe</span>
+        </div>
+    </main>
     </section>
 
     <footer>
@@ -803,7 +1375,7 @@
                     <span class="bi bi-twitter"></span>
                     <span class="bi bi-instagram"></span>
                     <span class="bi bi-youtube"></span>
-                   </aside>
+                </aside>
             </div>
             <div>
                 <span class="footer-first">Support</span>
@@ -829,22 +1401,23 @@
                 <span class="footer-first">Company</span>
                 <br><br>
                 <div class="footer-second">
-                <span>Our Story</span>
-                <span>Careers</span>
-                <span>Terms & Conditions</span>
-                <span>Privacy & Cookie policy</span>
+                    <span>Our Story</span>
+                    <span>Careers</span>
+                    <span>Terms & Conditions</span>
+                    <span>Privacy & Cookie policy</span>
                 </div>
             </div>
             <address>
                 <span class="footer-first">Contact</span>
                 <br><br>
                 <div class="footer-second">
-                <span>1-202-555-0105</span>
-                <span>1-202-555-0106</span>
-                <span>help@shopper.com</span>
+                    <span>1-202-555-0105</span>
+                    <span>1-202-555-0106</span>
+                    <span>help@shopper.com</span>
                 </div>
             </address>
         </div>
     </footer>
 </body>
+
 </html>
