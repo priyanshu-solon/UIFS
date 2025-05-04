@@ -140,6 +140,20 @@
                 color: gray;
             }
 
+            .header-second-section-limg div ,
+            .header-second-section-rimg div {
+                overflow: hidden;
+            }
+
+            .bag:hover,
+            .men-shirt:hover,
+            .women-dresses:hover,
+            .sweatshirt:hover {
+                transform: translateX(-10px);
+                transition: 1s;
+                cursor:pointer;
+            }
+
             .bag {
                 background-image: url("./images/women-bag.jpg");
                 background-size: cover;
@@ -152,7 +166,9 @@
                 font-weight: bold;
                 height: 400px;
                 margin: 20px 0px 10px 0px;
-
+                transform: translateX(0px);
+                transition: 1s;
+                width:105%
             }
 
             .men-shirt {
@@ -167,6 +183,9 @@
                 color: white;
                 font-size: 30px;
                 font-weight: bold;
+                transform: translateX(0px);
+                transition: 1s;
+                width:105%
             }
 
 
@@ -183,6 +202,9 @@
                 color: white;
                 font-size: 30px;
                 font-weight: bold;
+                transform: translateX(0px);
+                transition: 1s;
+                width:105%
             }
 
             .sweatshirt {
@@ -196,7 +218,9 @@
                 margin: 10px 0px 20px 0px;
                 color: white;
                 font-size: 30px;
-                font-weight: bold;
+                font-weight: bold;transform: translateX(0px);
+                transition: 1s;
+                width:105%
 
             }
 
@@ -247,13 +271,10 @@
             }
 
             .card-image{
+                overflow:hidden;
                 background-image: url("./images/snickers.jpg");
             }
 
-            .card-image img {
-                width: 100%;
-                height: 280px;
-            }
 
             .card-heading {
                 color: #555555;
@@ -720,6 +741,7 @@
             .sweatshirt:hover {
                 transform: translateX(-10px);
                 transition: 1s;
+                cursor:pointer;
             }
             .bag {
                 background-image: url("./images/women-bag.jpg");
@@ -1124,13 +1146,13 @@
                 <div>
                     <span class="bag">
                         <p>Bag's Collection</p>
-                        <button>Shop now</button>
+                        <span>Shop now <span class="bi bi-arrow-right"></span></span>
                     </span>
                 </div>
                 <div>
                     <span class="men-shirt">
                         <p>Printed men's Shirt</p>
-                        <button>Shop now</button>
+                        <span>Shop now <span class="bi bi-arrow-right"></span></span>
                     </span>
                 </div>
             </div>
@@ -1139,13 +1161,13 @@
                 <div>
                     <span class="women-dresses">
                         <p>Basic Women's Dresses</p>
-                        <button>Shop now</button>
+                        <span>Shop now<span class="bi bi-arrow-right"></span></span>
                     </span>
                 </div>
                 <div>
                     <span class="sweatshirt">
                         <p>SweatShirt</p>
-                        <button>Shop now</button>
+                        <span>Shop now<span class="bi bi-arrow-right"></span></span>
                     </span>
                 </div>
             </div>
