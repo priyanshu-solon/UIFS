@@ -140,7 +140,7 @@
                 color: gray;
             }
 
-            .header-second-section-limg div ,
+            .header-second-section-limg div,
             .header-second-section-rimg div {
                 overflow: hidden;
             }
@@ -151,7 +151,7 @@
             .sweatshirt:hover {
                 transform: translateX(-10px);
                 transition: 1s;
-                cursor:pointer;
+                cursor: pointer;
             }
 
             .bag {
@@ -168,7 +168,7 @@
                 margin: 20px 0px 10px 0px;
                 transform: translateX(0px);
                 transition: 1s;
-                width:105%
+                width: 105%
             }
 
             .men-shirt {
@@ -185,7 +185,7 @@
                 font-weight: bold;
                 transform: translateX(0px);
                 transition: 1s;
-                width:105%
+                width: 105%
             }
 
 
@@ -204,7 +204,7 @@
                 font-weight: bold;
                 transform: translateX(0px);
                 transition: 1s;
-                width:105%
+                width: 105%
             }
 
             .sweatshirt {
@@ -218,15 +218,14 @@
                 margin: 10px 0px 20px 0px;
                 color: white;
                 font-size: 30px;
-                font-weight: bold;transform: translateX(0px);
+                font-weight: bold;
+                transform: translateX(0px);
                 transition: 1s;
-                width:105%
-
+                width: 105%;
             }
 
             .third-section {
                 text-align: center;
-
             }
 
             .third-section-card {
@@ -270,9 +269,68 @@
                 color: rgb(211, 91, 91);
             }
 
-            .card-image{
-                overflow:hidden;
+            .card:nth-child(even) .card-image:hover {
+                background-size: cover;
+                background-image: url("./images/women-fashion.jpg");
+            }
+
+            .card:nth-child(odd) .card-image:hover {
+                background-size: cover;
+                background-image: url("./images/shoe-banner.jpg");
+            }
+
+            .card:nth-child(even) .card-image {
+                background-image: url("./images/women-top.jpg");
+                background-size: cover;
+                width: 240px;
+                height: 300px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .btn-jump span {
+                background-color: white;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 20px;
+                text-align: center;
+                padding: 10px;
+                margin: 0px 5px 0px 5px;
+                font-size: 20px;
+            }
+
+            .btn-jump {
+                transform: translateY(40px);
+                transition: 1s;
+            }
+
+            .card-image:hover .btn-jump {
+                transform: translateY(-10px);
+                transition: 200ms;
+            }
+
+            .btn-jump span:hover {
+                background-color: red;
+                color: white;
+                cursor: pointer;
+            }
+
+            .card:nth-child(odd) .card-image {
                 background-image: url("./images/snickers.jpg");
+                background-size: cover;
+                width: 240px;
+                height: 300px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                overflow: hidden;
             }
 
 
@@ -285,6 +343,10 @@
                 font-weight: bold;
                 font-size: 15px;
                 text-align: left;
+            }
+
+            .card-title {
+                padding: 10px 0px 10px 15px;
             }
 
             .money {
@@ -730,7 +792,7 @@
                 padding: 0px 20px 20px 20px;
             }
 
-            .header-second-section-limg div ,
+            .header-second-section-limg div,
             .header-second-section-rimg div {
                 overflow: hidden;
             }
@@ -741,8 +803,9 @@
             .sweatshirt:hover {
                 transform: translateX(-10px);
                 transition: 1s;
-                cursor:pointer;
+                cursor: pointer;
             }
+
             .bag {
                 background-image: url("./images/women-bag.jpg");
                 background-size: cover;
@@ -841,20 +904,82 @@
 
             li:hover {
                 cursor: pointer;
-                color: rgb(211, 91, 91);
+                color: #d35b5b;
             }
+
+            .card-image:hover .btn-jump {
+                transform: translateY(-10px);
+                transition: 200ms;
+            }
+
+            .btn-jump span:hover {
+                background-color: red;
+                color: white;
+                cursor: pointer;
+            }
+
+            .btn-jump {
+                transform: translateY(40px);
+                transition: 1s;
+            }
+
 
             .card {
                 margin-top: 40px;
                 margin-right: 20px;
                 margin-left: 20px;
                 width: 250px;
-                height: 500px;
+                height: 417px;
+                display: flex;
+                flex-direction: column;
             }
 
-            .card-image img {
-                width: 250px;
-                height: 350px;
+            .card:nth-child(even) .card-image:hover {
+                background-size: cover;
+                background-image: url("./images/women-fashion.jpg");
+            }
+
+            .card:nth-child(odd) .card-image:hover {
+                background-size: cover;
+                background-image: url("./images/shoe-banner.jpg");
+            }
+
+            .card:nth-child(even) .card-image {
+                background-image: url("./images/women-top.jpg");
+                background-size: cover;
+                width: 240px;
+                height: 300px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .btn-jump span {
+                background-color: white;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 20px;
+                text-align: center;
+                padding: 10px;
+                margin: 0px 5px 0px 5px;
+                font-size: 20px;
+            }
+
+            .card:nth-child(odd) .card-image {
+                background-image: url("./images/snickers.jpg");
+                background-size: cover;
+                width: 240px;
+                height: 300px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                overflow: hidden;
             }
 
             .card-heading {
@@ -1010,19 +1135,22 @@
                 margin-top: 50px;
                 margin-bottom: 100px;
             }
-            .list{
+
+            .list {
                 display: none;
             }
-            
+
             .third-section-card-second {
                 display: flex;
                 flex-direction: row;
-        justify-content: center;
+                justify-content: center;
             }
 
-            .bi-eye,.bi-cart4,.bi-heart{
+            .bi-eye,
+            .bi-cart4,
+            .bi-heart {
                 background-color: white;
-                color:black;
+                color: black;
                 size: 20px;
                 padding: 10px;
                 border-radius: 20px;
@@ -1185,7 +1313,7 @@
             <div class="third-section-card">
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/snickers.jpg">
+
                         <div class="btn-jump">
                             <span class="bi bi-eye"></span>
                             <span class="bi bi-cart4"></span>
@@ -1201,7 +1329,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/women-top.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Clothing</p>
@@ -1212,7 +1345,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/snickers.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Shoes</p>
@@ -1223,7 +1361,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/women-top.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Clothing</p>
@@ -1236,7 +1379,12 @@
             <div class="third-section-card-second">
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/women-top.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Clothing</p>
@@ -1247,7 +1395,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/snickers.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Shoes</p>
@@ -1258,7 +1411,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/women-top.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Clothing</p>
@@ -1269,7 +1427,12 @@
 
                 <div class="card">
                     <div class="card-image">
-                        <img src="./images/snickers.jpg">
+
+                        <div class="btn-jump">
+                            <span class="bi bi-eye"></span>
+                            <span class="bi bi-cart4"></span>
+                            <span class="bi bi-heart"></span>
+                        </div>
                     </div>
                     <div class="card-title">
                         <p class="card-heading">Shoes</p>
@@ -1448,7 +1611,7 @@
     </section>
 
     <footer>
-        <div class="panel">
+        <div class="panel" style="padding-left: 40px">
             <div>
                 <span>Shopper.</span>
                 <br><br>
@@ -1469,7 +1632,7 @@
                     <span>Shipping & Returns</span>
                 </div>
             </div>
-            <div>
+            <div style="padding-left: inherit;">
                 <span class="footer-first">Shop</span>
                 <br><br>
                 <div class="footer-second">
@@ -1489,7 +1652,7 @@
                     <span>Privacy & Cookie policy</span>
                 </div>
             </div>
-            <address>
+            <address style="padding-left: inherit;">
                 <span class="footer-first">Contact</span>
                 <br><br>
                 <div class="footer-second">

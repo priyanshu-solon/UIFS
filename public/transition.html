@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .shoe {
+        width: 250px;
+        height: 350px;
+        background-image: url("./images/i1.jpg");
+        background-size: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        overflow: hidden;
+       }
+       .shoe:hover {
+        background-image: url("./images/i2.jpg");
+        background-size: cover;
+       }
+       .short-cuts span {
+          background-color: white;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border-radius: 20px;
+          text-align: center;
+          padding: 10px;
+          margin: 0px 5px 0px 5px;
+          font-size: 20px;
+       }
+       .short-cuts {
+          transform: translateY(30px);
+          transition: 1s;
+       }
+       .shoe:hover .short-cuts {
+          transform: translateY(-10px);
+          transition: 200ms;
+       }
+       .short-cuts span:hover {
+          background-color: red;
+          color:white;
+          cursor: grab;
+       }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+   <div class="shoe">
+        <div class="short-cuts">
+            <span class="bi bi-eye-fill"></span>
+            <span class="bi bi-cart4"></span>
+            <span class="bi bi-heart"></span>
+        </div>
+   </div>
+</body>
+</html>
