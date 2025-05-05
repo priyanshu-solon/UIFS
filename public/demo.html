@@ -1,146 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon | Sign-in</title>
+    <title>Document</title>
+    <style>
+        .Rcube{
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            position: relative;
+            perspective: 500px;
+            transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        .Rface{
+            width: 100px;
+            height: 100px;
+            font-size: 14px;
+            border: 1px solid #008080;
+            background-color: rgba(0, 150, 200, 0.7);
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            position: absolute;
+        }
+        .Rfront{
+            transform: translatez(50px);
+            position: absolute;
+        }
+        .Rbottom{
+            transform: translateY(50px) rotateX(-90deg);
+            position: absolute;
+        }
+        .Rright{
+            transform:translateX(50px) rotateY(90deg);
+            position: absolute;
+        }
+        .Rleft{
+            transform: translateX(-50px) rotateY(-90deg);
+            position: absolute;
+        }
+        .Rtop{
+            transform: translateY(-50px) rotateX(90deg);
+            position: absolute;
+        }
+        .Rcube:hover{
+            transform:rotateX(45deg) rotateY(45deg);
+            transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    header {
-
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .amazon {
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    form {
-        border: 1px solid rgb(201, 201, 201);
-        border-radius: 10px;
-        width: 330px;
-        margin: 0 auto;
-        margin-bottom: 45px;
-    }
-
-    hr {
-        color: rgb(201, 201, 201);
-    }
-
-    h3 {
-        font-weight: normal;
-        padding-bottom: 0px;
-        margin: 0px;
-    }
-
-    h5 {
-        margin-bottom: 0px;
-    }
-    .form-label {
-        margin-bottom: 0px;
-    }
-    .form-control {
-        border: 1px solid black;
-        border-radius: 5px;
-        margin-top: 5px;
-        height: 30px;
-        width: -webkit-fill-available;
-    }
-
-    .box {
-        padding: 20px;
-    }
-
-    .continue {
-        background-color: #ffce12;
-        border-radius: 15px;
-        padding: 5px;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 12px;
-    }
-
-    .fonts,
-    .terms {
-        font-size: 14px;
-    }
-
-    .buy {
-        font-weight: bold;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-
-    .box2 {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        text-decoration: none;
-    }
-
-    .copy {
-        text-align: center;
-        color: rgb(97, 97, 97);
-    }
-
-    footer {
-        width: 300px;
-        margin: 0 auto;
-        font-size: 12px;
-    }
-    a{
-        text-decoration: none;
-        color: #007185;
-    }
-</style>
-
 <body>
-    <header>
-        <span class="amazon">amazon</span><span>.in</span>
-    </header>
-    <form>
-        <div class="box">
-            <h3>Sign in or create account</h3>
-            <main>
-                <div class="form-group">
-                    <label class="form-label" for="email">
-                        <h5>Enter mobile number or email</h5>
-                    </label>
-                    <div>
-                        <input type="text" name="email" class="form-control" placeholder="">
-                    </div>
-                    <div class="continue">
-                        Continue
-                    </div>
-                </div>
-            </main>
-            <div class="terms">
-                By continuing, you agree to Amazon's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice.</a>
-            </div>
-            <hr>
-            <div class="fonts">
-                <div class="buy">Buying for Work?</div>
-                <a href="#">Shop on Amazon Business</a>
-            </div>
-        </div>
-    </form>
-    <hr>
-    <footer>
-        <div class="box2">
-            <a href="#">Conditions of Use</a>
-            <a href="#">Privacy Notice</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="copy">© 1996–2025, Amazon.com, Inc. or its affiliates</div>
-    </footer>
+    <div class="Rcube">
+        <div class="Rface Rfront">1F</div>
+        <div class="Rface Rbottom">1B</div>
+        <div class="Rface Rright">1R</div>
+        <div class="Rface Rleft">1L</div>
+        <div class="Rface Rtop">1T</div>
+    </div>
 </body>
-
 </html>
