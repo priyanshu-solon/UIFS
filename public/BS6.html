@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown | Nav with Tabs | Navbar</title>
+     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-dark bg-success navbar-expand-lg">
+     <div class="container-fluid">
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <span class="navbar-brand">Shopper.</span>
+        <div class="navbar-collapse collapse" id="menu">
+            <ul  class="navbar-nav">
+                <li class="nav-item"><a class="nav-link"><span class="nav-text"> Home </span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="nav-text"> Shop </span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="nav-text"> Docs </span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="nav-text"> Pages </span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="nav-text"> Blog </span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="nav-text">
+                   <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Shopper.com">
+                        <button class="bi bi-search btn btn-warning"></button>
+                   </div>    
+                </span></a></li>
+            </ul>
+        </div>
+     </div>
+   </nav>
+        <h2>Product Info</h2>
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a href="#basic" data-bs-toggle="tab" class="nav-link active"> <span class="nav-text">Basic Details</span> </a> </li>
+        <li class="nav-item"><a href="#preview" data-bs-toggle="tab" class="nav-link"> <span class="nav-text">Preview</span></a></li>
+        <li class="nav-item"><a href="#offers" data-bs-toggle="tab" class="nav-link"> <span class="nav-text">Offers</span></a></li>
+        <li class="nav-item"><a href="#reviews" data-bs-toggle="tab" class="nav-link"> <span class="nav-text">Rating & Reviews</span></a> </li>
+    </ul>
+    <div class="tab-content mt-4">
+        <div class="tab-pane active" id="basic">
+            <h2>iPhone 16 (White) 128 GB</h2>
+            <div class="fs-2 fw-bold"> &#8377; 69,999</div>
+        </div>
+        <div class="tab-pane" id="preview">
+            <img src="../public/images/iphone-white.jpg" width="200" height="300">
+        </div>
+        <div class="tab-pane" id="offers">
+            <ul>
+                <li>Offer-1</li>
+                <li>Offer-2</li>
+                <li>Offer-3</li>
+                <li>Offer-4</li>
+                <li>Offer-5</li>
+            </ul>
+        </div>
+        <div class="tab-pane" id="reviews">
+            <span class="badge bg-success text-white rounded">4.5 <span class="bi bi-star-fill"></span> </span>
+
+        </div>
+    </div>
+    <h2>Dropdown</h2>
+    <div class="dropend mt-4" data-bs-theme="dark">
+        <button data-bs-toggle="dropdown" class="btn btn-dark dropdown-toggle"> <span class="bi bi-person-circle"></span> Login </button>
+        <ul class="dropdown-menu">
+            <li > <a class="dropdown-item" href="../public/shopper-template.html" target="body-frame"> <span class="bi bi-cart4 dropdown-item-text"> Shop </span> </a> </li>
+            <li > <a class="dropdown-item"> <span class="bi bi-heart dropdown-item-text"> Wishlist </span> </a> </li>
+            <li > <a class="dropdown-item"> <span class="bi bi-gift dropdown-item-text"> Gift Card </span> </a> </li>
+            <li > <a class="dropdown-item"> <span class="bi bi-wallet dropdown-item-text"> Payments </span> </a> </li>
+            <li class="dropdown-divider"></li>
+            <li > <a class="dropdown-item"> <span class="bi bi-question-circle dropdown-item-text"> Help </span> </a> </li>
+        </ul>
+    </div>
+    <iframe width="100%" height="500" name="body-frame">
+
+    </iframe>   
+</body>
+</html>

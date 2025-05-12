@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +12,21 @@
         .box {
             width: 100px;
             height: 100px;
-            border:1px solid gray;
+            border: 1px solid gray;
         }
     </style>
 </head>
+
 <body class="bg-secondary">
+    <ul class="breadcrumb" style="--bs-breadcrumb-divider: ' > ' ">
+        <li class="breadcrumb-item"> </li>
+    </ul>
     <h3 class="d-flex justify-content-center">Cards,Buttons,Flex,Margin,Padding,Border,Display,Navbar,Sticky</h3>
-    <div class="ms-4 mt-4 me-4 rounded rounded-4 border border-3 text-center border-danger p-4 w-25 bg-dark text-warning">
+    <div
+        class="ms-4 mt-4 me-4 rounded rounded-4 border border-3 text-center border-danger p-4 w-25 bg-dark text-warning">
         <div class="h1 text-center py-4">Bootstrap</div>
-        <img src="images/women-fashion.jpg" class="rounded  rounded-circle border border-warning border-4" width="200" height="200">
+        <img src="images/women-fashion.jpg" class="rounded  rounded-circle border border-warning border-4" width="200"
+            height="200">
         <p class="fs-4 fw-bold text-decoration-underline">Components & Plugins</p>
         <dl class="text-start">
             <dt>Components</dt>
@@ -86,54 +93,65 @@
             </div>
         </div>
     </div>
-    <div style="background-image: url('images/women-fashion.jpg'); background-size: cover ; height: 400px;" class="w-50 position-relative">
-        <div class="bg-danger position-absolute end-0 top-0 rounded rounded-circle text-center text-white p-1" style="width:60px; height: 60px;">20% OFF</div>
-   </div>
-   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente saepe in mollitia dolore. Reprehenderit perspiciatis sunt consectetur similique, repellat sint accusamus, cupiditate nostrum iusto praesentium asperiores exercitationem quidem officiis quasi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quos vel suscipit voluptates exercitationem nobis assumenda perspiciatis quibusdam odio, ut illum nam? Amet quae ipsam iure debitis quod provident non.</p>
-   <h1 class="bg-dark text-white p-2 position-sticky top-0">News Updates</h1>
-   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente saepe in mollitia dolore. Reprehenderit perspiciatis sunt consectetur similique, repellat sint accusamus, cupiditate nostrum iusto praesentium asperiores exercitationem quidem officiis quasi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quos vel suscipit voluptates exercitationem nobis assumenda perspiciatis quibusdam odio, ut illum nam? Amet quae ipsam iure debitis quod provident non.</p>
+    <div style="background-image: url('images/women-fashion.jpg'); background-size: cover ; height: 400px;"
+        class="w-50 position-relative">
+        <div class="bg-danger position-absolute end-0 top-0 rounded rounded-circle text-center text-white p-1"
+            style="width:60px; height: 60px;">20% OFF</div>
+    </div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente saepe in mollitia dolore. Reprehenderit
+        perspiciatis sunt consectetur similique, repellat sint accusamus, cupiditate nostrum iusto praesentium
+        asperiores exercitationem quidem officiis quasi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
+        quos vel suscipit voluptates exercitationem nobis assumenda perspiciatis quibusdam odio, ut illum nam? Amet quae
+        ipsam iure debitis quod provident non.</p>
+    <h1 class="bg-dark text-white p-2 position-sticky top-0">News Updates</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente saepe in mollitia dolore. Reprehenderit
+        perspiciatis sunt consectetur similique, repellat sint accusamus, cupiditate nostrum iusto praesentium
+        asperiores exercitationem quidem officiis quasi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
+        quos vel suscipit voluptates exercitationem nobis assumenda perspiciatis quibusdam odio, ut illum nam? Amet quae
+        ipsam iure debitis quod provident non.</p>
 
-   <dl class="ms-4">
-    <nav class="btn-toolbar bg-danger mt-4">
-       <div class="btn-group">
-          <button class="btn btn-danger bi bi-house-door"> Home</button>
-          <button class="btn btn-danger bi bi-globe"> Pages</button>
-          <button class="btn btn-danger bi bi-cart4"> Shop</button>
-       </div>
-    </nav>
-    <dt>Button Base</dt>
-    <dd>
-      <button class="btn border-primary">Submit</button>
-    </dd>
-    <dt>Contextual</dt>
-    <dd>
-      <button class="btn btn-primary">Insert</button>
-      <button class="btn btn-warning">Update</button>
-      <button class="btn btn-danger">Delete</button>
-    </dd>
-    <dt>Outline Contextual</dt>
-    <dd>
-      <button class="btn btn-outline-primary">Insert</button>
-      <button class="btn btn-outline-warning">Update</button>
-      <button class="btn btn-outline-danger">Delete</button>
-    </dd>
-    <dt>Size</dt>
-    <dd>
-      <button class="btn btn-outline-primary">Insert</button>
-      <button class="btn btn-outline-warning btn-sm">Update</button>
-      <button class="btn btn-outline-danger btn-lg">Delete</button>
-    </dd>
-    <dt>Group</dt>
-    <dd class="btn-group-vertical">
-       <button class="bi bi-play btn btn-danger"></button>
-       <button class="bi bi-pause btn btn-danger"></button>
-       <button class="bi bi-stop btn btn-danger"></button>
-    </dd>
-    <dt>Special</dt>
-    <dd>
-      <button class="btn btn-link">Signout</button>
-      <button class="btn btn-close"></button>
-    </dd>
- </dl>
+    <dl class="ms-4">
+        <nav class="btn-toolbar bg-danger mt-4">
+            <div class="btn-group">
+                <button class="btn btn-danger bi bi-house-door"> Home</button>
+                <button class="btn btn-danger bi bi-globe"> Pages</button>
+                <button class="btn btn-danger bi bi-cart4"> Shop</button>
+            </div>
+        </nav>
+        <dt>Button Base</dt>
+        <dd>
+            <button class="btn border-primary">Submit</button>
+        </dd>
+        <dt>Contextual</dt>
+        <dd>
+            <button class="btn btn-primary">Insert</button>
+            <button class="btn btn-warning">Update</button>
+            <button class="btn btn-danger">Delete</button>
+        </dd>
+        <dt>Outline Contextual</dt>
+        <dd>
+            <button class="btn btn-outline-primary">Insert</button>
+            <button class="btn btn-outline-warning">Update</button>
+            <button class="btn btn-outline-danger">Delete</button>
+        </dd>
+        <dt>Size</dt>
+        <dd>
+            <button class="btn btn-outline-primary">Insert</button>
+            <button class="btn btn-outline-warning btn-sm">Update</button>
+            <button class="btn btn-outline-danger btn-lg">Delete</button>
+        </dd>
+        <dt>Group</dt>
+        <dd class="btn-group-vertical">
+            <button class="bi bi-play btn btn-danger"></button>
+            <button class="bi bi-pause btn btn-danger"></button>
+            <button class="bi bi-stop btn btn-danger"></button>
+        </dd>
+        <dt>Special</dt>
+        <dd>
+            <button class="btn btn-link">Signout</button>
+            <button class="btn btn-close"></button>
+        </dd>
+    </dl>
 </body>
+
 </html>
