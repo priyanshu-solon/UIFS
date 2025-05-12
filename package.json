@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/priyanshu-solon/fitness-app#readme",
   "dependencies": {
+    "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.11.3"
   }
 }
