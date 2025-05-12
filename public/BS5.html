@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offcanvas | Carousel | Collapse | Accordion</title>
+      <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <style>
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="container-fluid">
+    <header class="mt-4 p-3 border border-2">
+        <nav class="d-flex justify-content-between">
+            <button data-bs-target="#navbar" data-bs-toggle="offcanvas" class="bi bi-justify fs-5 btn btn-light"> Offcanvas & Carousel </button>
+            <button data-bs-target="#cart" data-bs-toggle="offcanvas" class="bi bi-cart4 btn btn-warning"></button>
+            <div class="offcanvas offcanvas-start" id="navbar">
+                <div class="offcanvas-header">
+                    <h3>Offcanvas 1</h3>
+                    <button class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action"> <a>Home</a> </li>
+                        <li class="list-group-item list-group-item-secondary"> <a>Electronics</a> </li>
+                        <li class="list-group-item list-group-item-success"> <a>Fashion</a> </li>
+                        <li class="list-group-item list-group-item-danger"> <a>Footwear</a> </li>
+                        <li class="list-group-item list-group-item-warning"> <a>Contact</a> </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end" id="cart">
+                <div class="offcanvas-header">
+                    <h3>Offcanvas 2</h3>
+                    <button class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div>
+                        <img src="../public/images/i1.jpg" width="100" height="100">
+                    </div><br>
+                    <div>
+                        <img src="../public/images/i2.jpg" width="100" height="100">
+                    </div><br>
+                    <div>
+                        <img src="../public/images/i3.jpg" width="100" height="100">
+                    </div><br>
+                    <div>
+                        <img src="../public/images/i4.jpg" width="100" height="100">
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h3>Carousel Display</h3>
+        <article class="mt-4">
+             <div class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+        </div>
+    </div>
+    <h3>Carousel Control</h3>
+        </article>
+        <article class="mt-4">
+                <div class="carousel slide" data-bs-ride="carousel" id="banners">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+        </div>
+        <button data-bs-target="#banners" data-bs-slide="prev" class="carousel-control-prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button data-bs-target="#banners" data-bs-slide="next" class="carousel-control-next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+        <h3>Carousel Timing & Control</h3>
+        </article>
+        <article class="mt-4">
+                <div class="carousel slide" data-bs-ride="carousel" id="banner">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="../public/images/amz-banner.jpg" height="250" class="w-100 d-block">
+            </div>
+        </div>
+        <button data-bs-target="#banner" data-bs-slide="prev" class="carousel-control-prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button data-bs-target="#banner" data-bs-slide="next" class="carousel-control-next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+        <div class="carousel-indicators">
+            <button class="active" data-bs-slide-to="0" data-bs-target="#banner"></button>
+            <button data-bs-slide-to="1" data-bs-target="#banner"></button>
+            <button data-bs-slide-to="2" data-bs-target="#banner"></button>
+        </div>  
+    </div>
+        </article>
+
+        <article>
+            <h3>Collapse</h3>
+    <div class="mt-4">
+        <button data-bs-target="#q1" data-bs-toggle="collapse" class="btn btn-dark w-100"> What is Netflix? </button>
+        <div class="mt-1 collapse" id="q1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est beatae quo aliquam dicta facere perferendis esse rem ab illo inventore perspiciatis incidunt consequuntur voluptatibus, culpa quibusdam explicabo quos. Voluptatibus, facere! Lorem ipsum dolor sit, amet consectetur adipisicing elit. In minima quam mollitia praesentium dolorem quas! A quisquam recusandae amet in quas ratione tempora rerum cupiditate deleniti, eaque harum iste saepe.</p>
+        </div>
+    </div>
+</article>
+<article>
+    <h3>Accordion</h3>
+    <div class="accordion" id="faqs">
+       <div class="accordion-item">
+            <div class="accordion-header">
+                <button data-bs-target="#q1" data-bs-toggle="collapse" class="accordion-button">What is Netflix?</button>
+            </div>
+            <div class="accordion-collapse collapse show" id="q1" data-bs-parent="#faqs">
+                <div class="accordion-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non facere voluptatem consequatur, unde ducimus est velit aspernatur, enim repellat pariatur quo odio libero quasi in eligendi! Dolor doloremque sapiente ab? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium accusamus iure, quos laudantium eligendi dolorem quia asperiores deleniti, quidem doloribus perspiciatis nobis molestias vitae fuga et, quisquam soluta? Atque, aperiam.</p>
+                </div>
+            </div>
+       </div>
+       <div class="accordion-item">
+            <div class="accordion-header">
+                <button data-bs-target="#q2" data-bs-toggle="collapse" class="accordion-button">How much does Netflix cost?</button>
+            </div>
+            <div class="accordion-collapse collapse" id="q2" data-bs-parent="#faqs">
+                <div class="accordion-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non facere voluptatem consequatur, unde ducimus est velit aspernatur, enim repellat pariatur quo odio libero quasi in eligendi! Dolor doloremque sapiente ab? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium accusamus iure, quos laudantium eligendi dolorem quia asperiores deleniti</p>
+                </div>
+            </div>
+       </div>
+    </div>
+</article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal | Alert | Cards</title>
+     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="m-4 ">
+        <h3>Cards</h3>
+    <main class="d-flex">
+        <div class="card p-2 m-2" style="width:300px">
+            <img src="../public/images/data sci.png" class="card-img-top" height="130">
+            <div class="card-header">
+                <h2 class="card-title">Data Science</h2>
+                <p class="card-subtitle">By Mr. John</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Topic-1</li>
+                    <li>Topic-2</li>
+                    <li>Topic-3</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-warning w-100"> Join Course </button>
+            </div>
+        </div>
+
+                <div class="card p-2 m-2" style="width:300px">
+            <img src="../public/images/power-bi.png" class="card-img-top" height="130">
+            <div class="card-header">
+                <h2 class="card-title">Power BI</h2>
+                <p class="card-subtitle">By Mr. John</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Topic-1</li>
+                    <li>Topic-2</li>
+                    <li>Topic-3</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-warning w-100"> Join Course </button>
+            </div>
+        </div>
+    </main>
+
+    <h2>Alerts</h2>
+        <aside class="alert alert-dismissible w-25">
+        <button class="btn btn-close" data-bs-dismiss="alert"></button>
+        <div>Ads.</div>
+        <img src="../public/images/i1.jpg" width="200" height="200">
+        <p>Offers..</p>
+    </aside>
+    <div class="d-flex justify-content-around">
+    <div class="alert alert-success alert-dismissible w-50">
+        <button data-bs-dismiss="alert" class="btn btn-close"></button>
+        <h3 class="alert-title">Registered successfully</h3>
+        <p>Your account created and an activation link sent to your email.</p>
+        <a class="alert-link" href="#">Help?</a>
+        <br><br>
+        <button data-bs-dismiss="alert" class="btn btn-success">OK</button>
+    </div>
+    <div class="alert alert-dismissible alert-danger w-25">
+        <button data-bs-dismiss="alert" class="btn btn-close"></button>
+        <h3>Invalid Credentials</h3>
+        <p>Please verify your login details</p>
+        <a class="alert-link" href="#">Help?</a>
+        <br><br>
+        <button class="btn btn-danger" data-bs-dismiss="alert"> OK </button>
+    </div>
+    </div>
+
+    <h3>Modal - Click to reveal</h3>
+        <button data-bs-toggle="modal" data-bs-target="#login" class="btn btn-primary mt-3">Login</button>
+    <button data-bs-toggle="modal" data-bs-target="#ads" class="btn btn-danger mt-3">Ads</button>
+    <div class="modal fade" id="ads">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Summer Sale</h3>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="d-flex">
+                    <div class="modal-body">
+                    <img src="../public/images/i4.jpg" width="200" height="200">
+                </div>
+                <div class="modal-body">
+                    <img src="../public/images/i4.jpg" width="200" height="200">
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="login">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="bi bi-person-circle"> User Login</h3>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>User name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary mx-2">Login</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
