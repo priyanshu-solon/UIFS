@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function SearchClick(){
+          result =  prompt("Enter Search String", "eg: mobiles, watches");
+          if(result==null) {
+              alert("You canceled search");
+          }else if(result=='') {
+              alert("Please provide a search string\nIt can't be empty");
+          } else {
+              document.write("You are searching for : " + result);
+          }
+        }
+    </script>
+</head>
+<body>
+    <h3>Working of JavaScript Prompt for input it is a browser window method.</h3>
+    <button onclick="SearchClick()">Search</button>
+</body>
+</html>

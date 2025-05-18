@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function DeleteClick(){
+           result = confirm("Delete Record\nAre your sure? Want to delete?");
+           if(result==true){
+                document.querySelector("p").outerHTML = "<h2>Deleted Successfully..</h2>";
+           } else {
+                document.querySelector("p").innerHTML  = "<h2>Delete Canceled</h2>";
+           }
+        }
+    </script>
+</head>
+<body>
+    <h3>JS not RC Type <br> OuterHTML(replace element for output inside the window)
+        <br> & innerHTML(content inside the element inside the window)</h3>
+    <button onclick="DeleteClick()">Delete</button>
+    <p></p>
+</body>
+</html>

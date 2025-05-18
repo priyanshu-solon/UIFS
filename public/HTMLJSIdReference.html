@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function BodyLoad(){
+           document.getElementById("pic").src = "../public/images/men-fashion.jpg";
+           document.getElementById("btnLogin").value = "Login";
+           document.getElementById("btnRegister").value = "Register";
+        }
+    </script>
+</head>
+<body onload="BodyLoad()">
+        <h3>Shows how JS can access the HTML elements through its id</h3>
+    <div>
+        <img width="100" height="100" id="pic">
+    </div>
+    <div>
+        <form name="frmLogin">
+            <h3>User Login</h3>
+            <input type="text" name="txtName" placeholder="User Name">
+            <input type="password" name="txtPwd" placeholder="Password">
+            <input type="button" id="btnLogin">
+        </form>
+    </div>
+    <div>
+        <form name="frmRegister">
+            <h3>Register</h3>
+            <input type="email" placeholder="Your Email">
+            <input type="button" id="btnRegister">
+        </form>
+    </div>
+</body>
+</html>

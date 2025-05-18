@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function BodyLoad(){
+            window.document.images[0].src = "../public/images/women-fashion.jpg";
+            window.document.forms[0].elements[2].value = "Login";
+            window.document.forms[1].elements[1].value = "Register";
+        }
+    </script>
+</head>
+<body onload="BodyLoad()">
+    <h3>Shows how JS can access the HTML elements through DOM hierarchy of Javascript by indexing</h3>
+    <div>
+        <img width="100" height="100">
+    </div>
+    <div>
+        <form>
+            <h3>User Login</h3>
+            <input type="text" placeholder="User Name">
+            <input type="password" placeholder="Password">
+            <input type="button">
+        </form>
+    </div>
+    <div>
+        <form>
+            <h3>Register</h3>
+            <input type="email" placeholder="Your Email">
+            <input type="button">
+        </form>
+    </div>
+</body>
+</html>

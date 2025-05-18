@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function DeleteClick(){
+           result = confirm("Delete Record\nAre your sure? Want to delete?");
+           if(result==true){
+                document.querySelector("p").textContent = "Deleted Successfully..";
+           } else {
+                document.querySelector("p").innerText  = "Delete Canceled";
+           }
+        }
+    </script>
+</head>
+<body>
+
+        <h3>textContent & innerText <br> used to display raw text because they are RC Type</h3>
+    <button onclick="DeleteClick()">Delete</button>
+    <p></p>
+</body>
+</html>
