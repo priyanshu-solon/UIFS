@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Outputs</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        button{
+            display: block;
+            margin: 30px;
+        }
+    </style>
+    <script>
+        function itAlerts() {
+            alert("This is an alert box!");
+        }
+        function itConfirms(){
+            result = confirm("Do you want to proceed Confirm Box?");
+            if(result==true){
+                alert("You pressed OK!");
+            } else {
+                alert("You pressed Cancel!");
+            }
+        }
+        function itDocWrites(){
+            result = confirm("Do you want to proceed document.write() ?");
+            if(result==true){
+                document.write("<h2>You pressed OK!</h2><br><a href='JSOutputs.html'>Back</a>");
+            } else {
+                alert("You pressed Cancel!");
+            }
+        }
+        function itPrompts(){
+            result = prompt("Please enter your name:");
+            if(result==null) {
+              alert("You canceled");
+          }else if(result=='') {
+              alert("Please provide a string\nIt can't be empty");
+          } else {
+              document.write("You name is : " + result);
+          }
+        }
+
+        function itConsolesIO(){
+           console.warn("Console Clicked");
+           console.log("Your clicked the Console Button");
+           result = confirm("Click One of them");
+           if(result==true){
+                document.getElementById("pre").outerHTML = "<h2>Successfully Confirmed</h2>";
+                console.error("Confirmed");
+           } 
+           else {
+                document.getElementById("pre").innerHTML  = "<h2>Canceled</h2>";
+           }
+        }
+        function itTexts(){
+           result = confirm("Click one of them");
+           if(result==true){
+                document.getElementById("pri").textContent = "Clicked Successfully..";
+           } else {
+                document.getElementById("pri").innerText  = "Clicked Canceled";
+           }
+        }
+    </script>
+</head>
+<body>
+    <h1>Types of JavaScript Outputs</h1>
+    <button onclick="itAlerts()">Alert</button>
+    <button onclick="itConfirms()">Confirm</button>
+    <button onclick="itPrompts()">Prompts</button>
+    <button onclick="itDocWrites()">document.write</button>
+    <button onclick="itTexts()">textContent & innerText</button><p id="pri"></p>
+    <button onclick="itConsolesIO()">Console & InnerOuterHTML</button><p id="pre"></p>
+</body>
+</html>
