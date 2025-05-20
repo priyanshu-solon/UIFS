@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            productDetails = new URLSearchParams(location.search);
+            document.getElementById("lblName").textContent = productDetails.get("Name");
+            document.getElementById("lblPrice").textContent = productDetails.get("Price");
+            document.getElementById("lblCity").textContent = productDetails.get("City");
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>Result</h2>
+    <dl>
+        <dt>Name</dt>
+        <dd id="lblName"></dd>
+        <dt>Price</dt>
+        <dd id="lblPrice"></dd>
+        <dt>City</dt>
+        <dd id="lblCity"></dd>
+    </dl>
+    <a href="./JSInputs.html">Back to Register</a>
+</body>
+</html>

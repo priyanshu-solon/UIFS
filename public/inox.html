@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../src/scripts/inox.js"></script>
+</head>
+<body class="container-fluid">
+    <div id="btnContainer" class="mt-4">
+        <button data-bs-target="#toolbar" data-bs-toggle="modal" class="btn btn-primary">Quick Booking</button>
+    </div>
+    <div class="modal fade" id="toolbar">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="lblTitle">Quick Booking</h3>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <select class="form-select" id="lstMovies">
+                                <option>Select Movie</option>
+                                <option value="Mission Impossible">Mission Impossible:The Final</option>
+                                <option value="Final Destination">Final Destination Bloodlines</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstDate">
+                                <option>Select Date</option>
+                                <option>Today, 19 May </option>
+                                <option>Tomorrow, 20 May</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstCinema">
+                                <option>Select Cinema</option>
+                                <option>PVR Panjagutta </option>
+                                <option>Inox B'hills</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstTiming">
+                                <option>Select Timing</option>
+                                <option> 10:30 AM </option>
+                                <option> 06:30 PM </option>
+                            </select>
+                        </div>
+                        <div>
+                            <button id="btnBook" onclick="BookClick()" data-bs-dismiss="modal"
+                                class="btn btn-primary">Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="summaryContainer" style="display: none;" class="w-25 mt-3 border border-1 rounded p-2">
+        <h3 class="bi bi-ticket"> Booking Summary</h3>
+        <img width="100%" height="200" id="imgPoster">
+        <dl>
+            <dt>Movie</dt>
+            <dd id="lblMovie"></dd>
+            <dt>Date</dt>
+            <dd id="lblDate"></dd>
+            <dt>Cinema</dt>
+            <dd id="lblCinema"></dd>
+            <dt>Timing</dt>
+            <dd id="lblTiming"></dd>
+        </dl>
+        <button onclick="EditClick()" data-bs-target="#toolbar" data-bs-toggle="modal"
+            class="btn btn-warning bi bi-pen-fill w-100"> Edit Booking </button>
+    </div>
+</body>
+</html>
