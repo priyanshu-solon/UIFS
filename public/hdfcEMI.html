@@ -7,19 +7,50 @@
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../src/scripts/hdfcEMI.js"></script>
 </head>
-<body>
-    <div class="d-flex justify-content-center align-content-center pt-4">
-        <div class="card w-75 bg-secondary-subtle p-4">
-            <div class="d-flex flex-row justify-content-around ">
-            <label for="amount">Amount Required</label><input type="number" name="amount" id="" class="">
-            <label for="year">Years</label><input type="number" name="year" id="" class="">
-            <label for="rate">Interest Rate in %</label><input type="number" name="rate" id="" class="">
+<body class="container-fluid">
+    <div class="pt-4">
+        <div class="m-4 bg-secondary-subtle p-4">
+            <div class="h4 text-center">Personal Loan EMI Calculator</div>
+            <div class="my-4 row">
+                <div class="col">
+                    <label for="amount">Amount Required &#8377;</label>
+                    <input onchange="amountRange()" type="number" id="nAmount" step="10000" min="100000" max="1000000">
+                </div>
+                <div class="col">
+                    <label for="year">Years</label>
+                    <input onchange="yearsRange()" type="number" id="nYears" step="1" min="1" max="5">
+                </div>
+                <div class="col">
+                    <label for="rate">Interest Rate in %</label>
+                    <input onchange="rateRange()" type="number" id="nRate" step="0.1" min="10" max="18.45">
+                </div>
             </div>
-            <div class="d-flex justify-content-center align-content-center pt-4">
-                <button onclick="calculateEMI()" class="bg-primary rounded text-light border-0 px-3 p-1">Calculate</button>
+            <div class="row">
+                <div class="col">
+                    <input onchange="amountNumber()" type="range" id="rAmount" step="10000" class="form-range" min="100000" max="1000000"
+                        value="100000">
+                    <span>&#8377; 1,00,000</span>
+                    <span class="float-end">&#8377; 10,00,000</span>
+                </div>
+                <div class="col">
+                    <input onchange="yearsNumber()" type="range" id="rYears" step="1" class="form-range" min="1" max="5" value="1">
+                    <span>1 year</span>
+                    <span class="float-end">5 years</span>
+                </div>
+                <div class="col">
+                    <input onchange="rateNumber()" type="range" id="rRate" step="0.1" class="form-range" min="10" max="18.45" value="10">
+                    <span>10.45%</span>
+                    <span class="float-end">18.45%</span>
+                </div>
+            </div>
+                <button onclick="calculateEMI()" class="btn btn-primary float-end mt-2">Calculate</button>
+            <div class="row my-4 text-center">
+                <span id="lblResult"></span>
             </div>
         </div>
     </div>
 </body>
+
 </html>
