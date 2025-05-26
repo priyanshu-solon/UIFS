@@ -13,19 +13,22 @@
         var menu = "Home Electronics Mobiles Apple iPhone16";
         document.write(menu.replaceAll(' ', ' > ') + "<br>");
         document.write(menu.replace("Apple", "AppleMobiles"));
+
         // trim
         var password = prompt("Enter your password 'admin'");
         if (password.trim() == "admin") {
-            document.write("Login Success..");
+            document.write("<br>" + "Login Success.." + "<br>");
         } else {
-            document.write("Invalid Password");
+            document.write("<br>" + "Invalid Password" + "<br>");
         }
+
         // split
         var contacts = "John-9848483828, David-882112345";
         var users = contacts.split(',');
         var [john, david] = users;
         document.write(`John Mobile Number ${john.split('-')[1]}<br>`);
         document.write(`David Mobile Number ${david.split('-')[1]}`);
+        
     </script>
 </head>
 
