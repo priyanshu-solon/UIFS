@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Various JS String Manipulations, Events</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        // replaceAll
+        var menu = "Home Electronics Mobiles Apple iPhone16";
+        document.write(menu.replaceAll(' ', ' > ') + "<br>");
+        document.write(menu.replace("Apple", "AppleMobiles"));
+        // trim
+        var password = prompt("Enter your password 'admin'");
+        if (password.trim() == "admin") {
+            document.write("Login Success..");
+        } else {
+            document.write("Invalid Password");
+        }
+        // split
+        var contacts = "John-9848483828, David-882112345";
+        var users = contacts.split(',');
+        var [john, david] = users;
+        document.write(`John Mobile Number ${john.split('-')[1]}<br>`);
+        document.write(`David Mobile Number ${david.split('-')[1]}`);
+    </script>
+</head>
+
+<body>
+    <div> 
+        <!-- toUpperCase,bold,fontsize,itallic,fontcolor,fontsize -->
+        <script>
+            function VerifyName() {
+                var username = document.getElementById("txtName").value;
+                var lblName = document.getElementById("lblName");
+
+                if (username == "john") {
+                    lblName.innerHTML = "User Name Taken - Try Another".fontcolor('red').fontsize(2);
+                } else {
+                    lblName.innerHTML = "User Name Available".fontcolor('green').fontsize(2).bold().italics();
+                }
+            }
+            function ChangeCase() {
+                var code = document.getElementById("txtCode").value;
+                document.getElementById("txtCode").value = code.toUpperCase();
+            }
+        </script>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" onkeyup="VerifyName()" id="txtName"></dd>
+            <dd id="lblName"></dd>
+            <dt>Bank IFSC Code</dt>
+            <dd><input type="text" id="txtCode" onblur="ChangeCase()"></dd>
+        </dl>
+    </div>
+
+    <br>
+
+    <!-- fontcolor -->
+    <div>
+        <script>
+            function VerifyName2() {
+                var userName = document.getElementById("txtName2").value;
+                var lblNameError = document.getElementById("lblNameError");
+
+                if (userName.length == 0) {
+                    lblNameError.innerHTML = "User Name Required".fontcolor('red');
+                } else {
+                    if (userName.length < 4) {
+                        lblNameError.innerHTML = "Name too short - Min 4 chars required".fontcolor('red');
+                    } else {
+                        lblNameError.innerHTML = "";
+                    }
+                }
+            }
+            function VerifyChars() {
+                var comments = document.getElementById("txtComments").value;
+                var lblComments = document.getElementById("lblComments");
+
+                lblComments.innerHTML = `${100 - comments.length} chars left`;
+            }
+        </script>
+        <dl>
+            <dt>Your Name</dt>
+            <dd><input type="text" onblur="VerifyName2()" onkeyup="VerifyName2()" id="txtName2"></dd>
+            <dd id="lblNameError"></dd>
+            <dt>Your Comments</dt>
+            <dd>
+                <textarea rows="4" onkeyup="VerifyChars()" maxlength="100" cols="40" id="txtComments"></textarea>
+            </dd>
+            <dd id="lblComments"></dd>
+        </dl>
+    </div>
+
+    <br>
+
+    <!-- charCode -->
+    <div>
+        <script>
+            function VerifyName3() {
+                var username = document.getElementById("txtName3").value;
+                var lblName = document.getElementById("lblName3");
+
+                if (username.charCodeAt(0) >= 65 && username.charCodeAt(0) <= 90) {
+                    lblName.innerHTML = "";
+                } else {
+                    lblName.innerHTML = "Name must start with uppercase letter".fontcolor('red');
+                }
+            }
+        </script>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" onblur="VerifyName3()" id="txtName3"></dd>
+            <dd id="lblName3"></dd>
+        </dl>
+    </div>
+
+    <br>
+
+    <!--startsWith endsWith -->
+    <div>
+        <script>
+            function VerifyCard() {
+                var card = document.getElementById("txtCard").value;
+                var imgCard = document.getElementById("imgCard");
+
+                if (card.startsWith("4455")) {
+                    imgCard.src = "../public/images/visa.jfif";
+                } else {
+                    imgCard.src = "../public/images/master.jfif";
+                }
+            }
+            function VerifySkype() {
+                var skype = document.getElementById("txtSkype").value;
+                var lblSkype = document.getElementById("lblSkype");
+                if (skype.endsWith("outlook.com")) {
+                    lblSkype.innerHTML = "";
+                } else {
+                    lblSkype.innerHTML = "Invalid Skype Profile".fontcolor('red');
+                }
+            }
+        </script>
+        <dl class="mt-4 w-25">
+            <dt>Your Card Number</dt>
+            <dd class="input-group"><input maxlength="16" onblur="VerifyCard()" type="text" class="form-control"
+                    id="txtCard"> <img id="imgCard" width="80" height="40" class="input-group-text"> </dd>
+            <dt class="bi bi-skype"> Your Skype ID</dt>
+            <dd>
+                <input type="text" onblur="VerifySkype()" id="txtSkype" class="form-control">
+            </dd>
+            <dd id="lblSkype"></dd>
+        </dl>
+    </div>
+</body>
+
+</html>
