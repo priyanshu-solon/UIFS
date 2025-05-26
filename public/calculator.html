@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,86 +8,110 @@
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <style>
-    </style>
+    <script src="../src/scripts/calculator.js"></script>
 </head>
+<style>
+    input{
+        border: none;
+    }
+</style>
 <body class="container-fluid">
-    <div class="m-2 col bg-secondary rounded border-warning" style="height:90vh; width:400px">
+    <div class="m-2 col bg-secondary rounded border-warning" style="height:88vh; width:400px">
         <div class="p-1 fw-bold text-center rounded-top">Calculator</div>
-        <div class="row m-3 bg-light rounded" style="height:100px"></div>
+        <div class="row m-3 bg-secondary-subtle rounded" style="height:120px">
+            <input type="text" id="display" class="w-100 h-75 bg-light rounded-top" disabled></input>
+            <input type="text" class="outputNumber rounded-bottom" disabled></input>
+        </div>
+        <div class="d-flex justify-content-around row mx-3">
+            <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-success" disabled>x</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-success" disabled>x</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-success" disabled>x</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-success" disabled>x</button>
+            </div>
+            </div>
+        </div>
         <div class="d-flex justify-content-around row bg-primary rounded m-3" style="height: 290px;">
             <div class="row pt-2">
                 <div class="col">
-                    <button class="w-100 btn btn-danger">C</button>
+                    <button class="w-100 btn btn-danger"  onclick="clearDisplay('')">C</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">%</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendOperation('%')">%</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-warning text-light"><span class="bi bi-backspace-fill"></span></button>
+                    <button class="w-100 btn btn-warning text-light" disabled><span class="bi bi-backspace-fill"></span></button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-info text-light">+</button>
+                    <button class="w-100 btn btn-info text-light" onclick="appendOperation('+')">+</button>
                 </div>
             </div>
             <div class="row pt-2">
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">7</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('7')">7</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">8</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('8')">8</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">9</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('9')">9</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-info text-light">*</button>
+                    <button class="w-100 btn btn-info text-light" onclick="appendOperation('*')">*</button>
                 </div>
             </div>
             <div class="row pt-2">
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">4</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('4')">4</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">5</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('5')">5</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">6</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('6')">6</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-info text-light">+</button>
+                    <button class="w-100 btn btn-info text-light" onclick="appendOperation('+')">+</button>
                 </div>
             </div>
             <div class="row pt-2">
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">1</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('1')">1</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">2</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('2')">2</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">3</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('3')">3</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-info text-light">-</button>
+                    <button class="w-100 btn btn-info text-light" onclick="appendOperation('-')">-</button>
                 </div>
             </div>
             <div class="row pt-2">
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">.</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('.')" disabled>.</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">0</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('0')">0</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-secondary">00</button>
+                    <button class="w-100 btn btn-secondary" onclick="appendNumber('00')">00</button>
                 </div>
                 <div class="col">
-                    <button class="w-100 btn btn-success">=</button>
+                    <button class="w-100 btn btn-success" onclick="calculate()">=</button>
                 </div>
             </div>
-        </div>
         </div>
     </div>
+    </div>
 </body>
+
 </html>
