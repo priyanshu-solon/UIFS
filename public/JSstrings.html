@@ -157,6 +157,43 @@
             <dd id="lblSkype"></dd>
         </dl>
     </div>
+    
+    <!-- indexOf -->
+    <div>
+        <script>
+          function VerifyEmail(){
+               var email = document.getElementById("txtEmail").value;
+               var lblError = document.getElementById("lblError");
+               if(email.indexOf("@")==-1){
+                    lblError.innerHTML = "Invalid Email - Please include @".fontcolor('red');
+               } else {
+                    lblError.innerHTML = "";
+               }
+          }
+     </script>
+     <dl>
+          <dt>Your email</dt>
+          <dd><input type="text" onblur="VerifyEmail()" id="txtEmail"></dd>
+          <dd id="lblError"></dd>
+     </dl>
+    </div>
+
+    <!-- slice,split -->
+    <div>
+        <script>
+     var email = prompt("Enter your email");
+     var [id, domain] = email.split('@');
+     document.write(`Id=${id}<br>Domain=${domain}`);
+</script>
+<script>
+     var email = prompt("Enter your email");
+     var atPos = email.indexOf("@");
+     var id = email.slice(0,atPos);
+     var domain = email.slice(atPos+1);
+     document.write(`Id=${id}<br>Domain=${domain}`);
+</script>
+
+    </div>
 </body>
 
 </html>

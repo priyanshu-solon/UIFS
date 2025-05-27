@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+     <script>
+          function VerifyPassword(){
+               var password = document.getElementById("txtPwd").value;
+               var progressBar  = document.getElementById("progressBar");
+
+               var regExp = /(?=.*[A-Z])\w{4,15}/;
+               if(password.match(regExp)){
+                    lblPwd.innerHTML = "Strong Password";
+                    progressBar.style.width = "100%";
+                    progressBar.className = "bg-success text-white progress-bar progress-bar-animated progress-bar-striped";
+               } else {
+                    if(password.length<4){
+                         lblPwd.innerHTML = "Poor Password";
+                         progressBar.style.width = "30%";
+                         progressBar.className = "bg-danger text-white progress-bar progress-bar-animated progress-bar-striped";
+                    } else {
+                         lblPwd.innerHTML = "Weak Password";
+                         progressBar.style.width = "70%";
+                         progressBar.className = "bg-warning text-white progress-bar progress-bar-animated progress-bar-striped";
+                    }
+               }
+          }
+          function VerifyMobile(){
+               var mobile = document.getElementById("txtMobile").value;
+               var lblMobile = document.getElementById("lblMobile");
+               var regExp = /\+91\d{10}/;
+               if(mobile.match(regExp)){
+                    lblMobile.innerHTML = "";
+               } else {
+                    lblMobile.innerHTML = "Invalid Mobile +91 & 10 digits required".fontcolor('red');
+               }
+          }
+     </script>
+</head>
+<body class="container-fluid">
+     <dl class="mt-4 w-25">
+          <dt>Your Password</dt>
+          <dd><input type="password" class="form-control" onkeyup="VerifyPassword()" id="txtPwd"></dd>
+          <dd class="progress">
+               <div id="progressBar">
+                    <span id="lblPwd"></span>
+               </div>
+          </dd>
+          <dt>Mobile Number</dt>
+          <dd>
+               <input type="text" id="txtMobile" class="form-control" onblur="VerifyMobile()">
+          </dd>
+          <dd id="lblMobile"></dd>
+     </dl>
+</body>
+</html>
