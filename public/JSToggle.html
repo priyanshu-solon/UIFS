@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+       function CheckedChange(){
+        var optShow = document.getElementById("optShow");
+        var imgPoster = document.getElementById("imgPoster");
+        imgPoster.className = (optShow.checked)? "d-block": "d-none";
+        var lblShow = document.getElementById("lblShow");
+        lblShow.innerHTML = (lblShow.innerHTML==="Show")?"Hide":"Show";
+       }
+        function SortToggle(){
+            var btnSort = document.getElementById("btnSort");
+            btnSort.className = (btnSort.className==="bi bi-sort-alpha-down")?"bi bi-sort-alpha-up":"bi bi-sort-alpha-down";
+        }
+        function ShowClick(){
+            var btnShow = document.getElementById("btnShow");
+            btnShow.className = (btnShow.className==="bi bi-eye")?"bi bi-eye-slash":"bi bi-eye";
+            var txtPwd = document.getElementById("txtPwd");
+            txtPwd.type = (txtPwd.type==="text")?"password":"text";
+        }
+        function ToggleQuestion(){
+            var q1 = document.getElementById("q1");
+            q1.className = (q1.className==="d-none")?"d-block":"d-none";
+            var icon = document.getElementById("icon");
+            icon.className = (icon.className==="bi bi-plus")?"bi bi-dash":"bi bi-plus";
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h2>Check</h2>
+    <input type="checkbox" onchange="CheckedChange()" id="optShow"> <label id="lblShow">Show</label>
+    <div id="imgPoster" class="d-none">
+        <img src="../public/images/women-fashion.jpg" width="200" height="200">
+    </div>
+    <h2>Toggle</h2>
+    <button id="btnSort" class="bi bi-sort-alpha-down" onclick="SortToggle()"></button>
+    <h2>Password</h2>
+    <input type="text" id="txtPwd"> <button onclick="ShowClick()" id="btnShow" class="bi bi-eye"></button>
+    <h2>Accordion</h2>
+    <button onclick="ToggleQuestion()" class="btn btn-dark w-100 d-flex justify-content-between"><span>What is Netflix?</span><span id="icon" class="bi bi-plus"></span></button>
+    <div id="q1" align="justify" class="d-none">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident repellat qui obcaecati! Id dicta in delectus culpa, incidunt praesentium aliquid molestias cupiditate natus rerum. Delectus veniam sint esse vero doloribus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis magni neque reiciendis incidunt veniam, maiores voluptatem modi illum facilis minima eius commodi ipsa est autem rem laborum. Ipsum, sint sed.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat enim, ea deleniti fugit autem, assumenda quasi sunt non nobis ipsam rerum debitis ex voluptatibus, excepturi iusto soluta iure aliquam recusandae! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nulla reiciendis odit aperiam ex vitae magni quia. Adipisci, eum debitis, expedita odio unde alias earum facere commodi cum perferendis molestias?</p>
+    </div>
+</body>
+</html>
