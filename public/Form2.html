@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,171 +8,190 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
+
 <body>
     <section>
         <article>
             <h1 class="text-center">Global Tech Solution Onboarding Form</h1>
-        <form class="m-4 p-4 w-50 border rounded">
-            <h3>Personal Information</h3>
-            <label class="form-label" for="fullName">Full Name:</label>
-            <input class="form-control" type="text" name="fullName" id="fullName" placeholder="First Last" maxlength="100" required>
-            <label for="DOB">Date of Birth:</label><!-- Age must be over 18 -->
-            <input class="form-control" type="date" name="DOB" id="dob" min="18" required>
-            <label class="form-label d-block" for="gender">Gender:</label>
-            <input class="form-check d-inline" type="radio" name="gender" id="Male" checked> <label class="form-check-label" for="Male">Male</label>
-            <input class="form-check d-inline" type="radio" name="gender" id="Female"> <label class="form-check-label" for="Female">Female</label>
-            <label class="form-label d-block" for="nation">Nationality:</label>
-            <select class="form-control" name="nation" id="nation" required>
-                <optgroup>
-                    <label for="Asia">Asia Pacific</label>
-                    <option value="India" selected>India</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Kazakistan">Kazakistan</option>
-                    <option value="New Zealand">New Zealand</option>
-                </optgroup>
-                <optgroup>
-                    <label for="NorthAmerica">North America</label>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="ElSavador">ElSavador</option>
-                    <option value="Cuba">Cuba</option>
-                </optgroup>
-                <optgroup>
-                    <label for="SouthAmerica">South America</label>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Columbia">Columbia</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Uruguay">Uruguay</option>
-                </optgroup>
-                <optgroup>
-                    <label for="Europe">Europe</label>
-                    <option value="England">England</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Italy">Italy</option>
-                </optgroup>
-                <optgroup>
-                    <label for="Africa">Africa</label>
-                    <option value="Egypt">Egypt</option>
-                    <option value="Congo">Congo</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="Sudan">Sudan</option>
-                    <option value="Mali">Mali</option>
-                </optgroup>
-            </select>
-            <label class="form-label" for="email">Email Address:</label>
-            <input class="form-control" type="email" name="email" id="email" pattern="" required><!-- email address should have pattern-->
-            <label class="form-label" for="phone">Phone Number:</label>
-            <input class="form-control" type="tel" name="phone" id="phone" pattern="" required><!-- phone number should have pattern-->
-            <label class="form-label" for="pp">Profile Picture</label>
-            <input class="form-control" type="file" name="pp" id="pp"><!-- only jpeg png-->
+            <form class="m-4 p-4 w-50 border rounded">
+                <h3>Personal Information</h3>
+                <label class="form-label" for="fullName">Full Name:</label>
+                <input class="form-control" type="text" name="fullName" id="fullName" placeholder="First Last"
+                    maxlength="100" required>
+                <label for="DOB">Date of Birth:</label><!-- Age must be over 18 -->
+                <input class="form-control" type="date" name="DOB" id="dob" min="18" required>
+                <label class="form-label d-block" for="gender">Gender:</label>
+                <input class="form-check d-inline" type="radio" name="gender" id="Male" checked> <label
+                    class="form-check-label" for="Male">Male</label>
+                <input class="form-check d-inline" type="radio" name="gender" id="Female"> <label
+                    class="form-check-label" for="Female">Female</label>
+                <label class="form-label d-block" for="nation">Nationality:</label>
+                <select class="form-control" name="nation" id="nation" required>
+                    <optgroup>
+                        <label for="Asia">Asia Pacific</label>
+                        <option value="India" selected>India</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Kazakistan">Kazakistan</option>
+                        <option value="New Zealand">New Zealand</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="NorthAmerica">North America</label>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="ElSavador">ElSavador</option>
+                        <option value="Cuba">Cuba</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="SouthAmerica">South America</label>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Columbia">Columbia</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Uruguay">Uruguay</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="Europe">Europe</label>
+                        <option value="England">England</option>
+                        <option value="France">France</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Italy">Italy</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="Africa">Africa</label>
+                        <option value="Egypt">Egypt</option>
+                        <option value="Congo">Congo</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Mali">Mali</option>
+                    </optgroup>
+                </select>
+                <label class="form-label" for="email">Email Address:</label>
+                <input class="form-control" type="email" name="email" id="email" pattern=""
+                    required><!-- email address should have pattern-->
+                <label class="form-label" for="phone">Phone Number:</label>
+                <input class="form-control" type="tel" name="phone" id="phone" pattern=""
+                    required><!-- phone number should have pattern-->
+                <label class="form-label" for="pp">Profile Picture</label>
+                <input class="form-control" type="file" name="pp" id="pp" accept=".jpeg,.jpg,.png,.gif">
 
-            <br>
-            <h3>Address Information</h3>
-            <label class="form-label" for="address1">Street Address Line 1:</label>
-            <input class="form-control" type="text" name="address1" id="add1" required>
-            <label class="form-label" for="address2">Street Address Line 2:</label>
-            <input class="form-control" type="text" name="address1" id="add1">
-            <label class="form-label" for="city">City:</label>
-            <input class="form-control" type="text" name="city" id="city" required>
-            <label class="form-label" for="state">State/Province/Region:</label>
-            <input class="form-control" type="text" name="state" id="state" required>
-            <label class="form-label" for="postal">Postal/ZIP code:</label><!-- postal address should be correct-->
-            <input class="form-control" type="text" name="postal" id="postal" pattern="" required>
-            <label class="form-label d-block" for="nation">Nationality:</label>
-            <select class="form-control" name="nation" id="nation" required>
-                <optgroup>
-                    <label for="Asia">Asia Pacific</label>
-                    <option value="India" selected>India</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Kazakistan">Kazakistan</option>
-                    <option value="New Zealand">New Zealand</option>
-                </optgroup>
-                <optgroup>
-                    <label for="NorthAmerica">North America</label>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="ElSavador">ElSavador</option>
-                    <option value="Cuba">Cuba</option>
-                </optgroup>
-                <optgroup>
-                    <label for="SouthAmerica">South America</label>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Columbia">Columbia</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Uruguay">Uruguay</option>
-                </optgroup>
-                <optgroup>
-                    <label for="Europe">Europe</label>
-                    <option value="England">England</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Italy">Italy</option>
-                </optgroup>
-                <optgroup>
-                    <label for="Africa">Africa</label>
-                    <option value="Egypt">Egypt</option>
-                    <option value="Congo">Congo</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="Sudan">Sudan</option>
-                    <option value="Mali">Mali</option>
-                </optgroup>
-            </select>
+                <br>
+                <h3>Address Information</h3>
+                <label class="form-label" for="address1">Street Address Line 1:</label>
+                <input class="form-control" type="text" name="address1" id="add1" required>
+                <label class="form-label" for="address2">Street Address Line 2:</label>
+                <input class="form-control" type="text" name="address1" id="add1">
+                <label class="form-label" for="city">City:</label>
+                <input class="form-control" type="text" name="city" id="city" required>
+                <label class="form-label" for="state">State/Province/Region:</label>
+                <input class="form-control" type="text" name="state" id="state" required>
+                <label class="form-label" for="postal">Postal/ZIP code:</label><!-- postal address should be correct-->
+                <input class="form-control" type="text" name="postal" id="postal" pattern="" required>
+                <label class="form-label d-block" for="nation">Nationality:</label>
+                <select class="form-control" name="nation" id="nation" required>
+                    <optgroup>
+                        <label for="Asia">Asia Pacific</label>
+                        <option value="India" selected>India</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Kazakistan">Kazakistan</option>
+                        <option value="New Zealand">New Zealand</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="NorthAmerica">North America</label>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="ElSavador">ElSavador</option>
+                        <option value="Cuba">Cuba</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="SouthAmerica">South America</label>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Columbia">Columbia</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Uruguay">Uruguay</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="Europe">Europe</label>
+                        <option value="England">England</option>
+                        <option value="France">France</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Italy">Italy</option>
+                    </optgroup>
+                    <optgroup>
+                        <label for="Africa">Africa</label>
+                        <option value="Egypt">Egypt</option>
+                        <option value="Congo">Congo</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Mali">Mali</option>
+                    </optgroup>
+                </select>
 
-            <br>
-            <h3>Employment Details</h3>
-            <label class="form-label" for="department">Department:</label>
-            <select class="form-control" name="department" id="department" required>
-                <option value="cs">Computer Science</option>
-                <option value="civil">Civil</option>
-                <option value="eee">Electrical</option>
-                <option value="mech">Mechanical</option>
-            </select>
-            <label class="form-label" for="jobTitle">Job Title:</label>
-            <input class="form-control" placeholder="Software Developer" name="jobTitle" type="text" required>
-            <label class="form-label" for="employmentType" required>Employment Type:</label><br>
-            <input class="form-check-inline" type="radio" name="employmentType" value="full"><label class="form-check-label" for="full">Full-Time</label><br>
-            <input class="form-check-inline" type="radio" name="employmentType" value="part"><label class="form-check-label" for="part">Part-Time</label><br>
-            <input class="form-check-inline" type="radio" name="employmentType" value="contract"><label class="form-check-label" for="contract">Contract-Based</label>
-            <label class="form-label" for="startDate">Start Date:</label>
-            <input class="form-control" type="date" name="startDate" id="startDate" required>
-            <label class="form-label" for="workLocation">Preferred Work Location:</label><br><!-- only two option-->
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location1"><label for="location1">Hyderabad</label><br>
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location2"><label for="location2">Kolkata</label><br>
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location3"><label for="location3">Pune</label><br>
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location4"><label for="location4">Gurugram</label><br>
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location5"><label for="location5">Noida</label><br>
-            <input class="form-check-input" type="checkbox" name="workLocation" id="location1" value="location6"><label for="location6">Banglore</label>
+                <br>
+                <h3>Employment Details</h3>
+                <label class="form-label" for="department">Department:</label>
+                <select class="form-control" name="department" id="department" required>
+                    <option value="cs">Computer Science</option>
+                    <option value="civil">Civil</option>
+                    <option value="eee">Electrical</option>
+                    <option value="mech">Mechanical</option>
+                </select>
+                <label class="form-label" for="jobTitle">Job Title:</label>
+                <input class="form-control" placeholder="Software Developer" name="jobTitle" type="text" required>
+                <label class="form-label" for="employmentType" required>Employment Type:</label><br>
+                <input class="form-check-inline" type="radio" name="employmentType" value="full"><label
+                    class="form-check-label" for="full">Full-Time</label><br>
+                <input class="form-check-inline" type="radio" name="employmentType" value="part"><label
+                    class="form-check-label" for="part">Part-Time</label><br>
+                <input class="form-check-inline" type="radio" name="employmentType" value="contract"><label
+                    class="form-check-label" for="contract">Contract-Based</label>
+                <label class="form-label" for="startDate">Start Date:</label>
+                <input class="form-control" type="date" name="startDate" id="startDate" required>
+                <label class="form-label" for="workLocation">Preferred Work Location:</label><br><!-- only two option-->
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location1"><label for="location1">Hyderabad</label><br>
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location2"><label for="location2">Kolkata</label><br>
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location3"><label for="location3">Pune</label><br>
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location4"><label for="location4">Gurugram</label><br>
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location5"><label for="location5">Noida</label><br>
+                <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
+                    value="location6"><label for="location6">Banglore</label>
 
-            <br>
-            <h3>Emergency Contact</h3>
-            <label class="form-label" for="emergencyContact">Contact Name:</label>
-            <input class="form-control" type="text" name="emergencyContact" id="emergencyContact" required>
-            <label class="form-label" for="emergencyRelation">Relationship:</label>
-            <input class="form-control" type="text" name="emergencyRelation" id="emergencyRelation" required>
-            <label class="form-label" for="emergencyNumber">Contact Phone Number:</label><!-- again correct number required-->
-            <input class="form-control" type="number" name="emergencyNumber" id="emergencyNumber" required>
+                <br>
+                <h3>Emergency Contact</h3>
+                <label class="form-label" for="emergencyContact">Contact Name:</label>
+                <input class="form-control" type="text" name="emergencyContact" id="emergencyContact" required>
+                <label class="form-label" for="emergencyRelation">Relationship:</label>
+                <input class="form-control" type="text" name="emergencyRelation" id="emergencyRelation" required>
+                <label class="form-label" for="emergencyNumber">Contact Phone
+                    Number:</label><!-- again correct number required-->
+                <input class="form-control" type="number" name="emergencyNumber" id="emergencyNumber" required>
 
-            <br>
-            <h3>Terms and Conditions</h3>
-            <label class="d-block form-label" for="agreement">Agreement Checkbox:</label>
-            <input class="d-inline form-check" type="checkbox" name="agreement" id="agreement"><label class="d-inline form-check-label" for="agreement">I agree to the Global Tech Solutions <a href="#">Employee Handbook</a> and <a href="#">Privacy Policy</a>."</label>
+                <br>
+                <h3>Terms and Conditions</h3>
+                <label class="d-block form-label" for="agreement">Agreement Checkbox:</label>
+                <input class="d-inline form-check" type="checkbox" name="agreement" id="agreement"><label
+                    class="d-inline form-check-label" for="agreement">I agree to the Global Tech Solutions <a
+                        href="#">Employee Handbook</a> and <a href="#">Privacy Policy</a>."</label>
 
-            <br>
-            <div class="mt-1 mb-4">
-            <button class="btn btn-danger float-start">Clear Form</button>
-            <button class="btn btn-primary float-end">Complete Onboarding</button>
-            </div>
-        </form>
+                <br>
+                <div class="mt-1 mb-4">
+                    <button class="btn btn-danger float-start">Clear Form</button>
+                    <button class="btn btn-primary float-end">Complete Onboarding</button>
+                </div>
+            </form>
         </article>
     </section>
 </body>
+
 </html>

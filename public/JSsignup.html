@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var flag = "";
+        var email = "john_nit@gmail.com";
+        var mobile = "+919876543211";
+
+        function ToggleContainers(){
+            document.getElementById("userContainer").style.display = "none";
+            document.getElementById("pwdContainer").style.display = "block";
+        }
+
+        function ContinueClick(){
+            var user = document.getElementById("txtUser").value;
+            var userError = document.getElementById("userError");
+            if(user===email){
+                flag = `Your email ${email} verified successfully - Activation link sent`;
+                ToggleContainers();
+            }
+            else if(user===mobile) {
+                flag = `Your mobile ${mobile} verified Successfully - OTP Sent`;
+                ToggleContainers();
+            }
+            else {
+                userError.innerHTML = `${user} doesn't exist`;
+            }
+        }
+        function LoginClick(){
+            var password = document.getElementById("txtPwd").value;
+            if(password==="john@123"){
+                document.write(`<h2>${flag}</h2>`);
+            } else {
+                document.getElementById("pwdError").innerHTML = "Invalid Password";
+            }
+        }
+
+        function LoginClick2(){
+            var username = document.getElementById("txtName").value;
+            var password = document.getElementById("txtPwd2").value;
+            var msg = document.getElementById("msg");
+            if(username.length===0){
+                msg.innerHTML = "User Name Required".fontcolor('red');
+                } else {
+                    if(username==="john_nit"){
+                        if(password.length===0){
+                            msg.innerHTML = "Password Required".fontcolor('red');
+                        }else {
+                            if(password==="john111"){
+                                document.write("Login Success..");
+                            } else {
+                                msg.innerHTML= "Invalid Password".fontcolor('red');
+                            }
+                        }
+                } else {
+                    msg.innerHTML = "Invalid User Name".fontcolor('red');
+                }
+            }
+           
+        }
+
+
+        function VerifyCard(){
+            var card = document.getElementById("card").value;
+            if(card==="4444555566667890") {
+                document.getElementById("cvvContainer").style.display = "block";
+            }
+        }
+        function VerifyCvv(){
+            var cvv = document.getElementById("cvv").value;
+            if(cvv==="2345"){
+                document.getElementById("expiryContainer").style.display = "block";
+            }
+        }
+        function VerifyExpiry(){
+            var expiry = document.getElementById("expiry").value;
+            if(expiry==="2026"){
+                document.getElementById("btnPay").disabled = false;
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h2 align="center">Forward Jump Vs Multi Level Vs Multiple Decision Making</h2>
+    <div class="d-flex justify-content-center">
+        <div class="mt-4 border border-1 p-4" style="width: 400px;">
+        <div class="fs-3">Sign in or create account</div>
+        <div id="userContainer">
+            <label class="form-label fw-bold mt-4"> Enter mobile number or email </label>
+            <div>
+                <input type="text" id="txtUser" class="form-control">
+                <div id="userError" class="text-danger"></div>
+            </div>
+            <div class="mt-3">
+                <button onclick="ContinueClick()" class="btn btn-warning w-100">Continue</button>
+            </div>
+        </div>
+        <div id="pwdContainer" style="display: none;">
+             <label class="form-label fw-bold mt-4"> Your password </label>
+            <div>
+                <input type="password" id="txtPwd" class="form-control">
+                <div id="pwdError" class="text-danger"></div>
+            </div>
+            <div class="mt-3">
+                <button onclick="LoginClick()" class="btn btn-warning w-100">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <fieldset class="m-4">
+        <legend>User Login</legend>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" id="txtName"></dd>
+            <dt>Password</dt>
+            <dd><input type="password" id="txtPwd2"></dd>
+        </dl>
+        <button onclick="LoginClick2()">Login</button>
+        <br><br>
+        <div id="msg" align="center"></div>
+    </fieldset>
+
+    <fieldset class="m-4">
+        <legend>Payment Details</legend>
+        <dl>
+            <dt>Card Number</dt>
+            <dd><input type="text" onblur="VerifyCard()" id="card" size="16" maxlength="16"></dd>
+            <div id="cvvContainer" style="display: none;">
+                <dt>CVV</dt>
+                <dd><input type="text" onblur="VerifyCvv()" id="cvv" size="4"></dd>
+            </div>
+            <div id="expiryContainer" style="display: none;">
+                <dt>Expiry</dt>
+            <dd>
+                <select id="expiry" onchange="VerifyExpiry()">
+                    <option>Select Expiry</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                </select>
+            </dd>
+            </div>
+        </dl>
+        <button id="btnPay" disabled>Pay</button>
+    </fieldset>
+    </div>
+</body>
+</html>
