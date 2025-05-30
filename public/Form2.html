@@ -14,7 +14,10 @@
         <article>
             <h1 class="text-center">Global Tech Solution Onboarding Form</h1>
             <form class="m-4 p-4 w-50 border rounded">
-                <h3>Personal Information</h3>
+                <fieldset>
+                    <legend>
+                        <h3>Personal Information</h3>
+                    </legend>
                 <label class="form-label" for="fullName">Full Name:</label>
                 <input class="form-control" type="text" name="fullName" id="fullName" placeholder="First Last"
                     maxlength="100" required>
@@ -74,9 +77,13 @@
                 <input class="form-control" type="tel" name="phone" id="phone" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" required>
                 <label class="form-label" for="pp">Profile Picture</label>
                 <input class="form-control" type="file" name="pp" id="pp" accept=".jpeg,.jpg,.png,.gif">
+                </fieldset>
 
                 <br>
-                <h3>Address Information</h3>
+                <fieldset>
+                    <legend>
+                        <h3>Address Information</h3>
+                    </legend>
                 <label class="form-label" for="address1">Street Address Line 1:</label>
                 <input class="form-control" type="text" name="address1" id="add1" required>
                 <label class="form-label" for="address2">Street Address Line 2:</label>
@@ -130,9 +137,13 @@
                         <option value="Mali">Mali</option>
                     </optgroup>
                 </select>
+                </fieldset>
 
                 <br>
-                <h3>Employment Details</h3>
+                <fieldset>
+                    <legend>
+                        <h3>Employment Details</h3>
+                    </legend>
                 <label class="form-label" for="department">Department:</label>
                 <select class="form-control" name="department" id="department" required>
                     <option value="cs">Computer Science</option>
@@ -164,9 +175,13 @@
                     value="location5"><label for="location5">Noida</label><br>
                 <input class="form-check-input" type="checkbox" name="workLocation" id="location1"
                     value="location6"><label for="location6">Banglore</label>
+                </fieldset>
 
                 <br>
-                <h3>Emergency Contact</h3>
+                <fieldset>
+                    <legend>
+                        <h3>Emergency Contact</h3>
+                    </legend>
                 <label class="form-label" for="emergencyContact">Contact Name:</label>
                 <input class="form-control" type="text" name="emergencyContact" id="emergencyContact" required>
                 <label class="form-label" for="emergencyRelation">Relationship:</label>
@@ -174,13 +189,18 @@
                 <label class="form-label" for="emergencyNumber">Contact Phone
                     Number:</label>
                 <input class="form-control" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" type="number" name="emergencyNumber" id="emergencyNumber" required>
+                </fieldset>
 
                 <br>
-                <h3>Terms and Conditions</h3>
+                <fieldset>
+                    <legend>
+                        <h3>Terms and Conditions</h3>
+                    </legend>
                 <label class="d-block form-label" for="agreement">Agreement Checkbox:</label>
-                <input class="d-inline form-check" type="checkbox" name="agreement" id="agreement"><label
-                    class="d-inline form-check-label" for="agreement">I agree to the Global Tech Solutions <a
-                        href="#">Employee Handbook</a> and <a href="#">Privacy Policy</a>."</label>
+                <input class="d-inline form-check" type="checkbox" name="agreement" id="agreement">
+                <label class="d-inline form-check-label" for="agreement">I agree to the Global Tech Solutions 
+                <a href="#">Employee Handbook</a> and <a href="#">Privacy Policy</a>."</label>
+                </fieldset>
 
                 <br>
                 <div class="mt-1 mb-4">
