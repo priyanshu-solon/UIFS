@@ -69,11 +69,9 @@
                     </optgroup>
                 </select>
                 <label class="form-label" for="email">Email Address:</label>
-                <input class="form-control" type="email" name="email" id="email" pattern=""
-                    required><!-- email address should have pattern-->
+                <input class="form-control" type="email" name="email" id="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                 <label class="form-label" for="phone">Phone Number:</label>
-                <input class="form-control" type="tel" name="phone" id="phone" pattern=""
-                    required><!-- phone number should have pattern-->
+                <input class="form-control" type="tel" name="phone" id="phone" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" required>
                 <label class="form-label" for="pp">Profile Picture</label>
                 <input class="form-control" type="file" name="pp" id="pp" accept=".jpeg,.jpg,.png,.gif">
 
@@ -87,8 +85,8 @@
                 <input class="form-control" type="text" name="city" id="city" required>
                 <label class="form-label" for="state">State/Province/Region:</label>
                 <input class="form-control" type="text" name="state" id="state" required>
-                <label class="form-label" for="postal">Postal/ZIP code:</label><!-- postal address should be correct-->
-                <input class="form-control" type="text" name="postal" id="postal" pattern="" required>
+                <label class="form-label" for="postal">Postal/ZIP code:</label>
+                <input class="form-control" type="text" name="postal" id="postal" pattern="[0-9]{6}" required>
                 <label class="form-label d-block" for="nation">Nationality:</label>
                 <select class="form-control" name="nation" id="nation" required>
                     <optgroup>
@@ -174,8 +172,8 @@
                 <label class="form-label" for="emergencyRelation">Relationship:</label>
                 <input class="form-control" type="text" name="emergencyRelation" id="emergencyRelation" required>
                 <label class="form-label" for="emergencyNumber">Contact Phone
-                    Number:</label><!-- again correct number required-->
-                <input class="form-control" type="number" name="emergencyNumber" id="emergencyNumber" required>
+                    Number:</label>
+                <input class="form-control" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" type="number" name="emergencyNumber" id="emergencyNumber" required>
 
                 <br>
                 <h3>Terms and Conditions</h3>
