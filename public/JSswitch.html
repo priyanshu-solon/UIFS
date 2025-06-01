@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var regExp = / /;
+        var tip = "";
+        function CountryChange(){
+            var flag = document.getElementById("imgFlag");
+            var countryname = document.getElementById("lstCountries").value;
+            var mobile = document.getElementById("txtMobile");
+            switch(countryname)
+            {
+                case "India":
+                regExp = /\+91\d{10}/;
+                tip = "+91 and 10 digits";
+                flag.src = "../public/images/ind.png";
+                break;
+                case "US":
+                regExp = /\+\(1\)\(\d{3}\)\s\d{4}-\d{4}/;
+                tip = "+(1)(000) 0000-0000";
+                flag.src = "../public/images/us.png";
+                break;
+                case "UK":
+                regExp = /\+\(44\)\(\d{2}\)\s\d{3}\s\d{4}/;
+                tip = "+(44)(00) 000 0000";
+                flag.src = "../public/images/uk.jpg";
+                break;
+            }
+            mobile.placeholder = tip;
+        }
+
+        function VerifyClick(){
+            var mobile = document.getElementById("txtMobile").value;
+            if(mobile.match(regExp)) {
+                document.write("<h2>Mobile Verified Successfully..<h2>");
+            } else {
+                document.getElementById("lblMobile").innerHTML = `Invalid Mobile : ${tip}`;
+            }
+
+        }
+    </script>
+</head>
+<body class="container-fluid">
+   <h3>Verify Your Mobile</h3>  
+   <dl class="w-25">
+    <dt>Your country </dt>
+    <dd class="input-group">
+        <select class="form-select" onchange="CountryChange()" id="lstCountries">
+            <option>Select Country</option>
+            <option>India</option>
+            <option>US</option>
+            <option>UK</option>
+        </select>
+        <img class="input-group-text" id="imgFlag" width="60" height="40">
+    </dd>
+    <dt>Mobile Number</dt>
+    <dd>
+        <input type="text" id="txtMobile" class="form-control">
+    </dd>
+    <dd id="lblMobile" class="text-danger"></dd>
+    <button onclick="VerifyClick()" class="btn btn-warning mt-3 w-100">Verify Mobile</button>
+   </dl>
+
+</body>
+</html>
