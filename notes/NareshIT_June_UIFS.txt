@@ -175,7 +175,7 @@ Array de-structure:
 Syntax:
     var list1 = [ "A", "B"];
     var list2 = [ "C", "D"];
-
+ 
     var list3 = [ list1, list2] ;        // 2 elements
     var list3 = [ ...list1, list2];        // 3 elements     [A, B, [C, D]];
     var list3 = [ ...list1, ...list2];    // 4 elements      [A,B,C,D]

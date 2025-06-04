@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../src/scripts/array_manipulation.js"></script>
+</head>
+<body class="container-fluid" onload="LoadMovies()">
+    <h2 class="bi bi-ticket text-center text-danger"> Book My Show - Admin Dashboard</h2>
+    <div class="w-25 mt-4">
+        <h2>Manage Movies</h2>
+        <div class="my-2 input-group">
+            <input class="form-control" id="txtMovie" type="text" placeholder="New Movie"> <button onclick="AddClick()" class="btn btn-primary">Add Movie</button>
+        </div>
+        <div class="mt-4">
+            <div class="my-2">
+                <button onclick="SortAsc()" class="btn btn-success bi bi-sort-alpha-down"></button>
+                <button onclick="SortDsc()" class="btn btn-success bi bi-sort-alpha-up mx-3"></button>
+            </div>
+            <select size="3" id="lstMovies" class="form-select"></select>
+            <div class="mt-2">
+                <span id="lblCount" class="fw-bold"></span>
+            </div>
+            <div class="mt-4">
+                <button onclick="EditClick()" data-bs-target="#edit" data-bs-toggle="modal" class="btn btn-warning bi bi-pen-fill"> Edit </button>
+                <div class="modal fade" id="edit">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Edit Movie</h3>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" class="form-control" id="txtEditMovie">
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="SaveClick()" data-bs-dismiss="modal" class="btn btn-success">Save</button>
+                                <button data-bs-dismiss="modal" class="btn btn-danger mx-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="DeleteClick()" class="btn btn-danger mx-3 bi bi-trash-fill"> Delete </button>
+                <button onclick="ClearAll()" class="btn btn-outline-danger bi bi-trash"> Clear </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
