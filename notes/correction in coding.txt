@@ -1,0 +1,13 @@
+Coding website refinement
+
+heading is not properly cloned as the original
+bookmark responsive
+dropdown color,background,border,shadow and more
+example btn dialog box
+more dropdown in left bottom article
+correct way to make list in the right article
+copy not working in the bootstap
+bottom should also pop up a dialog
+proper color in the cofing area
+match all the color properly in everyplace
+the timer color is not correct

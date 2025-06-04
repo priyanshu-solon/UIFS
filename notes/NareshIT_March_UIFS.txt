@@ -1,0 +1,1937 @@
+11/03
+====
+
+Web Applications
+
+1. What is Network?
+- A computer network comprises of group of computers connecting with each other for sharing information and resources. 
+- ARPANET is the first computer network introduced in early 1960's by US-DOD.
+ [Advanced Research Project Agency Network]
+- Networks are classified into 3 major types
+	a) LAN
+	b) MAN
+	c) WAN
+
+2. What is Internet?
+- Internet is a "Wide Area Network" that connects computers all over the world. 
+- CERN [Council for European Research and Nuclear] labs developed the concept of Internet. 
+
+3. What is Web?
+- Web is a portion of internet with restricted access.
+- "Tim Berners Lee" introduced the concept of Web in early 1990's.
+- Web uses the architecture of Request and Response. 
+- Web Standards are maintained by "W3C" World Wide Web Consortium. 
+		https://www.w3.org/
+
+4. What are the principles of Web?
+	a) Accessibility 
+	b) Internationalization 
+	c) Privacy
+	d) Security 
+
+5. What is the latest version of Web?
+A. Web3
+
+
+6. What web comprises of? What web contains?
+	- Web Site
+	- Web Applications
+	- Blogs
+	- Micro Blogs
+	- Vlogs
+	- Podcasts 
+	- Wiki
+	- Widgets etc.
+
+	
+
+12/03
+=====
+		   
+Web Application- Architecture 
+Backend
+
+1. Data Center
+	- Database
+		MongoDB
+		MySQL
+
+2. Application Center
+	- Node JS
+	- Express JS
+	- API
+
+Frontend
+
+1. HTML
+2. CSS
+3. Bootstrap
+4. Tailwind CSS
+5. Sass
+6. JavaScript
+7. jQuery
+8. React
+
+Tools
+1. GIT
+2. Cloud 
+3. Testing [JEST]
+
+Front End Technologies
+
+Setup your device for Web Technologies:
+
+1. Make sure that you have a device with Windows 8+ version
+    You can have other OS services like Linux, Mac.
+
+2. Make sure that your device is having min 8+ GB RAM
+
+3. Download and Install "Node JS" on your PC
+
+     - Node JS is used by developers to build web applications, servers, command line
+       tools and scripts. 
+
+     - visit the official website of Node JS
+		https://nodejs.org/en
+
+     - Download Installer package  ".msi"
+	
+     - Run the setup file to install
+
+     - Check the version from command prompt after installing. 
+
+		C:\> node  -v		 => make sure that you have the latest version of Node
+
+4. Download and Install "Visual Studio Code" editor
+
+     - Editor is a software tool used by developers to build, debug, test and deploy 
+       applications. 
+     - There are various editors like  sublime, webstrom, PyCharm, etc.
+     - Our editor is VS Code [Visual Studio Code]
+
+		https://code.visualstudio.com/
+
+13/03
+=====
+
+Web Application Architecture
+- Backend
+- Front End
+
+Setup Environment for Web Applications
+1. Install Node JS
+2. Install Visual Studio Code [IDE - Integrated Development Environment]
+
+
+Setup VS Code for Web Designing:
+
+1. Open Visual Studio Code editor from your programs
+
+2. Go to "Extensions" category
+
+3. Search for following extensions and install on your PC
+
+	a) Live Server [ Ritwick Dey ]
+	b) Live Preview [ Microsoft ]
+	c) vscode-icons [vscode-team]
+	d) IntelliSense for CSS class names in HTML [Zignd]
+
+4. Go to "Settings" of Visual Studio Code
+
+5. Open Settings => Search Settings => Type  "emmet"
+
+6. Select the checkbox "Show Abbreviation Suggestions"
+
+
+Create a new Web Application:
+
+FAQ's:
+1. What is a website? 
+A. Website is a virtual directory on web server.
+     It provides access to resources on server.
+
+2. What is Physical Path?
+A. Every website keeps its resources on server at a specific physical location, which
+    you can refer as Physical Path.
+
+			D:\erp-app		=> Physical Path
+
+3. What is Virtual Path?
+A. Website resources are accessed by using an URL [Uniform Resource Locator], 
+     which is referred as Virtual Path.
+
+			http://127.0.0.1/erp-app
+
+4. What is Web Application?
+A. Application handles a business. It enables all business interactions. 
+    It requires both client side and server side integrations. 
+
+
+Setup Application:
+
+1. Open any PC location and create a new folder for your application
+
+		  D:\fitness-app
+
+2. Open Visual Studio Code
+
+3. Go to File Menu => Open Folder => D:\Fitness-App
+
+Note: Every application comprises of 3 environments
+		a) Development  [ design ]
+		b) Quality		    [ test ]
+		c) Production 	    [ deploy - go live ]
+
+4. Setup Development environment for your App
+
+	- Open Terminal in VS Code [ Ctrl + ` ]  
+	- Run the following command
+
+		> npm  init  -y
+
+		   * NPM is node package manager. 
+		   * Package Manager is a tool required for installing, updating and uninstalling
+		     any library required for project. 
+		   * There are various package managers like 
+				a) Yarn
+				b) Bower
+				c) NuGet
+				d) Composer
+				e) Ruby Gems 
+				f)  NPM etc.
+	- It generates a new file into project by name "package.json"
+
+		  * It comprises of project meta data.
+		  * It is project configuration file.
+
+	- Add a new file into project  by name   "README.md"
+		
+		  * It is a help document
+		  * Designed by developer for developers
+	
+	- Add following folders into project
+		
+		a) public
+		b) src
+
+		* public is for static resources like images, docs, html etc.
+		* src is for dynamic resources like css, scss, js, ts, etc.
+
+14/03
+=====
+
+Installing Extensions in VS Code
+Creating a new Web Application
+Setup File System
+
+		D:\FITNESS-APP
+		|
+		|_public
+		|	|_images
+		|	|_docs
+		|	|_videos
+		|
+		|_src
+		|	|_styles
+		|	|_scss
+		|	|_scripts	
+		|
+		|_package.json
+		|_README.md
+
+Reference Sites for Images:
+		
+		https://www.freepik.com/
+		https://www.canva.com/
+		https://copilot.microsoft.com/
+
+Run Your Application:
+1. Click on "Go Live" in status bar of VS Code
+
+2. Your application starts on local server with following reference address 
+
+		http://127.0.0.1:5500
+
+		http://127.0.0.1:5500/public/images/banner.jpg
+				(or)
+
+		http://localhost:5500
+
+
+						    Web Page
+
+- Web Page is a "Hyper Text" document.
+- It provides an UI (User Interface) from where user can interact with resources.
+- The term "Hyper" refers to "beyond".
+- A hyper text document takes you beyond what you see on screen. 
+- Web Pages are classified into 2 types
+
+		a) Static Page
+		b) Dynamic Page
+
+Static Page
+- Static refers to continuous memory. 
+- A static page comprises of same content to send as response for every request. 
+- Static page have extension
+	.html
+	.htm
+
+Dynamic Page
+- Dynamic refers to discreet memory. 
+- A dynamic page customizes the response according to client request. 
+- Dynamic page have extension
+	.asp
+	.php
+	.aspx
+	.jsp	etc..
+
+Note: Both static and dynamic pages are designed by using HTML. 
+	 However their composition changes.
+
+		Static Page	= HTML + CSS + JS + JQ
+		Dynamic Page = HTML + CSS + JS + JQ + Server Side Scripting
+
+- Every web application starts with a static page "index.html".
+
+19/03
+=====
+     HTML
+- Hyper Text Markup Language
+- Hyper means beyond. 
+- Hyper Text takes the user beyond the content.
+- The term Markup refers to "Marking Up", which is a process of preparing our content to present on browser.
+- HTML is a markup language. 
+- You can also call it as "Presentation Language".
+
+Evolution of HTML:
+- CERN labs [Council for European Research and Nuclear] developed a language for internet, which is named as "GML". [Generic Markup Language]
+- GML is used for a browser called MOSAIC.
+- CERN developed SGML an improved version of GML. [Standard GML]
+- "Tim Berners Lee" developed HTML in early 1990's. 
+- HTML is superset to GML & SGML. 
+- IETF [Internet Engineering Task Force] developed several versions of HTML.
+- IETF developed HTML up to version 3.1.
+- WHATWG [Web Hyper Text Application Technology Work Group] started evolving and maintaining HTML since 2004. 
+- WHATWG started with HTML 4 version and now the latest till date is HTML 5. [2014]
+
+		https://www.w3.org/					Web Standards 
+		https://whatwg.org/					HTML [Evolving & Maintenance]
+		https://developer.mozilla.org/en-US/	HTML, CSS, JavaScript documents
+
+Browser:
+- It is a software tool used by client to access and view web resource.
+- There are various browsers 
+	a) Edge
+	b) Firefox 
+	c) Opera
+	d) Safari etc..
+
+Browser Architecture:
+1. User Interface 		
+	- It refers to browser interface, which includes buttons, search bar, title bar,
+	  status, extensions, bookmarks etc.
+
+2. UI Backend 
+	- It comprises of logic required for browser UI.
+	- You can customize the browser UI with backed logic if it is an open source 	 
+	  browser.
+	- Some popular open source browsers are
+			a) Chromium 
+			b) Brave
+			c) Arora 
+			d) Dooble  etc.
+
+3. Browser Engine 
+	- It translates HTML and CSS into Binary.
+	- Every browser have its own engine.
+	- Some of the popular browser engines
+		
+			Edge		Chakra 
+			Firefox		Spider Monkey, Gecko 
+			Safari 		Webkit 
+			Chrome		V8
+			Opera		V8
+			etc..
+
+4. Rendering Engine
+	- It is responsible for presentation 
+	- Rendering is the process of preparing the final presentation to generate as 	 
+	  output.
+
+
+5. JavaScript Interpreter 
+	- It is responsible for translating JavaScript in browser.
+	- Interpreter translates line by line of program. 
+
+
+6. Networking 
+	- It is responsible for locating the resources required for webpage and load the
+	  resources into browser.
+	- It monitors loading time and issues while loading content. 
+
+
+7. Data Persistence 
+	- It refers to browser memory where browser can store client data.
+	- Browser storage includes
+		a) Local Storage
+		b) Session Storage
+		c) Cookies 
+		d) Query String etc.
+
+20/03
+=====
+
+HTML Parsing:
+
+What is HTML?
+Evolution of HTML
+	- WHATWG
+Browser
+Browser Architecture 
+	- UI
+	- UI Backend
+	- Browser Engine
+	- Rendering Engine
+	- JavaScript Interpreter 
+	- Network 
+	- Data Persistence 
+
+						        HTML Parsing
+
+Browser Engine:
+
+Developer writes Markup => Bytes => Chars => Tokens => Elements [Nodes] => DOM => Render => Layout => Paint 
+
+FAQ's:
+1. What is Tokenization?
+A. It is the process of converting the chars into tokens. 
+    Tokens are further converted into nodes and known as elements.
+
+2. What is DOM?
+A. DOM refers to "Document Object Model".
+     It is a hierarchy of elements in page. [ parent - child nodes ]
+
+3. What is Rendering?
+A. It is the process of generating output. 
+
+
+						HTML Elements
+
+- HTML elements are classified into 5 groups
+
+	1. Normal Elements
+	2. Void Elements
+	3. RC Data Elements
+	4. Raw Text Elements
+	5. Foreign Elements
+
+Normal Element:
+- A normal element returns presentation directly on callback.
+- It doesn't require any additional attributes.
+- They start the presentation but can't stop.
+- Hence a normal element requires an end token.
+
+Ex:
+	<b> 	start token
+	</b> end token
+
+Void Element:
+- The term void means no-return. 
+- A void element will not return any presentation directly on callback.
+- It requires additional attributes to return presentation.
+- After returning they stop implicitly.
+- They doesn't require end token. 
+
+Ex:   <img>		// self ending
+
+
+RC Type Element:
+- Rich Content data elements.
+- They are used only for plain text content. 
+- They will not allow any formats for content. 
+- You can't use any another element within the context of RC type.
+
+Ex:   <textarea> </textarea>
+
+Raw Text Element:
+- It is an HTML element that presents without any token.
+- Raw text is used for presentation. 
+
+Ex:
+	&#8377; 
+	&copy;
+
+Foreign Element:
+- A foreign element can't display any presentation directly in browser.
+- A browser engine can't understand and translate the element.
+- It requires additional plugins to configure.
+- If any element is presenting with plugin, then it is referred as "Foreign Element".
+
+Ex:	SVG, Canvas, MATHML etc.
+
+
+FAQ's: 
+1. What are block level and inline elements?
+A. Block level element will not allow any another element in same line. 
+    Inline element allows other element side by side or in same line.
+
+	<img>		inline element
+	<h1>		block element
+
+2. What are generic and non-generic elements?
+A. Generic element have a predefined functionality.
+     Non-generic element is a static element, requires functionality to configure explicitly.
+
+	<form>		generic
+	<p>			non generic 
+
+3. What are semantic and non-semantic elements?
+A. Semantic refers to a specific purpose and it is meant for only the given functionality.
+     Non Semantic acts as universal, can be used for various purpose. 
+
+	<img>		semantic
+	<div>		non semantic 
+
+21/03
+=====
+HTML Page Structure
+
+HTML Parsing 
+	Markup => Bytes => Chars => Tokens => Nodes [Elements] => DOM => Render => Layout => Paint
+
+HTML Elements
+	- Normal
+	- Void
+	- RC	
+	- Raw Text
+	- Foreign 
+Block Level
+Inline 
+Generic
+Non Generic 
+Semantic 
+Non Semantic 
+
+					   HTML Page Structure
+
+1. Every static page must have extension ".htm" or ".html"
+
+			index.htm
+			index.html
+
+FAQ: What is difference between  "htm & html" ?
+Ans:  Technically both are same. 
+	  Various software tools publish HTML pages with extension .htm as per the 
+	  standards of file naming in operating system. 
+
+2. Every web page starts with "DOCUMENT DECLARATION".
+
+	- Document Declaration is used to define HTML version.
+	- It is new from HTML 5 version.
+	- It is defined by using the following entity
+
+			<!DOCTYPE html>
+
+	- If declaration is not defined then it is considered as HTML 4.
+		
+			<!doctype html>
+	
+	Note: It is always recommended to use only lowercase for token.
+
+
+3. Every web page have a document scope defined using <html>.
+
+Syntax:
+		<!DOCTYPE html>
+		<html>
+
+		</html>
+
+	- Scope specifies the start and end of a document in browser. 
+	- Browser can merge multiple documents into one body.
+	- Hence a scope is mandatory to identify the contents of document.
+
+
+4. Every document scope must define region and language for document content.
+
+	  <!DOCTYPE html>
+	  <html  lang="en-in">			en-in	India
+								en-us	US
+	  </html>						en-gb	Britan  etc..
+
+	- lang is a language attribute.
+	- "en-in" is value for language attribute. 
+
+FAQ: What is an attribute?
+Ans:  Attribute defines additional behavior for element. 
+
+
+5. Every document scope comprises of 2 sections at high level.
+	
+		a) <head>
+		b) <body>
+
+Syntax:
+		<!DOCTYPE html>
+		<html lang="en-in">
+			<head>
+
+			</head>
+
+			<body>
+
+			</body>
+		</html>
+
+	- Content in body section loads always as a result of round-trip.
+	- Content in head section is cached and loaded from cache. It saves round-trip.
+
+FAQ: What is round-trip?
+Ans:  In network application if requested content is loaded every time from server then
+	 it is known as round-trip.
+
+6. Head section typically comprises of elements like
+		
+		<title>
+		<link>
+		<meta>
+		<base>
+		<style>
+		<script>
+		etc..
+
+Note: It is not mandatory to keep the elements in head section. You can change the
+	  location according to requirements.
+
+22/03
+=====
+
+1. Document Declaration 
+	<!DOCTYPE html>
+
+2. Document Scope
+	<html lang="en-in">
+
+3. Sections
+	<head>
+	<body>
+
+					Elements in Head Section
+1. Title
+ - It can display page title in browser title bar.
+ - It can be used in bookmarking. 
+ - It is also used in SEO. [Search Engine Optimization]
+
+Syntax:
+	<head>
+	   <title> Fitness | Home </title>
+	</head>
+
+FAQ: Can we set title in body section?
+Ans:  Yes.
+
+FAQ: When to set title in body?
+Ans:  If title have to change dynamically then always render using round-trip.
+	 Body section always renders on round-trip.
+
+FAQ: What is the role of title in head section?
+Ans:  It renders by saving round-trip.
+	 If title is same across multiple requests then set in head section. 
+
+2. Link
+- It can link external documents with your page.
+- It can also link various plugins to page.
+- External documents include CSS style sheets, favicons etc.
+
+Linking Favicon to page:
+1. Open ms-paint on your device 
+2. Go to File > Image Properties > set size 32 x 32 pixels 
+3. Draw your icon 
+4. Save into your project physical path  "D:\fitness-app\public\images"
+5. Name it as  "favicon".
+6. The default type is PNG. (favicon.png)
+7. Open image location in VS Code
+8. Rename the file to "favicon.ico".
+9. Link to your HTML page
+
+<head>
+	<link rel="shortcut icon"  href="./public/images/favicon.ico">
+</head>
+	
+	rel		: It refers to file type. [MIME type] 
+	href		: It refers to file virtual path. 
+
+Note: Never you the physical path. Server can access only virtual path.
+
+		/	forward slash 		=> virtual path
+		\	back slash		=> physical path
+
+FAQ: What is MIME?
+Ans : MIME is "Multipurpose Internet Mail Extension".
+	 It is the file type used by browser to identify the file content type.
+
+
+3. Meta
+- Meta refers to "Meta Data".
+- It is information about your page provided to browser and SEO.
+- It is responsible for making the page SEO friendly and Responsive.
+
+FAQ: What is Responsive?
+Ans:  A response page can adjust its content according to the device. 
+	 It can also change dynamically. 
+
+Note: You download and install "Mobile Simulator" on your browser.
+
+		Google => Chrome Mobile Simulator
+
+Syntax:
+	<head>
+	   <meta  name="viewport"  content="width=device-width, initial-scale=1">
+	</head>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en-in">
+   <head>
+       <title>Fitness | Home</title>
+       <link href="./public/images/favicon.ico" rel="shortcut icon">
+       <meta name="viewport" content="width=device-width, initial-scale=1" >
+   </head>
+   <body>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde consequuntur vel obcaecati odio impedit nemo, mollitia veniam, ratione quas expedita aperiam consectetur voluptatum architecto reiciendis qui nobis possimus vero nulla.
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore inventore iusto cupiditate in molestias quaerat consectetur, odit autem dolor, iste deserunt accusantium pariatur eum excepturi reiciendis ea, quae nisi vero!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis omnis aspernatur iure est ullam maiores, ipsum hic eos dignissimos provident vitae asperiores modi quia commodi laboriosam assumenda dolores? Quos, ea.
+   </body>
+</html>
+
+24/03
+=====
+
+HTML Page Structure
+1. Document Declaration
+2. Document Scope
+3. Head Section Elements
+	- Title
+	- Link
+	- Meta
+
+	a) Responsive
+	b) SEO friendly 
+
+a) Viewport 
+	<meta  name="viewport"  content="width=device-width, initial-scale=1">
+
+b) Keywords
+	- It refers to the words used by client to find your business.
+	- Keywords are usually business related terms used in SEO. 
+
+  Syntax:
+	<meta name="keywords"  content="gym, fitness, weight loss ..">
+
+c) Description
+	- It is the summary of your website. 
+	- It contains the offers and services provided by your business. 
+
+  Syntax:
+	<meta name="description"  content="Offers online fitness tips, provides courses for  weight loss">
+
+d) Author
+	- It is mostly used for blogs.
+	- It contains information about the blog author. [owner]
+
+Syntax:
+	<meta name="author"  content="author_name">
+
+e) HttpEquiv 
+	- It defines how to handle request from client. 
+	- It also defines when to load the content. 
+
+Syntax:
+	<meta http-equiv="refresh" content="5">
+
+		5 = 5 seconds
+
+ f) Charset
+	- It is used to identify the language used for designing page.
+	- Browser requires to allocate relative memory for translating the characters.
+	- Characters used for various languages are standardized by UTF.
+	  [Unicode Transformation Format]
+
+			8 bit		= English
+			16bit ]
+			32bit ]	= for other languages with large character set
+			64bit ]	   Chinese, Korean, Arabic etc.
+Syntax:
+	<meta charset="UTF-8">
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en-in">
+   <head>
+       <title>Fitness | Home</title>
+       <link href="./public/images/favicon.ico" rel="shortcut icon">
+       <meta name="viewport" content="width=device-width, initial-scale=1" >
+       <meta name="keywords" content="Gym, Fitness, Diet Plan, Weight Loss">
+       <meta name="author" content="John">
+       <meta http-equiv="refresh" content="5">
+       <meta charset="utf-8">
+   </head>
+   
+</html>
+
+Summary:
+1. title
+2. link
+3. meta
+
+						 HTML Body Section
+
+- Content in body section is loaded as a result of round-trip.
+- HTML <body> element provides following attributes
+
+1. bgcolor		It sets a background for page.
+2. text			It sets color for text in page.
+
+FAQ: How to define color in HTML?
+Ans:  HTML colors can be configured using following techniques 
+
+		a) Color Name
+		b) Shade Name
+		c) Hexadecimal Code
+
+	Color Name		: It refers to exact name of color.
+					
+					  <body  bgcolor="green">
+	
+	Shade Name		: It refers to dark and light shades of color.
+
+					   <body bgcolor="lightgreen">
+
+	Hexadecimal		: It can be 3 chars or 6 chars hexadecimal with "#".
+
+					  #RGB		> red, green, blue
+					  #RRGGBB	
+
+					  R, G, B		> 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f
+
+		<body bgcolor="red">
+		<body bgcolor="#f00">
+		<body bgcolor="#ff0000">
+
+Ex:
+	<body bgcolor="red"  text="#fff">
+
+3. background		: It sets a background image for page.
+				  It can't control the image size or position.
+
+Note: To control background image size, position and effects you need CSS 	 
+	  background attributes.
+
+CSS Background Styles:
+
+	 background-size			: width & height in pixels or cover, contain
+	 background-position		: X & Y in pixels or left, right, center, top, bottom.
+	 background-repeat		: repeat, no-repeat, repeat-x, repeat-y
+	 background-attachment 	: fixed, scroll 
+
+Syntax:
+	<style>
+	    body
+	    {
+		 background-size: cover;
+		 background-repeat: no-repeat;
+		 background-attachment: scroll;
+	    }
+	</style>
+
+
+Syntax:
+	<body background="./public/images/banner.jpg">
+	</body>
+
+25/03
+=====
+
+HTML Body Section Attributes
+1. bgcolor
+2. text
+3. background
+
+How to set HTML colors?
+	- Hexadecimal 
+		#RGB
+		#RRGGBB  => 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f
+How to change background image style?
+	background-size
+	background-position
+	background-repeat
+	background-attachment 
+
+themes.getbootstrap.com
+colorlib.com
+
+4. align	: It aligns the body content left, center, right or justify.
+
+Syntax:
+		<body  align="left | center | right | justify">
+		</body>
+
+5. leftmargin			]
+6. rightmargin			]  sets space between content and page border.
+7. topmargin			]
+8. bottommargin		]
+
+Syntax:
+  <body leftmargin="100"  rightmarign="100" topmargin="50" bottommargin="50">
+  </body>
+
+9. alink			: It sets color for active links in document.
+10. vlink			: It sets color for visited links in document.
+
+Syntax:
+	<body  alink="red" vlink="green">
+
+		<a href="https://www.amazon.in"> Amazon </a>
+
+	</body>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en-in">
+   <head>
+       <title>Fitness | Home</title>
+       <link href="./public/images/favicon.ico" rel="shortcut icon">
+       <meta name="viewport" content="width=device-width, initial-scale=1" >
+       <style>
+          
+       </style>
+   </head>
+   <body vlink="green" alink="red">
+       <a href="https://www.amazon.in">Amazon India</a> |
+       <a href="https://www.amazon.com">Amazon US</a> |
+       <a href="https://ebay.in">Ebay Shopping</a>
+   </body>
+</html>
+
+
+Summary:
+- bgcolor
+- text
+- background
+- align
+- margins [left, right, top, bottom]
+- alink
+- vlink
+
+					   HTML Body Layout Design
+
+- HTML 4 uses table for designing body layout.
+- Table leads to a situation known as "Kiss-of-Death", where it is not sure about the order of loading content. 
+- Content kept is table is not much SEO friendly. 
+- HTML 5 introduced new semantic and non-semantic elements to design body layout more SEO friendly. 
+- HTML 5 non-semantic elements for layout design are:
+		
+		a) <div>
+		b) <span>
+
+- HTML 5 semantic elements for layout design are:
+
+		a) <header>
+		b) <footer>
+		c) <section>
+		d) <main>
+		e) <nav>
+		f) <article>
+		g) <aside>
+		h) <dialog>
+		i) <address>
+		j) <figure>
+		k) <figcaption>
+
+CSS Border Styles:
+
+		border	: It sets border size, style and color.
+
+				  {
+				    border: 1px  solid | double | dotted  red;
+				  }
+
+CSS Margin & Padding:
+
+		margin	: It is the space between border and page. [content outside border]
+		padding	: It is the space between border and content inside.
+
+		margin-left
+		margin-right
+		margin-top
+		margin-bottom
+		margin		 [short hand for all directions]
+
+		padding-left
+		padding-right
+		padding-top
+		padding-bottom
+		padding		[short hand for all directions]
+
+Syntax:
+	 <style>
+		div {
+			border: 1px solid black;
+			margin: 10px;
+			padding: 10px;
+		 }
+	</style>
+
+CSS Font Styles:
+
+		font-weight 	: It sets bold
+		font-style		: It sets italic 
+		font-size		: It sets text size
+		color		: It sets text color
+		font-family 	: It sets a font face [Arial, Times New Roman, ...]
+
+Syntax:
+	   span {
+		 font-weight: bold;
+		 font-style: italic;
+		 color: red;
+		 font-size: 20px;
+		 font-family: Arial;
+	    }
+
+
+Ex:
+Index.html
+
+<!DOCTYPE html>
+<html lang="en-in">
+   <head>
+       <title>Fitness | Home</title>
+       <link href="./public/images/favicon.ico" rel="shortcut icon">
+       <meta name="viewport" content="width=device-width, initial-scale=1" >
+       <style>
+          div {
+             border: 1px solid black;
+             margin:10px;
+             padding: 10px;
+             font-family: Arial;
+          }
+          span {
+             color: red;
+             font-size: 23px;
+             font-weight: bold;
+             font-style: italic;
+             font-family: Script MT;
+          }
+       </style>
+   </head>
+   <body>
+       <div>
+           Web Technologies
+           <div>
+               Front End
+               <div>
+                   HTML
+                   <p>It is a <span>markup</span> language.</p>
+                   <p>It is used for presentation.</p>
+               </div>
+               <div>
+                  CSS
+                  <p>It is used for styling. </p>
+               </div>
+           </div>
+           <div>
+              Back End
+              <div>
+                 Node JS
+                 <p>It is used for creating web apps.</p>
+              </div>
+              <div>
+                 MongoDB
+                 <p>It is a database.</p>
+              </div>
+           </div>
+       </div>
+   </body>
+</html>
+
+26/03
+=====
+
+Shopping Template
+themes.getbootstrap.com
+
+https://themes.getbootstrap.com/preview/?theme_id=37702
+
+Setup Icons for your project:
+- Icons are provided by 3rd party libraries like
+	a) Fontawesome 
+	b) Bootstrap Icons 
+- Implement bootstrap icons for project
+	icons.getbootstrap.com
+
+1. Open terminal from your project
+
+2. Run the following command
+
+	> npm  install  bootstrap-icons  --save
+
+3. It will add a new folder into project by name  "node_modules". 
+
+4. All library files that you install for project are kept in node_modules.
+
+5. Bootstrap Icons are defined using a CSS file copied into node_modules.
+
+6. Link the bootstrap icons CSS file to your web page.
+
+			     	node_modules
+				|
+				|_bootstrap-icons
+				|  |
+				|  |_font
+				|     |
+				|     |_bootstrap-icons.css
+
+<head>
+<link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+7. Every icon in CSS file is configured with a class name. You have to access and apply icons by using class attribute.
+
+    <span  class="bi bi-house"> </span>
+
+ 	bi bi-heart
+	bi bi-gift
+	bi bi-cart4	
+
+    - get list of icons & classes from  "icons.getbootstrap.com"
+
+Setup Icons using CDN [Content Delivery Network]:
+
+1. Visit "icons.getbootstrap.com"
+
+2. Go to CDN library location [ bottom of page ]
+
+3. Copy the CDN CSS link and paste in your page head section.
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/ font /bootstrap-icons.min.css">
+</head>
+
+4. You can apply icon classes to elements
+
+	<div class="bi bi-facebook"> </div>
+	<span class="bi bi-twitter"> </span>
+
+					  Semantics for body layout design 
+					  ---------------------------------------------
+
+1. <header>
+ - It defines the content to display at top margin of page.
+ - Typically header comprises of brand name, logo, navbar, search bar, shortcuts etc.
+
+Syntax:
+	<header>
+		... your content...
+	</header>
+
+
+2. <aside>
+- It is a container that comprises of content, which can move user to any sponsored or networking sites from the current website. 
+- It navigates aside. [outside current website]
+
+Syntax:
+	<aside>
+	    ... ads.. social networking links ..
+	</aside>
+
+CSS Display Flex:
+	
+		display:flex		It can arrange elements in a container flexible row or
+						column wise. 
+
+		flex-direction		It can change direction to row or column.
+
+		justify-content		It can arrange elements in container
+							a) baseline [left]
+							b) center 
+							c) end  [right]
+							d) space-between
+							e) space-around
+							f) space-evenly
+Syntax:
+	  container {
+		display:flex;
+		flex-direction: row;
+		justify-content: space-between;
+	  }
+
+
+Ex: Shopper-Template
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopper</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .header-row-1 {
+            background-color: #e6e4e4;
+            padding: 15px;
+            font-family: Arial;
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .header-row-1  span {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .header-row-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            font-size: 20px;
+            font-family: Arial;
+        }
+        .brand-title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        nav span {
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 18px;
+        }
+        .short-cuts span {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-row-1">
+            <div>
+                <span class="bi bi-truck"> FREE SHIPPING WORLDWIDE </span> 
+                <span>United States <span class="bi bi-chevron-down"></span> </span>
+                <span>USD <span class="bi bi-chevron-down"></span> </span>
+                <span>English <span class="bi bi-chevron-down"></span> </span>
+            </div>
+            <div>
+                <span>Shipping</span>
+                <span>FAQ</span>
+                <span>Contact</span>
+            </div>
+            <div>
+               <aside>
+                <span class="bi bi-facebook"></span>
+                <span class="bi bi-twitter"></span>
+                <span class="bi bi-instagram"></span>
+                <span class="bi bi-youtube"></span>
+               </aside>
+            </div>
+        </div>
+        <div class="header-row-2">
+            <div>
+                <span class="brand-title">Shopper.</span>
+            </div>
+            <div>
+                <nav>
+                    <span>Home</span>
+                    <span>Catalog</span>
+                    <span>Shop</span>
+                    <span>Blog</span>
+                    <span>Pages</span>
+                    <span>Docs</span>
+                </nav>
+            </div>
+            <div class="short-cuts">
+                <span class="bi bi-search"></span>
+                <span class="bi bi-person"></span>
+                <span class="bi bi-heart"></span>
+                <span class="bi bi-cart4"></span>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
+
+27/03
+=====
+Bootstrap Icons
+Body Section Semantics for Layout Design
+<header>
+<nav>
+<aside>
+
+4. <section>
+ - It defines the area between header and footer.
+ - Section comprises of all body contents.
+
+5. <article>
+- It is used to publish latest trends, offers, news, announcements etc.
+- You can have multiple articles in a page.
+- Article must contain information about current context.
+
+Syntax:
+      <header> </header>
+      <section>
+        <article> </article>
+      </section>
+     <footer> </footer>
+
+
+6. <Main>
+ - In computer programming main is considered as "Entry Point".
+ - Every program start execution from entry point.
+ - In a web page design we can have multiple entry point.
+ - It defines the area from where user can start using our website.
+
+Syntax:
+    <main>
+        ... your content ...
+    </main>
+
+- You can configure entry point in header or section area.
+
+CSS Display Grid:
+- It allows to split the content into rows and columns.
+- It can have a fixed set of rows and columns.
+- Every page can split into maximum 12 columns. [fractions]
+
+Syntax:
+     container {
+         display: grid;
+         grid-template-columns: 6fr 6fr;
+     }
+
+CSS Background Image:
+
+    background-image: url("../path/name.jpg");
+    background-size
+    background-position
+    background-repeat
+    background-attachment
+
+CSS Text Shadow & Box Shadow
+
+    text-shadow : horizontal_px  vertical_px  blur_px  color;
+
+    {
+      text-shadow: 5px  2px  1px  black
+    }
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopper</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .header-row-1 {
+            background-color: #e6e4e4;
+            padding: 15px;
+            font-family: Arial;
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .header-row-1  span {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .header-row-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            font-size: 20px;
+            font-family: Arial;
+        }
+        .brand-title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        nav span {
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 18px;
+        }
+        .short-cuts span {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        article {
+            background-color: black;
+            color:white;
+            padding: 15px;
+            text-align: center;
+            font-family: Arial;
+            font-size: 16px;
+        }
+        .bi-lightning-fill {
+            color:gold;
+        }
+        main {
+            height: 450px;
+            display: grid;
+            grid-template-columns: 4fr 4fr 4fr;
+            margin-top: 10px;
+        }
+        .women-fashion {
+            background-image: url("./images/women-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .men-fashion {
+            background-image: url("./images/men-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .kids-fashion {
+            background-image: url("./images/kids-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.8;
+        }
+        .main-title {
+            font-family: Arial;
+            font-size: 50px;
+            font-weight: bold;
+            color:white;
+            text-shadow: 2px 2px 2px black;
+        }
+        .btn-shop {
+            background-color: white;
+            padding: 10px;
+            width: 140px;
+            font-family: Arial;
+            text-align: center;
+            box-shadow: 2px 2px 2px black;
+            border-radius: 5px;
+        }
+        .women-fashion:hover, .men-fashion:hover, .kids-fashion:hover {
+            opacity: 1;
+            cursor: grab;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: 3fr 3fr 3fr 3fr;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .services .bi-truck, .bi-tag, .bi-lock, .bi-arrow-left-right {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-row-1">
+            <div>
+                <span class="bi bi-truck"> FREE SHIPPING WORLDWIDE </span>
+                <span>United States <span class="bi bi-chevron-down"></span> </span>
+                <span>USD <span class="bi bi-chevron-down"></span> </span>
+                <span>English <span class="bi bi-chevron-down"></span> </span>
+            </div>
+            <div>
+                <span>Shipping</span>
+                <span>FAQ</span>
+                <span>Contact</span>
+            </div>
+            <div>
+               <aside>
+                <span class="bi bi-facebook"></span>
+                <span class="bi bi-twitter"></span>
+                <span class="bi bi-instagram"></span>
+                <span class="bi bi-youtube"></span>
+               </aside>
+            </div>
+        </div>
+        <div class="header-row-2">
+            <div>
+                <span class="brand-title">Shopper.</span>
+            </div>
+            <div>
+                <nav>
+                    <span>Home</span>
+                    <span>Catalog</span>
+                    <span>Shop</span>
+                    <span>Blog</span>
+                    <span>Pages</span>
+                    <span>Docs</span>
+                </nav>
+            </div>
+            <div class="short-cuts">
+                <span class="bi bi-search"></span>
+                <span class="bi bi-person"></span>
+                <span class="bi bi-heart"></span>
+                <span class="bi bi-cart4"></span>
+            </div>
+        </div>
+    </header>
+    <section>
+        <article>
+            <span class="bi bi-lightning-fill"></span>
+            <span>HAPPY HOLIDAY DEALS ON EVERYTHING</span>
+            <span class="bi bi-lightning-fill"></span>
+        </article>
+        <main>
+            <div class="women-fashion">
+                <div class="main-title">Women</div>
+                <div class="btn-shop">
+                    Shop Women <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+            <div class="men-fashion">
+                <div class="main-title">Men</div>
+                <div class="btn-shop">
+                    Shop Men <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+            <div class="kids-fashion">
+                <div class="main-title">Kids</div>
+                <div class="btn-shop">
+                    Shop Kids <span class="bi bi-arrow-right"></span>
+                </div>
+            </div>
+        </main>
+        <div class="services">
+            <div>
+                <span class="bi bi-truck">  </span> FREE SHIPPING
+            </div>
+            <div>
+                <span class="bi bi-arrow-left-right">  </span> FREE RETURNS
+            </div>
+            <div>
+                <span class="bi bi-lock">  </span> SECURE SHOPPING
+            </div>
+            <div>
+                <span class="bi bi-tag">  </span> OVER 10,000 STYLES
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+28/03
+=====
+Ex: Bootstrap Website Header
+    getbootstrap.com
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            padding: 10px;
+            font-family: Arial;
+            font-size: 16px;
+            background-color: blueviolet;
+            color:white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        header span {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .bi-bootstrap-fill {
+            font-size: 22px;
+        }
+        .search-bar {
+            background-color: #620c9c;
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .ctrl-button {
+            background-color: #1a0329;
+            border-radius: 2px;
+            padding: 2px;
+        }
+        .ctrl {
+            font-size: 14px;
+        }
+        nav span {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <nav>
+                <span class="bi bi-bootstrap-fill"></span>
+                <span>Docs</span>
+                <span>Examples</span>
+                <span>Icons</span>
+                <span>Themes</span>
+                <span>Blog</span>
+            </nav>
+        </div>
+        <div>
+            <div class="search-bar">
+                <span class="bi bi-search"> Search </span>
+                <span class="ctrl-button"> <span class="ctrl">Ctrl</span> K </span>
+            </div>
+        </div>
+        <div>
+            <span class="bi bi-github"></span>
+            <span class="bi bi-twitter"></span>
+            <span class="bi bi-opencollective"></span>
+            <span> | </span>
+            <span> v5.3 <span class="bi bi-caret-down-fill"></span> </span>
+            <span> | </span>
+            <span class="bi bi-sun-fill"> <span class="bi bi-caret-down-fill"></span> </span>
+        </div>
+    </header>
+</body>
+</html>
+
+CSS Border Radius
+
+    border-radius                : all directions
+    border-top-left-radius
+    border-top-right-radius
+    border-bottom-left-radius
+    border-bottom-right-radius
+
+Circle:
+    {
+      width : 100px;
+      height: 100px
+      border-radius: 100px;
+    }
+
+CSS Positions:
+
+    relative        : It is a position always given for parent element.
+    absolute        : It is a position given for child element. To keep with regard to
+                  parent content.
+
+    top            ]
+    left            ]
+    right            ]    for changing element position from specified direction.
+    bottom        ]    they are defined for absolute element.
+
+Syntax:
+    parent {
+        position: relative;
+     }
+       child {
+       position: absolute;
+       left : 0px;
+       right: 0px;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+       .btn {
+          width: 20px;
+          padding: 5px;
+          position: relative;
+       }
+       .badge {
+          font-size: 10px;
+          font-family: Arial;
+          width: 10px;
+          height: 10px;
+          border-radius: 10px;
+          background-color: red;
+          color:white;
+          text-align: center;
+          display: inline-block;
+          padding: 2px;
+          position: absolute;
+          left: 14px;
+          top: -2px;
+       }
+    </style>
+</head>
+<body>
+     <div class="btn bi bi-bell-fill">
+        <span class="badge">2</span>
+     </div>
+</body>
+</html>
+
+29/03
+=====
+- header
+- nav
+- aside
+- article
+- section
+- main
+
+CSS Colors:
+1. Color name
+       
+        {
+          color : green;
+        }
+
+2. Shade Name
+
+        {
+          color: lightgreen;
+        }
+
+3. Hexadecimal Code  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f ]
+
+        {
+           color : #0f0  (or)  #00ff00;
+        }
+
+
+4. rgb()
+- It uses red, green and blue value range from 0 to 255.
+
+        {
+          color: rgb(redValue, greenValue, blueValue);
+        }
+
+        div {
+           color: rgb(0,255,0);
+        }
+
+5. rgba()
+ - Red, Green, Blue and Alpha.
+ - Alpha sets transparent color from 0 to 1.
+
+Syntax:
+    {
+     color: rgba(0,255,0,0.6);
+    }
+
+6. hsl()
+- It uses Hue, Saturation and Lightness.
+- Hue is an angle with red, green and blue colors
+    0 to 120 deg        => red
+    121 to 240 deg    => green
+    241 to 360 deg    => blue
+   
+- Saturation is gray shade from 1 to 100%
+- Lightness is brightness 1 to 100%.
+
+Syntax:
+    {
+      color: hsl(10deg, 50%, 50%);
+    }
+
+7. hsla()
+- Hue, Saturation, Lightness and Alpha.
+- Alpha is between 0 to 1.
+
+Syntax:
+     {
+      color: hsla(10deg, 50%, 50%, 0.5);
+    }
+
+8. linear gradient & radial gradient
+- It allows to setup multiple colors.
+- You can apply gradient only with "background-image" attribute.
+
+Syntax:
+    {
+     background-image: linear-gradient(20deg, red, yellow, green);
+    }
+
+Syntax:
+    {
+     background-image: linear-gradient(to top right, red 50%, green, yellow);
+    }
+
+Syntax:
+    {
+    background-image: radial-gradient( red, yellow);
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      body {
+         height: 100vh;
+         background-image: radial-gradient(rgb(241, 27, 27) 50%, yellow, #00ff00);
+      }
+     
+   </style>
+</head>
+<body>
+   
+</body>
+</html>
+
+Ex: Netflix
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            height: 100vh;
+            background-image: linear-gradient(rgb(0, 0, 0) 50%, rgb(222, 194, 194), rgb(0, 0, 0));
+        }
+        section {
+            background-image: url("./images/netflix-banner.jpg");
+            background-size: cover;
+            margin: 20px;
+            height: 450px;
+            border-radius: 40px;
+            border:1px solid white;
+        }
+        .shade {
+            background-color: rgba(0,0,0,0.6);
+            height: 100%;
+            border-radius: 40px;
+            text-align: center;
+            color:white;
+        }
+        header {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: Arial;
+        }
+        .brand-title {
+            font-size: 50px;
+            color:red;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px white;
+        }
+        .language {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .signin {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 10px;
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 60px;
+            font-family: Arial;
+            font-weight: bold;
+            padding-top: 50px;
+        }
+        .section-subtitle {
+            font-size: 20px;
+            font-family: Arial;
+            padding-top: 20px;
+        }
+        main {
+            font-family: Arial;
+        }
+        .main-title{
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .email {
+            background-color: rgba(126, 125, 125, 0.744);
+            padding: 20px;
+            display: inline-block;
+            width: 300px;
+            text-align: left;
+            border:1px solid white;
+            border-radius: 30px;
+            font-size: 20px;
+        }
+        .btn-start {
+            background-color: red;
+            padding: 20px;
+            display: inline-block;
+            width: 170px;
+            border-radius: 30px;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="brand-title">NETFLIX</span>
+        </div>
+        <div>
+            <span class="language"><span class="bi bi-translate"> Language <span class="bi bi-caret-down-fill"></span> </span></span>
+            <span class="signin">Sign In</span>
+        </div>
+    </header>
+    <section>
+      <div class="shade">
+          <div class="section-title">
+            Unlimited movies, TV<br> shows and more
+          </div>
+          <div class="section-subtitle">
+            Starts at ₹149. Cancel at any time.
+          </div>
+          <main>
+             <div class="main-title">
+                Ready to watch? Enter your email to create or restart your membership.
+            </div>
+            <div>
+                <span class="email"> Email Address</span>
+                <span class="btn-start"> Get Started <span class="bi bi-chevron-right"></span> </span>
+            </div>
+          </main>
+      </div>
+    </section>
+</body>
+</html>

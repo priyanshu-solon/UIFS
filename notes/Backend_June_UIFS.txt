@@ -1,0 +1,238 @@
+2/06
+====
+
+Databases
+- MongoDB
+- MySQL
+
+Server Side
+- Node JS
+- Express JS
+
+Project
+- Backend 
+- jQuery
+- Sass 
+- Tailwind
+
+1. Business Backend 
+- It is responsible for managing a business using various software tools. 
+- It includes domains like
+	a) Purchasing
+	b) Sales & Marketing 
+	c) HR & Relations
+	d) CRM & SRM
+	e) Finance Management 
+- It is often known as "ERP" [ Enterprise Resource Planning ]
+- Popular ERP
+	a) SAP	
+	b) Oracle
+	c) Ariba etc.
+- The technical and functional people are involved in business backend. 
+
+
+2. Application Backend 
+- Every business domain requires a software application. 
+- Software application is built by using various technologies like
+  	a) Java
+ 	b) .NET
+	c) Python
+	d) PHP
+	e) Node  etc.
+- Application is designed in layers and application runs in tiers. 
+
+3. Tiers 
+- Application runs in tiers. 
+- The data required for application is kept in data center, which is a data tier. 
+- The business logic is defined for application and kept in application tier.
+- The users use application from presentation tier.
+- All web applications are 3-tier applications. 
+
+
+4. Layers
+- Application is designed in layers.
+- Web applications use a 3 layer architecture
+	a) Database layer
+		- Creating database
+		- Inserting, updating, reading and deleting data. 
+	
+	b) Business Layer
+		- Writing logic to handle communication between client & database.
+		- Handling request from client
+		- Communicating with database
+		- Sending response to client
+		- Creating API
+
+	c) Presentation Layer
+		- Designing UI
+		- Consuming and presenting API
+
+FAQ: What is difference between layers & tiers?
+Ans:  Application is built in layers.
+         Application runs in tiers.
+
+
+		Database Layer
+
+3/06
+====
+
+Roles & Responsibility:
+- Creating database
+- Storing data into database
+- Querying data
+- Manipulating data
+- Automating the tasks
+
+Purpose of Database Layer:
+- Multitier applications maintain their data in database tier.
+- A database layer is required to manage data on database tier.
+
+What is Database?
+- Database is an entity where you can store relational data.
+- It provides simplified techniques for managing data dynamically.
+
+
+What are the various types of databases?
+
+- RDBMS                MySQL
+- Document Based        MongoDB
+- NoSQL Database        MongoDB
+- SQL Database        MySQL
+- Cloud Database         Firebase, Amazon RDS
+- Distributed Database    Cassandra, Couchbase
+- Data Warehouse        Snowflake, Redshift
+  etc..
+
+What are the database models?
+1. Conceptual Model
+    - It specifies the modules that require data.
+    - Developer designs a model that comprises of information about modules
+      in your application that require data.
+
+2. Physical Model
+    - It comprises of table name, fields, and their data types.
+    - Every module is represented with a table.
+    - Every table comprises of fields and their data types according business      
+      requirements.
+
+3. Logical Model
+    - It configures the relationship between modules.
+    - Developer need to identify the fields that have relation with other modules.
+    - A relationship is configured using Primary & Foreign key.
+    - Logical model comprises of table name, field name and relation.
+
+4. Entity Model
+    - It configures complete business model for application data.
+    - It comprises of table, field, data type and relationship.
+    - Developers working in database layer have to design database for application
+      by following ER Diagram [ Entity Relation Diagram]
+
+
+                             MongoDB Database
+- Mongo is a cloud service.
+- MongoDB provides "Atlas" as cloud database.
+- MongoDB provides local community servers to manage offline data.
+- MongoDB is NoSQL database management system.
+  [ It doesn't require SQL as language for database]
+- It uses BSON / JSON data type.
+- It is document database.
+- It is semi structured data.
+- It supports entity model data. [ORM]
+- It supports Ad-hoc querying.
+
+https://www.mongodb.com/try/download/community
+
+4/06
+====
+What is Database?
+Types of Databases?
+Database Models
+MongoDB
+- It is NoSQL
+- Document based
+- Semi Structured / Structure Less
+- Schema Less
+- ORM
+- Ad-hoc querying
+- Data Replications
+
+
+
+Setup MongoDB on your device:
+
+1. Download and Install MongoDB community server
+    https://www.mongodb.com/try/download/community
+
+2. Select "MongoDB Compass" while installing database
+    - It is a GUI tool used to manage database.
+
+3. Start MongoDB server   
+    - programs -> services -> right click on MongoDB server -> start
+    - MongoDB server address is
+       
+            mongodb://127.0.0.1:27017
+                     (or)
+            mongodb://localhost:27017
+
+4. Open "MongoDB Compass" which is a client tool required for communicating with MongoDB server.
+        Server            : It is the location where data is kept.
+        Client            : It is the location from where we manipulate the data.
+
+
+5. Click on "New Connection"
+
+6. Define connection string
+        mongodb://127.0.0.1:27017
+
+7. Save and connect
+
+
+8. You will find the default databases on server
+
+        a) admin    
+        b) local
+        c) config
+
+                        MongoDB Terminology
+
+1. Database            It is a store where data is kept.
+                    Every application stores its data in a database.
+
+2. Collection            It is the location where data for any specific module is stored.
+                    A single database can have multiple collections.
+                    Collection is structure less.
+                    [ It is similar to a table in structured database ]
+
+3. Document            In a collection every individual record is a document.
+                    Every document represents an object.
+                    Each document comprises of BSON data.
+
+4. Field                It refers to the key that stores a value.
+                    Keys are always string type.
+
+5. Embedded            It refers to a join.
+    Document
+
+
+                        MongoDB Shell  [mongosh]
+
+- It provides CLI [command line interface].
+- CLI is used to query and manipulate data through commands.
+- Select the connection name to open mongosh in MongoDB compass.
+- It opens a mongo terminal where you can execute the commands.
+
+1. To view the list of databases
+        > show dbs
+2. To view the current active database
+        > db
+3. To clear the current screen
+        > cls
+4. To create a new database
+        > use  database_name
+
+      It uses a logic, if database name exists then it will switch into the database.
+                         if database doesn't exist, then it creates a new database.
+
+
+    Note: Database is not displayed in the list if it doesn't contain any collection.
