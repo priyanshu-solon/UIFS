@@ -1,0 +1,96 @@
+<script>
+    //object{key:value} ,accessing inside object key use "this"
+    var product = {
+        Name : "Samsung TV",
+        Price : 45000,
+        Qty : 1,
+        Total: function(){
+            return this.Qty * this.Price;
+        },
+        Print: function(){
+            document.write(`Name=${this.Name}<br>Price=${this.Price}<br>Qty=${this.Qty}<br>Total=${this.Total()}<br>`);
+        }
+    }
+    product.Print();
+    document.write("<hr>");
+    product.Name = "iPhone 16";
+    product.Price = 70000;
+    product.Qty = 2;
+    product.Print();
+
+    //object manipulation
+    var product2 = {
+        Name: "TV",
+        Price: 45000,
+        Stock: true,
+        Rating: 4.2
+    }
+    for(var key in product2)
+    {
+        document.write(`${key}: ${product2[key]}<br>`);
+    }
+
+    var product3 = {
+        Name: "TV",
+        Price: 45000,
+        Stock: true,
+        Rating: 4.9
+    }
+    Object.keys(product3).map(function(key, index){
+         document.write(`${key}: ${product3[key]}<br><hr>`);
+    })
+
+    //symbol is used to hide the key
+    var Id = Symbol();
+    var product4 = {
+        [Id]: 2,
+        Name: "TV",
+        Price: 45000,
+        Stock: true,
+        Rating: 4.9
+    }
+    Object.keys(product4).map(function(key, index){
+         document.write(`${key}: ${product4[key]}<br>`);
+    })
+    //use [] to access symbol
+    document.write(`You are accessign product with Id=${product4[Id]}<br><hr>`);
+
+    //delete any key
+    var Id = Symbol();
+    var product5 = {
+        [Id]: 2,
+        Name: "TV",
+        Price: 45000,
+        Stock: true,
+        Rating: 4.9
+    }
+    delete product.Rating;
+    if("Rating" in product5){
+        console.log(`Rating=${product5.Rating}`);
+    } else {
+        console.log(`Rating not found`);
+    }
+    Object.keys(product5).map(function(key, index){
+         document.write(`${key}: ${product5[key]}<br>`);
+    })
+
+    document.write(`You are accessing product with Id=${product5[Id]}<br><hr>`);
+
+    //find any key
+    var Id = Symbol();
+    var product6 = {
+        [Id]: 2,
+        Name: "TV",
+        Price: 45000,
+        Stock: true,
+        Rating: 4.9
+    }
+    if("Rating" in product6){
+        console.log(`Rating=${product6.Rating}`);
+    } else {
+        console.log(`Rating not found`);
+    }
+    Object.keys(product6).map(function(key, index){
+         document.write(`${key}: ${product6[key]}<br>`);
+    })
+</script>
