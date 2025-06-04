@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        var tasks = [];
+        function LoadTasks(){
+            tasks.map(function(task,index){
+                 var division = document.createElement("div");
+                 division.className = "alert alert-dismissible alert-success";
+                 division.innerHTML = `<div class="d-flex justify-content-between"> <span>${task}</span> 
+                <button class="bi bi-trash btn btn-danger"></button> </div>`;
+                 document.getElementById("tasksContainer").appendChild(division);
+            });
+        }
+        function AddClick(){
+            tasksContainer.innerHTML="";
+            var task = document.getElementById("txtTask").value;
+            tasks.push(task);
+            LoadTasks();
+            document.getElementById("txtTask").value = "";
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="LoadTasks()">
+    <div class="w-50">
+        <h3>Add Task</h3>
+        <div class="input-group">
+            <input type="text" id="txtTask" class="form-control" placeholder="New Task">
+            <button class="btn btn-primary" onclick="AddClick()">Add</button>
+        </div>
+        <div class="mt-4" id="tasksContainer">
+
+        </div>
+    </div>
+</body>
+</html>
