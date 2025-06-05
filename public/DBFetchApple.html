@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function bodyload(){
+            var product = {title:'', price:0, image:'', rating:{ratings:0, rate:0, reviews:0}, offers:[]};
+
+            fetch("data/db.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                product = data;
+                     document.getElementById("imgProduct").src = product.image;
+                     document.getElementById("lblTitle").innerHTML= product.title;
+                     document.getElementById("lblRating").innerHTML = product.rating.rate;
+                     document.getElementById("lblReviews").innerHTML = `${product.rating.ratings.toLocaleString()} ratings & ${product.rating.reviews} reviews`;
+                     document.getElementById("lblPrice").innerHTML = product.price.toLocaleString('en-in', {style:"currency", currency:"INR", minimumFractionDigits:0});
+
+                     product.offers.map(function(offer){
+                          var li = document.createElement("li");
+                          li.className = "bi bi-tag-fill text-success my-2";
+                          li.innerHTML = ` <span class="text-secondary">${offer}</span>`;
+                          document.getElementById("offers").appendChild(li);
+                     })
+
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            .finally(function(){
+                console.log(`Request End`);
+            })
+           
+
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="mt-4 row">
+            <div class="col-3">
+                <img id="imgProduct" width="100%">
+            </div>
+            <div class="col-9">
+                <div class="fw-bold fs-4" id="lblTitle"></div>
+                <div class="mt-2">
+                    <span class="badge bg-success"> <span id="lblRating"></span> <span class="bi bi-star-fill"></span> </span>
+                    <span id="lblReviews" class="text-secondary fw-bold"></span>
+                </div>
+                <div class="fs-1 mt-4 fw-bold" id="lblPrice">
+
+                </div>
+                <div class="mt-4">
+                    <ul class="list-unstyled" id="offers">
+
+                    </ul>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

@@ -236,3 +236,136 @@ Setup MongoDB on your device:
 
 
     Note: Database is not displayed in the list if it doesn't contain any collection.
+
+5/06
+====
+
+Features & Issues with MongoDB
+Setup MongoDB
+Client & Server
+Terminology
+    - database
+    - collection
+    - document
+    - field
+    - embedded document
+MongoDB Compass
+Mongo Shell Commands [ CLI ]
+
+1. View list of all database
+
+        > show dbs
+
+2. View current active database
+
+        > db
+
+3. To create or switch into database
+       
+        > use  dbname
+
+   
+                        Creating Collection
+
+- MongoDB collection is an array of objects.
+- Collection is structure less or semi structured.
+- MongoDB provides the method "createCollection()" to create a new collection.
+- Current database related any command you have to invoke by using "db".
+
+            > db.createCollection()
+
+Syntax:
+             > db.createCollection(collectionName, { options });
+
+- Options are not mandatory you can skip options, however it takes the default values for options.
+
+- You can configure following options for a collection:
+
+    Option                Description
+    ---------------------------------------------------------------------------------------
+    autoIndexId [boolean]     It is a Boolean property that sets an unique ID for every
+                        document.
+                        It generates a unique ID automatically for every document
+                        when set to true.
+                        Its default value is true.
+   
+    max            [number]    It specifies the maximum number of records that a                                 collection can handle. You can limit the documents.
+
+
+    capped        [boolean]    It depends on the "max" property.
+
+                        If capped is set to true then it replaces the old document
+                        with new document when it reaches the max limit.
+
+                        If capped is false then it will not allow to add new docs
+                        after max limit.
+
+                        The default is false.
+   
+    size            [number]    It defines the memory allocated for collection.
+                        You can't store documents when allocated memory is full.
+               
+                        It varies according to device if not defined.
+                   
+                        It is defined in bytes.
+
+Syntax:
+  > db.createCollection("name", { autoIndexId: true/false,  max:number, size:number, capped:true/false })
+           
+
+                8 bits         =     1 byte
+                1024 bytes    =    1 kb
+                1024 kb        =     1 mb
+                1024 mb        =     1 gb
+                1024 gb        =     1 tb
+
+Ex:
+  > db.createCollection("categories", { autoIndexId: true, max:10, size:4194304, capped:true})
+ 
+  > db.createCollection("products")
+
+- To view the collections of current database
+
+  > show collections
+
+- To remove any specific collection you have to use "drop()" method
+
+  > db.collectionName.drop()
+  > db.customers.drop()
+
+- To remove any specific database, first switch into the database run the command
+   "dropDatabase()".
+
+   > db.dropDatabase()
+
+   
+                        Adding Documents
+
+- Every document represents an object.
+- Object is used to keep relative data together.
+- Object is a key and value collection.
+- Object keys are string type and value can be any type.
+
+        {
+           "key" : value,  
+           "key" : value
+        }
+
+- MongoDB value types can be Binary Stream type, which is often known as BSON.
+- BSON is similar to JSON types.
+- It supports all JavaScript types
+    a) Primitive
+    b) Non Primitive
+
+- To insert any document MongoDB provides the methods
+
+    a) insertOne()
+    b) insertMany()
+
+Syntax:
+    >db.collection.insertOne( {  } )
+    >db.collection.insertMany( [ { }, { },.. ] )
+
+Ex:
+      >db.products.insertOne( { id:1, name:"tv", cities:['delhi', 'hyd'], rating:{rate:4.2} })
+    >db.products.insertMany( [ { }, { } ] )

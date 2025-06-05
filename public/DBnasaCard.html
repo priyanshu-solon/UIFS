@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=dA9RGMbD4vWXWbXfjfPrXCZnucwIpRhrlkeXsK3l')
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(marsObj){
+                 marsObj.photos.map(function(photo){
+
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "200px";
+                        div.innerHTML = `
+                          <img class="card-img-top" src=${photo.img_src} height="100">
+                          <div class="card-header">
+                             <h3>${photo.id}</h3>
+                          </div>                  
+                          <div class="card-body">
+                            <dl>
+                                 <dt>Camera</dt>
+                                 <dd>${photo.camera.full_name}</dd>
+                                 <dt>Rover</dt>
+                                 <dd>${photo.rover.name}</dd>
+                            </dl>
+                          </div>
+                          <div class="card-footer">
+                              <a href=${photo.img_src} target="_blank" class="btn btn-dark w-100">Preview</a>
+                          </div>
+                        `;
+                        document.querySelector("section").appendChild(div);
+
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Mars Rover Photos</h2>
+    <section class="d-flex flex-wrap">
+
+    </section>
+</body>
+</html>

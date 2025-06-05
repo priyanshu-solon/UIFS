@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("data/db2.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(mobiles){
+                 mobiles.map(function(mobile){
+                     var div = document.createElement("div");
+                     div.className="row my-4 border border-4 p-3 m-4";
+                     div.innerHTML = `
+                        <div class="col-2">
+                            <img src=${mobile.image} width="100%">
+                        </div>
+                        <div class="col-8">
+                            <div class="fs-4 fw-bold">${mobile.title}</div>
+                            <div class="my-2"> <span class="badge bg-success rounded rounded-1 text-white"> ${mobile.rating.rate} <span class="bi bi-star-fill"></span> </span> </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="fs-2 fw-bold">${mobile.price}</div>
+                        </div>
+                     `;
+                     document.querySelector("section").appendChild(div);
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header>
+        <h1>iPhone 16</h1>
+    </header>
+    <section>
+
+    </section>
+</body>
+</html>

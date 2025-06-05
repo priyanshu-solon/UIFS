@@ -796,3 +796,338 @@ Ajax-demo.html
     </div>
 </body>
 </html>
+
+5/06
+=====
+
+Object
+Object Manipulations
+JSON Type
+AJAX Request using XHMLHttpRequest  object
+
+Issues with XMLHttpRequest:
+
+- It not async implicitly.
+- It requires explicitly async to configure.
+- It returns data in text or xml format.
+- It requires explicit parsing for other type of data.
+- It is not good in error handling.
+- It have CORS issues. [Cross Origin Resource Sharing]
+- It have security issues like XSRF. [Cross Site Request Forgery]
+
+
+                           Fetch API
+
+- JavaScript ES5+ versions introduced a "fetch()" API.
+- It is a JavaScript promise to make XMLHttpRequest.
+- Promise is async by default.
+- It provides data in binary format.
+- You have to convert the binary into required format.  [parsing required]
+- It is good in handling XSRF & CORS.
+- It is better in error handling.
+
+Syntax:
+    fetch("url")
+    .then(function(response){
+        // on success
+    })
+    .catch(function(error){
+        // on error
+    })
+    .finally(function(){
+        // executes always
+    })
+
+- Promise comprises of 2 actions
+    a) resolve
+    b) reject
+
+- Resolve defines actions to perform when request is success.  
+- Reject defines actions to perform when request fails.
+
+        then()        Resolve
+        catch()        Reject
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function bodyload(){
+            var product = {title:'', price:0, image:'', rating:{ratings:0, rate:0, reviews:0}, offers:[]};
+
+            fetch("../data/db.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                product = data;
+                     document.getElementById("imgProduct").src = product.image;
+                     document.getElementById("lblTitle").innerHTML= product.title;
+                     document.getElementById("lblRating").innerHTML = product.rating.rate;
+                     document.getElementById("lblReviews").innerHTML = `${product.rating.ratings.toLocaleString()} ratings & ${product.rating.reviews} reviews`;
+                     document.getElementById("lblPrice").innerHTML = product.price.toLocaleString('en-in', {style:"currency", currency:"INR", minimumFractionDigits:0});
+
+                     product.offers.map(function(offer){
+                          var li = document.createElement("li");
+                          li.className = "bi bi-tag-fill text-success my-2";
+                          li.innerHTML = ` <span class="text-secondary">${offer}</span>`;
+                          document.getElementById("offers").appendChild(li);
+                     })
+
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            .finally(function(){
+                console.log(`Request End`);
+            })
+           
+
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="mt-4 row">
+            <div class="col-3">
+                <img id="imgProduct" width="100%">
+            </div>
+            <div class="col-9">
+                <div class="fw-bold fs-4" id="lblTitle"></div>
+                <div class="mt-2">
+                    <span class="badge bg-success"> <span id="lblRating"></span> <span class="bi bi-star-fill"></span> </span>
+                    <span id="lblReviews" class="text-secondary fw-bold"></span>
+                </div>
+                <div class="fs-1 mt-4 fw-bold" id="lblPrice">
+
+                </div>
+                <div class="mt-4">
+                    <ul class="list-unstyled" id="offers">
+
+                    </ul>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+
+Ex:
+1. data/db.json
+
+[
+    {
+    "title": "Apple iPhone 16 (Pink, 256 GB)",
+    "price": 79999,
+    "rating": {"rate":4.8, "ratings":26988, "reviews":317 },
+    "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+    ],
+    "image": "../public/images/iphone-pink.jpg"
+   },
+   {
+    "title": "Apple iPhone 16 (White, 128 GB)",
+    "price": 60999,
+    "rating": {"rate":4.6, "ratings":16988, "reviews":717 },
+    "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+    ],
+    "image": "../public/images/iphone-white.jpg"
+   },
+   {
+    "title": "Apple iPhone 16 (Pink, 128 GB)",
+    "price": 60999,
+    "rating": {"rate":4.6, "ratings":16988, "reviews":717 },
+    "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+    ],
+    "image": "../public/images/iphone-pink.jpg"
+   }
+]
+
+
+2. demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("../data/db.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(mobiles){
+                 mobiles.map(function(mobile){
+                     var div = document.createElement("div");
+                     div.className="row my-4 border border-4 p-3 m-4";
+                     div.innerHTML = `
+                        <div class="col-2">
+                            <img src=${mobile.image} width="100%">
+                        </div>
+                        <div class="col-8">
+                            <div class="fs-4 fw-bold">${mobile.title}</div>
+                            <div class="my-2"> <span class="badge bg-success rounded rounded-1 text-white"> ${mobile.rating.rate} <span class="bi bi-star-fill"></span> </span> </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="fs-2 fw-bold">${mobile.price}</div>
+                        </div>
+                     `;
+                     document.querySelector("section").appendChild(div);
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header>
+        <h1>iPhone 16</h1>
+    </header>
+    <section>
+
+    </section>
+</body>
+</html>
+
+Nasa API : [api.nasa.gov]
+
+1. Open   api.nasa.gov
+
+2. Register and get a key to your email.
+
+3. Browse API's and select  "Mars Rover Photos"
+
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY
+
+4. Replace DEMO_KEY with your API key. [sent to your email]
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&#39;)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(marsObj){
+                 marsObj.photos.map(function(photo){
+                      var tr = document.createElement("tr");
+
+                      var tdId = document.createElement("td");
+                      var tdPreview = document.createElement("td");
+                      var tdCamera = document.createElement("td");
+                      var tdRover = document.createElement("td");
+
+                      tdId.innerHTML = photo.id;
+                      tdPreview.innerHTML = `<a href=${photo.img_src} target="_blank"><img src=${photo.img_src} width="100" height="100"></a>`;
+                      tdCamera.innerHTML = photo.camera.full_name;
+                      tdRover.innerHTML = photo.rover.name;
+
+                      tr.appendChild(tdId);
+                      tr.appendChild(tdPreview);
+                      tr.appendChild(tdCamera);
+                      tr.appendChild(tdRover);
+
+                      document.querySelector("tbody").appendChild(tr);
+
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Mars Rover Photos</h2>
+    <table class="table table-hover">
+       <thead>
+          <tr>
+            <th class="bi bi-card-text"> Photo Id</th>
+            <th class="bi bi-card-image"> Preview</th>
+            <th class="bi bi-camera"> Camera Name</th>
+            <th class="bi bi-rocket"> Rover Name</th>
+          </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+    </table>
+</body>
+</html>
+
+Nasa Data in Card Style
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&#39;)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(marsObj){
+                 marsObj.photos.map(function(photo){
+
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "200px";
+                        div.innerHTML = `
+                          <img class="card-img-top" src=${photo.img_src} height="100">
+                          <div class="card-header">
+                             <h3>${photo.id}</h3>
+                          </div>                  
+                          <div class="card-body">
+                            <dl>
+                                 <dt>Camera</dt>
+                                 <dd>${photo.camera.full_name}</dd>
+                                 <dt>Rover</dt>
+                                 <dd>${photo.rover.name}</dd>
+                            </dl>
+                          </div>
+                          <div class="card-footer">
+                              <a href=${photo.img_src} target="_blank" class="btn btn-dark w-100">Preview</a>
+                          </div>
+                        `;
+                        document.querySelector("section").appendChild(div);
+
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Mars Rover Photos</h2>
+    <section class="d-flex flex-wrap">
+
+    </section>
+</body>
+</html>
