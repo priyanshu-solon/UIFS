@@ -18,7 +18,7 @@
             currentInput += number;
             document.querySelector('input').value =  `${previousInput} ${currentInput}`;
         }
-        function backspace(number){
+        function backspace(){
             if (currentInput.length > 0) {
                 currentInput = currentInput.slice(0, -1);
             }

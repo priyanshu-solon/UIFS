@@ -63,5 +63,8 @@ function clearDisplay() {
 }
 
 function backspace(){
-    currentInput = ''
-}
+            if (currentInput.length > 0) {
+                currentInput = currentInput.slice(0, -1);
+            }
+            document.getElementById('display').value = `${previousInput} ${currentInput}`;
+        }
