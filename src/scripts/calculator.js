@@ -61,3 +61,7 @@ function clearDisplay() {
     currentOperation = '';
     document.getElementById('display').value = '';
 }
+
+function backspace(){
+    currentInput = ''
+}
