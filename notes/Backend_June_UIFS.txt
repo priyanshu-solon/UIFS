@@ -462,3 +462,6 @@ Query: Read all jewelery products and other products whose rating is above 4.5
     > db.fakestore.find({ $or:[ {category:"jewelery"}, {'rating.rate':{$gt:4.5}} ] })
 
 Query: Read all jewelery & electronics between price 100 to 500.
+
+    >db.products.find({$and:[{$or:[{"category":"jewelery"},{"category":"electronics"}]},{"price":{$gte: 100,$lte: 500 } }] })
+    >db.products.find({$and:[{$or:[{"category":"jewelery"},{"category":"electronics"}]},{"price":{$gte:100}},{"price":{$lte:500}}]})
