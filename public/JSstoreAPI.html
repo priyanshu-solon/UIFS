@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+
+        function LoadCategories(){
+            fetch("https://fakestoreapi.com/products/categories&quot;")
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(categories){
+                categories.unshift("all");
+                categories.map(function(category){
+                      var option = document.createElement("option");
+                      option.text = category.toUpperCase();
+                      option.value = category;
+                      document.getElementById("lstCategories").appendChild(option);
+                })
+            })
+        }
+
+        function LoadProducts(url){
+            document.querySelector("main").innerHTML = "";
+            fetch(url)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(products){
+                 products.map(function(product){
+
+                        var card = document.createElement("div");
+                        card.className = "card m-2 p-2";
+                        card.style.width = "200px";
+                        card.innerHTML = `
+                          <img class="card-img-top" src=${product.image} height="120">
+                          <div class="card-header overflow-auto" style="height:100px">
+                             ${product.title}
+                          </div>
+                          <div class="card-body">
+                            <dl>
+                                <dt>Price</dt>
+                                <dd>${product.price}</dd>
+                                <dt>Rating</dt>
+                                <dd>${product.rating.rate} <span class="bi bi-star-fill text-success"></span> </dd>
+                            </dl>
+                          </div>
+                          <div class="card-footer">
+                            <button class="btn btn-warning w-100 bi bi-cart4"> Add to Cart </button>
+                         </div>
+                        `;
+
+                        document.querySelector("main").appendChild(card);
+ 
+                 })
+            })
+        }
+
+        function bodyload(){
+            LoadCategories();
+            LoadProducts(`https://fakestoreapi.com/products`);
+        }
+
+        function CategoryChange(){
+            var categoryName = document.getElementById("lstCategories").value;
+            if(categoryName==="all"){
+                LoadProducts(`https://fakestoreapi.com/products`);
+            } else {
+                LoadProducts(`https://fakestoreapi.com/products/category/${categoryName}`);
+            }
+        }
+
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header class="d-flex mt-1 justify-content-between border border-2 p-3">
+        <div class="fw-bold fs-4">Fakestore</div>
+        <div class="fs-5">
+            <span><a>Home</a></span>
+            <span class="mx-4"><a>Electronics</a></span>
+            <span><a>Jewelery</a></span>
+            <span class="mx-4"><a>Men's Fashion</a></span>
+            <span><a>Women's Fashion</a></span>
+        </div>
+        <div>
+            <button class="btn btn-warning bi bi-cart4"></button>
+        </div>
+    </header>
+    <section class="row mt-4">
+        <nav class="col-2">
+            <div>
+                <label class="form-label fw-bold"> Select Category </label>
+                <div>
+                    <select onchange="CategoryChange()" class="form-select" id="lstCategories">
+
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <main class="col-10 overflow-auto d-flex flex-wrap" style="height:450px">
+
+        </main>
+    </section>
+</body>
+</html>

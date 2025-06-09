@@ -369,3 +369,96 @@ Syntax:
 Ex:
       >db.products.insertOne( { id:1, name:"tv", cities:['delhi', 'hyd'], rating:{rate:4.2} })
     >db.products.insertMany( [ { }, { } ] )
+
+9/06
+====
+
+- Creating Database
+- Creating Collection
+- Insert Documents into Collection
+
+                          Query Documents
+- MongoDB uses "find()" method to query documents from a collection.
+- Find can access and return one or multiple documents.
+
+Syntax:
+     > db.collection.find( { query } )
+     > db.products.find({ })                // returns all documents
+
+- You can configure query using various operators to filter and view the matching documents.
+
+         $eq            Equal to
+         $ne            Not Equal
+         $gt            Greater than
+         $gte        Greater than or equal
+         $lt            Less than
+         $lte            Less than or equal
+         $and        Logical AND
+         $or            Local OR
+
+Syntax:
+     > db.collection.find( { key: value } )        => return exact match
+
+Ex:
+     > db.fakestore.find( {id : 3} )
+     > db.fakestore.find( {category: 'electronics' } )
+
+Syntax: Query using condition
+
+      > db.collection.find( { field: {condition} } )
+     
+Ex:
+      > db.fakestore.find({ price:{$gte:600} })
+
+- You can query the documents with object type reference by enclosing in single quote.
+
+Syntax:
+     > db.collection.find( { 'field.key' : { condition } } )
+
+Ex:
+     > db.fakestore.find({ 'rating.rate': {$gte:4.5} })
+
+
+- You can add multiple expressions using "$and"  & "$or" operators.
+- "$and" returns the data only when all expressions evaluate to true.
+- "$or"  returns the data when any one expression evaluates to true.
+- Multiple expressions are enclosed in "[ ]".
+
+Syntax:
+      >db.collection.find({ $and: [ {exp1}, {exp2}, .. ] })
+
+Query: How to read all documents whose price is between 300 to 600.
+        - fakestore        : collection
+        - price            : field name
+
+ >db.fakestore.find({ $and: [ {price:{$gte:300}}, {price:{$lte:600}} ] })
+
+Query : Read all electronics with price above 500
+
+            category = electronics
+            price >= 500
+
+>db.fakestore.find({ $and: [ {category:"electronics"}, {price:{$gte:500}} ] })
+
+Query: Read all electronics & jewelery products from fakestore collection
+
+
+ > db.collection.find({ $or: [ { }, { } ] })
+
+Ex:	
+    >db.fakestore.find({$or: [ {category:"electronics"}, {category:"jewelery" } ]})
+
+
+Query: Read all electronics whose rating is above 4.6
+       
+        category: electronics
+        'rating.rate': 4.6
+
+    > db.fakestore.find({ $and: [ {category:"electronics"}, {'rating.rate': {&gt:4.6}} ] })
+
+Query: Read all jewelery products and other products whose rating is above 4.5
+
+   
+    > db.fakestore.find({ $or:[ {category:"jewelery"}, {'rating.rate':{$gt:4.5}} ] })
+
+Query: Read all jewelery & electronics between price 100 to 500.

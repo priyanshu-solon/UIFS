@@ -1131,3 +1131,218 @@ Ex:
     </section>
 </body>
 </html>
+
+9/06
+====
+
+Weather App
+
+1. Visit   https://openweathermap.org/api
+
+2. Register a new free account
+
+3. Go to "API DOCS" in current weather data category
+
+4. Select the option "Built-in API request by city name"
+
+5. Copy the API URL that can query by city name
+
+    https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+6. API Key is provided in your profile details.  [ My API Keys ]
+
+    1318ca6725c69160d346c41fc0612596
+
+  https://api.openweathermap.org/data/2.5/weather?q=Hyderabad&appid=    1318ca6725c69160d346c41fc0612596
+
+        { city name }         => Hyderabad
+        { API Key }         => Your API key
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .bg-style {
+            background-image: url("../public/images/weather.jpg");
+            background-size: cover;
+        }
+    </style>
+    <script>
+        function SearchClick(){
+            var cityName = document.getElementById("txtCity").value;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1318ca6725c69160d346c41fc0612596&units=metric`)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(weatherObj){
+                document.getElementById("lblCity").innerHTML = weatherObj.name;
+                document.getElementById("lblTemp").innerHTML = `${weatherObj.main.temp} &deg; <sup>c</sup>`
+                document.getElementById("lblDescription").innerHTML = `[${weatherObj.weather[0].description}]`;
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:100vh">
+   <div class="border bg-style w-50 border-2 border-warning rounded rounded-2" style="height:300px">
+      <div class="mt-4 d-flex justify-content-center">
+         <div class="input-group w-50">
+              <input type="text" id="txtCity" class="form-control" placeholder="Your city name">
+              <button onclick="SearchClick()" class="btn btn-warning bi bi-search"></button>
+         </div>
+      </div>
+      <div class="mt-2 p-4">
+          <div id="lblCity" class="fs-3 text-center text-white fw-bold"></div>
+          <div id="lblDescription" class="text-center text-white"></div>
+          <div class="mt-3">
+              <div id="lblTemp" class="fs-1 fw-bold text-center text-warning"></div>
+          </div>
+      </div>
+   </div>
+</body>
+</html>
+
+                         
+                                  Fakestore API
+                        (https://fakestoreapi.com)
+
+API Routes [ end points ]
+
+    GET        /products                        [ ] array of products     [ { }, { } ]
+
+    GET        /products/1                    product object             {   }
+                                        by id
+   
+    GET        /products/categories            [ ] of all categories         [ " " ]
+
+     GET    /products/category/electronics    [ ] of specific category  [ { }, { } ]
+                                            products
+Fakestore Product
+
+     {
+        id: 0,
+        title: " ",
+        price: 0,
+        image: " ",
+        description: " ",
+        category: " ",
+        rating: { rate:0, count: 0 }
+     }
+
+Ex: Fakestore API
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+
+        function LoadCategories(){
+            fetch("https://fakestoreapi.com/products/categories&quot;)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(categories){
+                categories.unshift("all");
+                categories.map(function(category){
+                      var option = document.createElement("option");
+                      option.text = category.toUpperCase();
+                      option.value = category;
+                      document.getElementById("lstCategories").appendChild(option);
+                })
+            })
+        }
+
+        function LoadProducts(url){
+            document.querySelector("main").innerHTML = "";
+            fetch(url)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(products){
+                 products.map(function(product){
+
+                        var card = document.createElement("div");
+                        card.className = "card m-2 p-2";
+                        card.style.width = "200px";
+                        card.innerHTML = `
+                          <img class="card-img-top" src=${product.image} height="120">
+                          <div class="card-header overflow-auto" style="height:100px">
+                             ${product.title}
+                          </div>
+                          <div class="card-body">
+                            <dl>
+                                <dt>Price</dt>
+                                <dd>${product.price}</dd>
+                                <dt>Rating</dt>
+                                <dd>${product.rating.rate} <span class="bi bi-star-fill text-success"></span> </dd>
+                            </dl>
+                          </div>
+                          <div class="card-footer">
+                            <button class="btn btn-warning w-100 bi bi-cart4"> Add to Cart </button>
+                         </div>
+                        `;
+
+                        document.querySelector("main").appendChild(card);
+ 
+                 })
+            })
+        }
+
+        function bodyload(){
+            LoadCategories();
+            LoadProducts(`https://fakestoreapi.com/products`);
+        }
+
+        function CategoryChange(){
+            var categoryName = document.getElementById("lstCategories").value;
+            if(categoryName==="all"){
+                LoadProducts(`https://fakestoreapi.com/products`);
+            } else {
+                LoadProducts(`https://fakestoreapi.com/products/category/${categoryName}`);
+            }
+        }
+
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header class="d-flex mt-1 justify-content-between border border-2 p-3">
+        <div class="fw-bold fs-4">Fakestore</div>
+        <div class="fs-5">
+            <span><a>Home</a></span>
+            <span class="mx-4"><a>Electronics</a></span>
+            <span><a>Jewelery</a></span>
+            <span class="mx-4"><a>Men's Fashion</a></span>
+            <span><a>Women's Fashion</a></span>
+        </div>
+        <div>
+            <button class="btn btn-warning bi bi-cart4"></button>
+        </div>
+    </header>
+    <section class="row mt-4">
+        <nav class="col-2">
+            <div>
+                <label class="form-label fw-bold"> Select Category </label>
+                <div>
+                    <select onchange="CategoryChange()" class="form-select" id="lstCategories">
+
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <main class="col-10 overflow-auto d-flex flex-wrap" style="height:450px">
+
+        </main>
+    </section>
+</body>
+</html>
