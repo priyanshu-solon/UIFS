@@ -1346,3 +1346,329 @@ Ex: Fakestore API
     </section>
 </body>
 </html>
+
+10/06
+=====
+
+Ex: Fakestore API
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+
+        function LoadCategories(){
+            fetch("https://fakestoreapi.com/products/categories&quot;)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(categories){
+                categories.unshift("all");
+                categories.map(function(category){
+                      var option = document.createElement("option");
+                      option.text = category.toUpperCase();
+                      option.value = category;
+                      document.getElementById("lstCategories").appendChild(option);
+                })
+            })
+        }
+
+        function LoadProducts(url){
+            document.querySelector("main").innerHTML = "";
+            fetch(url)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(products){
+                 products.map(function(product){
+
+                        var card = document.createElement("div");
+                        card.className = "card m-2 p-2";
+                        card.style.width = "200px";
+                        card.innerHTML = `
+                          <img class="card-img-top" src=${product.image} height="120">
+                          <div class="card-header overflow-auto" style="height:100px">
+                             ${product.title}
+                          </div>
+                          <div class="card-body">
+                            <dl>
+                                <dt>Price</dt>
+                                <dd>${product.price}</dd>
+                                <dt>Rating</dt>
+                                <dd>${product.rating.rate} <span class="bi bi-star-fill text-success"></span> </dd>
+                            </dl>
+                          </div>
+                          <div class="card-footer">
+                            <button value=${product.id} onclick="AddToCartClick(this.value)" class="btn btn-warning w-100 bi bi-cart4"> Add to Cart </button>
+                         </div>
+                        `;
+
+                        document.querySelector("main").appendChild(card);
+ 
+                 })
+            })
+        }
+
+        function bodyload(){
+            LoadCategories();
+            LoadProducts(`https://fakestoreapi.com/products`);
+            GetCartItemsCount();
+        }
+
+        function CategoryChange(){
+            var categoryName = document.getElementById("lstCategories").value;
+            if(categoryName==="all"){
+                LoadProducts(`https://fakestoreapi.com/products`);
+            } else {
+                LoadProducts(`https://fakestoreapi.com/products/category/${categoryName}`);
+            }
+        }
+        var cartItems = [];
+        function GetCartItemsCount(){
+            document.getElementById("lblCount").innerHTML = cartItems.length;
+        }
+        function AddToCartClick(id){
+            fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(product){
+                 cartItems.push(product);
+                 alert(`${product.title}\nAdded to Cart`);
+                 GetCartItemsCount();
+            })
+        }
+
+       
+        function ShowCartClick(){
+            var total = 0;
+            document.querySelector("tbody").innerHTML ="";
+            cartItems.map(function(item){
+
+                var tr = document.createElement("tr");
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdImage = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdImage.innerHTML = `<img width="50" height="50" src=${item.image}>`;
+                tdPrice.innerHTML = item.price;
+
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdImage);
+                tr.appendChild(tdPrice);
+
+                document.querySelector("tbody").appendChild(tr);
+
+            })
+
+            for(var item of cartItems){
+                total += item.price;
+            }
+            document.getElementById("lblTotal").innerHTML = `${total}`.fontsize(4).fontcolor('red').bold();
+
+        }
+
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header class="d-flex mt-1 justify-content-between border border-2 p-3">
+        <div class="fw-bold fs-4">Fakestore</div>
+        <div class="fs-5">
+            <span><a class="text-decoration-none" href="javascript:LoadProducts('https://fakestoreapi.com/products')">Home</a></span&gt;
+            <span class="mx-4"><a class="text-decoration-none" href="javascript:LoadProducts('https://fakestoreapi.com/products/category/electronics')">Electronics</a></span&gt;
+            <span><a>Jewelery</a></span>
+            <span class="mx-4"><a>Men's Fashion</a></span>
+            <span><a>Women's Fashion</a></span>
+        </div>
+        <div>
+            <button onclick="ShowCartClick()" data-bs-target="#cart" data-bs-toggle="offcanvas" class="btn btn-warning bi bi-cart4 position-relative"><span id="lblCount" class="badge bg-danger rounded rounded-circle position-absolute"></span></button>
+            <div class="offcanvas offcanvas-end" id="cart">
+                <div class="offcanvas-header">
+                    <h4>Your Cart Items</h4>
+                    <button class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Preview</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td align="center" colspan="2" class="fw-bold fs-4">Total</td>
+                                <td id="lblTotal"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="row mt-4">
+        <nav class="col-2">
+            <div>
+                <label class="form-label fw-bold"> Select Category </label>
+                <div>
+                    <select onchange="CategoryChange()" class="form-select" id="lstCategories">
+
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <main class="col-10 overflow-auto d-flex flex-wrap" style="height:470px">
+
+        </main>
+    </section>
+</body>
+</html>
+
+FAQ: What are the issues with object data type?
+- It comprises of only string type keys.
+- It requires lot of explicit operators for manipulation.
+- Hence it is slow in rendering.
+
+
+                              Map Type
+- It is a key and value collection.
+- Key can be any type.
+- It provides all implicit methods to handle operations.
+- It is faster when compared to object.
+- It is schema less. [structure less]
+
+Syntax:
+    var data = new Map();
+
+    data.set(key,value)                Add a new key with value
+        .get(key)                    Returns the value in key
+        .delete(key)                Removes a key and its value
+        .has(key)                    Verifies the existence of key
+        .keys()                    Returns all keys
+        .values()                    Returns all values
+        .entries()                    Returns all entries [keys and values]
+        .clear()                    Removes all keys
+        .size                        Returns count of keys
+
+Ex:
+<script>
+    var data = new Map();
+    data.set(1, "TV");
+    data.set("Mobile", "Apple iPhone 16 Pro");
+    data.set(2, ["Delhi", "Hyd"]);
+
+     data.delete(2);
+
+    if(data.has(2)){
+        document.write(data.get(2));
+    } else {
+        alert('2 Not Found');
+    }
+
+    document.write(`${data.get("Mobile")}<br>`);
+
+    for(var item of data.entries()){
+        document.write(`${item}<br>`);
+    }
+
+    document.write(`Total Count of Keys : ${data.size}`);
+</script>
+
+
+FAQ: What is difference between object & map data types?
+Ans:
+        Object                Map
+        ----------------------------------------------
+        Structured             Structure Less
+        Explicit methods        Implicit Methods
+        Slow                Fast
+        Keys only string        Keys can be any type
+
+                   
+                            Date Type
+- Date type values are stored in memory by using "Date()" constructor.
+- It allocates memory to handle date type.
+
+Syntax:
+    var now = new Date();        It stores current date and time into memory reference.
+
+
+- You can store specific date and time by using the following format
+
+    "year-month-day hours:minutes:seconds.milliSeconds"
+
+Syntax:
+    var mfd = new Date("2025-04-22 15:30:42.774");
+
+- JavaScript provides various date and time methods to read date & time values.
+
+    getHours()            It returns hours number 0 to 23
+    getMinutes()            0 to 59
+    getSeconds()            0 to 59
+    getMilliSeconds()        0 to 999
+    getDate()                1 to 28, 29, 30, 31
+    getDay()                It returns weekday number 0=Sunday
+    getMonth()            It returns month number 0=January
+    getFullYear()            It returns full year.
+    toLocaleString()        It returns both date & time
+    toDateString()            
+    toLocaleDateString()
+    toTimeString()
+    toLocaleTimeString()
+
+Ex:
+<script>
+    var mfd = new Date("2025-04-22 15:30:24.876");
+   
+    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "August"];
+
+    document.write(`${weekdays[mfd.getDay()]} ${mfd.getDate()} , ${months[mfd.getMonth()]} ${mfd.getFullYear()}`)
+</script>;
+
+- Showing date & time values requires 3rd party libraries like
+    a) dayjs
+    b) moment
+    c) luxon  etc..
+
+- JavaScript provides setter methods to set date and time value
+   
+    setHours()
+    setMinutes()
+    setSeconds()
+    setMilliSeconds()
+    setDate()
+    setTime()
+    setMonth()
+    setFullYear()
+    etc..
+
+Ex:
+<script>
+    var now = new Date();
+   
+    now.setHours(19)
+
+    var hrs = now.getHours();
+   
+    if(hrs>=0 && hrs<=12) {
+        document.write(`Good Morning !!<br><img src="../public/images/morning.gif" width="200" height="200">`);
+    }
+    else if(hrs>=13 && hrs<=16) {
+        document.write(`Good Afternoon <br><img src="../public/images/afternoon.gif" width="200" height="200">`);
+    } else {
+        document.write(`Good Evening ! <br><img src="../public/images/evening.gif" width="200" height="200">`);
+    }
+</script>

@@ -6,11 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script>
 
         function LoadCategories(){
@@ -42,7 +42,7 @@
                         card.className = "card m-2 p-2";
                         card.style.width = "200px";
                         card.innerHTML = `
-                          <img class="card-img-top" src=${product.image} height="140px">
+                          <img class="card-img-top" src=${product.image} height="120">
                           <div class="card-header overflow-auto" style="height:100px">
                              ${product.title}
                           </div>
@@ -55,7 +55,7 @@
                             </dl>
                           </div>
                           <div class="card-footer">
-                            <button class="btn btn-warning w-100 bi bi-cart4"> Add to Cart </button>
+                            <button value=${product.id} onclick="AddToCartClick(this.value)" class="btn btn-warning w-100 bi bi-cart4"> Add to Cart </button>
                          </div>
                         `;
 
@@ -68,6 +68,7 @@
         function bodyload(){
             LoadCategories();
             LoadProducts(`https://fakestoreapi.com/products`);
+            GetCartItemsCount();
         }
 
         function CategoryChange(){
@@ -78,6 +79,51 @@
                 LoadProducts(`https://fakestoreapi.com/products/category/${categoryName}`);
             }
         }
+        var cartItems = [];
+        function GetCartItemsCount(){
+            document.getElementById("lblCount").innerHTML = cartItems.length;
+        }
+        function AddToCartClick(id){
+            fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                 return response.json();
+            })
+            .then(function(product){
+                 cartItems.push(product);
+                 alert(`${product.title}\nAdded to Cart`);
+                 GetCartItemsCount();
+            })
+        }
+
+       
+        function ShowCartClick(){
+            var total = 0;
+            document.querySelector("tbody").innerHTML ="";
+            cartItems.map(function(item){
+
+                var tr = document.createElement("tr");
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdImage = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdImage.innerHTML = `<img width="50" height="50" src=${item.image}>`;
+                tdPrice.innerHTML = item.price;
+
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdImage);
+                tr.appendChild(tdPrice);
+
+                document.querySelector("tbody").appendChild(tr);
+
+            })
+
+            for(var item of cartItems){
+                total += item.price;
+            }
+            document.getElementById("lblTotal").innerHTML = `${total}`.fontsize(4).fontcolor('red').bold();
+
+        }
 
     </script>
 </head>
@@ -85,14 +131,40 @@
     <header class="d-flex mt-1 justify-content-between border border-2 p-3">
         <div class="fw-bold fs-4">Fakestore</div>
         <div class="fs-5">
-            <span><a>Home</a></span>
-            <span class="mx-4"><a>Electronics</a></span>
+            <span><a class="text-decoration-none" href="javascript:LoadProducts('https://fakestoreapi.com/products')">Home</a></span>
+            <span class="mx-4"><a class="text-decoration-none" href="javascript:LoadProducts('https://fakestoreapi.com/products/category/electronics')">Electronics</a></span>
             <span><a>Jewelery</a></span>
             <span class="mx-4"><a>Men's Fashion</a></span>
             <span><a>Women's Fashion</a></span>
         </div>
         <div>
-            <button class="btn btn-warning bi bi-cart4"></button>
+            <button onclick="ShowCartClick()" data-bs-target="#cart" data-bs-toggle="offcanvas" class="btn btn-warning bi bi-cart4 position-relative"><span id="lblCount" class="badge bg-danger rounded rounded-circle position-absolute"></span></button>
+            <div class="offcanvas offcanvas-end" id="cart">
+                <div class="offcanvas-header">
+                    <h4>Your Cart Items</h4>
+                    <button class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Preview</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td align="center" colspan="2" class="fw-bold fs-4">Total</td>
+                                <td id="lblTotal"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
         </div>
     </header>
     <section class="row mt-4">
@@ -106,7 +178,7 @@
                 </div>
             </div>
         </nav>
-        <main class="col-10 overflow-auto d-flex flex-wrap" style="height:550px">
+        <main class="col-10 overflow-auto d-flex flex-wrap" style="height:470px">
 
         </main>
     </section>

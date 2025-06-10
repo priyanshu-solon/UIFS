@@ -465,3 +465,181 @@ Query: Read all jewelery & electronics between price 100 to 500.
 
     >db.products.find({$and:[{$or:[{"category":"jewelery"},{"category":"electronics"}]},{"price":{$gte: 100,$lte: 500 } }] })
     >db.products.find({$and:[{$or:[{"category":"jewelery"},{"category":"electronics"}]},{"price":{$gte:100}},{"price":{$lte:500}}]})
+
+10/06
+=====
+
+db.collection.find({
+$and: [
+{ price: { $gt: 500 } },
+{
+$or: [
+{ category: "electronics" },
+{ category: "jewellery" }
+]
+}
+]
+})
+
+Querying Data from Collection
+- find()
+- Operators
+   
+                        Querying Array Type
+
+- Array type is defined in a collection using array meta character "[ ]".
+
+Syntax:
+        {
+           shippedTo: [ 'Delhi', 'Hyd' ]
+        }
+
+- To search or query any content from array type MongoDB provides "$all" operator.
+- It can verify all elements and return only the matching documents from collection.
+
+Syntax:
+
+    >db.collection.find({ fieldname: { $all: ['element'] } })
+
+Ex:
+   > db.products.find({ shippedTo: { $all: [ 'Hyd' ] } })
+
+Ex:
+ collection : products
+
+{
+  "name": "Mobile",
+  "price": 15000,
+  "shippedTo": [
+    "Delhi",
+    "Mumbai"
+  ]
+},
+{
+  "name": "TV",
+  "price": 25000,
+  "shippedTo": [
+    "Hyd",
+    "Mumbai"
+  ]
+}
+
+                        Querying Date Type
+
+- MongoDB uses "$date" operator to configure a date type value.
+- Date must be in the format of ISO.
+   
+        "year-month-dateThours:minutes:seconds.milliSecondsZ"
+
+- Date is an object with ISO format and defined using  "$date" operator
+
+Syntax:
+       
+    {
+      "mfd" : {
+        "$date" : "yy-mm-ddThrs:min:sec.millSecZ"
+        }
+    }
+
+- To query date value MongoDB provides "ISODate()" function.
+- It is configured along with find() function.
+
+Syntax:
+   
+     >db.collection.find({ field: ISODate("yy-mm-ddThrs:min:sec.milliSec") })
+
+Ex:
+      >db.products.find({ mfd: ISODate("2025-04-22T14:20:41.000Z") })
+
+
+Ex:
+{
+    "name": "TV",
+  "price": 30000,
+  "mfd": {
+    "$date": "2025-03-22T14:20:41.000Z"
+  }
+},
+
+{
+  "name": "Mobile",
+  "price": 12000,
+  "mfd": {
+    "$date": "2025-04-22T14:20:41.000Z"
+  }
+}
+
+Note: You can search for any document and return only the first occurrence document that matches given condition.
+      It requires "findOne()" method to find and returns the first occurrence.
+
+Syntax:
+    > db.fakestore.find({category:"electronics"})            // returns all electronics
+    > db.fakestore.findOne({category: "electronics"})        // returns specific
+
+                           Updating Documents
+- MongoDB provides the methods
+    a) updateOne()
+    b) updateMany()
+- You have to find the relative document and update its data or fields.
+- Update requires following operators
+
+    $set            It sets a new value into specific field
+    $unset        It removes specific field
+    $rename        It allows to change field name.
+
+Syntax:
+    >db.collection.updateOne( { findQuery }, { updateQuery } )
+
+Ex: Change value in specific field
+
+       > db.fakestore.updateOne( {id:1}, { $set: { price: 400.44 } })
+
+Ex: Set rating as 4.6 for all products whose price is above 500
+
+    > db.fakestore.updateMany({price:{$gte:500}}, {$set:{'rating.rate':4.6}})
+
+- You can add new fields into document by using "$set"
+
+    >db.collection.updateOne({findQuery}, {$set: {newField:value}})
+
+Ex:
+    >db.products.updateOne({name:"TV"}, {$set: {stock:true}})
+
+- You can change the field name by using "$rename" operator
+
+Syntax
+    >db.collection.updateMany({}, {$rename:{ "old" : "new" }})    
+
+Ex:
+     >db.products.updateMany({},{$rename:{"mfd":"manufactured"}})
+
+- You can remove any specific field and its data by using "$unset" operator
+
+Syntax:
+    > db.collection.updateMany({ }, { $unset: "fieldname" })
+
+    note: Fieldname refers to name and value defined as object.
+   
+    > db.products.updateMany({}, { $unset: { stock: " " })
+
+                        Deleting Documents
+- MongoDB can remove documents by using
+
+    a) deleteOne()
+    b) deleteMany()
+
+- It uses find query to find and remove the data.
+
+Syntax:
+    >db.collection.deleteOne({ findQuery })
+
+    >db.fakestore.deleteMany({ category: "electronics" })
+    >db.fakestore.deleteOne({id:7})
+    >db.fakestore.deleteMany({'rating.rate':{$lte:3}})
+
+Basic CRUD
+- Creating Collection
+- Inserting Documents
+- Querying Documents
+- Updating Documents
+- Delete Documents
