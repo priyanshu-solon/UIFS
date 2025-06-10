@@ -1590,9 +1590,9 @@ FAQ: What is difference between object & map data types?
 Ans:
         Object                Map
         ----------------------------------------------
-        Structured             Structure Less
+        Structured                 Structure Less
         Explicit methods        Implicit Methods
-        Slow                Fast
+        Slow                          Fast
         Keys only string        Keys can be any type
 
                    
