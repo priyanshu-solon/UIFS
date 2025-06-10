@@ -1,0 +1,49 @@
+<script>
+    document.write("Map Data Type and Date Time in JavaScript")
+
+    var data = new Map();
+    data.set(1, "TV");
+    data.set("Mobile", "Apple iPhone 16 Pro");
+    data.set(2, ["Delhi", "Hyd"]);
+
+     data.delete(2);
+
+    if(data.has(2)){
+        document.write(data.get(2));
+    } else {
+        alert('2 Not Found');
+    }
+
+    document.write(`${data.get("Mobile")}<br>`);
+
+    for(var item of data.entries()){
+        document.write(`${item}<br>`);
+    }
+
+    document.write(`Total Count of Keys : ${data.size} <br>`);
+
+
+    var mfd = new Date("2025-04-22 15:30:24.876");
+   
+    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "August"];
+
+    document.write(`${weekdays[mfd.getDay()]} ${mfd.getDate()} , ${months[mfd.getMonth()]} ${mfd.getFullYear()} <br>`)
+
+
+    var now = new Date();
+   
+    now.setHours(19)
+
+    var hrs = now.getHours();
+   
+    if(hrs>=0 && hrs<=12) {
+        document.write(`Good Morning !!<br>`);
+    }
+    else if(hrs>=13 && hrs<=16) {
+        document.write(`Good Afternoon <br>`);
+    } else {
+        document.write(`Good Evening ! <br>`);
+    }
+</script>
