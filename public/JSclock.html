@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        @keyframes Fade {
+            from {
+                opacity: 0;
+                transform: scale(0.1) rotate(0deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(360deg);
+            }
+        }
+        img {
+            animation-name: Fade;
+            animation-duration: 5s;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 600px;
+            display: grid;
+            grid-template-columns: 3fr 3fr 3fr 3fr;
+            height: 60px;
+            margin-top: 50px;
+        }
+        .container div {
+            border:1px solid gray;
+            padding: 20px;
+            font-family: Arial;
+            font-size: 30px;
+            color:gray;
+        }
+    </style>
+    <script>
+        var i=1;
+        function StartProgress(){
+            i++;
+            document.getElementById("progress").value = i;
+            document.getElementById("lblStatus").innerHTML = `${i}% completed`;
+            if(i===100){
+                document.getElementById("imgContainer").style.display = "block";
+                document.getElementById("progressContainer").style.display = "none";
+                clearInterval(thread);
+            }
+        }
+        var thread;
+        function LoadClick(){
+            document.getElementById("btnContainer").style.display = "none";
+            document.getElementById("progressContainer").style.display = "block";
+            thread = setInterval(StartProgress,100);
+        }
+
+        var ms = 0;
+        var s = 0;
+        var m = 0;
+        var h = 0;
+        function StopWatch(){
+            ms++;
+            if(ms===999){
+                s++;
+                ms=0;
+            }
+            if(s===59){
+                m++;
+                s=0;
+            }
+            if(m===59){
+                h++;
+                m=0;
+            }
+            document.getElementById("lblMilliSec").innerHTML = ms + "ms";
+            document.getElementById("lblSec").innerHTML = s + "s";
+            document.getElementById("lblMin").innerHTML = m + "m";
+            document.getElementById("lblhrs").innerHTML = h + "h";
+        }
+        var thread;
+        function StartClick(){
+           thread = setInterval(StopWatch,1);
+        }
+        function ClearClick(){
+            clearInterval(thread);
+            s=0;
+            ms=0;
+            h=0;
+            m=0;
+            document.getElementById("lblMilliSec").innerHTML = ms + "<sub>ms</sub>";
+            document.getElementById("lblSec").innerHTML = s + "<sub>s</sub>";
+            document.getElementById("lblMin").innerHTML = m + "m";
+            document.getElementById("lblhrs").innerHTML = h + "h";
+            StopClick();
+        }
+        function Time(){
+            var now = new Date();
+            var time = now.toLocaleTimeString();
+            document.querySelector("h1").innerHTML = time;
+        }
+        var thread2;
+        function bodyload(){
+           thread = setInterval(Time,1000);
+        }
+        function StartClick2(){
+            thread2 = setInterval(Time,1000);
+        }
+        function StopClick(){
+            clearInterval(thread);
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex flex-column" style="height: 100vh;" onload="bodyload()">
+    <div class="text-center">
+    <h1 align="center"></h1>
+    <button onclick="StartClick2()">Start</button>
+    <button onclick="StopClick()">Stop</button>
+    </div>
+    <br>
+    <div>
+        <div class="container">
+        <div>
+            <span  id="lblHrs">00 <sub>h</sub></span>
+        </div>
+        <div >
+            <span id="lblMin">00<sub>m</sub></span>
+        </div>
+        <div >
+            <span id="lblSec">00<sub>s</sub></span>
+        </div>
+        <div >
+            <span id="lblMilliSec">000<sub>ms</sub></span>
+        </div>
+       </div>
+       <br><br>
+       <div class="text-center">
+        <button onclick="StartClick()">Start</button>
+       <button onclick="ClearClick()">Clear</button>
+       </div>
+    </div>
+    <br>
+    <div class="text-center">
+        <div id="btnContainer">
+            <button class="btn btn-primary" onclick="LoadClick()">Load Image</button>
+        </div>
+        <div id="progressContainer" style="display: none;">
+            <progress id="progress" min="1" max="100" style="width: 400px; height: 30px;"></progress>
+            <p id="lblStatus"></p>
+        </div>
+        <div id="imgContainer" style="display: none;">
+            <img src="../public/images/women-fashion.jpg" width="400" height="400">
+        </div>
+    </div>
+</body>
+</html>
+

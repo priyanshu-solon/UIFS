@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+
+        function v1(){
+            document.getElementById("lblVolume").innerHTML = "Increased by 20%";
+        }
+        function v2(){
+            document.getElementById("lblVolume").innerHTML = "Increased by 70%";
+        }
+
+        function v3(){
+            document.getElementById("lblVolume").innerHTML = "Volume Full";
+        }
+
+        var t1, t2, t3;
+        function IncreaseVolume(){
+            t1 = setTimeout(v1, 3000);
+            t2 = setTimeout(v2, 8000);
+            t3 = setTimeout(v3, 15000);
+        }
+        function CancelClick(){
+            clearTimeout(t2);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="IncreaseVolume()" class="bi bi-volume-up"></button>
+    <button onclick="CancelClick()">Cancel 70%</button>
+    <br><br>
+    <span id="lblVolume"></span>
+</body>
+</html>

@@ -643,3 +643,126 @@ Basic CRUD
 - Querying Documents
 - Updating Documents
 - Delete Documents
+
+11/06
+=====
+
+FAQ: How to drop collection and database?
+Ans:
+        >db.collection.drop()
+        >db.dropDatabase()
+
+
+                    MongoDB Schema Validation
+
+- Validation is the process of verifying user input.
+- Validation is required to ensure that contradictory and unauthorized data is not get stored into database.
+- MongoDB allows to configure a schema validation.
+- It is a validation defined for collection.
+- A collection can restrict the fields, data type and data limits.
+- Collection uses several options like
+        a) autoIndexId
+        b) max
+        c) size
+        d) capped
+- Collection also provides validation options like
+        a) validator
+        b) validationType / validationLevel
+        c) validationAction
+
+- Validator is used to define validation for fields
+- validationType defines strict or moderate validation.
+
+        a) strict        : It will not allow to by-pass the validation
+        b) moderate    : It allows to by-pass the validation with warning
+
+- validationAction defines the error return type, you can notify as
+
+        a) error        : As Error message    
+        b) warn        : As Warning message
+
+Syntax:
+  > db.createCollection("name", {  
+            validator:{ },
+            validationType:"strict",   | validationLevel: "strict"
+            validationAction:"error"
+        })
+
+- Validator is an object that configures validation schema by using "$jsonSchema"
+
+Syntax:
+   > db.createCollection("name", {
+
+             validator: {
+                $jsonSchema: { }
+             }
+        })
+
+- $jsonSchema is an object with following properties
+
+        a) bsonType
+        b) required
+        c) properties
+
+- Schema "bsonType" is always "object"  type.
+- Required is array that defines the fields allowed in collection.
+- Properties is an object with collection of fields and their validations.
+
+Syntax:
+    > db.createCollection("name", {
+
+          validator: {
+
+            $jsonSchema: {
+                   bsonType: "object",
+                   required: [ "field1", "field2",..],
+                   properties: { }
+            }            
+          }
+     })
+
+- Properties are configured for every field individually.
+- Each field comprises of data type, validation service, error message as description.
+
+Syntax:
+            properties : {
+                field1: {
+                bsonType: "data_type",
+                required: true,
+                minimum: value,
+                maximum: value,
+                description : "error message"
+                },
+                field2: { }
+                ....
+                ....
+            }
+
+- The bson types allowed by MongoDB for various data types are shown below
+
+Syntax:
+  > db.createCollection("users", {
+
+        validator: {
+            $jsonSchema: {
+                   bsonType: "object",
+                   required: [ "username", "age"  ],
+                   properties: {
+                    username: {
+                      bsonType: "string",
+                      description: "User Name Required"
+                    },
+                   age: {
+                     bsonType: "int",
+                     minimum:15,
+                     maximum:35,
+                     description: "Age 15 to 35 only"
+                   }
+                  }  // end of properties
+            }  // end of json schema
+          },  // end of validator
+         validationLevel: "strict",            // strict or moderate
+         validationAction: "error"            // error or warn
+           })
+
+                        MongoDB Aggregation
