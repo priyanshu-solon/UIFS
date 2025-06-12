@@ -1948,3 +1948,353 @@ Ex: setInterval
     </div>
 </body>
 </html>
+
+12/06
+=====
+
+setTimeout
+clearTimeout
+setInterval
+clearInterval
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+
+        function LoadProduct(id){
+            fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(product){
+                document.getElementById("lblTitle").innerHTML = product.title;
+                document.getElementById("imgProduct").src = product.image;
+                document.getElementById("lblPrice").innerHTML = product.price.toLocaleString('en-us',{style:'currency', currency:'USD'});
+            })
+            document.getElementById("lblStatus").innerHTML = "(Slide Show - Manual)";
+        }
+        function LoadProductAuto(){
+            productId++;
+             fetch(`https://fakestoreapi.com/products/${productId}`)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(product){
+                document.getElementById("lblTitle").innerHTML = product.title;
+                document.getElementById("imgProduct").src = product.image;
+                document.getElementById("lblPrice").innerHTML = product.price.toLocaleString('en-us',{style:'currency', currency:'USD'});
+            })
+            document.getElementById("lblStatus").innerHTML = "(Slide Show - Auto)";
+            document.getElementById("trackBar").value = productId;
+        }
+        var productId = 1;
+        function NextClick(){
+            productId++;
+            LoadProduct(productId);
+            document.getElementById("trackBar").value = productId;
+           
+        }
+        function PrevClick(){
+            productId--;
+            LoadProduct(productId);
+            document.getElementById("trackBar").value = productId;
+        }
+        function TrackbarChange(){
+            LoadProduct(document.getElementById("trackBar").value);
+            productId = document.getElementById("trackBar").value;
+        }
+        var thread;
+        function PlayClick(){
+            thread = setInterval(LoadProductAuto, 5000);
+            document.getElementById("lblStatus").innerHTML = "(Slide Show - Playing)";
+        }
+        function PauseClick(){
+            clearInterval(thread);
+            document.getElementById("lblStatus").innerHTML = "(Slide Show - Paused)";
+        }
+    </script>
+</head>
+<body onload="LoadProduct(1)" class="container-fluid d-flex justify-content-center">
+    <div class="card p-2 mt-4 w-50">
+        <div class="card-header text-center">
+            <div id="lblTitle"></div>
+            <div id="lblStatus"></div>
+        </div>
+        <div class="card-body row" >
+            <div class="col-1 d-flex flex-column justify-content-center align-items-center">
+                <button onclick="PrevClick()" class="btn btn-dark bi bi-chevron-left"></button>
+            </div>
+            <div class="col-10 position-relative">
+                <div id="lblPrice" class="badge p-2 bg-danger text-white top-0 end-0 rounded rounded-circle position-absolute"></div>
+                <img height="300" id="imgProduct" width="100%">
+                <div class="mt-3">
+                    <input type="range" onchange="TrackbarChange()" value="1" min="1" max="20" class="form-range" id="trackBar">
+                </div>
+                <div class="mt-3 text-center">
+                    <button onclick="PlayClick()" class="btn btn-success mx-2 bi bi-play"></button>
+                    <button onclick="PauseClick()" class="btn btn-danger bi bi-pause"></button>
+                </div>
+            </div>
+            <div class="col-1 d-flex flex-column justify-content-center align-items-center">
+                <button onclick="NextClick()" class="btn btn-dark bi bi-chevron-right"></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+Summary
+- Variables
+- Data Types
+    a) Primitive
+        number, string, Boolean, null, undefined, symbol, big int.
+    b) Non Primitive
+        array, object, map
+
+- Date & Date Methods
+- Timer Events
+- Regular Expression Type  " /   / "
+
+
+                        JavaScript Operators
+1. Arithmetic Operators
+
+        +         Addition
+        -        Subtraction
+        *        Multiplication
+        /        Division
+        %        Modulus Division
+        **        Exponent
+        ++        Increment
+        --        Decrement
+
+2. Comparison & Logical Operators
+
+        ==        Equal
+        ===        Strict Equal / Identical Equal
+        !=        Not Equal
+        !==        Not Identical
+        >        Greater than
+        >=        Greater than or equal
+        <        Less than
+        <=         Less than or equal
+
+        &&        AND
+        ||        OR
+        !        NOT
+
+
+3. Assignment Operators
+
+        +=        Add and Assign
+        -=        Subtract and Assign
+        *=        Multiply and Assign
+        /=        Divide and Assign
+        %=        Modulus and Assign
+
+Note: JavaScript provides following methods to access multiple elements.
+
+        a) document.getElementsByTagName()
+        b) document.getElementsByClassName()
+        c) document.getElementsByName()
+
+      These methods return an array [ ] of elements.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       
+        function SubmitClick(){
+            var courses = "";
+            var checkboxes = document.getElementsByName("Course");
+            for(var checkbox of checkboxes){
+                if(checkbox.checked){
+                    courses += checkbox.value + "<br>";
+                }
+            }
+            document.getElementById("lblList").innerHTML = courses;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div><input type="checkbox" name="Course" value="HTML"> <label>HTML</label> </div>
+        <div><input type="checkbox" name="Course" value="Java"> <label>Java</label> </div>
+        <div><input type="checkbox" name="Course" value="Python"> <label>Python</label> </div>
+        <div><input type="checkbox" name="Course" value=".NET"> <label>.NET</label> </div>
+    </div>
+    <button onclick="SubmitClick()">Submit</button>
+    <p id="lblList"></p>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       
+        function SubmitClick(){
+            var courses = "";
+            var checkboxes = document.getElementsByName("Course");
+            for(var checkbox of checkboxes){
+                if(checkbox.checked){
+                    courses += checkbox.value + "<br>";
+                }
+            }
+            document.getElementById("lblList").innerHTML = courses;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div><input onchange="SubmitClick()" type="checkbox" name="Course" value="HTML"> <label>HTML</label> </div>
+        <div><input onchange="SubmitClick()" type="checkbox" name="Course" value="Java"> <label>Java</label> </div>
+        <div><input onchange="SubmitClick()" type="checkbox" name="Course" value="Python"> <label>Python</label> </div>
+        <div><input onchange="SubmitClick()" type="checkbox" name="Course" value=".NET"> <label>.NET</label> </div>
+    </div>
+    <button onclick="SubmitClick()">Submit</button>
+    <p id="lblList"></p>
+</body>
+</html>
+
+
+
+
+Ex: Add and Assign data from checkboxes
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       
+        function SubmitClick(){
+            var courses = "";
+            var courseFee = 0;
+            var checkboxes = document.getElementsByName("Course");
+            for(var checkbox of checkboxes){
+                if(checkbox.checked){
+                    courses += checkbox.value + "-" + checkbox.id +  "<br>";
+                    courseFee += parseInt(checkbox.id) ;
+                }
+            }
+            document.getElementById("lblList").innerHTML = `Selected Courses : <br> ${courses} <br>Total Fee Amount : ${courseFee}`;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div><input id="1200" onchange="SubmitClick()" type="checkbox" name="Course" value="HTML"> <label>HTML</label> </div>
+        <div><input id="4000" onchange="SubmitClick()" type="checkbox" name="Course" value="Java"> <label>Java</label> </div>
+        <div><input id="2000" onchange="SubmitClick()" type="checkbox" name="Course" value="Python"> <label>Python</label> </div>
+        <div><input id="5000" onchange="SubmitClick()" type="checkbox" name="Course" value=".NET"> <label>.NET</label> </div>
+    </div>
+    <button onclick="SubmitClick()">Submit</button>
+    <p id="lblList"></p>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var position = 1;
+        function MoveRight(){
+            position *= 2;
+            var img = document.querySelector("img");
+            img.style.marginLeft = position + "px";
+        }
+         function MoveLeft(){
+            position /=2;
+            var img = document.querySelector("img");
+            img.style.marginLeft = position + "px";
+        }
+    </script>
+</head>
+<body>
+    <button onclick="MoveLeft()"> < </button>
+    <button onclick="MoveRight()"> > </button>
+    <br><br>
+    <img src="../public/images/women-fashion.jpg" width="200" height="200">
+</body>
+</html>
+
+
+
+4. Special Operators
+
+   
+ a) Ternary Operator "?:"
+
+        (condition) ? true : false
+
+ b) Delete operator    : It removes a key from object.
+
+        delete   object.key;
+
+ c) In operator    : It finds a key in object.
+
+        "key"  in  object;        // true if found
+
+ d) New operator:  It is dynamic memory allocating operator.
+
+        var ref  = new Array();
+
+ e) TypeOf Operator:  It returns the data type of a reference.
+
+        var  x = 10;
+        var  y = true;
+
+        typeof  x;        // number
+        typeof  y;        // boolean
+
+Ex:
+<script>
+     fetch(`https://fakestoreapi.com/products/1`)
+     .then(function(response){
+        return response.json();
+     })
+     .then(function(product){
+          Object.keys(product).map(function(key){
+               document.write(`${key} [${typeof product[key]}] <br>`);
+          })
+     })
+</script>
+       
+                        JavaScript Statements
+1. Selection Statements
+    if, else, switch, case, default
+
+2. Jump Statements
+    return, break, continue
+
+3. Iteration Statements
+    for..in, for..of
+
+4. Looping Statements
+    for, while, do while
+
+5. Exception Handling
+    try, catch, throw, finally

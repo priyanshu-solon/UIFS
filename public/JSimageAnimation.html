@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var position = 1;
+        function MoveRight(){
+            position *= 2;
+            var img = document.querySelector("img");
+            img.style.marginLeft = position + "px";
+        }
+         function MoveLeft(){
+            position /=2;
+            var img = document.querySelector("img");
+            img.style.marginLeft = position + "px";
+        }
+    </script>
+</head>
+<body>
+    <button onclick="MoveLeft()"> < </button>
+    <button onclick="MoveRight()"> > </button>
+    <br><br>
+    <img src="../public/images/women-fashion.jpg" width="200" height="200">
+</body>
+</html>

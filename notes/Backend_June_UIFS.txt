@@ -766,3 +766,125 @@ Syntax:
            })
 
                         MongoDB Aggregation
+
+12/06
+=====
+
+MongoDB Schema Validation
+- Configure Validation for New Collection
+
+Generate Rules for existing collection
+1. Create a new collection
+
+        > db.createCollection("products")
+
+2. Insert document into collection
+
+        > db.products.insertOne({id:1, name:"tv", price:4000, qty:2, stock:true})
+
+3. Go to database => select collection name  in MongoDB compass
+
+4. Go to "Validation" category
+
+5. Generate Rules
+ 
+Note: You can edit rules using edit option in Compass.
+
+
+                       MongoDB Aggregation
+- Aggregation is a framework use to filter, sort, group and perform various queries on data.
+- MongoDB provides different aggregation stages and operators.
+
+Stage                Description
+----------------------------------------------------------------------------------
+$match                It is used to filter documents [find]
+
+$group                It is used to group document based on specified key.
+                    Key refers to a field.
+
+$project                It is used to reshape the query. Such as including or excluding
+                    fields.
+
+$sort                It sorts documents. 1 for ascending -1 for descending.
+
+$limit                It limits the number of documents to display in result.
+
+$lookup                 It is used to group and fetch fields from multiple collections.
+
+
+Operators            Description
+---------------------------------------------------------------------------------------------------
+ $sum                finds the sum of values
+
+ $count                returns the count of values in a group
+
+ $multiply                returns the product
+
+ $avg                finds the average of values
+
+ etc..
+
+Syntax: Aggregation Stage
+
+    > db.collection.aggregate([ { } ])
+
+- Aggregate() is a method that comprises of collection of queries.
+
+Query: Get only id, title and price from products
+
+    > db.products.aggregate([ { $project: { id:1, title:1, price:1 } } ])
+
+Query: Get only electronic products
+
+    > db.products.aggregate([ { $match: {category: "electronics"} } ])
+
+Query: Get all electronics with only title and price
+
+        > db.products.aggregate([ { $match: {category: "electronics"} }, { $project: { title:1, price:1 } } ])
+
+FAQ: Without aggregation how you can access multiple categories?
+      [without using logical $and, $or]
+Ans:  By using "$in"
+
+    > db.products.find({category:{$in: ["electronics", "jewelery"]}})
+
+Query: Find all products whose category is electronics or jewelery and rating is
+        above 4.
+
+    > db.products.find({$and:[{category:{$in:["electronics", "jewelery"]}}, {'rating.rate':{$gte:4}}]})
+
+
+Query : Sort all the products in descending order of price
+
+    > db.products.aggregate([{$sort:{price:-1}}, {$limit:4}])
+
+       limit:4        => returns top 3 results [ up to 4 ]
+
+Query:  Returns all electronics with price in descending order and display only top 2.
+
+    > db.products.aggregate([{$match:{category:"electronics"}}, {$sort:{price:-1}}, {$limit:3}])
+
+Query : Return all electronics in descending order of their rating.
+
+    > db.products.aggregate([{$match:{category:"electronics"}}, {$sort: {'rating.rate':-1}}])
+
+Query:  Group all products by their category and find the average price of products
+         in every category.
+
+  - $group is used to group by any field.
+  - The field is referred with unique "_id".
+  - Field name in group is defined with "$name".
+
+Syntax:
+      >db.collection.aggregate([ {$group:{ _id:"$fieldName", total|avg|count:"$field" }} ])
+
+Ex:
+   >db.fakestore.aggregate([ {$group: {_id:"$category", avgPrice:{$avg:"$price"} } } ])
+   >db.fakestore.aggregate([ {$group: {_id:"$category", totalPrice:{$sum:"$price"} } } ])
+
+Query: Get the total count of products in every category
+
+   >db.fakestore.aggregate([ {$group: {_id:"$category", count:{ $sum:1} }} ])
+
+
+                            MySQL
