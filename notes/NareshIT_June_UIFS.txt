@@ -2298,3 +2298,158 @@ Ex:
 
 5. Exception Handling
     try, catch, throw, finally
+
+13/06
+=====
+
+Looping Control Statements
+
+- Looping is the process of executing a set of statement repeatedly based on given condition.
+- You can create loops using
+    a) for
+    b) while
+    c) do while
+
+The "For" loop:
+- It is a looping control statement used when we are sure about the number of iterations and iteration counter will not change dynamically.
+- It requires initialization, condition and counter.
+
+Syntax:
+    for (initialization; condition; counter)
+    {
+       statements;
+    }
+
+Ex:
+    for(var i=1;  i<=10; i++)
+    {
+         console.log(i);
+    }
+
+EX:
+    var i=1;
+    for(  ; i<=10; i++)            for( i<=10; i++) { }        // invalid
+    {
+    }
+
+Syntax:    
+    var values = ["A", "B", "C", "D"];
+
+    for(var i=0; i<values.length; i++)
+    {
+        console.log(values[i] + "<br>");
+    }
+   
+Task1: Write a function that takes any number input and print a multiplication table for that number.
+
+        function MultiplicationTable(n)
+        {
+            for(var i=1; i<=10; i++)
+            {
+                document.write(`${n} X ${i} = ${n*i}<br>`);
+            }            
+        }
+        MultiplicationTable(5);
+
+        // Output
+
+        5 X 1 = 5
+        5 X 2 = 10
+        ...
+        5 X 10 = 50
+
+Ex:
+<script>
+     function MultiplicationTable(n){
+          for(var i=1; i<=10; i++){
+               document.write(`${n} X ${i} = ${n*i}<br>`);
+          }
+     }
+     MultiplicationTable(parseInt(prompt("Enter Number")));
+</script>
+
+
+Task-2: Write a program to print all even numbers between 1 to 20.
+              even is calculated   n%2===0
+
+        function PrintEven()
+        {
+            for(var i=1; i<=20; i++){
+                  if(i%2===0) {
+                    document.write(i + "<br>");
+                }
+            }            
+        }
+        PrintEven();
+
+
+Task-3: Write a program to print the factorial of given number
+           
+        5!  => 5 x 4 x 3 x 2 x 1
+        var fact = 1;
+        function Factorial(n)
+        {
+            // logic
+        }
+
+        Factorial(5);
+
+        Output:
+            Factorial is 120    
+
+Ex:
+<script>
+     var fact = 1;
+     function Factorial(n)
+     {
+          for(var i=1; i<=n; i++){
+               fact*=i;
+          }
+          document.write(`Factorial of ${n} is ${fact}`);
+     }
+     Factorial(parseInt(prompt("Enter number")));
+</script>
+
+Ex:
+<script>
+     var str = "Welcome to JavaScript Language";
+     var count = 0;
+     for(var i=0; i<str.length; i++){
+          if(str[i]==="e"){
+               count++;
+          }
+     }
+     document.write(`Total number of occurrence for "e" char is ${count}`);
+</script>
+
+EX:
+ // Write a program to count the vowels in given string. a,e,i,o,u
+
+     var str = "Welcome to JavaScript Language";
+     // var vowels = ["a", "e", "i", "o", "u"];
+     var count = 0;
+     for(var i=0; i<str.length; i++){
+          if(str[i]==="a"||str[i]==="e"||str[i]==="i"||str[i]==="o"||str[i]==="u"){
+               count++;
+          }
+     }
+     document.write(`Total number of vowels in string are ${count}`);
+
+Ex:
+<script>
+     /*
+         *
+         *  *
+         *  *  *
+         *  *  *  *
+     */
+     function PrintPattern(n){
+          for(var i=1; i<=n; i++){
+               for(var j=1; j<=i; j++){
+                 document.write(`*&nbsp;&nbsp;`);    
+               }
+               document.write("<br>");
+          }
+     }
+     PrintPattern(parseInt(prompt("Enter Number")));
+</script>

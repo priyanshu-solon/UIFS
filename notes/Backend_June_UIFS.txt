@@ -888,3 +888,97 @@ Query: Get the total count of products in every category
 
 
                             MySQL
+
+13/06
+=====
+
+MySQL
+- It is a SQL based database management system.
+- It is maintained and evolved by Oracle.
+- It is schema based or structured Relational Database Management System.
+
+
+MySQL Terminology:
+
+1. Database            : It is a store that comprises of data.
+
+2. Table                 : It is an entity where data for every module is stored.
+
+3. Record            : It refers to a row where every individual data is kept.
+
+4. Field                : It refers to the columns header. Data is accessed with
+                      reference of field name in a table.
+
+5. View                : It refers to a virtual table that comprises of data from
+                      various queries.
+
+6. Stored Procedure    : It is used to refactor the code.
+                      Refactor is the process of encapsulating a set of statements
+                      into a reference, so that you can easily reuse the statements.
+
+7. Function            : It is used to build expression.
+                      It performs specified operation and evaluates a value.
+
+8. Trigger                : It is used to trigger a procedure or function.
+
+Note: Database can also have various tools like forms, reports, BI etc.
+     
+      Forms            : For configuring UI to interact with data
+      Reports            : For querying and printing the desired data
+      BI                : For business analysis
+
+MySQL Tools:
+
+1. MySQL Community Server
+    - It is to set up a server where you can store data.
+    - Database management happens in a community server.
+
+2. MySQL Workbench
+    - It is a client tool.
+    - It provides a GUI to interact with the community server.
+
+
+Setup & Install:
+
+1. Visit   https://dev.mysql.com/downloads/mysql/
+
+2. Download and Install 8x version [ LTS ]
+
+3. Download MSI Installer for your OS [windows 64]
+
+4. Start the installer and select "Custom" [ allows to select what you want to install ]
+
+5. Make sure that  "Run MySQL Configurator" is selected.
+
+    a) Perform an  in-place upgrade and configuration
+
+    b) In Account configuration : set password
+
+6. It installs MySQL Server and MySQL Workbench
+
+7. Start MySQL Server from services
+
+8. Open MySQL Workbench
+
+9. Click "New connection [+] "
+
+10. Specify a name for connection  "root" => Click OK
+
+11. Click on the connection  => verify password  
+ 
+
+                        SQL Commands
+
+- SQL is "Structured Query Language"
+- It is a language used by developers to communicate and interact with the database.
+- SQL commands are categorized into 3 types
+
+    a) DDL
+    b) DML
+    c) DCL
+
+- DDL is Data Definition Language used to create database, views, triggers, procedures etc.
+
+- DML is Data Manipulation Language used to filter, sort, update, delete etc.
+
+- DCL is Data Control Language used to authorize and authenticate.
