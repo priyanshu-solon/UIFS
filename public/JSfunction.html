@@ -1,0 +1,24 @@
+<script>
+    var password = prompt("Enter Password");
+    function Hello(){
+       document.write("Hello ! JavaScript<br>");
+    }
+
+   
+    let Welcome = function(){
+       document.write("");
+    }
+
+    if(password==="admin"){
+         Welcome = function(){
+            document.write("Login Success..");
+         }
+    } else {
+         Welcome = function(){
+            document.write("Invalid Password");
+         }
+    }
+
+    Hello();
+    Welcome();
+</script>
