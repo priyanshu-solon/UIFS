@@ -2453,3 +2453,676 @@ Ex:
      }
      PrintPattern(parseInt(prompt("Enter Number")));
 </script>
+
+14/06
+======
+
+Jump Statements in Loop:
+
+    a) break        It ends the current block but continue to execute the function.
+
+    b) return        It terminates the block and execution
+
+    c) continue    It skips the current counter and continue to next.
+
+Ex:
+<script>
+     for(var i=1; i<=10; i++){
+          if(i===5 || i===8) {
+               continue;
+          }
+          document.write(`${i}<br>`);
+
+     }
+</script>
+
+Ex:
+<script>
+     fetch(`https://fakestoreapi.com/products`)
+     .then(function(response){
+           return response.json();
+     })
+     .then(function(products){
+          for(var i=0; i<products.length; i++){
+               if(products[i].category==="electronics" || products[i].category==="jewelery"){
+                    continue;
+               }
+               document.write(`${products[i].title} - <b>${products[i].category}</b><br>`);
+          }
+     })
+</script>
+
+Ex:
+<script>
+     var values = [[10, 20, 30], [40, 50, 60]];
+
+     /*
+        Print the values in martix format using for
+
+        10      20      30              values[0][0]      values[0][1]   values[0][2]
+
+        40      50      50              values[1][0]      values[1][1]   values[1][2]
+
+     */
+
+      for(var i=0; i<values.length; i++){
+
+           for(var j=0; j<values[i].length; j++){
+                document.write(`${values[i][j]}&nbsp;&nbsp;`)
+           }
+           document.write("<br><br>");
+      }
+
+</script>
+
+Ex: using map
+
+<script>
+     var values = [[10, 20, 30], [40, 50, 60]];
+
+     /*
+        Print the values in martix format using map
+
+        10      20      30              values[0][0]      values[0][1]   values[0][2]
+
+        40      50      50              values[1][0]      values[1][1]   values[1][2]
+
+     */
+
+     values.map(function(value){
+         value.map(function(item){
+            document.write(`${item}&nbsp;&nbsp;&nbsp;`);
+         })
+         document.write("<br><br>");
+     })
+
+</script>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          var data = [
+               {Category:"Electronics", Products:["TV", "Mobile"]},
+               {Category:"Footwear", Products:["Casuals", "Boots", "Sneakers"]}
+          ];
+
+          function bodyload(){
+               data.map(function(item){
+                    var li = document.createElement("li");
+                    li.innerHTML = item.Category;
+                    item.Products.map(function(product){
+                         var ul = document.createElement("ul");
+                         ul.type = "square";
+                         var ul_li = document.createElement("li");
+                         ul_li.innerHTML = product;
+                         ul.appendChild(ul_li);
+                         li.appendChild(ul);
+                         document.querySelector("ol").appendChild(li);
+                    })
+               })
+          }
+     </script>
+</head>
+<body onload="bodyload()">
+     <ol>
+
+     </ol>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          var data = [
+               {Category:"Electronics", Products:["TV", "Mobile"]},
+               {Category:"Footwear", Products:["Casuals", "Boots", "Sneakers"]}
+          ];
+
+          function bodyload(){
+              for(var i=0; i<data.length; i++)
+              {
+                   var li = document.createElement("li");
+                   li.innerHTML = data[i].Category;
+                   for(var j=0; j<data[i].Products.length;j++){
+                        var ul = document.createElement("ul");
+                        ul.type = "square";
+                        var ul_li = document.createElement("li");
+                        ul_li.innerHTML = data[i].Products[j];
+                        ul.appendChild(ul_li);
+                        li.appendChild(ul);
+                        document.querySelector("ol").appendChild(li);
+                   }
+
+              }
+          }
+     </script>
+</head>
+<body onload="bodyload()">
+     <ol>
+
+     </ol>
+</body>
+</html>
+
+Task: Create a pin verification screen.
+
+        Pin : [ textbox ] [submit]      => actual pin = 3456
+
+        1st time =>  3223        => O/P  Invalid PIN 2 attempts left
+        2nd time => 4223        => O/P  Invalid PIN 1 attempt left
+        3rd  time => 5602        => O/P  Card Blocked
+
+        from 1st to 3rd any time Pin=3456  => Verified successfully..
+
+The While Loop:
+- It you are not sure about number of iterations and the counter may change dynamically the you can use the while.
+- It executes statements only when the given condition evaluates to true.
+
+Syntax:
+    while(condition)
+    {
+       statements;
+       counter;
+    }
+Ex:
+    var i = 1;
+    while(i<=10)
+    {
+       console.log(i);
+       i++;
+    }
+
+The "do" statement:
+- It is similar to while but ensures that statements will execute at least once
+  even when the condition evaluates to false.
+
+Syntax:
+    do {
+        statements;
+    } while (condition);
+
+Ex:
+    var i = 1;
+    do {
+           console.log(i);
+        i++;
+     } while(i<=10);
+
+16/06
+=====
+
+Exception Handling Statements
+
+- Computer program encounters 2 types of errors
+
+    1. Compile Time Errors
+    2. Runtime Errors
+
+- Compile time errors are syntactical or block level errors, due to which a program fails to run.
+- Runtime errors occur while using the application, It is the disability of compiler to understand instructions of client at run time of application.
+- If compiler is unable understand the instructions then it leads to abnormal termination of application.
+- Exception handling is required to avoid abnormal termination.
+- Exception handling statements are
+        a) try
+        b) catch
+        c) throw
+        d) finally
+- "try" is monitoring block that contains statements to execute.
+- "catch" will catch the exception and report the error.
+- "throw" is used to throw any exception explicitly.
+- "finally" contains statements to execute always. [on success or on failure]
+
+Syntax:
+    try {
+        // statements to execute    - you can "throw" exception
+    }
+    catch(error)
+    {
+         // report error
+    }
+    finally
+    {
+        // action to perform always
+    }
+
+Ex:
+<script>
+    try {
+      var a = parseInt(prompt("Enter number-1"));
+      var b = parseInt(prompt("Enter number-2"));
+      if(b===0) {
+         throw "Can't Divide By Zero";
+      }
+      if(b>a) {
+         throw "Can't divide with a larger number";
+      }
+      var c = a/b;
+      document.write(`Division=${c}<br>`);
+    }
+    catch(error){
+      document.write(error);
+    }
+    finally {
+      console.log('Program End');
+    }
+</script>
+
+Summary:
+1. Selection
+2. Iteration
+3. Jump
+4. Looping
+5. Exception Handling
+
+   
+                        JavaScript Functions
+
+- Function is used to refactor the code.
+- "Refactor" is the process of extracting a set of statements into a function or file.
+- It allows to cleanly separate, reuse and extend code.
+
+Function Configuration:
+- A function can be configured in 2 ways
+
+    a) Declaration
+    b) Expression
+
+Syntax: Declaration
+
+    function Name()
+    {
+      statements;
+    }
+
+Syntax: Expression
+
+    let  Name = function() {
+       statements;
+    }
+
+Ex:
+<script>
+    var password = prompt("Enter Password");
+    function Hello(){
+       document.write("Hello ! JavaScript<br>");
+    }
+
+   
+    let Welcome = function(){
+       document.write("");
+    }
+
+    if(password==="admin"){
+         Welcome = function(){
+            document.write("Login Success..");
+         }
+    } else {
+         Welcome = function(){
+            document.write("Invalid Password");
+         }
+    }
+
+    Hello();
+    Welcome();
+</script>
+
+FAQ: What is difference between function expression and declaration?
+Ans:   Declaration allocates memory for function where it configures same functionality
+      every time.
+
+      Expression allocates memory where you can change the functionality
+      according to state and situation. You can assign a new functionality.
+
+Function Syntax:
+- A function declaration comprises of
+
+    a) Declaration
+    b) Signature
+    c) Definition
+
+   
+    function  PrintNumbers(n)
+    {
+
+    }
+
+    function PrintNumbers(n)            => Declaration
+    PrintNumbers(n)                    => Signature
+    { }                                => Definition
+
+    Signature is used to access a function.
+    Definition specifies the action performed.
+
+Function Parameters:
+- Function can be parameter less or parameterized.
+- A parameterized function can change the functionality.
+- Parameters allows to modify the function.
+
+Syntax:
+    function  Name(formal_param)
+    {
+    }
+
+    Name(actual_value);
+
+- The parameters defined in declaration are known as formal parameters.
+- The parameters defined while calling function are known as actual parameters.
+
+     formal_param = actual_value;
+
+- Formal Parameter is a memory where you can store any type value
+    a) Primitive
+    b) Non Primitive
+    c) Function
+
+Ex:
+<script>
+     function PrintNumbers(HowMany){
+         for(var i=1; i<=HowMany; i++){
+             document.write(`${i}<br>`);
+         }
+     }
+     PrintNumbers(5);
+     PrintNumbers(10);
+</script>
+
+FAQ: What are higher order functions?
+Ans:  A function that takes another function as parameter is known as Higher order function.
+
+Syntax:
+      function Name(ref)
+      {
+           ref();
+      }
+
+      Name(function() { });
+
+     Higher order functions are mostly used in callback mechanism.
+
+Ex:
+<script>
+     function Validate(success){
+        success();
+     }
+     Validate(function(){document.write("Validation Success..")});
+</script>
+
+17/06
+=====
+
+Function Configuration
+    a) Declaration
+    b) Expression
+Function Signature
+Function Definition
+Function Parameters
+Formal Parameters
+Actual Parameters
+Higher order function
+
+Multiple Parameters:
+
+- A function can have multiple parameters.
+- Every parameter is a required parameter.
+- All parameters have order dependency.
+  [ you have to use in the same order how they are defined ]
+
+Ex:
+<script>
+     function Details(id, name, price, stock){
+         if(price){
+            document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+         } else {
+            document.write(`Id=${id}<br>Name=${name}<br>Stock=${stock}`);
+         }
+         
+     }
+     Details(1, "TV", undefined,true);
+</script>
+
+Default Parameters:
+
+- Every formal parameter can be defined with a default value.
+- It value is not defined while calling the function then it uses the default value instead of using "undefined".
+
+Syntax:
+    function Name(param1, param2=value, param3=value)
+    {
+
+    }
+
+- If value is set to zero then it identifies as undefined.
+- If you defined as undefined then it takes the default value.
+
+Ex:
+<script>
+     function Details(id, name, price=100, stock){
+         if(price){
+            document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+         } else {
+            document.write(`Id=${id}<br>Name=${name}<br>Stock=${stock}`);
+         }
+         
+     }
+     Details(1, "TV",undefined,true);
+</script>
+
+Ex:
+<script>
+     function Details(id=1, name='', price=100, stock=false){
+         if(price){
+            document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+         } else {
+            document.write(`Id=${id}<br>Name=${name}<br>Stock=${stock}`);
+         }
+         
+     }
+     Details();
+</script>
+
+Rest Parameter:
+
+- A function can have max 1024 parameters according to programming standards.
+- Having too many parameters will lead to security issues.
+- JavaScript ES5+ version introduced "Rest" parameter defined using "...param".
+- A single rest parameter can handle multiple values.
+- Rest parameter is array type.
+
+Syntax:
+        function Name(...param)
+        {
+        }
+
+        param[ ]
+
+        Name(1, "TV", 34000);
+
+        param[0] = 1,
+        param[1] = "TV"
+        param[2] = 34000
+
+Ex:
+<script>
+     function Details(...product){
+      var [id, name, price, stock] = product;
+      document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+     }
+     Details(1, "TV", 45000, true);
+</script>
+
+- Every function can have only one "rest" parameter.
+- You can define other parameters with rest parameter.
+- But rest parameter must be the last parameter in formal list.
+
+Syntax:
+    function Name(param1, ...args)
+    {
+
+    }
+    Name(value1, value2, value3, value4);
+
+    param1=value1
+    args[ ]   = [value2, value3, value4]
+
+Ex:
+<script>
+     function Details(title, ...product){
+      var [id, name, price, stock] = product;
+      document.write(`<h2>${title}</h2>Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+     }
+     Details("Product Details", 1, "TV", 45000, true);
+</script>
+
+Spread Approach:
+- JavaScript allows to spread values of one argument into multiple parameters.
+- The argument type must be array.
+- It can spread by using "..." operator.
+
+Syntax:
+    function Name(param1, param2, param3)
+    {
+    }
+
+    Name( ...[value1, value2, value3] )
+
+    param1=value1,
+    param2=value2
+    param3=value3
+
+Ex:
+<script>
+     function Details(id, name, price, stock){
+     
+      document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+     }
+     var product = [1, "TV", 45000, true];
+
+     Details(...product);
+</script>
+
+FAQ: What is difference between rest & spread?
+Ans:  Rest is about single parameter that allows multiple arguments.
+     Spread is about single argument of array type spreads into multiple parameters.
+
+     Rest is about formal parameter.
+     Spread is about actual parameter.
+
+Anonymous Function:
+
+- A function without name is known as anonymous function.
+- It is mostly used in callback mechanism.
+- Callback allows to execute a function according to state and situation.
+- You have enclose the anonymous function using "()".
+- It is accessed and invoked by using IIFE pattern.
+  [Immediately Invoked Function Expression]
+
+Syntax:
+    (
+      function(){ }
+    )();
+
+Ex:
+<script>
+    (function()
+    {
+       document.write("Anonymous Function");
+    })();
+</script>
+
+Function with Return:
+- Every function by default is "void" type.
+- It removes the memory allocated for function after the end of function.
+- "return" is a jump statement that keep the memory alive even after the end of function.
+- The memory allocated for function can handle the functionality and the values returned by actions in function.
+
+Syntax:
+      function Name()
+      {
+          return  value;
+      }
+
+- A function can return any type of data
+    a) Primitive
+    b) Non Primitive
+    c) Function
+
+Ex:
+<script>
+    function Addition(a, b)
+    {
+      return a + b;
+    }
+    function PrintResult()
+    {
+      document.write(`Addition=${Addition(40,20)}`);
+    }
+    PrintResult();
+</script>
+
+Ex:
+<script>
+    function GetList(){
+        return ["Electronics", "Fashion", "Footwear"];
+    }
+    GetList().map(function(item){
+       document.write(`${item}<br>`);
+    })
+</script>
+
+- If a function returns another function, then it is referred as function currying.
+
+Syntax:
+    function Name()
+    {
+      return function(){ }
+    }
+
+    Name()();
+
+Ex:
+<script>
+    function Demo(){
+       return function(uname){
+           document.write(`Hello ! ${uname}`);
+       }
+    }
+    Demo()('John');
+</script>
+
+Ex:
+<script>
+    function Demo(){
+       return function(a, b){
+           return a + b;
+       }
+    }
+    document.write(`Addition=${Demo()(40,50)}`);
+</script>
+
+- A function can be configured with multiple return statements, which execute according to the state and situation.
+
+- It can be referred as conditional rendering.
+
+Ex:
+<script>
+    function Validate(isValid)
+    {
+         if(isValid===true){
+             return  "Your form is valid and submitted to server";
+         } else {
+             return  "Invalid Form Data - Please verify your details";
+         }
+    }
+    document.write(Validate(false));
+</script>

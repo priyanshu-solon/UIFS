@@ -982,3 +982,372 @@ Setup & Install:
 - DML is Data Manipulation Language used to filter, sort, update, delete etc.
 
 - DCL is Data Control Language used to authorize and authenticate.
+
+14/06
+=====
+
+SQL DDL [ Data Definition Language ]
+
+1. Creating a new database
+ - Database is a schema that can handle structured data.
+ - You can create database using 2 keywords
+        a) database
+        b) schema
+ - The command "create" is a DDL command used to create database, view, table,
+    procedure etc.
+ - You can create database using GUI button or using Query.
+ 
+        create database  database_name;
+        create schema    database_name;
+
+- After writing query, you have to select & execute query.
+- Every database comprises of default objects
+        a) tables
+        b) views
+        c) stored procedures
+        d) functions
+
+2. Using Database
+- Database is not active by default.
+- Server comprises of several databases.
+- You have to set database as default in order to use the database.
+
+Syntax:
+        use database_name;
+
+
+3. Creating a database table
+- Table in MySQL comprises of structured data.
+- It have a schema based data arranged into rows and columns.
+
+Syntax:
+    create  table   table_name
+    (
+        fieldname  datatype  constraint;
+       )
+
+- Filed name refers to column header, It is a key to handle value in table.
+- Data Type defines the data structure, which includes the type and range of data.
+- The commonly used MySQL data types are show below
+
+1. Number Types
+
+
+
+2. Date Types
+
+3. String Types
+
+
+MySQL Constraints:
+1. Primary Key
+    - It is used to configure a unique field.
+    - Every record requires an unique identification.
+    - Primary key allows to set restriction for field so that the value must be unique.
+      It can't be used by any another record in current table.
+    - It is set to "not null", hence every primary key field must be defined with value.
+    - A record can have only one field set with primary key.
+
+2. Unique Key
+    - It is used to set a unique identification for field
+    - Table can't have multiple primary keys but it can have multiple unique keys.
+    - Value of specified field must be unique.
+
+3. Default
+    - If value is not defined into any field of table then it takes "null" as value.
+    - You can set a default value, which is stored into specific field when value
+       is not defined.
+
+4. Not Null
+    - It is used for mandatory fields.
+    - It set them as required fields.
+    - A required field can't be null.
+    - It must have a value.
+
+5. Check
+    - It checks for a condition to store the specified value.
+    - It is just like a validator.
+    - It checks the value before it is stored into field.
+    - It restricts the value if it is not according to specified condition.
+
+6. Foreign Key
+    - It is used to configure a relationship between tables.
+    - The primary key of a table can be used as foreign key in another table.
+    - It configures relationships, which include
+        a) One to One
+        b) One to Many
+        c) Many to Many
+
+7. Auto Increment
+    - It increments and assigns a value into new record.
+    - It doesn't require to define a value, It increments from previous and sets into
+      new field.
+
+Syntax: Primary Key
+
+       create table  tblproducts
+       (
+           ProductId   INT    PRIMARY KEY,
+           Name       VARCHAR(20),
+           Price          DECIMAL(6,2)
+       )
+
+Note: To view the table structure you can run the query
+
+       > describe table_name;
+
+
+Syntax: Unique Key
+
+    create table tblproducts
+    (
+       ProductId  int primary key,
+       Name varchar(20) unique key
+    )
+
+Syntax: Not Null
+
+       create table tblproducts
+    (
+       ProductId  int primary key,
+       Name varchar(20) UNIQUE KEY NOT NULL
+
+16/06
+=====
+
+SQL DDL
+- Create Database
+- use
+- Create Table
+- MySQL Data Types
+- Constraints
+
+1. Primary Key
+2. Unique
+3. Not Null
+
+4. Default Constraint
+- It is used to set a default value into any field if it is left empty.
+- SQL will verify field value null, and sets default value.
+- Default value type can be any one of MySQL types.
+- It is always overridden with the custom value defined.
+
+Syntax:
+create table tblproducts
+(
+   ProductId  int primary key,
+   Name varchar(20) unique not null,
+   Qty int default 1
+)
+
+5. Check Constraint
+- It is used to set validation criteria for a value in any specific field.
+- It uses various conditions to verify the input value.
+- Conditions are configured using Boolean operators
+
+        >    greater than
+        >=    greater than or equal
+        <    less than
+        <=    less than or equal
+        < >    not equal
+        =    equal
+        AND  Logical AND   &&
+        OR      Logical OR      ||
+        NOT      Logical  NOT   !
+
+Syntax:
+create table tblproducts
+(
+   ProductId  int primary key,
+   Name varchar(20) unique not null,
+   Qty int default 1  check( Qty < 5)
+)
+       
+6. Auto Increment
+- It allows to increment the current value by 1 and add to the new record.
+- Initially it starts with 1.
+- It increments the previous value by 1 and adds to new record.
+- It can be only for numeric type data.
+- It uses "Enum" technique. [Enumeration]
+
+Syntax:
+create table tblproducts
+(
+   ProductId  int primary key auto_increment,
+   Name varchar(20) unique not null,
+   Qty int default 1  check(Qty<5)
+)
+
+7. Foreign Key Constraint
+- It creates a constraint that configures relationship between tables.
+- Relational database can be configured with various types of relationships like
+
+    a) One to One
+    b) One to Many
+    c) Many to Many
+
+- Relations are configured by using Foreign key constraint.
+- Foreign key is a reference of field which is the primary key of another table.
+
+Syntax:
+    CONSTRAINT   constraint_name    Foreign Key (foreign_key_field)
+
+     REFERENCES   reference_tableName(reference_field_name)
+
+     ON UPDATE     reference_type
+   
+     ON DELETE        reference type;
+
+- Constraint name is required to modify or delete the foreign key.
+- Foreign key field is current table field name, which you want as foreign key.
+- Reference table is the parent from where the foreign key is derived.
+- "on update" & "on delete" are reference operations, which defines actions to
+    perform when the parent field is deleted or modified.
+- You can have 3 reference type on update & delete
+   
+        a) STRICT [RESTRICT]
+        b) CASCADE
+        c) SET NULL
+
+Ex:
+1. Create Parent Table
+
+create table tblcategories
+(
+   CategoryId int primary Key auto_increment,
+   CategoryName varchar(30)
+)
+
+2. Create Products table
+
+create table tblproducts
+(
+   ProductId int primary key auto_increment,
+   Name varchar(30),
+   CategoryId int,
+   constraint fk_category foreign key(CategoryId) references tblcategories(CategoryId)
+)
+
+Note: Default reference type is Strict [Restrict].
+
+17/06
+=====
+
+Foreign Key Constrains
+Constraint References
+    a) RESTRICT [strict]
+    b) CASCADE
+    c) SET NULL
+
+2. Cascade
+ - It is a reference type defined  on update & on delete.
+ - It removes all relative records form child table, when parent foreign key field is removed.
+- It updates all relative records in child table when parent field is updated.
+
+Syntax:
+create table tblproducts
+(
+   ProductId int primary key auto_increment,
+   Name varchar(30),
+   CategoryId int,
+   constraint fk_category foreign key(CategoryId) references tblcategories(CategoryId)
+   on delete cascade on update cascade
+)
+
+Note: You can define multiple reference types.
+
+        "on delete  RESTRICT   on update CASCADE"
+
+3. SET NULL
+- It is a reference type that sets null value into child table field.
+- If parent foreign key field is modified or deleted then child table data is set to null in all reference fields.
+
+Syntax:
+create table tblproducts
+(
+   ProductId int primary key auto_increment,
+   Name varchar(30),
+   CategoryId int,
+   constraint fk_category foreign key(CategoryId) references tblcategories(CategoryId)
+   on delete set null on update set null
+)
+
+FAQ: Can we configure multiple foreign key fields in table?
+Ans:  Yes. A record in child table can map to different tables.
+      It provides multiple filter conditions for a record.
+
+Syntax:
+create table tblproducts
+(
+   ProductId int primary key auto_increment,
+   Name varchar(30),
+   CategoryId int,
+   VendorId int,
+
+   constraint fk_category foreign key(CategoryId) references tblcategories(CategoryId)
+   on delete set null on update set null,
+ 
+  constraint fk_vendor foreign key(VendorId) references tblvendors(VendorId)
+   on delete cascade on update cascade
+)
+
+create table  tblVendors(
+    VendorId  int  primary key  auto_increment,
+     VendorName varchar(20)
+)
+
+Summary:
+- Creating table
+- MySQL Data Types
+- Constraints
+    - Primary Key
+    - Foreign Key
+    - Unique
+    - Not Null
+    - Default
+    - Check
+    - Auto_Increment
+
+                      Inserting Values into Table
+
+- SQL provides DML [ Data Manipulation Language ] to manipulate data.
+- It includes inserting data into table.
+- The SQL command "INSERT" is used to insert data "INTO" specific table.
+
+Syntax:
+    INSERT  INTO  table_name  (field1, field2,..)  VALUES (value1, value2)
+
+- Field name refers to exactly the name defined for field in table.
+- Value must match all the constraints defined in table design.
+- Value must also match the exact data type.
+
+        a) Number type is directly defined as numeric [ 20 ]
+        b) String type is enclosed in single quote [ 'string' ]
+        c) Date type is defined as string in 'yy-mm-dd' format.
+
+- You can insert multiple records into table, by separating with "," delimiter.
+
+Ex:
+insert into tblcategories (CategoryId, CategoryName) values (3, 'Mobiles'), (4, 'watches');
+
+                    Querying Data from tables
+
+- The SQL "select" command allows to select and query the data from table.
+- It requires the field name or wild card to query.
+
+Syntax:
+        SELECT   FieldName1, FieldName2 from table_name;
+
+        SELECT  *  from table_name;
+
+- Using "*" in production level queries is not recommended.
+
+Ex:
+    select CategoryId, CategoryName from tblcategories;
+
+- You can define alias names for fields while querying.
+- It requires to use "AS" for aliasing.
+- Aliasing allows you to define a friendly name to field.
+
+Syntax:
+SELECT CategoryId AS 'Product Category Id', CategoryName AS 'Product Category Name' FROM tblcategories
