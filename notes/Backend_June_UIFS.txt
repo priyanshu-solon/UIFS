@@ -1351,3 +1351,135 @@ Ex:
 
 Syntax:
 SELECT CategoryId AS 'Product Category Id', CategoryName AS 'Product Category Name' FROM tblcategories
+
+18/06
+=====
+
+Create Database, Tables
+Inserting Records
+Querying Records
+    - SELECT
+    - Wild Card "*"  [ searching for all fields ]
+    - Aliasing [ AS ]
+
+Expression in Query:
+- SELECT command can use various operators and built-in functions to configure an expression in query.
+- Expression requires fields that are configured in table.
+
+Syntax:
+  SELECT  FieldName FROM table;            // without expression
+
+  SELECT  FieldName  (expression) AS  alias_name  from table;
+
+Ex:
+ select Name, Price, Qty as 'Quantity', (Qty * Price) as Total from tblproducts;
+
+- A select query can be configured with
+    a) wild card
+    b) field name
+    c) alias name
+    d) expression
+        - operator
+        - function
+
+Syntax:
+    select * from table;            
+    select field from table;
+    select  field as alias from table;
+    select  field, (expression) as alias from table;
+
+Filtering Data in table:
+- Select query requires "WHERE" command to filter the data.
+- WHERE command uses an expression to filter data.
+- Expression can be configured by using operators or built-in functions.
+
+Syntax:
+    SELECT  * FROM  table  WHERE  (expression);
+
+- Comparison and Logical operators used in expression
+
+        >        Greater than
+        >=        Greater than or equal
+        <        Less than
+        <=        Less than or equal
+        < >        Not Equal
+        =        Equal
+        OR        Logical OR    ||
+        AND        Logical AND    &&
+        NOT        Logical NOT   !
+
+Query: Exactly matching data
+
+     > select * from tblproducts  where  ProductId=2
+    >  select * from tblproducts   where Rating=5
+
+Note: Select commands returns one or multiple matching records.
+      You can limit the results using "LIMIT" operator.
+
+Syntax:
+     select * from tblproducts where  price>=5000  limit  2;     returns top 2
+     select * from tblproducts where  price>=5000  limit  2,4;     returns 3rd occurrence
+         select * from tblproducts where  price>=5000  limit  2,10;     returns 3rd to 9th
+
+Query: Set all electronic category products whose rating is above 4.
+
+     select * from tblproducts where Category='electronics' AND Rating>4
+
+Query: Select all electronic and jewelery products with price between 4000 to 10000.
+
+    select * from tblproducts where (Category='electronics'  OR Category='Jewelery') AND (Price>=4000 AND Price<=10000);
+
+- To find and returns values in any specified range your can use "BETWEEN" operator.
+
+Syntax:
+
+SELECT  * FROM table  WHERE  Field  BETWEEN  lower_bound AND upper_bound;
+
+        lower_bound    : Minimum value
+        upper_bound    : Maximum value
+Ex:
+   select * from tblproducts where  Price  between  4000 and 1000;
+
+   Note: It includes the lower and upper bound value.
+
+Query:  Select all products with rating between 4 & 5. [including 4 & 5 ]
+
+    > select * from tblproducts where  Rating BETWEEN 4 AND 5;
+
+- You can use "IN" operator to return exactly the matching values from the set the set of defined values.
+
+Syntax:
+     > SELECT  * FROM  table  WHERE  field  IN (value1, value2,..);
+
+Query: Select electronics and jewelery products only.
+
+    > SELECT * FROM  tblProducts  WHERE  Category IN ('Electronics', 'Jewelery');
+
+Query: Select products with rating 3 & 5.
+
+    > SELECT * FROM  tblProducts WHERE  Rating IN (3, 5);
+
+Query: Select electronics and jewelery products with price between 4000 & 10000.
+        use IN & between operator.
+
+    > select * from tblproducts  where Category IN ('Electronics', 'Jewelery') AND (Price BETWEEN 4000 AND 10000)
+
+
+- You can query data using string values that requires various wild cards.
+- SQL provides "LIKE" operator to search in a string using wild card like
+        a) %
+        b) _
+
+- "%" refers to zero or more occurrences of a char.
+- "_"  refers to one occurrence of char.
+
+Syntax:
+select * from tblproducts  where Name LIKE  "%Silver%";      contains word Silver
+select * from tblproducts  where Name LIKE  "Silver%";        starting with word Silver
+select * from tblproducts  where Name LIKE  "%Silver";        ending with word Silver
+   
+ cat
+ bat        =>  LIKE   "_at"        
+ rat
+
+Sorting & Aggregation
