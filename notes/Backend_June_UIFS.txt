@@ -1483,3 +1483,178 @@ select * from tblproducts  where Name LIKE  "%Silver";        ending with word S
  rat
 
 Sorting & Aggregation
+
+19/06
+=====
+
+­MySQL Number Functions Exercises with Solutions
+
+
+
+Sample Data Table: products
+
+
+
+
+CREATE TABLE products (
+
+    id INT,
+
+    name VARCHAR(50),
+
+    price DECIMAL(10, 2),
+
+    quantity INT
+
+);
+
+
+
+INSERT INTO products VALUES
+
+(1, 'Laptop', 59999.99, 10),
+
+(2, 'Mouse', 499.50, 100),
+
+(3, 'Keyboard', 1049.75, 50),
+
+(4, 'Monitor', 12000.40, 20),
+
+(5, 'Webcam', 2999.99, 15);
+
+
+
+
+
+
+1. Retrieve product names and absolute difference between price and 5000
+
+
+SELECT name, ABS(price - 5000) AS price_difference FROM products;
+
+
+2. Show product names with prices rounded to the nearest whole number
+
+
+SELECT name, ROUND(price) AS rounded_price FROM products;
+
+
+3. Show prices rounded to 1 decimal place
+
+
+SELECT name, ROUND(price, 1) AS rounded_price FROM products;
+
+
+4. Display product names with ceiling value of price
+
+
+SELECT name, CEIL(price) AS ceiling_price FROM products;
+
+
+5. Display product names with floor value of price
+
+
+SELECT name, FLOOR(price) AS floor_price FROM products;
+
+
+6. Truncate price values to 2 decimal places
+
+
+SELECT name, TRUNCATE(price, 2) AS truncated_price FROM
+products;
+
+
+7. Find remainder when quantity is divided by 7
+
+
+SELECT name, MOD(quantity, 7) AS remainder FROM products;
+
+
+8. Display square of each product’s quantity
+
+
+SELECT name, POWER(quantity, 2) AS quantity_square FROM
+products;
+
+
+9. Find square root of price for each product
+
+
+SELECT name, SQRT(price) AS price_sqrt FROM products;
+
+
+10. Show product names and if price is above 10000 using SIGN()
+
+
+SELECT name, SIGN(price - 10000) AS price_sign FROM
+products;
+
+
+11. Display least of price and quantity for each product
+
+
+SELECT name, LEAST(price, quantity) AS least_value FROM
+products;
+
+
+12. Display greatest of price and quantity for each product
+
+
+SELECT name, GREATEST(price, quantity) AS greatest_value
+FROM products;
+
+
+13. Show total stock value of each product (price × quantity), rounded to 2
+decimal places
+
+
+SELECT name, ROUND(price * quantity, 2) AS total_value FROM
+products;
+
+
+14. Find which products have a price % 5 = 0
+
+
+SELECT name FROM products WHERE MOD(price, 5) = 0;
+
+
+15. Calculate POWER(price, 1/2) and compare it with SQRT(price)
+
+
+SELECT name, POWER(price, 0.5) AS price_pow_sqrt,
+SQRT(price) AS price_sqrt FROM products;
+
+
+16. Which products have a floor value of price above 10000
+
+
+SELECT name FROM products WHERE FLOOR(price) > 10000;
+
+
+17. List products whose ABS(price - quantity) is less than 1000
+
+
+SELECT name FROM products WHERE ABS(price - quantity) <
+1000;
+
+
+18. Divide quantity by 3, rounded to 1 decimal place
+
+
+SELECT name, ROUND(quantity / 3, 1) AS divided_quantity FROM
+products;
+
+
+19. Show all products with random value assigned using RAND()
+
+
+SELECT name, RAND() AS random_value FROM products;
+
+
+20. Add a new column 'adjusted_price' = CEIL(price * 1.05)
+
+
+ALTER TABLE products ADD COLUMN adjusted_price DECIMAL(10,
+2);
+
+UPDATE products SET adjusted_price = CEIL(price * 1.05);

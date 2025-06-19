@@ -3126,3 +3126,406 @@ Ex:
     }
     document.write(Validate(false));
 </script>
+
+18/06
+=====
+
+Parameters
+Rest
+Spread
+Higher Order Function
+Function Currying
+Function Return
+Anonymous Function
+
+Function Callback & Promise
+- Callback is a technique where a set of functions are defined to execute.  
+- However functions execute according to state and situation.
+- It uses "Synchronous" technique, where all other functions are blocked while executing specified function.
+
+Syntax:    
+    function Name(callback)
+    {
+    }
+    Name(function(){ })
+
+Ex: Callback
+<script>
+    function FetchData(url, success, failure){
+          if(url==="fakestore"){
+               success('Data Fetched Successfully..');
+               function GetData(){
+                  console.log([{Name:'TV', Price:24000}, {Name:'Mobile', Price:5000}])
+               }
+               GetData();
+               console.log('Response presented successfully..');
+          } else {
+               failure('Invalid URL - Unable to fetch data');
+          }
+    }
+    FetchData(
+        prompt("Enter URL"),
+        function(response) {
+            console.log(`${response}`);
+        },
+        function(error) {
+            console.log(`${error}`);
+        }
+    )
+</script>
+
+- Promise is an alternative for callback.
+- Promise is asynchronous, it used unblocking technique.
+- It can perform the given task without blocking other tasks in process.
+- It is just like are real life promise that have
+    a) resolve
+    b) reject
+- Resolve executes on success
+- Reject executes on failure
+
+Syntax:
+    var  ref = new Promise(function(resolve, reject){
+       
+            resolve(value);
+            reject(error);
+    })
+
+- Every promise comprises of 3 methods
+    a) then()
+    b) catch()
+    c) finally()
+
+- "then()" executes on resolve and collects the response.
+- You can configure multiple then blocks on success.
+- "catch()" executes on reject.
+- "finally()" executes always.
+
+Syntax:
+    ref.then(function(response){}).catch(function(error){}).finally(function(){});
+
+Ex:
+<script>
+    var FetchData = new Promise(function(resolve, reject){
+       
+         var url = prompt("Enter URL");
+
+         if(url==="fakestore"){
+             resolve([{Name:'TV', Price:5000}, {Name:'Mobile', Price:5500}]);
+         } else {
+             reject('Invalid URL - Unable to Fetch Data');
+         }
+    })
+    FetchData.then(function(response){
+         console.log(response);
+    })
+    .then(function(){
+        console.log('Response Presented Successfully..');
+    })
+    .catch(function(error){
+         console.log(error);
+    })
+    .finally(function(){
+        console.log('End of Program');
+    })
+</script>
+
+Async Functions:
+- You can configure a function explicitly as asynchronous that awaits to perform the given task.
+- It can execute without blocking other requests in process.
+- JavaScript implicitly identifies Async functions as promises.
+
+Syntax:
+      function Name()
+      {
+         return  [ ]
+      }
+      Name();            // returns array
+
+     async function Name()
+     {
+         return await [ ];
+     }
+     Name();            // returns promise
+     Name().then().catch().finally()
+
+Ex:
+<script>
+    async function GetData(){
+        return await ["A", "B", "C", "D", "E"]
+    }
+
+    GetData().then(function(data){
+        data.map(function(item){
+             document.write(`${item}<br>`);
+        })
+    })
+</script>
+
+Note: You can configure async functions explicitly in a promise.  It allows to present
+      the response data without blocking.
+
+Syntax:
+      data.map(async function(item){
+        await document.write(item);
+     })
+
+Ex:
+<script>
+     fetch(`https://fakestoreapi.com/products/categories`)
+     .then(async function(response){
+         return await response.json();
+     })
+     .then(function(categories){
+          categories.map(async function(category){
+              await document.write(`<li>${category}</li>`);
+          })
+     })
+     
+</script>
+
+Function Generator:
+- Generator is function used to create iterators.
+- Iterator is a software design pattern used to read elements from a collection in sequential order.
+
+Syntax:
+    function* Name()
+    {
+       yield  value,
+       yield  value
+    }
+
+- Generator "*" refers to zero or more occurrences.
+- It executes zero or more times.
+- It provides an object that returns
+    a) next()        read and continue
+    b) return        to stop
+
+- next() returns
+    a) value          value it contains
+    b) done        true if it is end of list.
+
+Syntax:
+     var obj = GeneratorName();
+     obj.next().value
+     obj.next().done
+
+Ex:
+<script>
+    function* GetList(){
+        yield  10,
+        yield  ["A", "B"],
+        yield  true,
+        yield  {rating:4.5}
+    }
+    var obj = GetList();
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+</script>
+
+19/06
+=====
+
+Function Callback
+Function Promise
+Async Function
+Function Generator
+
+Function Recursion:
+- Recursion is a technique of calling a function within the context of same function.
+- It creates a indefinite loop which executes statements repeatedly based on give condition.
+
+Syntax:
+    function f1()
+    {
+      f1();
+    }
+
+Ex:
+<script>
+    function Factorial(n){
+        if(n===1){
+            return 1;
+        } else {
+            return n * Factorial(n-1);
+        }
+    }
+
+    document.write(`Factorial of 6 is ${Factorial(6)}`);
+</script>
+
+Task:
+  - Write a function with recursion to print number from 1 to 10.
+  - Write a function with recursion to print all even numbers between 1 to 20.
+  - Write a function with recursion to print multiplication table for given number.
+
+Arrow Functions:
+
+- Arrow is a short hand technique of writing function expression.
+- It can minify the code and improve the performance.
+
+    ()          function
+
+    =>          return
+
+    =>{ }          definition
+
+Syntax:
+     const  hello = function() {
+        document.write("Hello !");
+     }
+
+     const hello = () =>  document.write("Hello !");
+
+     
+     const add = function(a,b) {
+        return a + b;
+      }
+
+      const add = (a,b) => a + b;
+      add(10, 20);
+
+      const hello = function(uname) {
+
+        document.write(`Hello ! ${uname}`);
+
+       }
+
+      const hello = uname => document.write(`Hello ! ${uname}`);
+
+Ex:
+<script>
+    fetch(`https://fakestoreapi.com/products/categories`)
+    .then(response => response.json())
+    .then(categories => {
+        categories.map(category=>{
+             document.write(`<li>${category}</li>`);
+        })
+    })
+</script>
+
+Ex:
+<script>
+    var data = [{Name:'TV', Price:45000}, {Name:'Mobile', Price:34000}, {Name:'Watch', Price: 50000}];
+
+   /*
+    var products = data.filter(function(item){
+         return item.Price >= 40000;
+    })
+
+    products.map(function(product){
+         document.write(`${product.Name} - ${product.Price}<br>`);
+    })
+    */
+
+     var products = data.filter(item=> item.Price>=40000);
+     products.map(product=> document.write(`${product.Name}-${product.Price}<br>`));
+     
+</script>
+
+Summary:
+- Function Declaration
+- Function Expression
+- Function Signature
+- Function Definition
+- Function Parameters
+- REST & Spread
+- Function Return
+- Function Callback
+- Function Promise
+- Async Function
+- Anonymous Function
+- Higher Order Function
+- Function Currying
+- Arrow Function
+- Function Generator
+- Function Closure
+
+FAQ: What is a closure?
+Ans:  It is a mechanism where the members of outer function are accessible to inner, but inner members are not accessible to outer.
+
+Ex:
+<script>
+    function Outer(){
+         var x = 10;
+         function Inner(){
+            var y = 20;
+            return x + y;
+         }
+         document.write(`Addition=${Inner()}`);
+    }
+    Outer();
+</script>
+
+FAQ: What is function Chaining?
+Ans:  It is a mechanism of accessing a function with reference of another function.
+
+        string.bold().italic().fontsize(4).fontcolor('red');
+
+        array.sort().reverse()
+
+Task:
+       function A(){ }
+
+        A().B().C();
+        A().C().B()
+
+Ex:
+<script>
+    function A(){
+        return {
+            B(){
+              document.write(`B<br>`);
+              return this;
+            },
+            C(){
+              document.write(`C<br>`);
+              return this;
+            }
+        }
+    }
+    A().C().B();
+</script>
+
+Ex: Object Reference
+
+<script>
+    function A(){
+        return {
+            B(){
+              document.write(`B<br>`);
+              return this;
+            },
+            C(){
+              document.write(`C<br>`);
+              return this;
+            }
+        }
+    }
+    let obj = A();
+    obj.B().C();
+</script>
+
+Task:
+    Calculator.Add(10, 20).Sub(5).Mul(2)  
+
+        30 - 5  = 25 * 2 = 50
+
+
+                        JavaScript Events
+1. What is Event?
+ - Event is a message sent by sender to its subscriber in order to notify change.
+ - Event follows a software design pattern called "Observer".
+ - Event uses delegate mechanism, which is function pointer mechanism.
+
+    function InsertClick()         => Subscriber
+    {
+    }
+
+    onclick="InsertClick()"        => Sender
+
+ - Subscriber defines the actions to perform.
+ - Sender sends a notification to subscriber.
+ - Sender triggers an action, which notifies the subscriber.
