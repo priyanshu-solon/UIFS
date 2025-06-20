@@ -3529,3 +3529,261 @@ Task:
  - Subscriber defines the actions to perform.
  - Sender sends a notification to subscriber.
  - Sender triggers an action, which notifies the subscriber.
+
+20/06
+=====
+
+Events
+1. What is Event?
+    - Sender
+    - Subscriber
+    - Observer
+    - Delegate
+
+2. What is Event Handler?
+- Every element can use an event.
+- If you are configuring event for element while designing then it requires a handler name starting with "on" keyword.
+
+Syntax:
+        <button onclick="InsertClick()">
+
+          onclick=InsertClick()        => Handler Name
+          onclick                    => Handler Event Name
+          click                    => Event Name
+
+3. What is Event Listener?
+- Event listener allows to configure event for element dynamically.
+- You can use the method "addEventListener()".
+
+Syntax:
+    document.querySelector("button").addEventListener("event", function(){
+
+   })        
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            var btn = document.createElement("button");
+            btn.textContent = "Insert";
+            btn.addEventListener("click",()=>{
+                 document.write("Record Inserted..");
+            })
+            document.getElementById("container").appendChild(btn);
+
+            document.getElementById("btnDelete").addEventListener("click",()=>{
+                document.write("Record Deleted..");
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+   <div id="container">
+     <button id="btnDelete">Delete</button>
+   </div>
+</body>
+</html>
+
+4. What are Event Arguments?
+ - Event arguments carry payload from sender to subscriber.
+ - Payload is the data about event and element.
+ - There are 2 default event arguments
+
+    a) this
+    b) event
+
+  - "this" sends information about current element, which includes element details like
+    id, name, className, href, width, height, src etc..
+
+  - "event" sends information about current event, which includes details like
+    clientX, clientY, keyCode, charCode, which, shiftKey, ctrlKey, etc.
+
+Syntax:
+    <button onclick="Clicked(this)">
+
+     function Clicked(obj)
+     {
+          obj.id, obj.name, obj.value, obj.className..
+     }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function Player(obj){
+            var para = document.querySelector("p");
+
+            switch(obj.name){
+                case "Play":
+                para.innerHTML = "Playing..";
+                break;
+                case "Pause":
+                para.innerHTML = "Paused";
+                break;
+                case "Stop":
+                para.innerHTML = "Stopped";
+                break;    
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="Player(this)" name="Play" class="bi bi-play"></button>
+    <button onclick="Player(this)" name="Pause" class="bi bi-pause"></button>
+    <button onclick="Player(this)" name="Stop" class="bi bi-stop"></button>
+    <p></p>
+</body>
+</html>
+
+Syntax:
+     <button onclick="Clicked(event)">
+
+     function Clicked(e)
+     {
+       e.clientX, e.clientY, e.ctrlKey ..
+     }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+        }
+    </style>
+    <script>
+        function BoxClick(e){
+             document.querySelector("p").innerHTML = `
+                 X Position : ${e.clientX} <br>
+                 Y Position : ${e.clientY} <br>
+                 Ctrl Key   : ${e.ctrlKey}
+             `;
+        }
+    </script>
+</head>
+<body onclick="BoxClick(event)">
+    <div class="box" >
+
+    </div>
+    <p></p>
+ 
+</body>
+</html>
+
+ Syntax:
+     <button onclick="InsertClick(this, event)">
+
+     function InsertClick(obj, e)
+     {
+     }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function InsertClick(obj, e){
+          console.log(`
+                Button Id : ${obj.id}\n
+                Button Name: ${obj.name}\n
+                X Position : ${e.clientX}
+          `)
+       }
+    </script>
+</head>
+<body>
+    <button id="btnInsert" onclick="InsertClick(this, event)" name="Insert"> Insert </button>
+</body>
+</html>
+
+Syntax:
+     <button onclick="InsertClick(this.id, event.clientX)">
+
+      function InsertClick(buttonId, xPosition)
+      {
+      }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function InsertClick(id, x){
+          console.log(`
+                Id = ${id} \n
+                X = ${x}
+          `)
+       }
+    </script>
+</head>
+<body>
+    <button id="btnInsert" onclick="InsertClick(this.id, event.clientX)" name="Insert"> Insert </button>
+</body>
+</html>
+
+- You can send custom arguments of any type
+- You can use Rest parameters or spread approach.
+- You can send custom arguments along with default arguments.
+
+Syntax:
+    <button onclick="Clicked(1, 'TV', [ ], { })">
+
+     function Clicked(id, name, cities, rating) { }
+     function Clicked(...product) { }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function InsertClick(obj,...product){
+          var [id, name, price, cities, rating] = product;
+          console.log(`
+              Button Id : ${obj.id}\n
+              Id : ${id}\n
+              Name: ${name}\n
+              Price: ${price}\n
+              Cities: ${cities}\n
+              Rating: ${rating.Rate}
+          `)
+       }
+    </script>
+</head>
+<body>
+    <button id="btnInsert" onclick="InsertClick(this, 1, 'TV', 45000, ['Delhi', 'Hyd'], {Rate:4.2})" name="Insert"> Insert </button>
+</body>
+</html>

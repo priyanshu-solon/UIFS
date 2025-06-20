@@ -1487,174 +1487,307 @@ Sorting & Aggregation
 19/06
 =====
 
-­MySQL Number Functions Exercises with Solutions
+Select Query
+WHERE
+BETWEEN
+IN
+LIKE
+
+ORDER BY:
+ - It allows to sort the data in table by specified field.
+ - Sorting order is controlled by using
+    a) ASC
+    b) DESC
+ - Default it is ascending order "asc".
+ 
+Syntax:
+    SELECT  * FROM  table  ORDER BY  field  ASC | DESC;
 
+    select  * from tblproducts  order by  Price  desc;
+
+Query: Get top 2 rating electronic products from products table.
 
+       select * from tblproducts where Category="Electronics" order by Rating desc limit 2;
+
+GROUP BY:
+  - It allows to group records based on specific set of values after the given expression.
+  - It uses an expression to and returns the group based on group criteria.
 
-Sample Data Table: products
+Syntax:
+     SELECT  field , (expression)  from  table  group by  field;
 
+Ex:
+      select  count(*)  from tblproducts;        //  3
 
+      select  Category, count(*) from tblproducts group by Category;
 
+       O/P:
+        Electronics  2
+        Fashion        1
 
-CREATE TABLE products (
+Note: The fields used to group must contain similar data in specified field.
 
-    id INT,
+IS NULL &  IS NOT NULL:
+- You can query data based on "null".
+- IS NULL refers to all records where specified field is having null value.
+- IS NOT NULL allows to ignore all records that are null.
 
-    name VARCHAR(50),
+Syntax:
+    Select * from  table where field  IS NULL;
+    Select * from  table where field  IS NOT NULL;
 
-    price DECIMAL(10, 2),
+Ex:
+      SELECT * from tblproducts where Rating is not null;
+      SELECT * from tblproducts where Rating is null;
 
-    quantity INT
+DISTINCT
+  - It is used to extract only unique records from table.
+  - It allows to ignore the duplicates.
+  - It requires all field with same type of data.
 
-);
+Syntax:
+    SELECT   DISTINCT  from tblproducts;
 
+Summary:
+SELECT
+WHERE
+IN
+BETWEEN
+ORDER BY
+GROUP BY
+LIKE
+IS NULL
+IS NOT NULL
+DISTINCT
 
+                          MySQL Functions
 
-INSERT INTO products VALUES
+- SQL provides several built-in functions for handle different types of data.
+- These functions allows to format and filter the data or evaluate any value by building expression.
+- SQL provides functions for string, number, date etc.
 
-(1, 'Laptop', 59999.99, 10),
+String Functions:
 
-(2, 'Mouse', 499.50, 100),
+1. ASCII  
+  - It returns the ASCII code of a char.
+        A = 65, Z = 90
+      a = 97, z = 122
+ 
+  Syntax:
+        SELECT  ASCII('A');        // 65
 
-(3, 'Keyboard', 1049.75, 50),
+ - If you want to configure a table field name, then you have to defined the field name
+   that returns a string.
+ - It can read and return the ASCII of first char in the value.
 
-(4, 'Monitor', 12000.40, 20),
+Ex:
+     SELECT Name, ascii(Name) from tblproducts
 
-(5, 'Webcam', 2999.99, 15);
+2. CHAR_LENGTH
+  - It returns the total count of chars in specified field.
+   
+Ex:
+    SELECT Name, char_length(Name) from tblproducts
 
+     SELECT  char_length('Welcome to MySQL');
 
+3. SUBSTRING
+ - It returns the specified number of chars from given index in a string.
 
+Syntax:
+     SELECT  substring('string', startIndex, count_of_chars);
 
+Ex:
+     SELECT Name, substring(Name, 1, 3) from tblproducts
 
+     Note: The start index is 1. [ not zero ]
 
-1. Retrieve product names and absolute difference between price and 5000
+4. SUBSTR
+ - It is alias of "substring".
+ - You can use as shorthand technique.
 
+Syntax:
+    SELECT  SUBSTR('string', startIndex, count_of_chars)
 
-SELECT name, ABS(price - 5000) AS price_difference FROM products;
 
+5. TRIM
+ - It removes the leading spaces in a string.
+ 
+Syntax:
+    SELECT  TRIM('  string  ');
 
-2. Show product names with prices rounded to the nearest whole number
+6. CONCAT
+  - It is used to combine multiple string.
+  - It returns a single string that concat multiple strings.
 
+Syntax:
+    SELECT  CONCAT('string1', 'string2')
 
-SELECT name, ROUND(price) AS rounded_price FROM products;
+Ex:
+       select  FirstName, LastName,  concat(FirstName, LastName) as 'Full Name' from tblproducts;
 
+Note: It is always mandatory to define the field name in query before you configure in
+      expression.
 
-3. Show prices rounded to 1 decimal place
+      select  char_length(Name) from tblProducts;        // invalid
+      select Name, char_length(Name) from tblproducts;    // valid
 
+7. UPPER()
+   - It converts all chars to uppercase letters.
 
-SELECT name, ROUND(price, 1) AS rounded_price FROM products;
+8. LOWER()
+   - It converts all chars to lowercase letters.
 
+Syntax:
+     select Name, upper(Name) from tblproducts;
 
-4. Display product names with ceiling value of price
+MySQL Number Functions:
 
+1. COUNT()
+ - It returns the count of records that match the given condition.
+ - It requires "*" as wild card to count all records.
 
-SELECT name, CEIL(price) AS ceiling_price FROM products;
+Syntax:
+     select count(*)  from tblproducts
+     select count(*)  from tblproducts where (expression);
 
+2. AVG()
 
-5. Display product names with floor value of price
+3. MIN()
 
+4. MAX()
 
-SELECT name, FLOOR(price) AS floor_price FROM products;
+etc..
 
+Ex:
+select Category, avg(Price) as 'Average Price' from tblproducts group by Category
 
-6. Truncate price values to 2 decimal places
+20/06
+=====
 
+MySQL Functions
+- String Functions
+- Number Functions
 
-SELECT name, TRUNCATE(price, 2) AS truncated_price FROM
-products;
+                        Date Functions
 
+- You can handle date and time values using date functions.
+- It requires the data with date and time type.
+- Date and Time type allows following format
 
-7. Find remainder when quantity is divided by 7
+    "year-month-day  hours : minutes : seconds"
 
+- To configure a field for date and time you have to use date and time type.
 
-SELECT name, MOD(quantity, 7) AS remainder FROM products;
+Syntax:
+    create  table   tblname
+    (
+        field  DATE,                // yy-mm-dd
+        field  TIME,                // hrs:min:sec
+        field  DATETIME         //  yy-mm-dd  hrs:min:sec
+     )
 
+- Date and time values are inserted into table as string.
 
-8. Display square of each product’s quantity
+Syntax:
+    insert  into  tblname (field)  values ('yy-mm-dd hrs:min:sec');
 
+- To access date and time values from a table you can use the following functions
 
-SELECT name, POWER(quantity, 2) AS quantity_square FROM
-products;
+1. CURRENT_DATE()        : It returns current date value "2025-06-20".
+                          It's alias name is "curdate()".
 
+2. CURRENT_TIME()        : It returns current time value "9:40:33".
+                          It's alias name is "curtime()"
 
-9. Find square root of price for each product
+3. NOW()                    : It returns current date and time.
 
+Ex:
+ - Create table
 
-SELECT name, SQRT(price) AS price_sqrt FROM products;
+create table logtable
+(
+   LogId int primary key auto_increment,
+   LogTime time
+)
 
+- Insert Record
 
-10. Show product names and if price is above 10000 using SIGN()
+  insert into logtable (LogTime) values (curtime());
 
+4. WEEKDAY()        : It returns the weekday number  starting with "0=Monday".
 
-SELECT name, SIGN(price - 10000) AS price_sign FROM
-products;
+                      Syntax:
+                        SELECT  WEEKDAY(CURDATE());    // 4 => Friday
 
+5. DAYNAME()        : It returns the weekday name.
 
-11. Display least of price and quantity for each product
+                      Syntax:
+                        SELECT  DAYNAME(CURDATE());    //  Friday
 
+6. WEEK()            : It returns the week number in current year.
+   
+                      Syntax:
+                        select week(curdate());
 
-SELECT name, LEAST(price, quantity) AS least_value FROM
-products;
 
+7. MONTH()            : It returns the month number from current date.
+                      1=January
+   
+                      Syntax:
+                          select month(curdate());    //6
 
-12. Display greatest of price and quantity for each product
+8. MONTHNAME()        : It returns the month name.
 
+                       Syntax:
+                        select monthname(curdate()); // June
 
-SELECT name, GREATEST(price, quantity) AS greatest_value
-FROM products;
+Query:
+     tblproducts
+         Name     Manufactured        
+     TV        2025-02-20
+     Mobile    2025-04-18
 
+         Get the product name and manufactured month name for all products from table
+     alias name "Manufactured Month"
 
-13. Show total stock value of each product (price × quantity), rounded to 2
-decimal places
+     Result:
 
+     Name   Manufactured Month
 
-SELECT name, ROUND(price * quantity, 2) AS total_value FROM
-products;
+Ex:
+     select Name, monthname(Manufactured) as 'Manufactured Month' from tblproducts
+   
+Query: Get all products that are manufactured after march month
 
+    select Name, monthname(Manufactured) as 'Manufactured Month' from tblproducts where month(Manufactured) > 3;
 
-14. Find which products have a price % 5 = 0
+Query: Get all electronics products that are manufactured between Jan and March.
 
+    select Name, monthname(Manufactured) as Manufactured Month from tblproducts where category='Electronics' and month(Manufactured) is between 1 and 3
 
-SELECT name FROM products WHERE MOD(price, 5) = 0;
+9. DATE()        : It returns date value from date and time
 
+10. TIME()        : It returns time value from date and time
 
-15. Calculate POWER(price, 1/2) and compare it with SQRT(price)
+11. HOUR()        : It returns hour number.
 
+12. MINUTE()    : It returns minutes number.
 
-SELECT name, POWER(price, 0.5) AS price_pow_sqrt,
-SQRT(price) AS price_sqrt FROM products;
+13. SECOND()    : It returns seconds number.
 
+14. MICROSECOND():  It returns micro seconds number.
 
-16. Which products have a floor value of price above 10000
+15. YEAR()        : It returns the year number.
 
+Query:
+       LogId   Name   LogTime
+       1        John    9:40:23
+        ...
+        ...
 
-SELECT name FROM products WHERE FLOOR(price) > 10000;
+     Get the total session time in minutes for every user.
 
-
-17. List products whose ABS(price - quantity) is less than 1000
-
-
-SELECT name FROM products WHERE ABS(price - quantity) <
-1000;
-
-
-18. Divide quantity by 3, rounded to 1 decimal place
-
-
-SELECT name, ROUND(quantity / 3, 1) AS divided_quantity FROM
-products;
-
-
-19. Show all products with random value assigned using RAND()
-
-
-SELECT name, RAND() AS random_value FROM products;
-
-
-20. Add a new column 'adjusted_price' = CEIL(price * 1.05)
-
-
-ALTER TABLE products ADD COLUMN adjusted_price DECIMAL(10,
-2);
-
-UPDATE products SET adjusted_price = CEIL(price * 1.05);
+- Conversion Functions
+- Decision Making
+- Database Functions
