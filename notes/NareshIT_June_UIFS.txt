@@ -3335,7 +3335,7 @@ Function Generator
 
 Function Recursion:
 - Recursion is a technique of calling a function within the context of same function.
-- It creates a indefinite loop which executes statements repeatedly based on give condition.
+- It creates a indefinite loop which executes statements repeatedly based on given condition.
 
 Syntax:
     function f1()
@@ -3614,7 +3614,7 @@ Syntax:
 Ex:
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -3785,5 +3785,359 @@ Ex:
 </head>
 <body>
     <button id="btnInsert" onclick="InsertClick(this, 1, 'TV', 45000, ['Delhi', 'Hyd'], {Rate:4.2})" name="Insert"> Insert </button>
+</body>
+</html>
+
+23/06
+=====
+Event Handler
+Event Listener
+Event Args
+    this
+    event
+
+Note: Event listener can have only one argument that refers to "event".
+      However listener event allows both element and event details
+           
+Syntax:
+        .addEventListener("event", (e) =>{
+
+              e.clientX, e.clientY, e.ctrlKey;
+
+              e.target.id,  e.target.name, e.target.href, e.target.className;
+       
+        })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function bodyload(){
+            document.getElementById("btnInsert").addEventListener("click", (e)=>{
+
+                  console.log(`X Position : ${e.clientX}\nButton Value: ${e.target.value}`);
+
+            })
+       }
+    </script>
+</head>
+<body onload="bodyload()">
+    <button id="btnInsert" value="Insert">Insert</button>
+</body>
+</html>
+
+5. What is Event Bubbling or Event Propagation?
+A. Propagation is a mechanism where the child element event may trigger the parent
+    events. You can stop propagation by using the event method "stopPropagation()".
+
+Syntax:
+     function childEvent(e)
+     {
+         e.stopPropagation();
+     }
+
+    <button onclick="childEvent(event)">
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       nav {
+         border:1px solid black;
+         padding: 20px;
+       }
+    </style>
+    <script>
+        function NavClick(){
+             alert("Navbar Clicked");
+        }
+        function SearchClick(e){
+            e.stopPropagation();
+            alert("Search Clicked");
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <nav onclick="NavClick()">
+         <h2>Amazon</h2>
+         <button onclick="SearchClick(event)">Search</button>
+    </nav>
+</body>
+</html>
+
+6. How to stop the default events?
+A. Several HTML generic elements have pre-defined functionality.
+     When you configure explicit functionality then it performs both default and explicit.
+     You can avoid execution of default functionality by using the event method
+     "preventDefault()"
+
+Syntax:
+    <form onsubmit="SubmitClick(event)">
+
+     function SubmitClick(e)
+     {
+       e.preventDefault();
+     }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function RegisterClick(e){
+           e.preventDefault();
+           alert("Form Submitted Successfully..");
+       }
+    </script>
+</head>
+<body>
+    <form onsubmit="RegisterClick(event)">
+         Name <input type="text" name="UserName"> <button>Submit</button>
+    </form>
+</body>
+</html>
+
+7. What is Event Loop?
+A.  It is an implicit concept of JavaScript where it can perform the given task along with
+    the micro task in an async technique.
+     It requires promises or timer events to handle event loop.
+     It is non-blocking technique of executing tasks.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function GetData(){
+           console.log(["A", "B", "C", "D"]);
+       }
+       function GetClick(){
+          console.log("Request Started");
+
+          setTimeout(GetData, 3000);
+
+          console.log("Request End");
+       }
+    </script>
+</head>
+<body>
+    <button onclick="GetClick()">Get Data</button>
+</body>
+</html>
+     
+
+8. What is Event Profiling?
+A. Event profiling is a technique used by developers to track the performance and identify the issues in events.
+    You can profile using developer tools.
+
+    - Open Browser developer tools  [ right click => inspect ]
+    - Go to performance category
+    - Click on Record to start profiling
+    - Record your activities by clicking or changing etc.
+    - Stop profiling
+    - You can examine the "call-tree" and "events stack".
+
+9. What are various browser events?
+A. Browser events are the members of browser "window" object.
+    You can configure to various elements.
+    They are categorized into different groups
+
+    a) Mouse Events
+    b) Keyboard Events
+    c) Button Events
+    d) Clipboard Events
+    e) Element State Events
+    f) Form Events
+    g) Timer Events
+    h) Touch Events etc.
+
+Mouse Events:
+    onmouseover
+    onmouseout
+    onmousedown
+    onmouseup
+    onmousemove
+
+Mouse Event Args:
+
+        e.clientX
+        e.clientY
+        e.ctrlKey
+        e.shiftKey
+        e.altKey etc.
+
+
+Ex: Down and Up
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+       }
+       @keyframes Spin {
+           from {
+              transform: rotate(0deg);
+           }
+           to {
+             transform: rotate(360deg);
+           }
+       }
+    </style>
+    <script>
+       function MouseDown(){
+            var img = document.querySelector("img");
+            img.style.animationName = "Spin";
+            img.style.animationDuration = "3s";
+            img.style.animationIterationCount = "infinite";
+            img.style.animationTimingFunction = "linear";
+       }
+       function MouseUp(){
+            var img = document.querySelector("img");
+            img.style.animationName = "Spin";
+            img.style.animationDuration = "10s";
+            img.style.animationIterationCount = "1";
+       }
+    </script>
+</head>
+<body>
+   <img onmousedown="MouseDown()" onmouseup="MouseUp()" src="../public/images/wheel.png" width="200" height="200">
+</body>
+</html>
+
+Ex: mover over and out
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <marquee scrollamount="20" onmouseover="this.stop()" onmouseout="this.start()">
+        <img src="../public/images/a1.jpg" width="200" height="200">
+        <img src="../public/images/a2.jpg" width="200" height="200">
+        <img src="../public/images/a3.jpg" width="200" height="200">
+        <img src="../public/images/a4.jpg" width="200" height="200">
+        <img src="../public/images/a5.jpg" width="200" height="200">
+        <img src="../public/images/a6.jpg" width="200" height="200">
+    </marquee>
+</body>
+</html>
+
+Ex: Mouse Move
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function MouseMove(e){
+            var flag = document.querySelector("img");
+            flag.style.position = "fixed";
+            flag.style.left = e.clientX + "px";
+            flag.style.top = e.clientY + "px";
+        }
+    </script>
+</head>
+<body onmousemove="MouseMove(event)">
+   <div style="height:1000px">
+      Move mouse pointer to test.
+   </div>
+   <img src="../public/images/flag.gif" width="50" height="50">
+</body>
+</html>
+
+Button Events:
+     onclick                single click
+     ondblclick            double click
+     oncontextmenu         right click
+     onselectstart            button drag to select text
+
+FAQ: How to disable right click in page?
+Ans:  By using a function that returns false.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.oncontextmenu = function(){
+             alert("Right Click not allowed");
+             return false;
+        }
+        function DoubleClick(){
+            window.open('../public/images/women-fashion.jpg','Fashion','width=400 height=500');
+        }
+    </script>
+</head>
+<body>
+    <img ondblclick="DoubleClick()" src="../public/images/women-fashion.jpg" width="100" height="100">
+    <p>Double Click to view large</p>
+    <h2>Right Click not allowed</h2>
+</body>
+</html>
+
+Ex: Disable selection
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.oncontextmenu = function(){
+             alert("Right Click not allowed");
+             return false;
+        }
+        function DoubleClick(){
+            window.open('../public/images/women-fashion.jpg','Fashion','width=400 height=500');
+        }
+
+        document.onselectstart = function(){
+             return false;
+        }
+    </script>
+</head>
+<body>
+    <img ondblclick="DoubleClick()" src="../public/images/women-fashion.jpg" width="100" height="100">
+    <p>Double Click to view large</p>
+    <h2>Right Click not allowed</h2>
 </body>
 </html>

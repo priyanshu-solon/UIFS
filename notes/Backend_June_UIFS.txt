@@ -1791,3 +1791,275 @@ Query:
 - Conversion Functions
 - Decision Making
 - Database Functions
+
+21/06
+======
+
+MySQL Converting Types
+
+1. cast()
+
+2. convert()
+
+- They are used to convert one data type to another.
+
+Syntax:
+     SELECT  CAST( 'data' as type);
+     SELECT  CONVERT('data', type);
+
+- CAST is a temporary conversion of type to use in relative location.
+- Convert is used to convert into specific type permanently
+
+Ex:
+     Select  CAST ('2025-02-10'  AS  DATE);    
+     Select  CONVERT ('2025-02-10', DATE);
+
+MySQL Decision Making Function:
+
+1. IF()        : It is decision making function that uses a condition and executes
+              actions on true or false.
+
+             Syntax:
+                SELECT Fields, IF( condition, true, false) from table;
+
+              You can use other operators and commands to filter data along with
+              decision making.
+
+Ex:
+ select Name, Rating, if(Rating>=4, 'Product is Good', 'Product is Average') as 'Reviews' from tblproducts where Rating IS NOT NULL
+
+
+
+2. CASE
+   - It allows to configure multiple conditions.
+   - It can execute exactly the block that matches given condition
+
+Syntax:
+      SELECT  fields,
+    CASE
+          WHEN condition THEN  statement,
+          WHEN condition THEN  statement,
+          ELSE statement
+    END AS aliasName FROM table
+
+Ex:
+select Name, Rating,
+  CASE
+    when Rating>=5 then 'Very Good'
+    when Rating=4 then 'Average'
+    when Rating<4 then 'Poor'
+  END AS 'Reviews'
+ from tblproducts where Rating IS NOT NULL
+
+Query:
+         Name     ShippedTo      
+         ---------------------------
+          TV         DELHI
+          Mobile    HYD
+          Watch    MUMBAI
+
+          if  city is delhi then delivery in 2 days
+                        hyd   then delivery on same day
+                Mumbai then delivery next day.
+
+          Create a new field 'Delivery Status' with delivery time
+
+MySQL Database Admin Functions
+
+1. USER()        : It returns current user
+
+                 Syntax :
+                    SELECT  user();    // root@localhost
+
+2.  Database()        : It returns the current active database
+
+                 Syntax:
+                    SELECT  database();
+
+3.  Version()        : It returns the current active installed version of MySQL
+
+                  Syntax:
+                    SELECT version();
+
+
+                           Updating Data & Tables
+
+- MySQL provides DML UPDATE command that allows to modify the existing details.
+- You can update table data using various operators.
+- Update command requires SET operator to update data in specific field.
+
+     Syntax:
+      UPDATE table SET  field=value  WHERE condition;
+
+Ex:
+    update tblproducts set Rating=4 where ProductId=4;
+
+
+Note: It is always required the match condition using a primary key field.
+      If you want to use a condition without primary key reference then make sure that
+      the "SQL_SAFE_UPDATES" is OFF [set to 0]
+
+            1 = ON        
+            0 = OFF
+
+- Run the following query before updating
+
+    SET SQL_SAFE_UPDATES = 0;
+
+- Now you can update data without KEY field
+
+    update tblproducts set Qty=3 where Price>=4000;
+
+- You can turn ON safe mode any time using
+   
+    SET SQL_SAFE_UPDATES = 1;
+
+23/06
+=====
+
+Select
+Update
+
+FAQ: What is the purpose of  "safe_update" ?
+Ans :  It is default set to ON so that it allows only to modify table data by using
+      key field.
+      If you want to modify data by using any field then you have turn off "safe_update".
+
+Syntax:
+        SET SQL_SAFE_UPDATES = 0;        // turn OFF
+        SET SQL_SAFE_UPDATES = 1;        // turn ON
+
+
+                          Modify Table Structure
+
+- Modifying table structure includes actions like
+    a) adding fields
+    b) changing field name
+    c) changing the field type and constraints
+    d) removing fields
+    e) adding and removing constraints etc.
+
+- SQL provides "ALTER" command with various helpers to modify table structure.
+- Helpers include
+    a) ADD
+    b) MODIFY
+    c) CHANGE
+    d) DROP etc.
+
+1. Adding a new field into data table
+
+- It requires "alter" with "add" helper.
+- It can add new column at specified position.
+- You can define position using "AFTER" and "FIRST" helpers.
+- "FIRST" will add new field as first field in table.
+- "AFTER" will add new field after specified field in table.
+
+Syntax:
+    ALTER  table ADD  new_field  datatype constraint AFTER  existing_field;
+    ALTER  table ADD  new_field  datatype constraint FIRST;
+
+- Alter can modify a table, view, procedure, constraint etc.
+- Hence you have define the reference type while modifying.
+
+Syntax:
+    Alter  table  table_name;
+    Alter      view  view_name;
+    etc.
+
+Ex:
+ALTER  TABLE tblvendors ADD VendorRating int AFTER VendorName;
+
+
+2. Modifying Column Structure
+- You can change the data type and constraints
+- It required MODIFY helper.
+
+Syntax:
+
+    ALTER  TABLE  table_name  MODIFY  field_name  datatype  constraint;
+
+Note: It is not recommended to modify the data type if field contains data.
+
+Ex:
+  ALTER TABLE tblvendors MODIFY VendorName varchar(30) NOT NULL UNIQUE;
+
+Note: You can't modify a foreign key field when it is SET to RESTRICT in another table.
+
+- You can modify multiple field simultaneously at the same time.
+
+Syntax:
+     alter table  table_name  modify  
+        field datatype constraint,
+        field datatype constraint;
+
+3. Changing Column Name
+
+  - If the column is not a foreign key column with restrict access then you can modify
+    the name by using "CHANGE" helper.
+ 
+  - Changing columns requires to define the old and new name using "COLUMN" helper.
+
+  - You can change the position of column while changing name.
+  - Position can be defined using  "FIRST & AFTER".
+
+Syntax:
+      ALTER TABLE table_name CHANGE COLUMN
+      old_name  new_name AFTER  field_name;
+
+  - It is mandatory to define the data type of field when you are changing its name
+    with a new name.
+
+Ex:
+ALTER TABLE tblvendors CHANGE COLUMN VendorRating VendorReviews int AFTER VendorName
+
+
+4. Removing Field from table
+
+- You can use ALTER command with "DROP" helper to remove any specific field.
+- As DROP can drop various component, you have to use COLUMN helper.
+- DROP can be used for table, database, column, constraint, keys etc.
+
+Syntax:
+   ALTER TABLE  table_name  DROP  COLUMN  field_name;
+
+- If it is used as foreign key with "restrict" access then you can't drop the field.
+- If defined as cascade it is removed from all child tables.
+- If defines as null it is set with null in all child tables.
+
+Ex:
+  alter table tblvendors drop VendorReviews
+
+5. Removing Primary Key Field
+
+- Drop helper requires the field name.
+- You have to define primary key field name in order to drop from table.
+- You can also drop primary key directly without specifying the key name.
+
+Syntax:
+    ALTER TABLE  table_name DROP  PRIMARY KEY;
+
+- You can add a new primary key by using "ADD" helper
+
+Syntax:
+     ALTER TABLE  table_name  ADD  PRIMARY KEY(key_field_name);
+
+- Make sure that there is only one primary key.
+- You can define multiple unique keys.
+
+6. Managing Foreign Keys
+
+- You can add a new foreign key by using  "ADD CONSTRAINT".
+
+Syntax:
+    ALTER  TABLE  table_name  ADD CONSTRAINT  
+    constaint_name  FOREIGN KEY(field_name)  REFERENCES  
+    reference_table(fieldname)  
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE
+
+- To remove foreign key
+
+    ALTER TABLE DROP CONTRAINT contraint_name;
+
+               
+                               DELETE
