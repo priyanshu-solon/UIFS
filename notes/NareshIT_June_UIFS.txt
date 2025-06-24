@@ -4141,3 +4141,345 @@ Ex: Disable selection
     <h2>Right Click not allowed</h2>
 </body>
 </html>
+
+24/06
+======
+
+JavaScript OOP
+Mouse Events
+Button Events
+Timer Events
+    setTimeout()
+    clearTimeout()
+    setInterval()
+    clearInterval()
+
+Keyboard Events:
+    onkeyup
+    onkeydown
+    onkeypress
+
+- Keyup & Key down are used to verify the chars.
+- Key press is good for verifying the ASCII code of chars.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyUser(e){
+            console.log(`Key Code : ${e.charCode}`);
+            var userid = document.getElementById("txtId").value;
+            var lblError = document.getElementById("lblError");
+            fetch(`../data/users.json`)
+            .then(response=> response.json())
+            .then(users => {
+                 for(var user of users)
+                 {
+                     if(user.UserId===userid){
+                          lblError.innerHTML = "User Id Taken - Try Another".fontcolor('red');
+                          break;
+                     } else {
+                         lblError.innerHTML = "User Id Available".fontcolor('green');
+                     }
+                 }
+            })
+        }
+        function VerifyCaps(e){
+            var pwdBlock = document.getElementById("pwdBlock");
+
+            if(e.keyCode>=65 && e.keyCode<=90){
+                pwdBlock.style.display = "block";
+                pwdBlock.style.color = "goldenrod";
+            } else {
+                pwdBlock.style.display = "none";
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <h3>Register User</h3>
+    <dl>
+        <dt>User Id</dt>
+        <dd><input type="text" onkeyup="VerifyUser(event)" id="txtId"></dd>
+        <dd id="lblError"></dd>
+        <dt>Password</dt>
+        <dd>
+            <input type="password" onkeypress="VerifyCaps(event)" id="txtPwd">
+        </dd>
+        <dd id="pwdBlock" style="display: none;"> <span class="bi bi-exclamation-triangle"> Warning CAPS ON</span> </dd>
+    </dl>
+</body>
+</html>
+
+Clipboard Events
+   
+    oncut
+    oncopy
+    onpaste
+
+- Clipboard is the temporary memory of your OS.
+- The content that you cut or copy is kept on clipboard.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyUser(e){
+            console.log(`Key Code : ${e.charCode}`);
+            var userid = document.getElementById("txtId").value;
+            var lblError = document.getElementById("lblError");
+            fetch(`../data/users.json`)
+            .then(response=> response.json())
+            .then(users => {
+                 for(var user of users)
+                 {
+                     if(user.UserId===userid){
+                          lblError.innerHTML = "User Id Taken - Try Another".fontcolor('red');
+                          break;
+                     } else {
+                         lblError.innerHTML = "User Id Available".fontcolor('green');
+                     }
+                 }
+            })
+        }
+        function VerifyCaps(e){
+            var pwdBlock = document.getElementById("pwdBlock");
+
+            if(e.keyCode>=65 && e.keyCode<=90){
+                pwdBlock.style.display = "block";
+                pwdBlock.style.color = "goldenrod";
+            } else {
+                pwdBlock.style.display = "none";
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <h3>Register User</h3>
+    <dl>
+        <dt>User Id</dt>
+        <dd><input type="text" oncopy="alert('User Id Copied')" onkeyup="VerifyUser(event)" id="txtId"></dd>
+        <dd id="lblError"></dd>
+        <dt>Password</dt>
+        <dd>
+            <input type="password"  onkeypress="VerifyCaps(event)" id="txtPwd">
+        </dd>
+        <dd id="pwdBlock" style="display: none;"> <span class="bi bi-exclamation-triangle"> Warning CAPS ON</span> </dd>
+        <dt>Verify Password</dt>
+        <dd>
+            <input type="password" onpaste="return false">
+        </dd>
+    </dl>
+</body>
+</html>
+
+Element State Events
+     
+    onchange
+    onblur
+    onfocus
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyName(){
+            var username = document.getElementById("txtName").value;
+            var lblName = document.getElementById("lblName");
+
+            if(username=="john") {
+                lblName.innerHTML = "User Name Taken - Try Another".fontcolor('red').fontsize(2);
+            } else {
+                lblName.innerHTML = "User Name Available".fontcolor('green').fontsize(2).bold().italics();
+            }
+        }
+        function ChangeCase(){
+            var code = document.getElementById("txtCode").value;
+            document.getElementById("txtCode").value = code.toUpperCase();
+              document.getElementById("lblStatus").innerHTML = "";    
+        }
+        function SetStatus(){
+            document.getElementById("lblStatus").innerHTML = "eg: IDFC00392";
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" onkeyup="VerifyName()" id="txtName"></dd>
+        <dd id="lblName"></dd>
+        <dt>Bank IFSC Code</dt>
+        <dd><input type="text" id="txtCode" onfocus="SetStatus()" onblur="ChangeCase()"></dd>
+        <dd id="lblStatus"></dd>
+    </dl>
+</body>
+</html>
+
+Form Events
+
+    onsubmit
+    onreset
+
+ - Events used for <form> element.
+ - Define actions to perform when form is submitted or reset.
+
+Syntax:    
+    <form  onsubmit="submit()"     onreset="reset()">
+
+    </form>
+
+Touch Events
+
+    ontouchstart
+    ontouchend
+    ontouchmove
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function GetDetails(msg){
+             document.querySelector("h2").innerHTML = msg;
+        }
+    </script>
+</head>
+<body>
+    <img ontouchstart="GetDetails('Women Fashion 20% SALE')" src="../public/images/women-fashion.jpg" width="200" height="200">
+    <img ontouchstart="GetDetails('Men Fashion SALE Starts on 30 JUNE')" src="../public/images/men-fashion.jpg" width="200" height="200">
+    <img ontouchstart="GetDetails('Kids Accessories SALE Ends Soon')" src="../public/images/kids-fashion.jpg" width="200" height="200">
+
+    <h2></h2>
+</body>
+</html>
+
+                         JavaScript OOP
+
+- Real world application development uses different programming systems.
+   
+    1. POPS
+    2. OBPS
+    3. OOPS
+
+POPS
+ - Process Oriented Programming System
+ - It supports low level features.
+ - It can directly interact with hardware services.
+ - It uses less memory.
+ - It is faster in interactions.
+
+Ex: C, PASCAL
+
+ - Reusability issues
+ - No dynamic memory
+ - Not easy to extend
+ 
+OBPS
+ - Object Based Programming System
+ - It supports reusability
+ - It supports separation
+ - It supports dynamic memory
+
+Ex: JavaScript, VB
+
+ - Limited extensibility
+ - No code level security
+
+OOPS
+- Object Oriented Programming System
+- Code reusability
+- Code extensibility
+- Code separation
+- Code level security
+
+Ex: C++, Java
+
+- It is complex in configuration
+- It uses more memory
+- It is tedious.
+
+Note: JavaScript is not an OOP language. It supports only few features of OOP.
+
+
+                             Modules in OOP
+- Application uses library with "Legacy" type.
+- Legacy will load all functions into memory even when they are not in use.
+- Modular approach allows to load only what is required for the situation.
+- It makes application light weight and faster.
+- To use modules in JavaScript you need various module systems to install.
+- There are various module systems like
+    a) ESModule
+    b) UMD (Universal Module Distribution)
+    c) AMD (Asynchronous Module Distribution)
+    d) Common JS
+    etc.
+
+- Browser uses "ES Module" system but you have to enable by using <script> type set as "module".
+
+Syntax:
+    <script type="module">
+
+    </script>
+
+- Every JavaScript file is considered as a module.
+- Every members of module can be exported to another location. But they must be marked with "export".
+
+        export var name = value;
+        export function name() { }
+        export class name { }
+
+- You can import only what is required from module
+
+        import  { varName, functionName, className } from  "./file.js";
+
+Ex:
+demo.js
+ 
+export function Addition(a, b){
+    return a + b;
+}
+
+export function Hello(){
+    return "Hello ! JavaScript";
+}
+
+export function Multiply(a,b){
+    return a * b;
+}
+
+demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+         import { Hello, Addition } from "./demo.js";
+         document.querySelector("h1").innerHTML = Hello();
+         document.querySelector("p").innerHTML = Addition(10, 30);
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <p></p>
+</body>
+</html>

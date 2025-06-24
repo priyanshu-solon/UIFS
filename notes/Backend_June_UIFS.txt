@@ -2063,3 +2063,169 @@ Syntax:
 
                
                                DELETE
+
+24/06
+=====
+
+Stored Procedure
+DELETE  COMMAND
+
+- It is used to remove records from a table.
+- The DELETE command uses query to find and remove records.
+- You can use various conditions to find by using "WHERE".
+
+Syntax:
+    DELETE   FROM  table  WHERE  condition;
+
+- You can limit the number of records to delete by using LIMIT helper.
+
+Syntax:
+    DELETE   FROM  table  WHERE  condition  LIMIT count;
+
+Ex:
+        delete from tblcategories where CategoryId=4
+
+Query: Delete all electronic products whose rating is less that or equal to 3.
+Ans:
+    DELETE  FROM tblproducts WHERE  (Category='Electronics') AND (Rating<=3);
+
+      DELETE  FROM tblproducts WHERE  (Category='Electronics') AND (Rating<=3) LIMIT 3;
+
+Summary:
+ - Insert
+ - Update
+ - Alter
+ - Delete
+ - Select
+
+FAQ: What is difference between update & alter?
+Ans:  Update is used to modify the data in table.
+     Alter is used to modify the table structure.
+
+
+                          Stored Procedures
+
+- Stored procedure is used to "refactor" the code.
+
+- Refactoring is a technique of encapsulating a set of statement into a reference memory so that you can easily reuse and extend the code.
+
+- Refactoring can be configured using
+
+        a) Function
+        b) Method
+        c) Procedure
+
+- Function refactors the code and finally returns a value.
+- Method refactors the code without any return value. It is always a void type.
+- Procedure is a hybrid type, which can switch between return and void.
+- SQL allows a stored procedure to configure the logic and actions to perform. So that you can access and reuse from various locations.
+- Procedures are required in database programming to reduce "Injection Attacks".
+- SQL Injection is the process of allowing queries to input and execute directly from client. It is not safe always.
+
+Configuring Stored Procedure:
+- Stored procedure can have multiple sets of statements to execute.
+- Hence it requires a DELIMETER  to separate the statements.
+- The default DELIMETER is "$$".
+- MySQL stored procedure configuration starts & end with a DELIMETER.
+
+Syntax:
+     DELIMITER $$        => start
+     
+
+     DELIMITER             => end
+
+- Procedure must be inside the delimiter scope.
+- Procedure can created by using "create" command.
+
+Syntax:
+       DELIMITER $$
+
+          CREATE  PROCEDURE   procedure_name()
+          BEGIN
+             .... statements...
+          END$$
+
+      DELIMITER
+
+- Procedure comprises of 3 basic elements in configuration
+
+    a) Declaration
+    b) Signature
+    c) Definition
+
+- Declaration is used to configure a procedure.
+- Signature is required to call the procedure.
+- Definition specifies the functionality. [actions to be performed]
+
+    create procedure sp_name()            => Declaration
+    sp_name()                        => Signature
+    beign.... end                        => Definition
+
+Ex:
+1. Create a procedure
+
+
+DELIMITER $$
+
+ create procedure GetHighRatedProducts()
+
+  BEGIN
+      select * from tblproducts where Rating>=5;
+  END$$
+ 
+DELIMITER
+
+2. Select the statements and execute in order to create and save procedure by name
+    "GetHighRatedProducts"
+
+3. You can call and run the procedure from any location
+
+    call GetHighRatedProducts();
+
+Parameters in Stored Procedure:
+--------------------------------------------
+
+- Procedure can be parameterized or parameter less.
+- Parameter is used to modify the procedure.
+- It allows to change according state and situation.
+- MySQL parameters are categorized into 3 types
+
+    a) IN
+    b) OUT
+    c) INOUT
+
+- "IN" parameter will not allow to change value in side procedure.
+-  It keeps the value as constant.
+
+Syntax:
+    create procedure sp_name(IN param  datatype)
+    begin
+        ... you can use parameter
+
+    end$$
+
+Ex: IN Parameter
+
+DELIMITER $$
+
+  create procedure GetByCategory(IN categoryName varchar(30))
+  begin
+      select * from tblproducts where Category=categoryName;
+  end$$
+ 
+DELIMITER
+
+- Every parameter is a required parameter.
+- The parameter defined in declaration is known as "Formal Parameter".
+- The parameter defined in call is known as "Actual Parameter".
+
+Syntax:    
+     call  sp_name(value);            // actual parameter
+
+    create sp_name(IN categoryName varchar(20))       // formal parameter
+    begin
+        ....
+    end$$
+
+Ex:
+     call  GetByCategory('Electronics');
