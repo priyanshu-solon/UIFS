@@ -2229,3 +2229,190 @@ Syntax:
 
 Ex:
      call  GetByCategory('Electronics');
+
+25/06
+=====
+
+Stored Procedure
+Parameters
+    - IN
+    - OUT
+    - INOUT
+
+OUT Parameter:
+- It is used to emit the result of any expression inside procedure.
+- It will not allow to pass a new value.
+- It contains a value, which is result of any expression.
+- The value may change according expression.
+- It is configured by using "@reference_name".
+
+Syntax:
+     create procedure spName(out  paramName)
+        Begin
+         ...
+        End$$
+   
+- It is defined with value inside procedure by using  "INTO" operator.
+- INTO assigns a value into the out parameters.
+
+Syntax:
+     call spName(@paramName);    // It can't have a value.
+                                   It must have only reference name.
+
+- The operator INTO will use any expression to store result into out parameter.
+
+Syntax:
+       Begin
+         select  expression  INTO  out_param ;
+       End$$
+
+- You can print the value of out parameter using "select".
+
+Syntax:
+       select @out_param;
+
+Ex:
+1. Create a procedure with out parameter
+
+DELIMITER $$
+
+ create procedure GetAvgPrice(out avgprice int)
+ begin
+    select avg(Price) into avgprice from tblproducts;
+ end$$
+ 
+DELIMITER
+
+2. Execute to save the procedure
+
+3. Call the procedure with reference of out parameter.
+   
+4. Select the out parameter to view result
+   
+    call  GetAvgPrice(@avgprice);
+    select @avgprice;
+
+Ex:
+
+DELIMITER $$
+
+ create procedure GetAvgPrice(in category varchar(20), out avgprice int)
+ begin
+    select avg(Price) into avgprice from tblproducts where Category=category;
+ end$$
+ 
+DELIMITER
+
+call GetAvgPrice('Fashion',@avgprice);
+select @avgprice as 'Average Price';
+                   
+Query:  Create a procedure to search products by rating above specified value, and get the count of products that match the condition.
+
+            GetProductsCount(4, @count); // must return how many products are
+                                           having rating above 4
+            GetProductsCount(3, @count);
+
+
+
+                        Variables in Procedure
+- Variables are storage locations in memory, where you can store a value and use it as a part of any expression.
+- SQL allows to configure variables inside procedure in order to store values and use with in the scope of procedure.
+- Variables are defined by using  "DECLARE" keyword.
+
+Syntax:
+            DECLARE   variable_name  datatype;
+
+- Variable configuration have 3 phases.
+
+    a) Declaring
+    b) Assignment
+    c) Initialization
+
+- Declaring comprises of variable name and type
+
+     DECLARE  total int;
+
+- You can assign into variable by using "SET" operator
+
+     SET  total = 200;
+
+- You can initialize into variable by using "DEFAULT".
+
+    DECLARE total int  DEFAULT 10;
+Ex:
+
+DELIMITER $$
+
+ create procedure AvgPrice(out result int)
+ begin
+     
+      declare avgprice int default 0;
+     
+      select avg(Price) into avgprice from tblproducts;
+     
+      set result = avgprice;
+     
+ end$$
+ 
+DELIMITER
+
+call  AvgPrice(@result);
+select @result;
+
+Conditional Statements:
+- You can use "IF" and "CASE" for conditions.
+- A stored procedure can configure statements to handle complex operations.
+
+Syntax:
+     If  condition  then
+       statements;
+    elseif  condition then
+       statements;
+    else
+       statements;
+    end if;
+
+Query: Create a procedure GetReview()
+        It gets specific product review based on Id.
+
+        GetReview(in id int, out review varchar(20))
+        begin
+
+           variable msg;   // it must store review message
+           variable rating;
+
+           if rating >=5   => good
+           if rating = 4    => average
+           if rating <4     => poor
+
+           store msg in @review;
+
+           print @review;
+
+
+
+Ex:
+
+DELIMITER $$
+
+ create procedure GetReview(in id int, out review varchar(20))
+ 
+ begin
+      declare rate int default 0;
+      declare msg varchar(20);
+     
+      select Rating into rate from tblproducts where ProductId=id;
+     
+      if rate>=5 then
+        set msg = 'Good';
+      elseif rate=4 then
+        set msg='Average';
+      elseif rate<4 then
+        set msg = 'Poor';
+     end if;
+     
+     set review = msg;
+   
+ end$$
+ 
+DELIMITER
