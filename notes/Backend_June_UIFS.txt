@@ -2416,3 +2416,423 @@ DELIMITER $$
  end$$
  
 DELIMITER
+
+26/06
+======
+
+Ex:
+
+DELIMITER $$
+
+ create procedure GetReview(in id int, out review varchar(20))
+ 
+ begin
+      declare rate int default 0;
+      declare msg varchar(20);
+     
+      select Rating into rate from tblproducts where ProductId=id;
+     
+      if rate>=5 then
+        set msg = 'Good';
+      elseif rate=4 then
+        set msg='Average';
+      elseif rate<4 then
+        set msg = 'Poor';
+     end if;
+     
+     set review = msg;
+   
+ end$$
+ 
+DELIMITER
+
+call GetReview(1, @review);
+select @review;
+
+Summary:
+- Stored Procedure
+- Params [ In, Out]
+- Variables
+- Statements
+
+                             SQL Joins
+- Joins are used to compare values from two different tables.
+- You can compare data in tables by creating a Join.
+- Joins are categorized in to various types
+    a) Inner Join
+    b) Left Join
+    c) Right Join
+    d) Cross Join
+
+- Join is used to match data from left and right tables and return result according to the JOIN type defined.
+
+- It uses a select query to fetch data from multiple tables and create a join.
+
+Syntax:
+    SELECT  fields_form_both_tables AS alias_name from  LEFT_TABLE  
+    JOIN_TYPE  RIGHT_TABLE   ON  matching_query;
+
+
+    Inner Join        : It finds and returns only the matching data in both tables.
+
+    Left  Join            : It returns all records of left table, and all records of right
+                      table. However it set null into the right table if relative
+                      left table content is not found.
+
+    Right Join        : It returns all records of right table and set null into left
+                      table if matching data is not found.
+
+    Cross Join        : It sets null in both tables when matching data is not found.
+
+Syntax:
+1. Create 2 tables
+
+    allvendors
+   
+        VendorId        VendroName
+        1            Bajaj
+        2            Reliance
+        3            Chroma    
+        4.             BigC
+
+     hydvendors
+
+        VendorId        VendorName
+        1            Chroma
+        2            Bajaj
+
+2. Write the query
+
+SELECT allvendors.VendorId, allvendors.VendorName AS 'All Vendors',
+
+hydvendors.VendorId, hydvendors.VendorName AS 'Hyd Vendors' FROM
+
+allvendors INNER JOIN hydvendors ON
+
+allvendors.VendorName=hydvendors.VendorName;
+
+
+                         SQL Views
+- View is a virtual table
+- It can query content and save the result in the form a virtual table.
+- You can access and use the virtual table.
+- However your can't modify the data in view.
+- It is automatically updated from the physical the tables.
+
+Syntax:    
+    create  view   view_name  as query;
+
+- You can access the data from view using select command
+
+Syntax:
+    select  * from  view_name;
+
+Ex:
+create view electronic_products as select * from tblproducts where Category='Electronics';
+
+create view high_rated_products as select * from tblproducts where Rating >= 4;
+
+
+
+
+
+
+Summary:
+ MongoDB
+ MySQL
+
+                              Node JS
+
+FAQ: What is server side scripting?
+Ans:  Server side scripting is a technique where scripts are employed on server in order
+      to generate a response customized to every client request.
+
+     There are various server side scripting technologies like:
+        - CGI
+        - ASP
+        - JSP
+        - PHP
+        - NODE
+        etc.
+
+FAQ: What is Node JS?
+Ans:  It is a JavaScript runtime for developers to build  web applications, servers,
+     command line tools and scripts.
+
+Features of Node JS:
+- It is open source.
+- It is cross platform.
+- It uses JavaScript runtime.
+- It is single threaded.
+- No buffering
+- Modular
+- Async
+
+27/06
+======
+
+What is Node JS?
+Node JS Features
+
+- Node JS uses JavaScript as its language.
+- JavaScript is used with only language features.
+- You can't use DOM & BOM methods.
+
+    * Variables
+    * Data Types
+    * Operators
+    * Statements
+    * Functions
+    * OOP Concepts
+        - Modules
+        - Classes
+
+- Server Side Programming is all about handling various types of objects & techniques.
+- Server Side Objects include
+        a) request
+        b) response
+        c) session
+        d) application
+        e) cookie     etc..
+- Server Side Techniques include
+        a) Caching
+        b) Routing
+        c) Model Binding
+        e) Data Binding
+        f) Event Binding etc.
+
+Creating a server side application using Node JS:
+
+1. Create a new folder on your PC for server application
+
+      D:\server-app
+
+2. Open folder in VS code
+
+3. Run the following commands
+
+    > npm  init  -y                             // generates package.json
+
+    > npm init @eslint/config@latest            // It sets up language analytics
+
+    https://eslint.org/
+
+    ? What do you want to lint  :  JavaScript
+    ? How would you like to use ESLint : To check syntax and find problems
+    ? What type of modules does your project use?  Common JS
+    ? Which framework does your project use : none
+    ? Does your project use TypeScript? No
+    ? Where does your code run? Node
+    ? Would you like to install them [configs] now? Yes
+    ? Which package manager ? npm
+   
+    - This will generate following files into project
+
+        eslint.config.mjs
+        node_modules [folder]
+
+4. Server side programs are written in a JavaScript file with extension ".js , .mjs, .cjs"
+
+5. Add a new file by name "index.js" into root level of project.
+
+                 index.js
+
+        console.log("Welcome to Node JS");
+
+6. Go to package.json file and setup script
+
+"scripts": {
+    ....
+        "start": "node index.js"
+   },
+
+    => node  is a compiler used to compile and run JavaScript files server side.
+
+7. Run the following command from terminal
+
+    > npm run start
+
+
+                           Node Modules
+                          ---------------------
+- Node JS provides several bult-in modules to handle various interactions server side.
+- Module is a set of classes, functions and values.
+
+1. Http Module
+ 
+  - It provides a set of classes and functions that are required to create a server,
+    web application and scripts.
+  - You can create server, handle request from client and send a customized response
+     to the client request.
+  - Http Module provides  "createServer()" method to create a server.
+  - Modules are imported by using "require()" method in CJS system.
+
+Syntax:
+        const  http  = require("http");
+
+        http.createServer(function(request, response){
+
+
+        })
+
+  - Every server comprises of 2 basic objects
+
+    a) Request
+    b) Response
+
+  - Request object is used by server to request data from client, which includes
+    a) Query String
+    b) Cookies
+    c) Local Storage
+    d) Session Storage
+    e) Form Body etc.
+
+ - Response object is used to send response to client, which includes
+    a) Text
+    b) HTML    
+    c)  XML
+    d) JSON
+    e) File etc.
+
+Ex:
+  index.js
+
+ const http = require("http");
+
+ http.createServer(function(request, response){
+       response.writeHead(200,{'content-type':'text/plain'});
+       response.write("Welcome to Node Server");
+       response.end();
+ }).listen(4040);
+
+ console.log(`Server Started : http://127.0.0.1:4040`);
+
+ > npm run start
+
+28/06
+======
+
+HTTP Module
+- createServer()
+
+Syntax:
+    http.createServer(function(req, res){
+        res.writeHead();
+        res.write();
+    })
+
+- writeHead() uses a status code to verify the request.
+- Http status codes will range from 100 to 500.
+
+        1xx            : codes related to the process and action to execute.
+        2xx            : codes related to confirmation.
+        3xx            : codes related to methods & redirection.
+        4xx            : codes related to client side issues.
+        5xx            : codes related to server side issues.
+
+Ex:
+ index.js
+
+ const http = require("http");
+
+ Object.keys(http.STATUS_CODES).map(key=>{
+      console.log(`${key}: ${http.STATUS_CODES[key]}`);
+ })
+
+
+        200 OK        : It is to confirm a successful request and send response.
+
+- writeHead() requires content MIME type to define.  
+- MIME type depends of your response type.
+- Http supports various MIME types
+
+        text/plain                plain text without formats
+        text/html                HTML markup as response
+        application/json        JSON format response
+        application/xml        XML format response
+        application/pdf        PDF file
+        image/jpeg            JPEG file
+        etc..
+
+- Every server application runs on specific port number.
+- Port numbers will range from 1 to 45565.
+
+          1 to 1023            Well known port numbers.
+          1024 to 41591        Registered port numbers.
+           41592 to 65535    Dynamic port numbers.
+
+- For your application always use "registered port" numbers.
+- Your server application listen() on specific registered port number.
+
+Syntax:
+      http.createServer().listen(port)
+
+- You can request application using following  methods
+
+      http://127.0.0.1:port
+            (or)
+      http://localhost:port
+
+- The response content type must be same as the MIME type defined.
+
+        { 'content-type' :  'text/html' }
+
+        res.write("<h2> Welcome </h2>");
+
+Ex: HTML type data
+
+index.js
+
+ const http = require("http");
+
+ http.createServer((req, res)=>{
+
+      res.writeHead(200, { 'content-type': 'text/html' });
+      res.write('<h1>Welcome to Node JS</h1>');
+      res.end();
+ }).listen(5000);
+ console.log(`Server Started http://127.0.0.1:5000`);
+
+Ex: JSON type
+
+index.js
+
+ const http = require("http");
+
+ http.createServer((req, res)=>{
+
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.write(JSON.stringify([{Name:'TV', Price:45000},{Name:'Mobile', Price:12000}]));
+      res.end();
+ }).listen(5000);
+
+ console.log(`Server Started http://127.0.0.1:5000`);
+
+Node OS module:
+
+- It provides a set of methods that can get information about server operating system.
+- It includes details like
+
+      hostname()        : server name
+      platform            : server OS type
+      freemem        : total free memory available
+      cpus()            : It returns a set of objects that contains CPU details
+                      like processor model, speed etc.
+
+      etc.
+
+Syntax:
+      const  os = require("os");
+
+      console.log(os.platform());
+
+Ex:
+index.js
+
+const os = require("os");
+
+console.log(`Server OS : ${os.platform()}\nServer IP: ${os.hostname()}\nFree Memory : ${os.freemem()}\nProcessor : ${os.cpus()[0].model}`);
+
+FAQ: What is npm run start?
+Ans:  It is a batch program created by developer to run a sequence of actions.
+     You can terminate the batch program using "Ctrl + C".
