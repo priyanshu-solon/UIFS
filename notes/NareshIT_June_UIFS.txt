@@ -4796,3 +4796,813 @@ Ex:
        document.write(`Product Name : ${obj.ProductName}`);
    }
 </script>
+
+26/06
+======
+
+Class Members
+- Property
+- Accessor
+- Static & Non Static
+- Private
+
+Method:
+- It is just like a function.
+- It can return a value or perform any specified functionality.
+
+Syntax:
+      class Name
+      {
+         Method() {
+
+          }
+      }
+
+     let obj = new Name();
+     obj.Method();
+
+- Method can be parameterized or parameter less.
+- It can be void or with return.
+- It is mutable. [ function is immutable ].
+
+Ex:
+<script>
+   class Product
+   {
+       Name = "Samsung TV";
+       Price = 56000;
+       Qty = 2;
+       Total(){
+          return this.Qty * this.Price;
+       }
+       Print(){
+          document.write(`Name=${this.Name}<br>Price=${this.Price}<br>Qty=${this.Qty}<br>Total=${this.Total()}`)
+       }
+   }
+   let tv = new Product();
+   tv.Qty = parseInt(prompt("Enter Qty"));
+   tv.Print();
+</script>
+
+Constructor:
+- It is used to for instantiation.
+- It is responsible for creating an object for class.
+- Every class have a default constructor.
+- You can define explicitly constructor to specify the actions to perform while creating object for class.
+- JavaScript constructor is anonymous.
+- It is defined using constructor keyword.
+
+Syntax:
+    class Name
+    {
+       constructor() { }
+    }
+
+- A constructor will execute automatically for every object.
+- Constructor can execute only once for object.
+- A constructor can be parameterized.
+- Parameterized constructor requires the parameters to pass while allocating memory for object.
+
+Syntax:
+        class Name
+        {
+           constructor(params) { }
+        }
+
+        let obj = new Name(value);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Database
+        {
+            constructor(dbname){
+                document.write(`Connected with ${dbname} Database<br>`);
+            }
+            Insert(){
+                document.write("Record Inserted");
+            }
+            Update(){
+                document.write("Record Updated");
+            }
+            Delete(){
+                document.write("Record Deleted");
+            }
+        }
+        function DbAction(action){
+            switch(action)
+            {
+                case "Insert":
+                     let ins = new Database(document.querySelector("select").value);
+                     ins.Insert();
+                     break;
+                case "Update":
+                      let update = new Database(document.querySelector("select").value);
+                      update.Update();
+                      break;
+                case "Delete":
+                      let del = new Database(document.querySelector("select").value);
+                      del.Delete();
+                      break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <select>
+        <option>Select Database</option>
+        <option>MySQL</option>
+        <option>MongoDB</option>
+    </select>
+    <button onclick="DbAction('Insert')">Insert</button>
+    <button onclick="DbAction('Update')">Update</button>
+    <button onclick="DbAction('Delete')">Delete</button>
+</body>
+</html>
+
+Reusability & Extensibility:
+
+- Reusability and extensibility are primary features of OOP.
+- You can reuse the code of one class in another class by using 2 techniques
+
+    1. Aggregation
+    2. Inheritance
+
+Aggregation:
+- It is the process of accessing the member of one class in another class without configuring any relationship between classes.
+
+- It is referred as "Has-A-Relation" and it uses object to object communication.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class HDFC_Bank_Version1
+        {
+             Personal = "Personal Banking Services";
+             Print(){
+                document.write(`${this.Personal}<br>`);
+             }
+        }
+        class HDFC_Bank_Version2
+        {
+            NRI = "NRI Banking Services";
+            Print(){
+                let obj = new HDFC_Bank_Version1();
+                obj.Print();
+                document.write(`${this.NRI}<br>`);
+            }
+        }
+        class HDFC_Bank_Version3
+        {
+            Loans = "Housing and Car Loans";
+            Print(){
+                let obj = new HDFC_Bank_Version2();
+                obj.Print();
+                document.write(`${this.Loans}<br>`);
+            }
+        }
+        function InstallClick(){
+            var ver = document.querySelector("select").value;
+            switch(ver)
+            {
+                case "ver1":
+                 document.write("<h1>Version-1 Installed</h1>");
+                 let obj1 = new HDFC_Bank_Version1();
+                 obj1.Print();
+                 break;
+                case "ver2":
+                document.write("<h1>Version-2 Installed</h1>");
+                 let obj2 = new HDFC_Bank_Version2();
+                 obj2.Print();
+                 break;
+                 case "ver3":
+                 document.write("<h1>Version-3 Installed</h1>");
+                 let obj3 = new HDFC_Bank_Version3();
+                 obj3.Print();
+                 break;
+                 default:
+                 document.write("<h2>Please select a version</h2>");
+                 break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Install Bank App</h2>
+    <select>
+        <option>Select Version</option>
+        <option value="ver1">Version-1</option>
+        <option value="ver2">Version-2</option>
+        <option value="ver3">Version@latest</option>
+    </select>
+    <button onclick="InstallClick()">Install</button>
+</body>
+</html>
+
+Inheritance:
+- It is the process of reusing and extending the code by configuring relationship between classes.
+- It is referred as "Is-A-Relation".
+- A class can use the features of another class by extending the class.
+
+Syntax:
+    class A
+    {
+    }
+    class  B extends A
+    {
+    }
+
+    A    => Super Class
+    B    => Derived Class
+
+- Super class members are accessible in derived class by using "super" keyword.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class HDFC_Bank_Version1
+        {
+             Personal = "Personal Banking Services";
+             Print(){
+                document.write(`${this.Personal}<br>`);
+             }
+        }
+        class HDFC_Bank_Version2 extends HDFC_Bank_Version1
+        {
+            NRI = "NRI Banking Services";
+            Print(){
+                super.Print();
+                document.write(`${this.NRI}<br>`);
+            }
+        }
+        class HDFC_Bank_Version3 extends HDFC_Bank_Version2
+        {
+            Loans = "Housing and Car Loans";
+            Print(){
+                super.Print();
+                document.write(`${this.Loans}<br>`);
+            }
+        }
+        function InstallClick(){
+            var ver = document.querySelector("select").value;
+            switch(ver)
+            {
+                case "ver1":
+                 document.write("<h1>Version-1 Installed</h1>");
+                 let obj1 = new HDFC_Bank_Version1();
+                 obj1.Print();
+                 break;
+                case "ver2":
+                document.write("<h1>Version-2 Installed</h1>");
+                 let obj2 = new HDFC_Bank_Version2();
+                 obj2.Print();
+                 break;
+                 case "ver3":
+                 document.write("<h1>Version-3 Installed</h1>");
+                 let obj3 = new HDFC_Bank_Version3();
+                 obj3.Print();
+                 break;
+                 default:
+                 document.write("<h2>Please select a version</h2>");
+                 break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Install Bank App</h2>
+    <select>
+        <option>Select Version</option>
+        <option value="ver1">Version-1</option>
+        <option value="ver2">Version-2</option>
+        <option value="ver3">Version@latest</option>
+    </select>
+    <button onclick="InstallClick()">Install</button>
+</body>
+</html>
+
+Note: The basic inheritance rule :  "A derived class constructor must call super class                                   constructor"
+
+Syntax:
+    class A
+    {
+       constructor(){ }
+    }
+    class B extends A
+    {
+       constructor {
+        super();
+        }
+    }
+
+Ex:
+<script>
+    class Super
+    {
+         constructor(){
+            document.write("Super Class Constructor");
+         }
+    }
+    class Derived extends Super
+    {
+        constructor(){
+            super();
+            document.write("Derived Class Constructor");
+        }
+    }
+    let obj = new Derived();
+
+</script>
+
+                           Polymorphism
+- Poly refers to "Many".
+- Morphos refers to "Forms".
+- Polymorphism is a feature that allows one component to handle different actions.
+- Technically a single base class reference can use the memory of multiple derived classes.
+
+Syntax:
+    let obj = new Array(new m1(), new m2(), new m2());
+
+    obj => is handling 3 classes and can switch between them.
+
+Ex:
+<script>
+    class Employee
+    {
+        FirstName;
+        LastName;
+        Designation;
+        Print(){
+            document.write(`${this.FirstName} ${this.LastName} - ${this.Designation}<br>`);
+        }
+    }
+    class Developer extends Employee
+    {
+        FirstName = "Raj";
+        LastName = "Kumar";
+        Designation = "Developer";
+        Role = "Developer Role : Build, Debug, Test";
+        Print(){
+            super.Print();
+            document.write(`${this.Role}`);
+        }
+    }
+    class Admin extends Employee
+    {
+        FirstName = "Kiran";
+        LastName = "Kumar";
+        Designation = "Admin";
+        Role = "Admin : Authorizations";
+        Print(){
+            super.Print();
+            document.write(`${this.Role}`);
+        }
+    }
+    class Manager extends Employee
+    {
+        FirstName = "Tom";
+        LastName = "Hanks";
+        Designation = "Manager";
+        Role = "Manager Role : Approvals";
+        Print(){
+            super.Print();
+            document.write(`${this.Role}`);
+        }
+    }
+
+    let employees = new Array(new Developer(), new Admin(), new Manager());
+    var designation = prompt("Enter Designation");
+
+    for(var employee of employees)
+    {
+         if(employee.Designation===designation){
+             employee.Print();
+         }
+    }
+
+</script>
+
+                            Browser Objects
+1. window
+
+    alert()
+    confirm()
+    prompt()
+    XMLHttpRequest
+    fetch()
+    open()
+    print()
+    etc..
+
+2. document
+
+    write()
+    appendChild()
+    getElementById()
+    querySelector()
+    getElementsByTagName()
+    innerHTML
+    textContent
+    etc..
+
+3. location
+
+    href
+    search
+    host
+    port
+    protocol
+    pathname
+    etc..
+
+27/06
+======
+
+JavaScript Browser Objects
+1. window
+2. document
+3. location
+    host
+    pathname
+    protocol
+    port
+    href
+    search
+    etc..
+
+Ex:
+<script>
+    document.write(`
+          IP : ${location.host} <br>
+          URL : ${location.href} <br>
+          Protocol : ${location.protocol} <br>
+          Port : ${location.port} <br>
+          Path : ${location.pathname} <br>
+          Query String : ${location.search}
+    `)
+</script>
+
+4. navigator
+- It is used to get client browser details.
+- Browser details include
+
+        appName        browser family name
+        appVersion        browser version
+        platform            OS type
+        language            regional language
+        cookieEnabled    true when cookies are enabled
+        geoLocation        It get the current location latitude and longitude
+        etc..
+
+<script>
+    document.write(`
+         Browser Family : ${navigator.appName} <br>
+         Version : ${navigator.appVersion} <br>
+         Cookies Enabled : ${navigator.cookieEnabled}
+    `)
+</script>
+
+
+Syntax: Geo Location
+
+    navigator.geolocation.getCurrentPosition(function(position){
+       
+            position.coords.latitude;
+            position.coords.longitude;
+       
+    })
+
+Ex:
+<script>
+    navigator.geolocation.getCurrentPosition(function(position){
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=1318ca6725c69160d346c41fc0612596&units=metric`)
+          .then(response=>response.json())
+          .then(weatherObj=>{
+              document.write(`
+                  Location : ${weatherObj.name} <br>
+                  Temp     : ${weatherObj.main.temp}
+              `);
+          })
+    })
+</script>
+
+5. history
+  - It provides properties and methods used to access current browsing history
+ 
+      length        : total count of pages visited
+      back()        : moves to previous page in history
+      forward()    : moves to next page in history
+
+Syntax:
+        history.length
+        history.back()
+
+FAQ: How to navigate to any page dynamically?
+Ans:  By using "location.href"
+
+Syntax:
+        location.href = "new_path";
+
+Summary:
+- window
+- location
+- navigator
+- document
+- history
+
+                         State Management
+
+- Web application use "http" as protocol.
+- Http is a state less protocol.
+- State less uses the mechanism of "Go-Get-Forget".
+
+    GO        : Establish connection with server
+    GET        : Get response  from server.
+    FORGET    : Cleanup data from server.
+
+- State less nature of  HTTP is good for application as memory is well managed.
+- However it is not good for continuous operations.
+- You can't carry data from one page to another. It requires various state management techniques.
+- State Management allows to allocate memory so that it can accessed across pages.
+- If memory is allocated on client device then it is called as Client Side State Management.
+- If memory is allocated on server then it is "Server Side State Management".
+- Client Side State is configured using
+
+        1. Query String
+        2. Session Storage
+        3. Local Storage
+        4. Cookies
+
+Query String:
+ - It is appended into URL and stored in address bar.
+ - It is a key and value collection.
+
+        ?key=value&key=value
+
+Ex:
+1. Add a new folder  "state".
+
+2. Add following files
+       
+     login.html
+     dash.html
+
+3. login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="get" action="./dash.html">
+        User Name : <input type="text" name="uname"> <button>Login</button>
+    </form>
+</body>
+</html>
+
+4. dash.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            if(location.search===''){
+                location.href = "./login.html";
+            } else {
+                var params = new URLSearchParams(location.search);
+                document.getElementById("lblName").innerHTML = params.get("uname").toUpperCase();
+            }
+        }
+        function SignoutClick(){
+            location.href = "./login.html";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>
+        <span id="lblName"></span> <span> - Dashboard</span>
+        <button onclick="SignoutClick()">Signout</button>
+    </h2>
+</body>
+</html>
+
+Session Storage:
+ - It is a browser storage.
+ - It is temporary storage.
+ - It is deleted when browser is close.
+ - It is not accessible across tabs in browser.
+ 
+Syntax:    
+    sessionStorage.setItem("key", value)
+                  .getItem("key")
+                  .removeItem("key")
+                  .clear()
+
+Ex:
+1. login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoginClick(){
+             sessionStorage.setItem("uname", document.getElementById("txtName").value);
+             location.href = "./dash.html";
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+     User Name : <input type="text" id="txtName"> <button onclick="LoginClick()">Login</button>
+</body>
+</html>
+
+2. dash.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+
+            setTimeout(()=>{
+                alert('Your session timed out');
+                location.href = "./login.html";
+            }, 10000)
+
+            if(sessionStorage.getItem("uname")===null){
+                location.href = "./login.html";
+            } else {
+                document.getElementById("lblName").innerHTML = sessionStorage.getItem("uname");
+            }
+        }
+        function SignoutClick(){
+            sessionStorage.removeItem("uname");
+            location.href = "./login.html";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>
+        <span id="lblName"></span> <span> - Dashboard</span>
+        <button onclick="SignoutClick()">Signout</button>
+    </h2>
+</body>
+</html>
+
+Local Storage:
+- It is browser storage.
+- It is permanent storage.
+- It is available across tabs.
+- It is not deleted even after browser close.
+- You have to explicitly remove.
+
+Syntax:
+        localStorage.setItem()
+                     .getItem()
+                     .removeItem()
+                     .clear()
+
+Ex:
+1. login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoginClick(){
+             localStorage.setItem("uname", document.getElementById("txtName").value);
+             location.href = "./dash.html";
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+     User Name : <input type="text" id="txtName"> <button onclick="LoginClick()">Login</button>
+</body>
+</html>
+
+2. dash.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+
+            if(localStorage.getItem("uname")===null){
+                location.href = "./login.html";
+            } else {
+                document.getElementById("lblName").innerHTML = localStorage.getItem("uname");
+            }
+        }
+        function SignoutClick(){
+            localStorage.removeItem("uname");
+            location.href = "./login.html";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>
+        <span id="lblName"></span> <span> - Dashboard</span>
+        <button onclick="SignoutClick()">Signout</button>
+    </h2>
+</body>
+</html>
+
+Cookies:
+- Cookie is simple text document.
+- Client details can be stored in a cookie and can be accessed across pages.
+- Cookie can be 2 types
+
+    a) In Memory [  Temporary ]
+    b) Persistent  [  Permanent ]
+
+- To make cookie permanent you have to set expiry date and time.
+
+Syntax:
+        document.cookie = "name=value; expires=dateTime";
+
+Note: To remove cookie from memory you have to define an elapsed date and time.
+
+Ex:
+1. login.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoginClick(){
+             document.cookie = `uname=${document.getElementById("txtName").value};expires=Sat, 29 Jun 2025 14:14:19 GMT`;
+             location.href = "./dash.html";
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+     User Name : <input type="text" id="txtName"> <button onclick="LoginClick()">Login</button>
+</body>
+</html>
+
+2. dash.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            document.getElementById("lblName").innerHTML = document.cookie.slice(document.cookie.indexOf("=")+1);
+        }
+        function SignoutClick(){
+            document.cookie = `uname='';expires=Sat, 25 Jun 2025 14:14:19 GMT`;
+            location.href = "./login.html";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>
+        <span id="lblName"></span> <span> - Dashboard</span>
+        <button onclick="SignoutClick()">Signout</button>
+    </h2>
+</body>
+</html>
