@@ -1,0 +1,71 @@
+<script>
+     for(var i=1; i<=10; i++){
+          if(i===5 || i===8) {
+               continue;
+          }
+          document.write(`${i}<br>`);
+
+     }
+</script>
+
+
+<script>
+     fetch(`https://fakestoreapi.com/products`)
+     .then(function(response){
+           return response.json();
+     })
+     .then(function(products){
+          for(var i=0; i<products.length; i++){
+               if(products[i].category==="electronics" || products[i].category==="jewelery"){
+                    continue;
+               }
+               document.write(`${products[i].title} - <b>${products[i].category}</b><br>`);
+          }
+     })
+</script>
+
+
+<script>
+     var values = [[10, 20, 30], [40, 50, 60]];
+
+     /*
+        Print the values in martix format using for
+
+        10      20      30              values[0][0]      values[0][1]   values[0][2]
+
+        40      50      50              values[1][0]      values[1][1]   values[1][2]
+
+     */
+
+      for(var i=0; i<values.length; i++){
+
+           for(var j=0; j<values[i].length; j++){
+                document.write(`${values[i][j]}`)
+           }
+           document.write("<br><br>");
+      }
+
+</script>
+
+<!-- Ex: using map -->
+
+<script>
+     var values = [[10, 20, 30], [40, 50, 60]];
+
+     /*
+        Print the values in martix format using map
+
+        10      20      30              values[0][0]      values[0][1]   values[0][2]
+
+        40      50      50              values[1][0]      values[1][1]   values[1][2]
+
+     */
+
+     values.map(function(value){
+         value.map(function(item){
+            document.write(`${item}`);
+         })
+         document.write("<br><br>");
+     })
+
+</script>

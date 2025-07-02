@@ -2836,3 +2836,371 @@ console.log(`Server OS : ${os.platform()}\nServer IP: ${os.hostname()}\nFree Mem
 FAQ: What is npm run start?
 Ans:  It is a batch program created by developer to run a sequence of actions.
      You can terminate the batch program using "Ctrl + C".
+
+30/06
+=====
+
+	
+Process, FS, Path modules
+Node Modules
+1. http    
+    - creating server and app
+2. os
+    - get OS details
+
+3. Process Module
+ - Node is single threaded.
+ - It executes tasks simultaneously with background process.
+ - Every task requires a process ID and other details which you can access using process module .
+- Module properties include details like
+
+        a) env    
+        b) getuid
+        c) getgid
+        d) platform
+        e) version
+        f)  freeMemory etc.
+
+Syntax:
+    const process = require("process");
+
+    process.env;
+    process.getuid;
+
+4. Path Module
+- It provides a set of properties and methods used to access file location and other details.
+- It includes name, extension, type, size, root directory etc.
+
+    a) basename           : returns the file name
+    b) dirname           : returns directory name
+    c) extname           : returns the file extension name
+    d) relative           : gets the relative path
+    e) isAbsolute           : returns true if the path is not relative. [is absolute]
+    etc..
+
+Syntax:
+    const  path = require("path");
+    path.extname("file_path");
+
+
+Ex:
+index.js
+
+const path = require("path");
+
+var uploaded_file = "D:\\images\\photo.jpg";
+
+if(path.extname(uploaded_file)===".jpg"){
+     console.log(`File Uploaded Successfully..\nUploaded from ${path.dirname(uploaded_file)} folder`);
+} else {
+     console.log(`Invalid Format - You can upload only JPG files`);
+}
+
+5. File Stream [ FS ]
+- It is used to handle files server side.
+- It provides a set of properties and methods to read and write data into files.
+- Node file stream provides both synchronous and asynchronous methods.
+
+Syntax:
+     var  fs =  require("fs");
+
+      var data = fs.readFileSync("path");
+
+- readFileSync()  uses a blocking technique, that blocks all other task inside process while performing the specified.
+
+Ex: Blocking  - Synchronous
+
+index.js
+
+const fs = require("fs");
+
+console.log(`File Requested`);
+
+let data = fs.readFileSync('./notes.txt');
+console.log(data.toString());
+
+console.log(`File Read Complete`);
+
+- readFile()  is an asynchronous method.
+- It uses unblocking technique, that executes the other tasks in background.
+
+Syntax:
+    fs.readFile("path", function(error, data){
+       
+            if(!error) {
+                // handle data
+            } else {
+                // report error
+            }
+    })
+
+Node Techniques:
+
+1. Event Binding
+
+ FAQ's:
+
+ a) What is Event?
+ b) Which pattern Event follows?
+ c) What is Observer?
+ d) What is Event Handler?
+ e) What are Event Args?
+ f)  What is Event Listener?
+
+1/07
+====
+
+Node Events
+
+1. What is Event?
+A. Event is a message sent by sender to its subscriber in order to notify change.
+     It uses a communication pattern called "Observer".
+
+
+2. What is design pattern?
+A. Design patterns are solutions for software design problems that you encounter in real world application development.
+     Design patterns are categorized into 3 groups.
+   
+    a) Creational
+    b) Structural
+    c) Behavioral
+
+      Note: Observer is a behavioral pattern.
+
+3. What is the role of sender and subscriber?
+A. Sender uses a trigger to send notification.  
+    Subscriber is a function that executes when notified.
+
+           
+        function  InsertClick()            => Subscriber
+        {
+        }
+
+        <button onclick="InsertClick()">    => Sender
+
+4. What is Event handler?
+A. Event handler comprises of event, which is registered for any element.
+     It uses a "Delegate" mechanism, which is a function pointer mechanism.
+
+    "on"        : registers event for element
+    "click"    : refers to event name.
+
+     Every event requires a function pointer, which is a subscriber.
+
+
+5. What is Event Listener?
+A. Event listener registers an event with element dynamically.
+     It can use a function as trigger. So that it can perform the specified functionality.
+     You can add events dynamically by using the method "addEventListener".
+
+
+Custom Events:
+- Node JS allows to create a new event for custom components.
+- The base class for events is "EventEmitter".
+- All events are derived from "EventEmitter" base.
+- You can create a new custom event by inheriting EventEmitter.
+
+1. You have to import events module
+
+    const events = require("events");
+
+2. Create a new object for EventEmitter class.
+
+    let event = new events.EventEmitter();
+
+
+3. Create a new event and subscribe to any function
+
+     event.on("event_name", function_name);
+
+
+4. Event triggers by using  "emit()" method.
+
+     event.emit(event_name);
+
+Note: Emit requires registered event name that triggers specified functionality.
+      It can use both handler and listener.
+
+      a) handler uses "on()"
+      b) listener uses "addEventListener()"
+
+Ex:
+index.js
+
+const events = require("events");
+
+let event = new events.EventEmitter();
+
+let handleSend = function(){
+     console.log(`Message Sent Successfully..`);
+}
+
+let handleGet = function(){
+     console.log([{Name:'TV', Price:2300}, {Name:'Mobile', Price:1200}]);
+}
+
+event.on("send", handleSend);
+event.on("get", handleGet);
+event.emit("send");
+event.emit("get");
+
+Ex:
+index.js
+const events = require("events");
+
+let event = new events.EventEmitter();
+
+let handleSend = function(){
+    console.log(`Message Sent Successfully..`);
+}
+
+
+event.addListener("send", handleSend).emit("send");
+
+
+FAQ: What is difference between event and event handler?
+Ans:  Event is dynamically configured using listener.
+     Handler is statically configured using "on()" method.
+
+Note: Server Side events are configured using "EventEmitter".
+
+
+FAQ: What is Event Loop?
+Ans:  It allows to execute the actions configured for events using async technique.
+
+
+                             Caching
+
+2/07
+====
+
+Caching
+- Caching a technique used in web applications to save round trip.
+- Round trip is the process of accessing requested data always from server.
+- You can cache and save data in memory so that the requested data will be delivered from memory.
+- It reduces burden on server and improves performance of application.
+- Caching can be configured using various techniques
+
+    1. In memory cache
+    2. Distributed cache [redis]
+    3. File Based caching
+
+In memory cache:
+- It uses a local cache library to save the data and use across requests.
+- It is configured to access within application.
+- It usually caches the data from API requests in order save round trip.
+- It requires a "node-cache" library.
+
+        https://www.npmjs.com/
+
+1. Install node-cache
+
+    > npm  install  node-cache --save
+
+2. Import node-cache
+
+    const  nodeCache = require("node-cache");
+   
+3. Create an object for node-cache
+
+    let  cache = new nodeCache();
+
+4. Store your data into cache
+
+    cache.set("key", data, { options } )        
+
+    options refers to TTL. [Time-To-Live]
+
+5. You can access the cache by using the reference of key
+
+    cache.get("key")
+
+6. If cache is removed then it returns "undefined".
+
+Syntax:
+        if(cache.get("key"))
+        {
+            // cache exists;
+        }
+        else
+        {
+           // cache cleared;
+        }
+
+7. You can manually clear the cache
+
+        cache.del("key");
+
+Ex:
+index.js
+
+const nodeCache = require("node-cache");
+
+let cache = new nodeCache();
+
+cache.set('product', {Name:'tv', Price:23300}, 20);
+var now = new Date();
+
+if(cache.get('product')){
+    console.log(cache.get('product'));
+    console.log(now.toLocaleTimeString());
+} else {
+    console.log(`Unable to find the data - Cache deleted`);
+}
+
+function GetData(){
+    if(cache.get('product')){
+    console.log(cache.get('product'));
+    console.log(now.toLocaleTimeString());
+    } else {
+        console.log(`Unable to find the data - Cache deleted`);
+    }
+}
+
+setTimeout(GetData,25000);
+
+
+                    Database Drivers in Node JS
+- Driver is a software library.
+- It is a middleware library used to handle communication between the application and backend database.
+- Every database requires relative driver library.
+
+MongoDB Drivers:
+- It provides a set of classes responsible for handling communication between application and MongoDB database.
+- It comprises of both server and client classes.
+- Server class connects with database modify the structure.
+- Client class connects with database to interact with the data. It handles CRUD operations.
+
+1. Install MongoDB driver
+
+        >npm install  mongodb --save
+
+2. Import MongoClient class
+
+    const  mongoClient  = require("mongodb").MongoClient;
+
+3. Client class provides a connect method to connect with database.
+
+    mongoClient.connect("url").then().catch().finally();
+
+    mongoClient.connect(url, function(err, obj){        // old technique - deprecated
+           err => on reject
+           obj => on resolve
+    })
+
+    URL refers to MongoDB connection string :  mongodb://127.0.0.1:27017
+
+Ex:
+index.js
+
+const mongoClient = require("mongodb").MongoClient;
+
+mongoClient.connect("mongodb://127.0.0.1:27017").then(()=>{
+    console.log('Connected Successfully..');
+})
+.catch(err=>{
+    console.log(err);
+})
+.finally(()=>{
+    console.log("Request End");
+})
