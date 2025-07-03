@@ -2642,7 +2642,7 @@ Creating a server side application using Node JS:
 6. Go to package.json file and setup script
 
 "scripts": {
-    ....
+      ....
         "start": "node index.js"
    },
 
@@ -3204,3 +3204,203 @@ mongoClient.connect("mongodb://127.0.0.1:27017").then(()=>{
 .finally(()=>{
     console.log("Request End");
 })
+
+3/07
+=====
+
+MongoDB Drivers
+
+connect()  :
+
+    - It uses a connection string to connect with database server.
+    - MongoDB connection string  is "mongodb://127.0.0.1:27017"    
+    - connect() is a JavaScript promise type. It provides then() on resolve, catch() or reject and finally() always.
+    - then() returns a client object, which can connect with specific database in server.
+
+Syntax:
+        mongoClient.connect("url").then(function(clientObj){
+           
+                // clientObj  uses  "db" to access any database.
+        })
+
+
+    - Database requires a reference to load into memory and access the collections.
+
+Syntax:
+        var database = clientObj.db("database_name");
+
+        database.collection("collection_name").find()
+                                        .insertOne()
+                                        .updateOne()            
+                                        .deleteOne()
+
+Reading Data From Database:
+
+- MongoDB client object can access database and collection.
+
+    var database = clientObj.db("database_name");
+
+    database.collection("collection_name")
+
+- To read data from collection you can use the methods
+
+    a) find()            : returns an array
+    b) findOne()        : returns only the first occurrence document that matches
+                      given condition.
+
+
+Syntax:
+    database.collection("name").find({query}).toArray().then(documents=>{
+
+        console.log(documents);        // [ { }, { } ]
+
+    })
+
+    database.collection("name").findOne({query}).then(document => {
+
+         console.log(document);            // { }
+    })
+
+Ex:
+index.js
+
+const http = require("http");
+const mongoClient = require("mongodb").MongoClient;
+
+http.createServer((request, response)=>{
+     response.writeHead(200, { 'content-type': 'application/json'});
+     mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObj=>{
+        var database =  clientObj.db("sampledb");
+        database.collection("fakestore").findOne({id:3}).then(document=>{
+             response.write(JSON.stringify(document));
+             response.end();
+        })
+      });
+}).listen(5200);
+console.log(`Server Started http://127.0.0.1:5200`);
+
+Inserting data:
+ - You can use the database methods
+
+    a) insertOne()
+    b) insertMany()
+
+Syntax:
+    database.collection("name").insertOne({data}).then().catch().finally()
+
+Ex:
+const mongoClient = require("mongodb").MongoClient;
+
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObj=>{
+
+    var database = clientObj.db("sampledb");
+
+    var product = {
+        name: "Watch",
+        price: 5000,
+        manufactured: new Date('2025-02-11')
+    }
+
+    database.collection("products").insertOne(product).then(()=>{
+         console.log(`Product Added successfully..`);
+    });
+})
+
+Updating Data:
+ - You can update data into collection by using database update methods
+
+    a) updateOne()
+    b) updateMany()
+
+Ex:
+index.js
+
+const mongoClient = require("mongodb").MongoClient;
+
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObj=>{
+
+    var database = clientObj.db("sampledb");
+
+    var product = {
+        name: "Fastrack Watch",
+        price: 4500,
+        manufactured: new Date('2025-02-22')
+    }
+
+    database.collection("products").updateOne({name:"Watch"},{$set:product}).then(()=>{
+         console.log(`Product Updated successfully..`);
+    });
+})
+
+Delete Documents:
+- You can use database delete methods
+   
+    a) deleteOne()
+    b) deleteMany()
+
+Ex:
+index.js
+
+const mongoClient = require("mongodb").MongoClient;
+
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObj=>{
+
+    var database = clientObj.db("sampledb");
+
+
+    database.collection("products").deleteOne({name:"Mobile"}).then(()=>{
+         console.log(`Product Deleted successfully..`);
+    });
+})
+
+                          MySQL Drivers
+
+- MySQL drivers will provide a set of properties and methods that are used to handle communication with 'MySQL database'.
+
+1. Install MySQL Drivers
+
+    > npm install  MySQL --save
+
+2. Import MySQL library and create Connection
+
+    const  mysql  = require("mysql");
+
+    const connection = mysql.createConnection({
+         host : "localhost",
+         user: "root",
+         password: "12345",
+         database: "db"
+    });
+    connection.connect();
+    connection.query("select query", (error, records, fields)=>{
+
+    })
+
+Ex:
+index.js
+
+
+const mysql = require("mysql");
+
+var connection = mysql.createConnection({
+     host: "localhost",
+     user: "root",
+     password: "12345",
+     database: "sampledb"
+});
+connection.connect((err)=>{
+      if(!err){
+          console.log("Connected");
+      } else {
+          console.log(err);
+      }
+})
+connection.query("select * from tblproducts",(err, records, fields)=>{
+     if(!err){
+         console.log(records);
+     }
+})
+
+
+
+                        Express JS
