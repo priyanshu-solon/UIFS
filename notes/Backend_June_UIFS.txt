@@ -3404,3 +3404,89 @@ connection.query("select * from tblproducts",(err, records, fields)=>{
 
 
                         Express JS
+
+4/07
+====
+
+Node JS
+- Node Modules
+    http
+    path
+    process
+    fs
+    os
+- Event Driven
+    custom events
+- Caching
+
+                              Express JS
+- It is a middleware framework.
+- Middleware is a software that enable communication in network based applications.
+- It is a JavaScript based framework.
+- Framework is an software architectural pattern that allows to build the application and control application flow.
+
+1. Install express JS
+
+    > npm install express --save
+
+2. Import express module
+
+     const express = require("express");
+
+3. Create an app using express
+
+      const  app = express();
+
+4. Configure the requests from client
+
+      app.get()        for fetching
+      app.post()        for submit and save
+      app.put()        for update and save
+      app.delete()        for removing
+
+Syntax:
+    app.get("/path", function(request, response){
+
+    });
+
+    request     : It a server object that can request client data from
+              query string, form body, cookies etc.
+
+    response    : It is a sever object that can send response to client, which can be
+              html, text, file, xml, json etc.
+
+Syntax:
+        request.params
+        request.body
+        response.send()
+        response.redirect()
+        response.end() etc..
+
+5. Start application using "listen()" method
+
+        app.listen(port);
+
+
+                        Routing in Express JS
+- Routing a technique used in web applications to enable navigation.
+- Routing can be configured both client and server side.
+- Client side routes enable navigation in client side application.
+- Server side routes are required to handle navigation in API server side.
+- Routes are configures for various HTTP methods like
+
+        GET
+        POST
+        PUT
+        PATCH
+        DELETE
+        PURGE etc.
+- Route comprises of a path defined with request and response.
+
+Syntax:
+        app.get("/path", (request, response) =>{})
+
+        "/"             will respond when user request is not for any specific.
+        "/name"         will respond only to specified name.
+        "*"             will respond when requested path is not found. [only v4]
+
+        > npm install  express@4
