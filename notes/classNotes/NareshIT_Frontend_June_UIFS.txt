@@ -4880,7 +4880,7 @@ Ex:
     <title>Document</title>
     <script>
         class Database
-        {
+	        {
             constructor(dbname){
                 document.write(`Connected with ${dbname} Database<br>`);
             }

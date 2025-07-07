@@ -23,11 +23,16 @@
 
      function Details(id, name, price, stock){
          if(price){
-            document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+            document.write(`<br><br>Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
          } else {
-            document.write(`Id=${id}<br>Name=${name}<br>Stock=${stock}`);
+            document.write(`Id=${id}<br>Name=${name}<br>Stock=${stock}<br><br>`);
          }
          
      }
      Details(1, "TV", undefined,true);
+
+     function Validate(success){
+        success();
+     }
+     Validate(function(){document.write("Validation Success..")});
 </script>

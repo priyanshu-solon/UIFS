@@ -1,0 +1,15 @@
+<script>
+    function Details(...product){
+      var [id, name, price, stock] = product;
+      document.write(`Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+     }
+     Details(1, "TV", 45000, true);
+
+
+    function Details(id, name, price, stock){
+      document.write(`<br>Id=${id}<br>Name=${name}<br>Price=${price}<br>Stock=${stock}`);  
+     }
+     var product = [1, "TV", 45000, true];
+
+     Details(...product);
+</script>
