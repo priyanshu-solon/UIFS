@@ -1334,3 +1334,304 @@ console.log(`Server Started : http://127.0.0.1:8080`);
 </html>
 
                                 jQuery
+
+08/07
+======
+
+API
+API Routes
+Request & Response Types
+
+                            jQuery
+
+- It is a JavaScript library used for handling BOM & DOM interactions.
+- "John Resign" introduced jQuery library in early 2006.
+- The main intention is "Write-Less Do-More".
+- jQuery introduces various built-in functions that make the logic compatible across multiple browsers.
+- It reduces browser compatibility issues.
+
+1. Install jQuery for project
+
+        > npm  install jquery --save
+
+2. Link the jQuery library file to your web page
+
+    <script src="./node_modules/jquery/dist/jquery.js">  </script>
+
+3. All jQuery functions are defined in any anonymous function, which is invoked using
+     "$()" [IIFE]
+
+Syntax:
+        <script>
+            $(function(){
+                // your jQuery logic here..
+            })
+        </script>
+
+4. jQuery uses JavaScript as language, you can use all language features same as in JavaScript
+        - Variables
+        - Data Types
+        - Operators
+        - Statements
+        - Functions
+        - Classes
+        - Modules etc.
+
+jQuery Reference techniques:
+
+- jQuery uses all CSS selectors for referring HTML elements.
+- It includes type, class, id, relational, structural, attribute etc.
+
+Syntax:
+        <img>
+        <p id="para">
+        <button class="btn">
+
+        $("img")
+        $("#para")
+        $(".btn")
+        $("nav+div")
+
+jQuery DOM methods:
+
+        text()        textContent
+        html()        innerHTML
+        val()            value
+        attr()            attribute
+        prop()        property
+        append()        add as suffix
+        prepend()     add as prefix
+        appendTo()    add to specific as suffix
+        prependTo()    add to specific as prefix
+        before()        add left or above
+        after()        add right or below
+        class()        apply CSS class
+        etc..
+
+Syntax:
+        $("h1").text("some text")
+        $("p").html("<> markup </>")
+        $("div").append("<element>");
+        $("<element>").appendTo("div");
+
+        $("#txtName").val("John")        <input type="text" id="txtName">
+       
+        var selectedCity = $("select").val();
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+              $("h1").text("jQuery");
+              $("#p1").html("<b><i>Write Less Do More</b></i>");
+              $(".msg").text("It is a JavaScript library.");
+              $(".msg").after("<button>Click Me</button>");
+              $("<button>Print</button>").appendTo("#p1");
+        })
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <p id="p1"></p>
+    <div class="msg"></div>
+</body>
+</html>
+
+Note: All element related attributes are not accessible directly using jQuery methods.
+     You have to use "attr()" for accessing attributes.
+
+      Syntax:
+        $("img").src();                // invalid - src is not an jQuery method
+        $("img").attr("src", "path");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+              $("img").attr("src", "./images/women-fashion.jpg");
+        })
+    </script>
+</head>
+<body>
+    <img width="100" height="100">
+</body>
+</html>
+
+Presenting Complex Data:
+- Complex data includes Array & Object type.
+- jQuery uses DOM methods to access and present complex data.
+- It avoids creating every elements explicitly.
+
+Syntax:
+     data.map(item =>{
+
+        $(`<div>${item}</div>`).appendTo("parent")
+   
+    })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        var categories = ["All", "Electronics", "Footwear", "Fashion"];
+
+        $(function(){
+           
+            categories.map(category=>{
+                 $(`<li>${category}</li>`).appendTo("ol");
+                 $(`<option>${category}</option>`).appendTo("select");
+                 $(`<tr><td>${category}</td></tr>`).appendTo("tbody");
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ol></ol>
+    </div>
+    <br><br>
+    <div>
+        <select></select>
+    </div>
+    <br><br>
+    <div>
+        <table border="1" width="150">
+            <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+       
+
+        $(function(){
+           
+            fetch(`https://fakestoreapi.com/products/categories`)
+            .then(response=> response.json())
+            .then(categories =>{
+                 categories.map(category=>{
+                 $(`<li>${category}</li>`).appendTo("ol");
+                 $(`<option>${category}</option>`).appendTo("select");
+                 $(`<tr><td>${category}</td></tr>`).appendTo("tbody");
+                })
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ol></ol>
+    </div>
+    <br><br>
+    <div>
+        <select></select>
+    </div>
+    <br><br>
+    <div>
+        <table border="1" width="150">
+            <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+       
+
+        $(function(){
+           
+            fetch(`https://fakestoreapi.com/products`)
+            .then(res => res.json())
+            .then(products =>{
+
+                    products.map(product=>{
+                         $(`<tr>
+                              <td>${product.title}</td>
+                              <td><img width="100" height="100" src=${product.image}></td>
+                              <td>${product.price}</td>
+                              <td>${product.rating.rate}</td>
+                            </tr>`).appendTo("tbody");
+                    })
+
+            })
+
+        })
+    </script>
+</head>
+<body>
+   
+    <div>
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th width="300">Title</th>
+                    <th>Preview</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

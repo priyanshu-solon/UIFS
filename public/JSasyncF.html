@@ -1,0 +1,24 @@
+<script>
+    async function GetData(){
+        return await ["A", "B", "C", "D", "E"]
+    }
+
+    GetData().then(function(data){
+        data.map(function(item){
+             document.write(`${item}<br>`);
+        })
+    })
+
+////////////////////////////////////////////////////////////////////////
+    
+     fetch(`https://fakestoreapi.com/products/categories`)
+     .then(async function(response){
+         return await response.json();
+     })
+     .then(function(categories){
+          categories.map(async function(category){
+              await document.write(`<li>${category}</li>`);
+          })
+     })
+     
+</script>

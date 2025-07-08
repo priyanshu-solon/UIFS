@@ -1,0 +1,23 @@
+<script>
+    function FetchData(url, success, failure){
+          if(url==="fakestore"){
+               success('Data Fetched Successfully..');
+               function GetData(){
+                  console.log([{Name:'TV', Price:24000}, {Name:'Mobile', Price:5000}])
+               }
+               GetData();
+               console.log('Response presented successfully..');
+          } else {
+               failure('Invalid URL - Unable to fetch data');
+          }
+    }
+    FetchData(
+        prompt("Enter URL"),
+        function(response) {
+            console.log(`${response}`);
+        },
+        function(error) {
+            console.log(`${error}`);
+        }
+    )
+</script>

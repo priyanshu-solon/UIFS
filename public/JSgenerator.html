@@ -1,0 +1,14 @@
+<script>
+    function* GetList(){
+        yield  10,
+        yield  ["A", "B"],
+        yield  true,
+        yield  {rating:4.5}
+    }
+    var obj = GetList();
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+    console.log(obj.next());
+</script>

@@ -1,0 +1,24 @@
+<script>
+    var FetchData = new Promise(function(resolve, reject){
+       
+         var url = prompt("Enter URL");
+
+         if(url==="fakestore"){
+             resolve([{Name:'TV', Price:5000}, {Name:'Mobile', Price:5500}]);
+         } else {
+             reject('Invalid URL - Unable to Fetch Data');
+         }
+    })
+    FetchData.then(function(response){
+         console.log(response);
+    })
+    .then(function(){
+        console.log('Response Presented Successfully..');
+    })
+    .catch(function(error){
+         console.log(error);
+    })
+    .finally(function(){
+        console.log('End of Program');
+    })
+</script>
