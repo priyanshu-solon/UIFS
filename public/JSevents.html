@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            var btn = document.createElement("button");
+            btn.textContent = "Insert";
+            btn.addEventListener("click",()=>{
+                 document.write("Record Inserted..");
+            })
+            document.getElementById("container").appendChild(btn);
+
+            document.getElementById("btnDelete").addEventListener("click",()=>{
+                document.write("Record Deleted..");
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+   <div id="container">
+     <button id="btnDelete">Delete</button>
+   </div>
+</body>
+</html>

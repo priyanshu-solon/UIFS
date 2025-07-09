@@ -1635,3 +1635,311 @@ Ex:
     </div>
 </body>
 </html>
+
+09/07
+======
+
+jQuery Reference
+jQuery DOM methods
+
+                        jQuery Events
+- jQuery use event listeners.
+- It is provides a clean separation of design and logic
+
+Syntax:
+        <button></button>
+
+         $("button").click(()=>{
+            // actions on click
+        })
+
+- It provides "event" argument that can access element and event details.
+
+        $("button").click((e)=>{
+            e.clientX;
+            e.clientY;
+            e.keyCode;
+            e.ctrlKey;
+            e.target.id
+            e.target.name
+            e.target.value                
+        })
+
+
+    ${ }            Data Binding Expression
+    $()            jQuery library invoking to access jQuery methods
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+         $(()=>{
+             
+                $("#btnInsert").click((e)=>{
+                      console.log(`
+                            X Position : ${e.clientX}\n
+                            Button Value: ${e.target.value}
+                      `);
+                })
+
+                $("#txtName").keyup(()=>{
+                    $("h2").html(`Hello ! ${$("#txtName").val()}`);
+                })
+
+         })
+    </script>
+</head>
+<body>
+    <button name="Btn-Insert"  value="Insert" id="btnInsert"> Insert </button>
+    <div>
+        <input type="text" id="txtName">
+    </div>
+    <h2></h2>
+</body>
+</html>
+
+Note: You can't define events directly for any element if it is inside a hierarchy of
+      elements.
+
+      You have to search for element in page using  "$(document).on()" method.
+      And configure event dynamically.
+
+Syntax:
+       $(document).on("eventName", "elementRef", (e)=>{
+
+      })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+
+        var products = ["Television", "Mobile", "Watch"];
+
+         $(()=>{
+             
+            products.map(product=>{
+                  $(`
+                     <div class="card p-2 m-2" style="width:200px">
+                        <div class="card-header"> ${product} </div>
+                        <div class="card-footer">
+                            <button id="btnAdd" class="btn btn-primary w-100 bi bi-cart4"> Add to Cart</button>
+                        </div>
+                     </div>
+                  `).appendTo("body");
+            });
+
+            $(document).on("click", "#btnAdd", ()=>{
+                 console.log('Add Clicked');
+            })
+               
+         })
+    </script>
+</head>
+<body class="container-fluid">
+   
+</body>
+</html>
+
+                             jQuery Ajax
+- JavaScript Ajax methods
+    a) XMLHttpRequest
+    b) fetch()
+- jQuery Ajax methods
+   
+    $.ajax()
+    $.getJSON()
+      .ajaxStart()
+      .ajaxStop()
+      .ajaxSuccess()
+      .ajaxComplete()
+      .ajaxError()
+    etc..
+
+Features:
+- It is async by default.
+- It returns the data in its native format.
+- Conversion of data not required.
+- It provides various life cycle methods that track all performance across requests.
+- It is good in error handling.
+
+Issues:
+- It is not good in handling XSRF, XSS.
+- XSS is Cross Site Scripting Attacks.
+- XSRF is Cross Site Request Forgery
+- It is not good in security.
+- It have CORS issues.
+
+Syntax:
+        $.ajax({
+            method : "get | post | put | delete..",
+            url: "path",
+            data: "data_to_submit_on_post, put",
+            success: (response)=>{  response_data },
+            error: (err)=>{ error details }
+        })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(()=>{
+
+                var now = new Date();
+                $("p").html(`Page Loaded on : ${now.toLocaleTimeString()}`);
+
+                $("button").click(()=>{
+
+                      $.ajax({
+                         method: "get",
+                         url: "./notes.txt",
+                         success: (data)=>{
+                              $("#notes").html(data);
+                         }
+                      })
+
+                })
+
+        })
+    </script>
+</head>
+<body>
+    <p></p>
+    <button>Load Help</button>
+    <br>
+    <pre id="notes">
+
+    </pre>
+</body>
+</html>
+
+Ajax Life Cycle Methods:
+
+     ajaxStart() => ajaxSuccess() => ajaxComplete()  => ajaxError() => ajaxStop()
+
+  - You can catch the error details using jQueryXHR
+
+Syntax:
+        .ajaxError((e, jXHR)=>{
+
+                jXHR.status;
+                jXHR.statusText;
+
+        })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(()=>{
+
+                var now = new Date();
+                $("p").html(`Page Loaded on : ${now.toLocaleTimeString()}`);
+
+                $("button").click(()=>{
+
+                      $.ajax({
+                         method: "get",
+                         url: "./note.txt",
+                         success: (data)=>{
+                              $("#notes").html(data);
+                         }
+                      })
+                })
+        })
+        .ajaxStart(()=>{
+              alert('Your request initiated..');
+        })
+         .ajaxSuccess(()=>{
+            alert('Your request successfully sent to server.');
+        })
+        .ajaxComplete(()=>{
+             alert('Your request Processed Succefully..');
+        })
+        .ajaxStop(()=>{
+            alert('Your request completed and response ready');
+        })
+        .ajaxError((e, jXHR)=>{
+            alert(`${jXHR.status} : ${jXHR.statusText}`);
+        })
+    </script>
+</head>
+<body>
+    <p></p>
+    <button>Load Help</button>
+    <br>
+    <pre id="notes">
+
+    </pre>
+</body>
+</html>
+
+Ex: Weather API
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="./node_modules/jquery/dist/jquery.js"></script>
+     <script>
+          $(()=>{
+               
+
+                $("button").click(()=>{
+
+                        var API_ID = "1318ca6725c69160d346c41fc0612596";
+                        var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${$("#txtCity").val()}&appid=${API_ID}&units=metric`;
+
+                        $.ajax({
+                            method: 'get',
+                            url: API_URL,
+                            success: (weatherObj)=>{
+                                 $("#lblCity").text(weatherObj.name);
+                                 $("#lblTemp").text(weatherObj.main.temp);
+                            }
+                        })
+
+                })
+
+          })
+     </script>
+</head>
+<body>
+     <div>
+        <input type="text" id="txtCity"> <button>Get Weather</button>
+     </div>
+     <br><br>
+     <div>
+        <dl>
+            <dt>City</dt>
+            <dd id="lblCity"></dd>
+            <dt>Temp</dt>
+            <dd id="lblTemp"></dd>
+        </dl>
+     </div>
+</body>
+</html>
