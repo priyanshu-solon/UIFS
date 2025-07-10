@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./jquery-ui/jquery-ui.css">
+    <style>
+        aside {
+            border:1px solid black;
+            width: 120px;
+            padding: 10px;
+        }
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./jquery-ui/jquery-ui.js"></script>
+    <script>
+        $(function(){
+             $("aside").draggable();
+             $("#pic").resizable();
+             $("ol").sortable();
+             $("#faqs").accordion();
+             $("#dept").datepicker();
+        })
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Departure</dt>
+        <dd>
+            <input type="text" id="dept">
+        </dd>
+    </dl>
+    <div id="faqs">
+        <h2>What is Netflix?</h2>
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis facilis nemo impedit iure nihil adipisci, nulla commodi distinctio labore modi veniam praesentium itaque ad debitis in animi, neque sapiente. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos numquam ea eveniet soluta eaque ipsam tempora repudiandae excepturi dolorum incidunt nesciunt aspernatur, repellat aperiam minima debitis pariatur laborum atque aliquid!</p>
+        </div>
+        <h2>How much does Netflix cost?</h2>
+        <div>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam quidem, sed cupiditate at expedita ut officia accusantium tenetur mollitia ipsum vel autem! Quia, voluptatibus hic. Veritatis eum rerum qui rem.</p>
+        </div>
+    </div>
+    <ol>
+        <li>CSS</li>
+        <li>HTML</li>
+        <li>Javacript</li>
+        <li>Bootstrap</li>
+    </ol>
+    <aside>
+        <div>Ads</div>
+        <img src="./images/kids-fashion.jpg" width="100" height="100">
+    </aside>
+    <img src="./images/women-fashion.jpg" width="100" height="100" id="pic">
+</body>
+</html>

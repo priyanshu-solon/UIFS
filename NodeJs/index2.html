@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+       
+
+        $(function(){
+           
+            fetch(`https://fakestoreapi.com/products/categories`)
+            .then(response=> response.json())
+            .then(categories =>{
+                 categories.map(category=>{
+                 $(`<li>${category}</li>`).appendTo("ol");
+                 $(`<option>${category}</option>`).appendTo("select");
+                 $(`<tr><td>${category}</td></tr>`).appendTo("tbody");
+                })
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ol></ol>
+    </div>
+    <br><br>
+    <div>
+        <select></select>
+    </div>
+    <br><br>
+    <div>
+        <table border="1" width="150">
+            <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="./node_modules/jquery/dist/jquery.js"></script>
+     <script>
+          $(()=>{
+               
+
+                $("button").click(()=>{
+
+                        var API_ID = "1318ca6725c69160d346c41fc0612596";
+                        var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${$("#txtCity").val()}&appid=${API_ID}&units=metric`;
+
+                        $.ajax({
+                            method: 'get',
+                            url: API_URL,
+                            success: (weatherObj)=>{
+                                 $("#lblCity").text(weatherObj.name);
+                                 $("#lblTemp").text(weatherObj.main.temp);
+                            }
+                        })
+
+                })
+
+          })
+     </script>
+</head>
+<body>
+     <div>
+        <input type="text" id="txtCity"> <button>Get Weather</button>
+     </div>
+     <br><br>
+     <div>
+        <dl>
+            <dt>City</dt>
+            <dd id="lblCity"></dd>
+            <dt>Temp</dt>
+            <dd id="lblTemp"></dd>
+        </dl>
+     </div>
+</body>
+</html>

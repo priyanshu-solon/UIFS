@@ -110,19 +110,69 @@ console.log("Welcome to Node JS");
 
 
 // event.addListener("send", handleSend).emit("send");
-const events = require("events");
 
-let event = new events.EventEmitter();
 
-let handleSend = function(){
-     console.log(`Message Sent Successfully..`);
-}
+///////////////////////////events/////////////////////////////////
+// const events = require("events");
 
-let handleGet = function(){
-     console.log([{Name:'TV', Price:2300}, {Name:'Mobile', Price:1200}]);
-}
+// let event = new events.EventEmitter();
 
-event.on("send", handleSend);
-event.on("get", handleGet);
-event.emit("send");
-event.emit("get");
+// let handleSend = function(){
+//      console.log(`Message Sent Successfully..`);
+// }
+
+// let handleGet = function(){
+//      console.log([{Name:'TV', Price:2300}, {Name:'Mobile', Price:1200}]);
+// }
+
+// event.on("send", handleSend);
+// event.on("get", handleGet);
+// event.emit("send");
+// event.emit("get");
+
+/////////////////////CACHING//////////////////////////////////
+
+// const nodeCache = require("node-cache");
+
+// let cache = new nodeCache();
+
+// cache.set('product', {Name:'tv', Price:23300}, 20);
+// var now = new Date();
+
+// if(cache.get('product')){
+//     console.log(cache.get('product'));
+//     console.log(now.toLocaleTimeString());
+// } else {
+//     console.log(`Unable to find the data - Cache deleted`);
+// }
+
+// function GetData(){
+//     if(cache.get('product')){
+//     console.log(cache.get('product'));
+//     console.log(now.toLocaleTimeString());
+//     } else {
+//         console.log(`Unable to find the data - Cache deleted`);
+//     }
+// }
+
+// setTimeout(GetData,25000);
+
+///////////////////////Database Drivers//////////////////////////
+///////////////////////MongoDB Drivers//////////////////////////
+
+// const mongoClient = require("mongodb").MongoClient;
+
+// mongoClient.connect("mongodb://127.0.0.1:27017").then(()=>{
+//     console.log('Connected Successfully..');
+// })
+// .catch(err=>{
+//     console.log(err);
+// })
+// .finally(()=>{
+//     console.log("Request End");
+// })
+
+
+
+///////////////////////express//////////////////////////////////
+///////////////////////api//////////////////////////////////

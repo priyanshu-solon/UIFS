@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+
+        var products = ["Television", "Mobile", "Watch"];
+
+         $(()=>{
+             
+            products.map(product=>{
+                  $(`
+                     <div class="card p-2 m-2" style="width:200px">
+                        <div class="card-header"> ${product} </div>
+                        <div class="card-footer">
+                            <button id="btnAdd" class="btn btn-primary w-100 bi bi-cart4"> Add to Cart</button>
+                        </div>
+                     </div>
+                  `).appendTo("body");
+            });
+
+            $(document).on("click", "#btnAdd", ()=>{
+                 console.log('Add Clicked');
+            })
+               
+         })
+    </script>
+</head>
+<body class="container-fluid">
+   
+</body>
+</html>

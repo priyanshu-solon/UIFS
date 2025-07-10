@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        var categories = ["All", "Electronics", "Footwear", "Fashion"];
+
+        $(function(){
+              $("h1").text("jQuery");
+              $("#p1").html("<b><i>Write Less Do More</b></i>");
+              $(".msg").text("It is a JavaScript library.");
+              $(".msg").after("<button>Click Me</button>");
+              $("<button>Print</button>").appendTo("#p1");
+              $("img").attr("src", "./amz-banner.jpg");
+
+              categories.map(category=>{
+                 $(`<li>${category}</li>`).appendTo("ol");
+                 $(`<option>${category}</option>`).appendTo("select");
+                 $(`<tr><td>${category}</td></tr>`).appendTo("tbody");
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <p id="p1"></p>
+    <div class="msg"></div>
+    <img width="100" height="100">
+
+    <div>
+        <ol></ol>
+    </div>
+    <br><br>
+    <div>
+        <select></select>
+    </div>
+    <br><br>
+    <div>
+        <table border="1" width="150">
+            <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
