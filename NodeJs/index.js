@@ -94,3 +94,35 @@ console.log("Welcome to Node JS");
 // console.log(data.toString());
 
 // console.log(`File Read Complete`);
+
+//////////////////////////////events////////////////////////////
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+
+// const events = require("events");
+
+// let event = new events.EventEmitter();
+
+// let handleSend = function(){
+//     console.log(`Message Sent Successfully..`);
+// }
+
+
+// event.addListener("send", handleSend).emit("send");
+const events = require("events");
+
+let event = new events.EventEmitter();
+
+let handleSend = function(){
+     console.log(`Message Sent Successfully..`);
+}
+
+let handleGet = function(){
+     console.log([{Name:'TV', Price:2300}, {Name:'Mobile', Price:1200}]);
+}
+
+event.on("send", handleSend);
+event.on("get", handleGet);
+event.emit("send");
+event.emit("get");

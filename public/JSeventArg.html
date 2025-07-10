@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+     <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+        }
+    </style>
+    <script>
+        function BoxClick(e){
+             document.querySelector("p").innerHTML = `
+                 X Position : ${e.clientX} <br>
+                 Y Position : ${e.clientY} <br>
+                 Ctrl Key   : ${e.ctrlKey}
+             `;
+        }
+    </script>
     <script>
         function Player(obj){
             var para = document.querySelector("p");
@@ -23,10 +39,18 @@
         }
     </script>
 </head>
-<body>
+<body onclick="BoxClick(event)">
     <button onclick="Player(this)" name="Play" class="bi bi-play"></button>
     <button onclick="Player(this)" name="Pause" class="bi bi-pause"></button>
     <button onclick="Player(this)" name="Stop" class="bi bi-stop"></button>
     <p></p>
+
+    <div class="box" >
+
+    </div>
+    <p></p>
+ 
 </body>
 </html>
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+    <script>
+       function InsertClick(obj,...product){
+          var [id, name, price, cities, rating] = product;
+          console.log(`
+              Button Id : ${obj.id}\n
+              Id : ${id}\n
+              Name: ${name}\n
+              Price: ${price}\n
+              Cities: ${cities}\n
+              Rating: ${rating.Rate}
+          `)
+       }
+    </script>
+</head>
+<body>
+    <button id="btnInsert" onclick="InsertClick(this, 1, 'TV', 45000, ['Delhi', 'Hyd'], {Rate:4.2})" name="Insert"> Insert </button>
+</body>
+</html>
