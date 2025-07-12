@@ -2202,3 +2202,440 @@ Ex:
     <div id="data"></div>
 </body>
 </html>
+
+11/07
+======
+
+SASS
+- Syntactically Awesome Style Sheets
+- It is a CSS pre-processor or pre-compiler.
+- It enables separation, reusability and easy extensibility.
+- It is trans-compiled into CSS.
+
+1. Install Sass on your PC
+   
+    - Open Command Prompt
+    - Run the command
+
+        >npm install sass  -g
+
+2. Add a new sass file into project   "index.scss"  
+
+    - Add your scss code
+   
+3. Trans compile sass into CSS.
+
+    >sass   index.scss    index.css  --watch
+
+4. Link index.css to HTML page.
+
+
+Sass Reference Hierarchy:
+
+- You can directly configure child elements inside the parent block.
+- It doesn't require child selectors.
+
+    parent
+    {
+        styles;
+        child {
+        styles;        
+        }
+    }
+
+Ex: index.scss
+
+.container {
+    border:2px solid red;
+    padding: 20px;
+    background-color: rgb(240, 212, 212);
+    h2 {
+        color:rgb(168, 9, 9);
+    }
+    p {
+        color: rgb(108, 4, 4);
+    }
+}
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+         <h2>Sass</h2>
+         <p>Syntactically Awesome Style Sheet</p>
+    </div>
+</body>
+</html>
+
+Sass Variables:
+- Variables in sass are used to store a CSS value so that you can reuse across various expressions.
+- Variables a configured by using  "$" and reference name.
+- Values are configured using ":" delimiter.
+
+Syntax:
+        $variableName : value;
+
+- You have to access and use variable using "$" reference.
+
+Syntax:
+        {
+          color : $variableName;
+          border : 2px solid  $variableName;
+        }
+
+Ex:
+index.scss
+
+$fgColor: rgb(2, 146, 76);
+$bgColor: rgb(225, 243, 203);
+
+.alert {
+    border:2px solid $fgColor;
+    padding: 20px;
+    background-color: $bgColor;
+    h2 {
+        color: $fgColor;
+    }
+    p {
+        color: $fgColor;
+    }
+    a {
+        color:$fgColor;
+    }
+    button{
+        background-color:$fgColor;
+        color:white;
+        border:none;
+    }
+}
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="alert">
+         <h2>Sass</h2>
+         <p>Syntactically Awesome Style Sheet</p>
+         <a href="#">Help</a>
+         <br><br>
+         <button>OK</button>
+    </div>
+</body>
+</html>
+
+Sass Provides Functions & Mixins:
+
+- Mixin is a method of sass.
+- It allows to refactor the code.
+- It will not return any value, it defines a set of actions to perform.
+
+Syntax:
+    @mixin   Name(params)
+    {
+        // statements
+    }
+
+- You can access the mixin and use at any location by using "@include" directive.
+
+Syntax:
+    @include Name(value);
+
+- You can configure conditions by using "@IF" statement
+
+Syntax:
+     @if (condition)
+      {
+         // styles on true;
+      }
+      @else if (condition)
+      {
+        // styles on true;
+      }
+     @else
+      {
+      }
+
+Operators:
+        ==        equal
+        >
+        >=
+        <
+        <=
+        <>        Not Equal
+
+Ex:
+index.scss
+
+$themeColor:green;
+
+@mixin SetTheme($bgColor, $fgColor)
+{
+  .alert {
+        border:2px solid $fgColor;
+        padding: 20px;
+        background-color: $bgColor;
+        h2 {
+            color: $fgColor;
+        }
+        p {
+            color: $fgColor;
+        }
+        a {
+            color:$fgColor;
+        }
+        button{
+            background-color:$fgColor;
+            color:white;
+            border:none;
+        }
+    }
+}
+
+@if ($themeColor==red)
+{
+    @include SetTheme(rgb(245, 214, 214), rgb(141, 7, 7) );
+}
+@else if ($themeColor==green)
+{
+    @include SetTheme(rgb(217, 245, 214), rgb(7, 141, 18) );
+}
+@else if ($themeColor==gold)
+{
+     @include SetTheme(rgb(245, 244, 214), rgb(141, 121, 7) );
+}
+
+12/07
+======
+
+- Sass
+- Nested Elements
+- Variables
+- @mixin
+- @if
+
+Sass Function:
+- Function always returns a value.
+- It is used to build expression.
+ 
+Syntax:
+    @function  name(params)
+    {
+        @return  value|expression;
+    }
+
+Ex:
+$themeColor:green;
+
+@function SetPadding($val){
+    @return $val*2;
+}
+
+@mixin SetTheme($bgColor, $fgColor)
+{
+  .alert {
+        border:2px solid $fgColor;
+        padding: SetPadding(5px);
+        background-color: $bgColor;
+        h2 {
+            color: $fgColor;
+            border:1px dotted $bgColor;
+            padding: SetPadding(6px);
+        }
+        p {
+            color: $fgColor;
+        }
+        a {
+            color:$fgColor;
+        }
+        button{
+            background-color:$fgColor;
+            color:white;
+            border:none;
+        }
+    }
+}
+
+@if ($themeColor==red)
+{
+    @include SetTheme(rgb(245, 214, 214), rgb(141, 7, 7) );
+}
+@else if ($themeColor==green)
+{
+    @include SetTheme(rgb(217, 245, 214), rgb(7, 141, 18) );
+}
+@else if ($themeColor==gold)
+{
+     @include SetTheme(rgb(245, 244, 214), rgb(141, 121, 7) );
+}
+
+Looping Statements
+  @for
+  @each
+  @while
+
+Syntax:
+    @for  ref  from  initial_value  through  final_value
+    {
+         // effects
+    }
+
+    @for  $i  from 1 through 6
+     {
+
+     }
+
+Note: Dynamic value can bind with string by using "#{ }"  binding expression.
+
+Syntax:
+    @each  ref  in  collection
+    {
+
+    }
+
+- Sass Array is configured with value separated with "," delimiter.
+
+Syntax:
+    $collection :  "red", "green", "blue" ;
+
+    @each  $color in $collection
+     {
+        li {
+          color: $color;
+        }
+     }
+
+Ex:
+index.scss
+
+
+@for $i from 1 through 3
+{
+     .box-#{$i} {
+        border:2px solid black;
+        width: 100px;
+        height: 100px;
+        margin-left: $i*100px;
+        transform: skew($i*10deg);
+     }
+}
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="box-1">
+        <img src="../images/kids-fashion.jpg" width="100" height="100">
+    </div>
+    <div class="box-2">
+        <img src="../images/women-fashion.jpg" width="100" height="100">
+    </div>
+    <div class="box-3">
+        <img src="../images/men-fashion.jpg" width="100" height="100">
+    </div>
+</body>
+</html>
+
+Sass Modules:
+- Modular approach enables easy reusability and extensibility.
+- It reduces the file size, as it allows to import only the styles required for situation.
+- It makes style sheet light weight.
+
+1. Module is defined as a sass file with "_" prefix.
+
+        _moduleName.scss
+
+2. You can import and use the module in any sass file
+
+         @import  "moduleName";
+
+Ex:
+ _button.scss
+
+button {
+    border:none;
+    background-color: yellow;
+    padding: 5px;
+    font-size: 15px;
+    font-family: Arial;
+}
+
+_nav.scss
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-family: Arial;
+    border:1px solid gray;
+    padding: 20px;
+}
+
+index.scss
+
+@import "buttons";
+@import "nav";
+
+                            DO-TO  Project
+1. User can register
+2. User can login
+3. User can add appointments
+4. User can view appointments
+5. User can edit and delete appointments
+
+Backend
+    MongoDB        Database
+    Node/Express        API
+    jQuery            Client Library [UI]
+    Bootstrap
+    Tailwind
+
+Database Design
+   
+    Database Name        : to-do
+    Collections            : users, appointments
+
+    users:
+        user_id : string
+        user_name: string
+        password: string
+        mobile: string
+
+    appointments
+        appointment_id: number
+        title:string
+        date: Date
+        description: string
+        user_id: string [FK - users]
+
+API Routes
+
+ POST        /register-user
+ GET        /users/user_id
+ GET        /appointments/user_id
+ POST        /add-appointment
+ PUT        /edit-appointment/id
+ DELETE        /delete-appointment/id
+
+jQuery Ajax

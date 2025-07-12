@@ -2489,7 +2489,7 @@ Syntax:
 
     allvendors
    
-        VendorId        VendroName
+        VendorId        VendorName
         1            Bajaj
         2            Reliance
         3            Chroma    
