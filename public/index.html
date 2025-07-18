@@ -8,119 +8,209 @@
        <meta name="author" content="John">
        <meta http-equiv="refresh" content="5">
        <meta charset="utf-8">
-       <style>
-         div {
-            border: 1px solid black;
-            margin:10px;
-            padding: 10px;
-            font-family: Arial;
-         }
-         span {
-            color: red;
-            font-size: 23px;
-            font-weight: bold;
-            font-style: italic;
-            font-family: Script MT;
-         }
-      </style>
+       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: linear-gradient(135deg, #0f0f3c, #1f1f4c);
+      color: #e0e0ff;
+      padding: 20px;
+      background-attachment: fixed;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3em;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+      margin-bottom: 40px;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00fff7; }
+      to { text-shadow: 0 0 25px #00fff7; }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+    }
+
+    .card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5em;
+      color: #ff73fa;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 5px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.9em;
+      color: #fff;
+      background-color: #444;
+      border: 1px solid #888;
+      transition: background 0.2s;
+    }
+
+    .links a:hover {
+      background-color: #00ffee;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .ai-banner {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 1.2em;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .ai-banner span {
+      color: #00f7ff;
+      font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
    </head>
    <body>
-      <div>
-         Web Technologies
-         <div>
-             Front End
-             <div>
-                 HTML And CSS
-                 <p>HTML is a <span>markup</span> language.</p>
-                 <p>It is used for presentation.</p>
-                 <p>CSS is used for <span>styling</span>. </p>
-                 <div>
-                   <a href="amazon.html">Amazon</a>
-                   <a href="amazonSign.html">Amazon Sign</a>
-                   <a href="cube.html">Cube</a>
-                   <a href="blocquotePara.html">Paragraph & Blockquote</a>
-                   <a href="List.html">List</a>
-                   <a href="Bootstrap Head.html">Bootstrap Head</a>
-                   <a href="cards.html">Cards</a>
-                   <a href="DataList.html">Datalist</a>
-                   <a href="dialog.html">Dialog</a>
-                   <a href="dialog2.html">Dialog2</a>
-                   <a href="flipkart-w.html">Flipkart Product</a>
-                   <a href="coding.html">Coding Site</a>
-                   <a href="Iframe & Hyperlinks.html">Iframe</a>
-                   <a href="ipl-stats.html">IPL Stats</a>
-                   <a href="Shopper.html">Shooper</a>
-                   <a href="netflix.html">Netflix</a>
-                   <a href="news.html">News</a>
-                   <a href="GFG_Sign-in.html">Registration Form</a>
-                   <a href="portrait_shopper.html">Responsive Shopper</a>
-                   <a href="sticky.html">Sticky</a>
-                   <a href="tables.html">Tables</a>
-                   <a href="unorderedListFieldsetDetails.html">Unordered List</a>
-                   <a href="youtubenareshit.html">Youtube</a>
-                  </div>
-             </div>
-             <div>
-               Bootstrap
-               <p>It is used to make website <span>easily </span>and <span>fast</span>.</p>
-               <div>
-                  <a href="BS1.html">Basic Bootstrap</a>
-                  <a href="BS2.html">Forms & Table including Pagination</a>
-                  <a href="BS3.html">Progress | Spinner | List | Badge</a>
-                  <a href="BS4.html">Modal | Alert | Cards</a>
-                  <a href="BS5.html">Offcanvas | Carousel | Collapse | Accordion</a>
-                  <a href="BS6.html">Dropdown | Nav with Tabs</a>
-                  <a href="BS7.html">Scrollspy</a>
-                  <a href="Form2.html">Form</a>
-                  <!-- <a href="bootstrapHW.html">NareshIT</a> -->
-               </div>
-             </div>
-             <div>
-               JavaScript
-               <p>It is used to make website <span>responsive</span>.</p>
-               <div>
-                  <a href="HTMLJSHierarchyReference.html">Hierarchy Reference</a>
-                  <a href="HTMLJSIdReference.html">ID Reference</a>
-                  <a href="HTMLJSNameReference.html">Name Reference</a>
-                  <a href="HTMLJSSelectorReference.html">Selector Reference</a>
-                  <a href="JSalert.html">alerts()</a>
-                  <a href="JSconfirm.html">confirm()</a>
-                  <a href="JSConsole.html">console()</a>
-                  <a href="JSdocumentWrite.html">document.write()</a>
-                  <a href="JSOuterInner.html">outerHTML() & innerHTML()</a>
-                  <a href="JSTextContent.html">textContent()</a>
-                  <a href="JSPrompt.html">prompt()</a>
-                  <a href="JSstrings.html">Various JS String Manipulation</a>
-                  <a href="inox.html">Inox</a>
-                  <a href="hdfcEMI.html">EMI Calculator</a>
-                  <a href="calculator.html">Calculator</a>
-                  <a href="JStask.html">Task()</a>
-                  <a href="JSarray_manipulation.html">MovieList</a>
-                  <a href="JSobjects.html">Objects</a>
-                  <a href="JSdatetime&Map.html">Map DataType & DateTime</a>
-                  <a href="JSweatherAPI.html">Weather API</a>
-                  <a href="JSstoreAPI.html">Fakestore API</a>
-               </div>
-             </div>
-         </div>
-         <div>
-            Back End
+<div>
+    Web Technologies
+    <div>
+        Front End
+        <div>
+            HTML And CSS
+            <p>HTML is a <span>markup</span> language.</p>
+            <p>It is used for presentation.</p>
+            <p>CSS is used for <span>styling</span>.</p>
             <div>
-               Node JS
-               <p>It is used for creating web apps.</p>
+                <a href="amazon.html">Amazon</a>
+                <a href="amazonSign.html">Amazon Sign</a>
+                <a href="cube.html">Cube</a>
+                <a href="blocquotePara.html">Paragraph & Blockquote</a>
+                <a href="List.html">List</a>
+                <a href="Bootstrap Head.html">Bootstrap Head</a>
+                <a href="cards.html">Cards</a>
+                <a href="DataList.html">Datalist</a>
+                <a href="dialog.html">Dialog</a>
+                <a href="dialog2.html">Dialog2</a>
+                <a href="flipkart-w.html">Flipkart Product</a>
+                <a href="coding.html">Coding Site</a>
+                <a href="Iframe & Hyperlinks.html">Iframe</a>
+                <a href="ipl-stats.html">IPL Stats</a>
+                <a href="Shopper.html">Shooper</a>
+                <a href="netflix.html">Netflix</a>
+                <a href="news.html">News</a>
+                <a href="GFG_Sign-in.html">Registration Form</a>
+                <a href="portrait_shopper.html">Responsive Shopper</a>
+                <a href="sticky.html">Sticky</a>
+                <a href="tables.html">Tables</a>
+                <a href="unorderedListFieldsetDetails.html">Unordered List</a>
+                <a href="youtubenareshit.html">Youtube</a>
             </div>
+        </div>
+        <div>
+            Bootstrap
+            <p>It is used to make website <span>easily </span>and <span>fast</span>.</p>
             <div>
-               MongoDB
-               <p>It is a database.</p>
-               <div>
-                  <a href="DBAJAX_XMLhttp.html">JSON AJAX XMLHttpRequest</a>
-                  <a href="DBFetchApple.html">JSON AJAX Fetch()</a>
-                  <a href="DBcardFetchApple.html">JSON AJAX Fetch() card</a>
-                  <a href="DBnasaCard.html">NASA API card</a>
-                  <a href="DBnasaTable.html">NASA API table</a>
-               </div>
+                <a href="BS1.html">Basic Bootstrap</a>
+                <a href="BS2.html">Forms & Table including Pagination</a>
+                <a href="BS3.html">Progress | Spinner | List | Badge</a>
+                <a href="BS4.html">Modal | Alert | Cards</a>
+                <a href="BS5.html">Offcanvas | Carousel | Collapse | Accordion</a>
+                <a href="BS6.html">Dropdown | Nav with Tabs</a>
+                <a href="BS7.html">Scrollspy</a>
+                <a href="Form2.html">Form</a>
             </div>
-         </div>
-     </div>
-   </body>
+        </div>
+        <div>
+            JavaScript
+            <p>It is used to make website <span>responsive</span>.</p>
+            <div>
+                <a href="HTMLJSHierarchyReference.html">Hierarchy Reference</a>
+                <a href="HTMLJSIdReference.html">ID Reference</a>
+                <a href="HTMLJSNameReference.html">Name Reference</a>
+                <a href="HTMLJSSelectorReference.html">Selector Reference</a>
+                <a href="JSalert.html">alerts()</a>
+                <a href="JSconfirm.html">confirm()</a>
+                <a href="JSConsole.html">console()</a>
+                <a href="JSdocumentWrite.html">document.write()</a>
+                <a href="JSOuterInner.html">outerHTML() & innerHTML()</a>
+                <a href="JSTextContent.html">textContent()</a>
+                <a href="JSPrompt.html">prompt()</a>
+                <a href="JSstrings.html">Various JS String Manipulation</a>
+                <a href="inox.html">Inox</a>
+                <a href="hdfcEMI.html">EMI Calculator</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="JStask.html">Task()</a>
+                <a href="JSarray_manipulation.html">MovieList</a>
+                <a href="JSobjects.html">Objects</a>
+                <a href="JSdatetime&Map.html">Map DataType & DateTime</a>
+                <a href="JSweatherAPI.html">Weather API</a>
+                <a href="JSstoreAPI.html">Fakestore API</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        Back End
+        <div>
+            Node JS
+            <p>It is used for creating web apps.</p>
+        </div>
+        <div>
+            MongoDB
+            <p>It is a database.</p>
+            <div>
+                <a href="DBAJAX_XMLhttp.html">JSON AJAX XMLHttpRequest</a>
+                <a href="DBFetchApple.html">JSON AJAX Fetch()</a>
+                <a href="DBcardFetchApple.html">JSON AJAX Fetch() card</a>
+                <a href="DBnasaCard.html">NASA API card</a>
+                <a href="DBnasaTable.html">NASA API table</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
