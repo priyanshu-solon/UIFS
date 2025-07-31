@@ -1,0 +1,19 @@
+.container-style {
+  border: 2px solid gray;
+  width: 50px;
+}
+
+.container-style:hover {
+  border: 2px solid blue;
+  cursor: grab;
+}
+
+@keyframes Spin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(2);
+  }
+}
+
