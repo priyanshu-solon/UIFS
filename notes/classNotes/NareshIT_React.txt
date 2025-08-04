@@ -2624,3 +2624,708 @@ useRef() Hook → Learn how to use useRef for timers or process control.
 Stopwatch App → Apply useRef() and setInterval() for a timer UI.
 
 API with useRef → Control API calls (e.g., carousel) using useRef().
+
+4/08
+=====
+
+Ex: Throttle 
+
+carousel-demo.jsx
+
+
+
+import axios from "axios"
+
+import { useEffect, useRef, useState } from "react"
+
+
+
+
+
+export function CarouselDemo(){
+
+
+
+    const [product, setProduct] = useState({id:0, title:null, description:null, image:null, category:null, price:0, rating:{rate:0, count:0}});
+
+    const [status, setStatus] = useState(null);
+
+
+
+    let productId = useRef(1);
+
+    let thread = useRef(null);
+
+
+
+    function LoadProductManually(id){
+
+        axios.get(`https://fakestoreapi.com/products/${id}`)
+
+        .then(response=>{
+
+            setProduct(response.data);
+
+        })
+
+        setStatus('Slide Show - Manual');
+
+    }
+
+
+
+    function LoadProductAuto(){
+
+        productId.current = productId.current + 1;
+
+        axios.get(`https://fakestoreapi.com/products/${productId.current}`)
+
+        .then(response=>{
+
+            setProduct(response.data);
+
+        })
+
+        setStatus('Slide Show - Auto');
+
+    }
+
+
+
+    function handleNextClick(){
+
+        productId.current = productId.current + 1;
+
+        LoadProductManually(productId.current);
+
+    }
+
+    function handPreviousClick(){
+
+        productId.current = productId.current - 1;
+
+        LoadProductManually(productId.current);
+
+    }
+
+    function handleSeekbarChange(e){
+
+         productId.current = parseInt(e.target.value);
+
+         LoadProductManually(productId.current);
+
+    }
+
+
+
+    function handlePlayClick(){
+
+        thread.current = setInterval(LoadProductAuto, 3000);
+
+        setStatus('Slide Show - Auto');
+
+    }
+
+    function handlePauseClick(){
+
+        clearInterval(thread.current);
+
+        setStatus('Slide Show - Paused');
+
+    }
+
+
+
+    useEffect(()=>{
+
+        LoadProductManually(1);
+
+    },[])
+
+
+
+    return(
+
+        <div className="container-fluid d-flex justify-content-center">
+
+            <div className="card w-50 p-2 mt-4">
+
+                <div className="card-header text-center">
+
+                    <div>{product.title}</div>
+
+                    <div className="fw-bold">{status}</div>
+
+                </div>
+
+                <div className="card-body">
+
+                    <div className="row">
+
+                        <div className="col-1 d-flex flex-column justify-content-center align-items-center">
+
+                            <button onClick={handPreviousClick} className="btn btn-dark bi bi-chevron-left"></button>
+
+                        </div>
+
+                        <div className="col-10">
+
+                            <img src={product.image} width="100%" height="400" />
+
+                            <div className="mt-2">
+
+                                <input type="range" onChange={handleSeekbarChange} min="1" max="20" value={productId.current} className="form-range" />
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-1 d-flex flex-column justify-content-center align-items-center">
+
+                            <button onClick={handleNextClick} className="btn btn-dark bi bi-chevron-right"></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="card-footer text-center">
+
+                    <button onClick={handlePlayClick} className="btn btn-success bi bi-play"></button>
+
+                    <button onClick={handlePauseClick} className="btn btn-danger mx-2 bi bi-pause"></button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    )
+
+}
+
+
+
+Summary
+
+1. Mouse Events
+
+2. Keyboard Events
+
+3. Button Events
+
+4. Element State Events
+
+5. Timer Events
+
+6. Clipboard Events
+
+       onCut
+
+       onCopy
+
+       onPaste
+
+
+
+                                                   React Form Events
+
+ - React requires various event binding techniques to handle forms.
+
+ - React recommends to use 3rd party form libraries to design and validate forms.
+
+ - The popular 3rd party form libraries are
+
+           a) Formik
+
+           b) React Hook Form
+
+           c) Telerik Kendo Form  etc.
+
+
+
+Ex: Handling Form without any 3rd party library
+
+
+
+form-demo.jsx
+
+
+
+import { useState } from "react";
+
+
+
+export function FormDemo(){
+
+
+
+    const [userDetails, setUserDetails] = useState({UserName:null, Mobile:null, City:null});
+
+
+
+    function handleSubmit(e){
+
+        e.preventDefault();
+
+        alert('Form Submitted');
+
+        console.log(userDetails);
+
+    }
+
+
+
+    function handleNameChange(e){
+
+        setUserDetails(
+
+            {
+
+                UserName: e.target.value,
+
+                Mobile: userDetails.Mobile,
+
+                City: userDetails.City
+
+            }
+
+        )
+
+    }
+
+
+
+    function handleMobileChange(e){
+
+        setUserDetails(
+
+            {
+
+                UserName: userDetails.UserName,
+
+                Mobile: e.target.value,
+
+                City: userDetails.City
+
+            }
+
+        )
+
+    }
+
+
+
+    function handleCityChange(e){
+
+        setUserDetails(
+
+            {
+
+                UserName: userDetails.UserName,
+
+                Mobile: userDetails.Mobile,
+
+                City: e.target.value
+
+            }
+
+        )
+
+    }
+
+
+
+    return(
+
+        <div className="container-fluid">
+
+            <h2>Register User</h2>
+
+            <form onSubmit={handleSubmit}>
+
+                <dl>
+
+                    <dt>User Name</dt>
+
+                    <dd><input type="text" onChange={handleNameChange} name="UserName" /></dd>
+
+                    <dt>Mobile</dt>
+
+                    <dd><input type="text" onChange={handleMobileChange} name="Mobile" /></dd>
+
+                    <dt>City</dt>
+
+                    <dd>
+
+                        <select name="City" onChange={handleCityChange}>
+
+                            <option>Select City</option>
+
+                            <option>Delhi</option>
+
+                            <option>Hyd</option>
+
+                        </select>
+
+                    </dd>
+
+                </dl>
+
+                <button type="submit">Register</button>
+
+            </form>
+
+        </div>
+
+    )
+
+}
+
+ 
+
+
+
+Formik for React Forms: 
+
+ - Formik is a 3rd party form library for React.
+
+ - It provides pre-defined services using hooks and components.
+
+ - It simplifies the form interactions and enables security. 
+
+
+
+1. Install Formik 
+
+
+
+       > npm install formik —save
+
+
+
+2. Import “useFormik()” hook into component. 
+
+
+
+   import  { useFormik }  from “formik”;
+
+
+
+3. Configure the form using useFormik hook
+
+
+
+    const formik = useFormik({ 
+
+   
+
+               initialValues: { },                  // refers to the form values that formik handles 
+
+               onSubmit: ()=>{ },              // It defines actions to perform on submit
+
+               validate: ()=>{ },                  // It uses a function to validate the form values.
+
+               validationSchema:()=>{}, // It uses a function that returns validation schema. 
+
+               enableReinitialize: true/fasle   // Allows reinitialization [two way binding]  
+
+     })
+
+
+
+4. Bind formik events with form elements
+
+
+
+       <form  onSubmit={ formik.handleSubmit } > 
+
+
+
+       <input type=“text”  onChange={ formik.handleChange } />
+
+       <select onChange= { formik.handleChange } />
+
+
+
+Note: Every form element requires a “name” attribute and it must map with formik initialValues. 
+
+
+
+5. Formik provides built in event handlers like
+
+
+
+           formik.handleChange
+
+           formik.handleBlur
+
+           formik.handleSubmit 
+
+           etc.
+
+
+
+   Event handler requires events like
+
+   
+
+           onSubmit
+
+           onChange
+
+           onBlur 
+
+           etc.
+
+
+
+Ex:
+
+ form-demo.jsx
+
+
+
+import { useState } from "react";
+
+import { useFormik } from "formik";
+
+
+
+export function FormDemo(){
+
+
+
+    
+
+    const formik = useFormik({
+
+         initialValues: {
+
+            UserName: null, 
+
+            Mobile: null,
+
+            City: null
+
+         },
+
+         onSubmit: (user)=>{
+
+             console.log(user);
+
+         }
+
+    })
+
+
+
+    return(
+
+        <div className="container-fluid">
+
+            <h2>Register User</h2>
+
+            <form onSubmit={formik.handleSubmit} >
+
+                <dl>
+
+                    <dt>User Name</dt>
+
+                    <dd><input type="text" onChange={formik.handleChange}  name="UserName" /></dd>
+
+                    <dt>Mobile</dt>
+
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+
+                    <dt>City</dt>
+
+                    <dd>
+
+                        <select name="City" onChange={formik.handleChange} >
+
+                            <option>Select City</option>
+
+                            <option>Delhi</option>
+
+                            <option>Hyd</option>
+
+                        </select>
+
+                    </dd>
+
+                </dl>
+
+                <button type="submit">Register</button>
+
+            </form>
+
+        </div>
+
+    )
+
+}
+
+
+
+Formik Validation: 
+
+ - Validation is the process of verifying user input. 
+
+ - Validation is required to ensure that contradictory and unauthorised data is not get stored into database. 
+
+ - Formik allows to configure custom validation function, where developer have to define
+
+   Validations manually. 
+
+ - Formik supports validation schema, which provides built-in validation services.
+
+
+
+Ex: Custom Validation Function
+
+
+
+import { useState } from "react";
+
+import { useFormik } from "formik";
+
+
+
+export function FormDemo(){
+
+
+
+    function ValidateUser(user){
+
+        var errors = {UserName:'', Mobile:'', City:''};
+
+
+
+        if(user.UserName.length===0) {
+
+            errors.UserName = 'User Name Required';
+
+        } else {
+
+            if(user.UserName.length<4){
+
+                errors.UserName = 'Name too short';
+
+            }
+
+        }
+
+
+
+        if(user.Mobile.length===0){
+
+            errors.Mobile = 'Mobile Required';
+
+        } else {
+
+            if(user.Mobile.match(/\+91\d{10}/)) {
+
+                errors.Mobile = '';
+
+            } else {
+
+                errors.Mobile = 'Invalid Mobile';
+
+            }
+
+        }
+
+
+
+        if(user.City === '-1') {
+
+            errors.City = 'Please select your city';
+
+        }
+
+
+
+        return errors;
+
+    }
+
+    
+
+    const formik = useFormik({
+
+         initialValues: {
+
+            UserName: '', 
+
+            Mobile: '',
+
+            City: ''
+
+         },
+
+         validate: ValidateUser,
+
+         onSubmit: (user)=>{
+
+             console.log(user);
+
+         }
+
+    })
+
+
+
+    return(
+
+        <div className="container-fluid">
+
+            <h2>Register User</h2>
+
+            <form onSubmit={formik.handleSubmit} >
+
+                <dl>
+
+                    <dt>User Name</dt>
+
+                    <dd><input type="text" onChange={formik.handleChange}  name="UserName" /></dd>
+
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+
+                    <dt>Mobile</dt>
+
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+
+                    <dt>City</dt>
+
+                    <dd>
+
+                        <select name="City" onChange={formik.handleChange} >
+
+                            <option value="-1">Select City</option>
+
+                            <option>Delhi</option>
+
+                            <option>Hyd</option>
+
+                        </select>
+
+                    </dd>
+
+                    <dd className="text-danger">{formik.errors.City}</dd>
+
+                </dl>
+
+                <button type="submit">Register</button>
+
+            </form>
+
+        </div>
+
+    )
+
+}

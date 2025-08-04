@@ -11,9 +11,11 @@ import { EventBinding } from './components/Event-Binding/eventOne.jsx';
 import { EventBindingT } from './components/Event-Binding/eventTwo.jsx';
 import { MouseMove } from './components/Event-Binding/eventFlag.jsx';
 import { EMICalculator} from './components/Event-Binding/emiCalc.jsx';
+import { ThrottleDemo } from './components/throttle-demo/throttle-demo.jsx';
+import { CarouselDemo } from './components/APIcalls/fakestore.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <EventBindingT/>
+    <CarouselDemo/>
   </StrictMode>,
 )
