@@ -30,11 +30,7 @@ export function ValidationDemo(){
     }
     
     const formik = useFormik({
-         initialValues: {
-            UserName: '', 
-            Mobile: '',
-            City: ''
-         },
+         initialValues: {UserName: '',Mobile: '',City: ''},
          validate: ValidateUser,
          onSubmit: (user)=>{
              console.log(user);

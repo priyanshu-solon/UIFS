@@ -3329,3 +3329,230 @@ export function FormDemo(){
     )
 
 }
+
+5/08
+=====
+
+- Formik Library
+- useFormik()
+- Collect data from form and submit to server
+       handleChange
+       handleSubmit
+- Validation
+
+Note: It is recommended to disable the default validations of HTML.
+         By using form “novalidate” attribute.
+
+         <form  method=“”  action=“”  novalidate> </form>
+                                                           Yup Library
+- It is a validation services library.
+- It provides pre-defined business logic to verify and validate the input values.
+- You can customize and implement according to requirements. 
+
+1. Install yup library for project. 
+
+       > npm install yup  -- save 
+
+2. Import any specific validation service or you can import all services from “yup”. 
+
+       import   { required, minlength }  from “yup”;
+                                  (or)
+       import  *  as  yup  from “yup”;
+
+3. Configure the validation schema for formik 
+
+       useFormik( {
+               initialValues : { },
+               validationSchema: yup.object({ 
+
+                       fieldname: yup.dataType().required(“message”).minLength(number, “msg”)..,
+                       fieldname: yup.dataType().required()..
+
+               }),
+               onSubmit : (values) => { }
+          })
+
+4. Binding & Displaying errors is same as you defined for formik.
+
+       <input  type=“text”  onChange={formik.handleChange}>
+       <div> { formik.errors.fieldname } </div>
+
+Ex:
+ form-demo.jsx
+
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){  
+    const formik = useFormik({
+         initialValues: {
+            UserName: '', 
+            Mobile: '',
+            City: ''
+         },
+         validationSchema: yup.object({
+             UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+             Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+         }) ,
+         onSubmit: (user)=>{
+             console.log(user);
+         }
+    })
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <form onSubmit={formik.handleSubmit} >
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" onChange={formik.handleChange}  name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" onChange={formik.handleChange} >
+                            <option value="-1">Select City</option>
+                            <option>Delhi</option>
+                            <option>Hyd</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                </dl>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    )
+}
+
+Note: The default validations fireup when user submits a form. You can bind blur event to
+          validate on blur. 
+
+           <input  onChange={ formik.handleChange}  onBlur={ formik.handleBlur } />
+
+           
+- Formik provides a “rest” argument that allows to bind all events to any element. 
+- It uses a formik method “getFieldProps()” to access all properties and bind with element.
+
+           <input  type=“text” name=“UserName”  { …formik.getFieldProps(“UserName”) } />
+
+Ex:
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){    
+    const formik = useFormik({
+         initialValues: {
+            UserName: '', 
+            Mobile: '',
+            City: ''
+         },
+         validationSchema: yup.object({
+             UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+             Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+         }) ,
+         onSubmit: (user)=>{
+             console.log(user);
+         }
+    })
+
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <form onSubmit={formik.handleSubmit} >
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" {...formik.getFieldProps("UserName")}  name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" {...formik.getFieldProps("Mobile")} name="Mobile" /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" {...formik.getFieldProps("City")} >
+                            <option value="-1">Select City</option>
+                            <option>Delhi</option>
+                            <option>Hyd</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                </dl>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    )
+}
+
+- Formik provides validation at 2 levels
+
+       a) Input State Validation
+       b) Form State Validation
+
+- Input state is used to verify every field individually. It uses “formik.errors” to access errors for any specific field. 
+
+               { formik.errors.fieldName } 
+
+- Form state is used to verify all fields in a form simultaneously at the same time. 
+ Form state services are 
+              a) touched                : got focus and blur
+              b) dirty                    : modified [ any one field modified ]
+              c) isValid                : all field are valid
+              d) errors                    : returns all field errors. 
+              e) values                    : returns all fields values. 
+
+Syntax:
+           <button disabled={ (formik.dirty) ? false : true }> 
+Ex:
+Form-demo.jsx
+
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){
+   const formik = useFormik({
+        initialValues: {
+           UserName: '', 
+           Mobile: '',
+           City: ''
+        },
+        validationSchema: yup.object({
+            UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+            Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+        }) ,
+        onSubmit: (user)=>{
+            console.log(user);
+        }
+   })
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <form onSubmit={formik.handleSubmit} >
+               <dl>
+                  <dt>User Name</dt>
+                   <dd><input type="text" {...formik.getFieldProps("UserName")}  name="UserName" /></dd>
+                   <dd className="text-danger">{formik.errors.UserName}</dd>
+                   <dt>Mobile</dt>
+                   <dd><input type="text" {...formik.getFieldProps("Mobile")} name="Mobile" /></dd>
+                   <dd className="text-danger">{formik.errors.Mobile}</dd>
+                   <dt>City</dt>
+                   <dd>
+                       <select name="City" {...formik.getFieldProps("City")} >
+                           <option value="-1">Select City</option>
+                           <option>Delhi</option>
+                           <option>Hyd</option>
+                       </select>
+                   </dd>
+                   <dd className="text-danger">{formik.errors.City}</dd>
+               </dl>
+               <button disabled={(formik.isValid)?false:true} className="mx-2" type="submit">Register</button>
+               <button  className={(formik.dirty)?'d-inline':'d-none'}  disabled={(formik.dirty)?false:true} type="submit">Save</button>
+           </form>
+       </div>
+   )
+}
+
+
+                                                    Formik Components
