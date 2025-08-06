@@ -3556,3 +3556,160 @@ export function FormDemo(){
 
 
                                                     Formik Components
+
+
+
+6/08
+======
+
+Formik 
+
+- useFormik()
+- handleChange
+- handleBlur
+- handleSubmit
+- dirty
+- isValid
+- touched
+- errors
+- values 
+- yup [ for validation ]
+- getFieldProps()
+
+                                Formik Components
+- Component have pre-defined design, styles and logic.
+- You can customize and implement according to the requirements.
+- Class components in React can’t use hooks, it requires components to configure a form. 
+- Formik components include:
+           <Formik>                    It configures a container for form
+           <Form>                        It configures a container for elements
+           <Field>                        It configures individual element
+           <ErrorMessage>        It configures an error log for field.
+
+Syntax:
+          <Formik  initialValues={ }  onSubmit={ }  validate={ }  validationSchema={ }>
+                <Form>
+                      <Field type=“text | password | radio..”> </Field>
+                      <ErrorMessage> </ErrorMessage>
+               </Form>
+           </Formik>
+
+Ex: formik-demo.jsx
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <Formik initialValues={{UserName:'', Mobile:''}} validationSchema={yup.object({UserName: yup.string().required('User Name Required').min(4, 'Name too short'), Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})} onSubmit={(values)=>{console.log(values)}} >
+               <Form>
+                   <dl>
+                       <dt>User Name</dt>
+                       <dd><Field type="text" name="UserName" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="UserName" /> </dd>
+                       <dt>Mobile</dt>
+                       <dd><Field type="text" name="Mobile" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="Mobile" /> </dd>
+                   </dl>
+                   <button type="submit">Submit</button>
+               </Form>
+           </Formik>
+       </div>
+   )
+}
+- You can configure the form state by accessing the form properties, It requires a reference for <Form> component. 
+
+Syntax:
+                  <Formik>
+                      {
+                         form => <Form> </Form>
+                      }
+                      { form.dirty,  form.isValid,  form.values, form.errors .. }
+                  </Formik>
+
+Ex: formik-demo.jsx
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <Formik initialValues={{UserName:'', Mobile:''}} validationSchema={yup.object({UserName: yup.string().required('User Name Required').min(4, 'Name too short'), Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})} onSubmit={(values)=>{console.log(values)}} >
+               {
+                   form => 
+                   <Form>
+                   <dl>
+                       <dt>User Name</dt>
+                       <dd><Field type="text" name="UserName" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="UserName" /> </dd>
+                       <dt>Mobile</dt>
+                       <dd><Field type="text" name="Mobile" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="Mobile" /> </dd>
+                   </dl>
+                   <button disabled={(form.isValid)?false:true} type="submit">Submit</button>
+                   <div className="mt-4 text-danger" style={{display:(form.isValid)?'none':'block'}} >
+                       <h4>Please check the following errors</h4>
+                       <ul>
+                          {
+                              Object.keys(form.errors).map(key =>
+                                <li key={key}> {form.errors[key]} </li>
+                              )
+                          }
+                        </ul>
+                    </div>
+                   </Form>
+                }
+            </Formik>
+        </div>
+    )
+}
+                    React Hook Form
+  - https://react-hook-form.com/
+       1. What are the features of Hook Form?
+       2. What are the issues with Hook Form? 
+       3. How to configure a form?
+       4. How to validate a form?
+Summary
+- Design Component
+- Style Binding
+- Class Binding
+- Data Binding
+- Event Binding
+- Forms 
+
+FAQ: What’s new in React 19 Forms?
+Ans:
+       a) form action    : It configures a server side function to execute on form submit. 
+          Syntax:
+                      <form  action={serverFunction} >
+       b) FormData        : It is a new API to collect the form data without manually creating 
+                                    reference for accessing data.
+Ex: form-new.jsx
+
+export function FormNew(){
+
+   function handleSubmit(e){
+       e.preventDefault();
+       const data = new FormData(e.target);
+       for(var item of data){
+           console.log(item[1]);
+       }
+   }
+   return(
+       <div className="container-fluid">
+           <h2>Register</h2>
+           <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" /></dd>
+                      <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" /></dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}

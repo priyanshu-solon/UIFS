@@ -18,6 +18,9 @@ import { ValidationDemo } from './components/ReactForms/formikFormV.jsx';
 import { FormYup } from './components/ReactForms/formikYup.jsx';
 import { FormYup2 } from './components/ReactForms/formikYup2.jsx';
 import { FormYup3 } from './components/ReactForms/formikYup3.jsx';
+import { FormikE } from './components/ReactForms/formikE.jsx';
+import { FormikE2 } from './components/ReactForms/formikE2.jsx';
+import { FormEasy } from './components/ReactForms/formikEasy.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -31,6 +34,12 @@ createRoot(document.getElementById('root')).render(
     <FormYup/>
     <FormYup2/>
     <FormYup3/>
+    </div>
+    <br />
+    <div className='d-flex'>
+    <FormikE/>
+    <FormikE2/>
+    <FormEasy/>
     </div>
   </StrictMode>,
 )
