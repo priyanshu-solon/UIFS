@@ -1,3 +1,5 @@
+// Uses Formik with built-in validation
+// Demonstrates how to add validation logic to Formik forms.
 import { useState } from "react";
 import { useFormik } from "formik";
 

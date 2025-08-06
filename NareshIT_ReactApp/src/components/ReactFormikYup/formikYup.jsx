@@ -1,14 +1,11 @@
+// Uses Formik with Yup validation schema.
+// Validation is defined declaratively using Yup, making it more scalable and maintainable.
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 export function FormYup(){  
-    const formik = useFormik({
-         initialValues: {
-            UserName: '', 
-            Mobile: '',
-            City: ''
-         },
+    const formik = useFormik({initialValues: {UserName: '',Mobile: '',City: ''},
          validationSchema: yup.object({
              UserName: yup.string().required('User Name Required').min(4,'Name too short'),
              Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')

@@ -1,3 +1,5 @@
+//Likely a basic React form using controlled components (useState for form state).
+//Handles input, validation, and submission manually.
 import { useState } from "react";
 
 export function FormDemo(){

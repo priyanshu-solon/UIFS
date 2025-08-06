@@ -7,7 +7,7 @@ export function FormikE(){
            <h2>Register User</h2>
            <Formik initialValues={{UserName:'', Mobile:''}}
             validationSchema={yup.object({UserName: yup.string().required('User Name Required').min(4, 'Name too short'),
-            Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})}
+                                          Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})}
             onSubmit={(values)=>{console.log(values)}} >
                <Form>
                    <dl>

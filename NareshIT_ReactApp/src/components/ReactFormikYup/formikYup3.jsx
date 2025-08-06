@@ -1,3 +1,5 @@
+// Error messages are shown below each field if validation fails.
+
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
