@@ -3713,3 +3713,72 @@ export function FormNew(){
         </div>
     )
 }
+
+7/08
+=====
+
+React Hook Form
+
+Features:
+
+1. Performant 
+   - Faster Mounting
+   - Avoids re-render
+   - Light weight 
+   - Uses Native HTML
+
+2. Flexible and Extensible 
+   - Dynamically can render elements.
+   - Add new features into form without modifying the form.
+
+3. Easy to Validate
+   - It uses HTML validations.
+   - It doesn’t require any validation library.
+  
+Issues: 
+   - It completely configured with hooks.
+   - It is not suitable for application that uses class components.
+   - HTML validations require customization.
+
+How to explore a library?
+- Library related all features are defined in “API”.
+- Developer must first explore the API of a library.
+- API gives a complete overview of library along with versions.
+- After overview to start using all features you have to go to “Get Started”.
+
+Setup and use Hook form:
+1. Install Hook Form for project
+        > npm  install   react-hook-form --save
+2. Import  “useForm()” hook into component
+      import   { useForm }  from  “react-hook-form”;
+3. Configure form 
+       const { register, handleSubmit,  formState: {errors} } = useForm(); 
+       register        : It refers to form and its elements.
+                         It can access all element properties and events.
+                               - value
+                               - name
+                               - onChange
+                               - onBlur etc.
+       handleSubmit: It defines actions to perform on submit.
+       formState        : It returns errors object that comprises of field errors.
+3. Configure submit action
+           const  submit  = (values) => {
+                   console.log(values);
+            }    
+4. Configure form and elements
+           <form  onSubmit= { handleSubmit(submit) } >
+           </form>
+           <input type=“text”  name=“UserName”  { …register(“UserName”, { required:true, minLength:4, pattern=/[A-Z]{4,10}/ }) } />
+           <input type=“text” name=“Mobile” { …register(“Mobile”, { required:true, pattern=/\+91\d{10}/ }) } />
+
+5. Handling Error message 
+           {  (errors.fieldName?.type===“required” ) ? <span> true </span> : <span> false </span> }
+           { (exp1 ) && (exp2) && (exp3) }
+
+Ex:
+       UserName : string        required, 4 to 15 chars
+       Mobile : string            required , +91 and 10 digits
+       Age : number            required , 15 to 30 only
+       City : string                required 
+                                                   Conditional Rendering
+                                                   Controlled Components

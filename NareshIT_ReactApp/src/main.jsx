@@ -22,6 +22,7 @@ import { FormikE } from './components/ReactFormikYup/formikE.jsx';
 import { FormikE2 } from './components/ReactFormikYup/formikE2.jsx';
 import { FormEasy } from './components/ReactFormikYup/formikEasy.jsx';
 import HookForm from './components/ReactHookForm/reactHF.jsx';
+import HookFormV from './components/ReactHookForm/reactHFV.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -45,6 +46,7 @@ createRoot(document.getElementById('root')).render(
     <br />
     <div className='d-flex'>
     <HookForm/>
+    <HookFormV/>
     </div>
   </StrictMode>,
 )
