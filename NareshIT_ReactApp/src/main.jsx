@@ -2,6 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
 import {NetflixIndex} from './components/Netflix/netflix-index.jsx'
 import { DataBinding } from './components/Data-Binding/data-binding.jsx';
 import { XMLHttp } from './components/APIcalls/xmlHttp.jsx';
@@ -24,11 +26,13 @@ import { FormEasy } from './components/ReactFormikYup/formikEasy.jsx';
 import HookForm from './components/ReactHookForm/reactHF.jsx';
 import HookFormV from './components/ReactHookForm/reactHFV.jsx';
 import { FormNew } from './controlledComponents/formNew.jsx';
+import { ControlledDemo } from './controlledComponents/controlledDemo.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <div>
       <FormNew/>
+      <ControlledDemo/>
     </div>
   </StrictMode>,
 )
