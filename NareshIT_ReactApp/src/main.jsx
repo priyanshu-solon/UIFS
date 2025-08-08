@@ -23,30 +23,12 @@ import { FormikE2 } from './components/ReactFormikYup/formikE2.jsx';
 import { FormEasy } from './components/ReactFormikYup/formikEasy.jsx';
 import HookForm from './components/ReactHookForm/reactHF.jsx';
 import HookFormV from './components/ReactHookForm/reactHFV.jsx';
+import { FormNew } from './controlledComponents/formNew.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='d-flex'>
-    <FormDemo/>
-    <FormikDemo/>
-    <ValidationDemo/>
-    </div>
-    <br />
-    <div className='d-flex'>
-    <FormYup/>
-    <FormYup2/>
-    <FormYup3/>
-    </div>
-    <br />
-    <div className='d-flex'>
-    <FormikE/>
-    <FormikE2/>
-    <FormEasy/>
-    </div>
-    <br />
-    <div className='d-flex'>
-    <HookForm/>
-    <HookFormV/>
+    <div>
+      <FormNew/>
     </div>
   </StrictMode>,
 )
