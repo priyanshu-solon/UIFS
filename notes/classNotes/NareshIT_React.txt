@@ -3782,3 +3782,163 @@ Ex:
        City : string                required 
                                                    Conditional Rendering
                                                    Controlled Components
+
+
+8/08
+=====
+
+Controlled Components
+
+- Components are uncontrolled, which refer to absolute. 
+- You can reuse a component in the same way at every occurrence. 
+- You can’t customize according to requirements. 
+- React allows to create controlled components, which allow customization. 
+- A controlled component is usually controlled by the data from its parent. 
+- Technically controlled component is a function that takes “properties” as arguments and modify the functionality. 
+
+Syntax:
+
+                   function Component(props)
+                   {
+                        return( 
+                                   <>
+                                   </>
+                                   )    
+                   }
+
+-  “Props” is a formal parameter of “Object” type. 
+-  It is a key and value collection. 
+Syntax:
+               function  Component(props)
+               {
+                   return ( <h2> { props.title } </h2> )
+               }
+
+               <Component  title=“value” />
+
+Ex:
+
+1. Add a new folder into “src” by name “controlled-components”
+
+2. Add a new file by name  
+
+“navbar.jsx”
+
+export function Navbar(props){
+    return(
+        <nav className={`d-flex ${props.theme} my-2 align-items-center justify-content-between p-2 border border-1 border-secondary`}>
+            <div><span className="fs-4 fw-bold">{props.brandTitle}</span></div>
+            <div>
+                {
+                    props.navItems.map(item => <span key={item} className="mx-3"> {item} </span>)
+                }
+            </div>
+            <div>
+                <button className="btn btn-danger">Signin</button>
+            </div>
+        </nav>
+    )
+}
+
+3. Import Navbar into your components
+
+form-new.jsx
+
+import { useState } from "react";
+import { Navbar } from "../../controlled-components/navbar";
+export function FormNew(){
+    const [amazonItems] = useState(['Home', 'About', 'Mobiles', 'Fashion', 'Contact']);
+
+    function handleSubmit(e){
+        e.preventDefault();
+        const data = new FormData(e.target);
+        for(var item of data){
+            console.log(item[1]);
+        }
+    }
+  
+    return(
+        <div className="container-fluid">
+            <header className="mt-3">
+                <Navbar theme='bg-warning' brandTitle="Shopper." navItems={['Home', 'Shop', 'Pages', 'Blog', 'Docs']} />
+            </header>
+            <section>
+                <Navbar theme='bg-dark text-white' brandTitle="Amazon" navItems={amazonItems} />
+            </section>
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" /></dd>
+                      <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" /></dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+Ex:
+
+1. Enable bootstrap jQuery functionality “main.jsx”
+
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
+2. Controlled-components/ data-grid.jsx
+
+export function DataGrid(props){
+    return(
+        <table className="table table-hover caption-top">
+            <caption>{props.caption}</caption>
+            <thead>
+                <tr>
+                    {
+                        props.fields.map(field=>
+                        <th key={field}>{field} 
+                          <div className="dropdown d-inline">
+                             <button data-bs-toggle="dropdown" className="bi bi-three-dots-vertical btn"></button> 
+                             <ul className="dropdown-menu">
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-down"></span> Sort Ascending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-up"></span> Sort Descending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-flask"></span> Filter </span> </li>
+                             </ul>
+                          </div>
+                        </th>)
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.data.map((item,index)=>
+                     <tr key={index}>
+                        {
+                            Object.keys(item).map(key => <td key={key}> {item[key]} </td>)
+                        }
+                        <td>
+                            <button className="btn btn-warning bi bi-pen-fill"></button>
+                            <button className="btn btn-danger bi bi-trash mx-2"></button>
+                        </td>
+                     </tr>
+                    )
+                }
+            </tbody>
+        </table>
+    )
+}
+
+3.  controlled-demo.jsx
+
+import { DataGrid } from "../../controlled-components/data-grid";
+
+export function ControlledDemo(){
+    return(
+        <div className="container-fluid">
+            <h2>Employee Details</h2>
+            <DataGrid  caption='Employee Data - Update Aug 2025' fields={['First Name', 'Last Name', 'Designation', 'Salary']} data={[{FirstName:'Raj', LastName:'Kumar', Designation:'Clerk', Salary:45000},{FirstName:'Kiran', LastName:'Kumar', Designation:'Manager', Salary:75000}]} />
+            <h2>Product Details</h2>
+            <DataGrid caption='Products in Offer' fields={['Name', 'Price', 'Rating']} data={[{Name:'TV', Price:24000, Rating:4.2}, {Name:'Mobile', Price:12000, Rating:3.2}, {Name:'Watch', Price:3000, Rating:4.9}]} />
+        </div>
+    )
+}

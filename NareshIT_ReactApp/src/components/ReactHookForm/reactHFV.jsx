@@ -11,14 +11,13 @@ export default function HookFormV() {
   }
 
   return (
-    <div className="container-fluid w-50 border-2 border border-dark rounded mt-4 p-4">
-      <h1 className="text-center">react-hook-form</h1>
-      <hr></hr>
-      <form className="form" onSubmit={handleSubmit(submit)}>
+    <div className="container-fluid">
+      <h1>react-hook-form</h1>
+      <form onSubmit={handleSubmit(submit)}>
         <div>
           <dl>
             <dt>
-              <label className="form-label">Enter User Name</label>
+              <label>Enter User Name</label>
             </dt>
             <dd>
               <input
@@ -27,7 +26,6 @@ export default function HookFormV() {
                   minLength: 4,
                   maxLength: 15,
                 })}
-                className="form-control"
                 type="text"
               />
             </dd>
@@ -36,7 +34,7 @@ export default function HookFormV() {
         <div>
           <dl>
             <dt>
-              <label className="form-label">Enter Mobile No.</label>
+              <label>Enter Mobile No.</label>
             </dt>
             <dd>
               <input
@@ -44,7 +42,6 @@ export default function HookFormV() {
                   required: true,
                   pattern: /\+91\d{10}/,
                 })}
-                className="form-control"
                 type="text"
               />
             </dd>
@@ -53,12 +50,11 @@ export default function HookFormV() {
         <div>
           <dl>
             <dt>
-              <label className="form-label">Enter your Age</label>
+              <label>Enter your Age</label>
             </dt>
             <dd>
               <input
                 {...register("age", { required: true, min: 15, max: 30 })}
-                className="form-control"
                 type="number"
               />
             </dd>
@@ -67,12 +63,11 @@ export default function HookFormV() {
         <div>
           <dl>
             <dt>
-              <label className="form-label">Select Your City</label>
+              <label>Select Your City</label>
             </dt>
             <dd>
               <select
                 {...register("city", { required: true })}
-                className="form-select"
               >
                 <option>Select City</option>
                 <option>Hyderabad</option>
@@ -142,8 +137,8 @@ export default function HookFormV() {
               : ""}
           </li>
         </ul>
-        <div className="text-end ">
-          <button className="btn btn-primary ">Submit</button>
+        <div>
+          <button >Submit</button>
         </div>
       </form>
     </div>
