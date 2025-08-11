@@ -25,14 +25,16 @@ import { FormikE2 } from './components/ReactFormikYup/formikE2.jsx';
 import { FormEasy } from './components/ReactFormikYup/formikEasy.jsx';
 import HookForm from './components/ReactHookForm/reactHF.jsx';
 import HookFormV from './components/ReactHookForm/reactHFV.jsx';
-import { FormNew } from './controlledComponents/formNew.jsx';
-import { ControlledDemo } from './controlledComponents/controlledDemo.jsx';
+import { FormNew } from './components/controlledComponents/formNew.jsx';
+import { ControlledDemo } from './components/controlledComponents/controlledDemo.jsx';
+import { ConditionDemo } from './components/ConditionalRendering/conditionalRender.jsx';
+import { ConditionDemo2 } from './components/ConditionalRendering/conditionalRender2.jsx';
+import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div>
-      <FormNew/>
-      <ControlledDemo/>
-    </div>
+    <ConditionDemo3/>
+    <ConditionDemo/>
+    <ConditionDemo2/>
   </StrictMode>,
 )
