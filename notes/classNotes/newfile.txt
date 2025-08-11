@@ -29497,3 +29497,848 @@ export function FormDemo(){
     )
 
 }
+
+5/08
+=====
+
+- Formik Library
+- useFormik()
+- Collect data from form and submit to server
+       handleChange
+       handleSubmit
+- Validation
+
+Note: It is recommended to disable the default validations of HTML.
+         By using form “novalidate” attribute.
+
+         <form  method=“”  action=“”  novalidate> </form>
+                                                           Yup Library
+- It is a validation services library.
+- It provides pre-defined business logic to verify and validate the input values.
+- You can customize and implement according to requirements. 
+
+1. Install yup library for project. 
+
+       > npm install yup  -- save 
+
+2. Import any specific validation service or you can import all services from “yup”. 
+
+       import   { required, minlength }  from “yup”;
+                                  (or)
+       import  *  as  yup  from “yup”;
+
+3. Configure the validation schema for formik 
+
+       useFormik( {
+               initialValues : { },
+               validationSchema: yup.object({ 
+
+                       fieldname: yup.dataType().required(“message”).minLength(number, “msg”)..,
+                       fieldname: yup.dataType().required()..
+
+               }),
+               onSubmit : (values) => { }
+          })
+
+4. Binding & Displaying errors is same as you defined for formik.
+
+       <input  type=“text”  onChange={formik.handleChange}>
+       <div> { formik.errors.fieldname } </div>
+
+Ex:
+ form-demo.jsx
+
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){  
+    const formik = useFormik({
+         initialValues: {
+            UserName: '', 
+            Mobile: '',
+            City: ''
+         },
+         validationSchema: yup.object({
+             UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+             Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+         }) ,
+         onSubmit: (user)=>{
+             console.log(user);
+         }
+    })
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <form onSubmit={formik.handleSubmit} >
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" onChange={formik.handleChange}  name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" onChange={formik.handleChange} >
+                            <option value="-1">Select City</option>
+                            <option>Delhi</option>
+                            <option>Hyd</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                </dl>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    )
+}
+
+Note: The default validations fireup when user submits a form. You can bind blur event to
+          validate on blur. 
+
+           <input  onChange={ formik.handleChange}  onBlur={ formik.handleBlur } />
+
+           
+- Formik provides a “rest” argument that allows to bind all events to any element. 
+- It uses a formik method “getFieldProps()” to access all properties and bind with element.
+
+           <input  type=“text” name=“UserName”  { …formik.getFieldProps(“UserName”) } />
+
+Ex:
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){    
+    const formik = useFormik({
+         initialValues: {
+            UserName: '', 
+            Mobile: '',
+            City: ''
+         },
+         validationSchema: yup.object({
+             UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+             Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+         }) ,
+         onSubmit: (user)=>{
+             console.log(user);
+         }
+    })
+
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <form onSubmit={formik.handleSubmit} >
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" {...formik.getFieldProps("UserName")}  name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" {...formik.getFieldProps("Mobile")} name="Mobile" /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" {...formik.getFieldProps("City")} >
+                            <option value="-1">Select City</option>
+                            <option>Delhi</option>
+                            <option>Hyd</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                </dl>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    )
+}
+
+- Formik provides validation at 2 levels
+
+       a) Input State Validation
+       b) Form State Validation
+
+- Input state is used to verify every field individually. It uses “formik.errors” to access errors for any specific field. 
+
+               { formik.errors.fieldName } 
+
+- Form state is used to verify all fields in a form simultaneously at the same time. 
+ Form state services are 
+              a) touched                : got focus and blur
+              b) dirty                    : modified [ any one field modified ]
+              c) isValid                : all field are valid
+              d) errors                    : returns all field errors. 
+              e) values                    : returns all fields values. 
+
+Syntax:
+           <button disabled={ (formik.dirty) ? false : true }> 
+Ex:
+Form-demo.jsx
+
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){
+   const formik = useFormik({
+        initialValues: {
+           UserName: '', 
+           Mobile: '',
+           City: ''
+        },
+        validationSchema: yup.object({
+            UserName: yup.string().required('User Name Required').min(4,'Name too short'),
+            Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile')
+        }) ,
+        onSubmit: (user)=>{
+            console.log(user);
+        }
+   })
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <form onSubmit={formik.handleSubmit} >
+               <dl>
+                  <dt>User Name</dt>
+                   <dd><input type="text" {...formik.getFieldProps("UserName")}  name="UserName" /></dd>
+                   <dd className="text-danger">{formik.errors.UserName}</dd>
+                   <dt>Mobile</dt>
+                   <dd><input type="text" {...formik.getFieldProps("Mobile")} name="Mobile" /></dd>
+                   <dd className="text-danger">{formik.errors.Mobile}</dd>
+                   <dt>City</dt>
+                   <dd>
+                       <select name="City" {...formik.getFieldProps("City")} >
+                           <option value="-1">Select City</option>
+                           <option>Delhi</option>
+                           <option>Hyd</option>
+                       </select>
+                   </dd>
+                   <dd className="text-danger">{formik.errors.City}</dd>
+               </dl>
+               <button disabled={(formik.isValid)?false:true} className="mx-2" type="submit">Register</button>
+               <button  className={(formik.dirty)?'d-inline':'d-none'}  disabled={(formik.dirty)?false:true} type="submit">Save</button>
+           </form>
+       </div>
+   )
+}
+
+
+                                                    Formik Components
+
+
+
+6/08
+======
+
+Formik 
+
+- useFormik()
+- handleChange
+- handleBlur
+- handleSubmit
+- dirty
+- isValid
+- touched
+- errors
+- values 
+- yup [ for validation ]
+- getFieldProps()
+
+                                Formik Components
+- Component have pre-defined design, styles and logic.
+- You can customize and implement according to the requirements.
+- Class components in React can’t use hooks, it requires components to configure a form. 
+- Formik components include:
+           <Formik>                    It configures a container for form
+           <Form>                        It configures a container for elements
+           <Field>                        It configures individual element
+           <ErrorMessage>        It configures an error log for field.
+
+Syntax:
+          <Formik  initialValues={ }  onSubmit={ }  validate={ }  validationSchema={ }>
+                <Form>
+                      <Field type=“text | password | radio..”> </Field>
+                      <ErrorMessage> </ErrorMessage>
+               </Form>
+           </Formik>
+
+Ex: formik-demo.jsx
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <Formik initialValues={{UserName:'', Mobile:''}} validationSchema={yup.object({UserName: yup.string().required('User Name Required').min(4, 'Name too short'), Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})} onSubmit={(values)=>{console.log(values)}} >
+               <Form>
+                   <dl>
+                       <dt>User Name</dt>
+                       <dd><Field type="text" name="UserName" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="UserName" /> </dd>
+                       <dt>Mobile</dt>
+                       <dd><Field type="text" name="Mobile" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="Mobile" /> </dd>
+                   </dl>
+                   <button type="submit">Submit</button>
+               </Form>
+           </Formik>
+       </div>
+   )
+}
+- You can configure the form state by accessing the form properties, It requires a reference for <Form> component. 
+
+Syntax:
+                  <Formik>
+                      {
+                         form => <Form> </Form>
+                      }
+                      { form.dirty,  form.isValid,  form.values, form.errors .. }
+                  </Formik>
+
+Ex: formik-demo.jsx
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+   return(
+       <div className="container-fluid">
+           <h2>Register User</h2>
+           <Formik initialValues={{UserName:'', Mobile:''}} validationSchema={yup.object({UserName: yup.string().required('User Name Required').min(4, 'Name too short'), Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/,'Invalid Mobile')})} onSubmit={(values)=>{console.log(values)}} >
+               {
+                   form => 
+                   <Form>
+                   <dl>
+                       <dt>User Name</dt>
+                       <dd><Field type="text" name="UserName" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="UserName" /> </dd>
+                       <dt>Mobile</dt>
+                       <dd><Field type="text" name="Mobile" /></dd>
+                       <dd className="text-danger"> <ErrorMessage name="Mobile" /> </dd>
+                   </dl>
+                   <button disabled={(form.isValid)?false:true} type="submit">Submit</button>
+                   <div className="mt-4 text-danger" style={{display:(form.isValid)?'none':'block'}} >
+                       <h4>Please check the following errors</h4>
+                       <ul>
+                          {
+                              Object.keys(form.errors).map(key =>
+                                <li key={key}> {form.errors[key]} </li>
+                              )
+                          }
+                        </ul>
+                    </div>
+                   </Form>
+                }
+            </Formik>
+        </div>
+    )
+}
+                    React Hook Form
+  - https://react-hook-form.com/
+       1. What are the features of Hook Form?
+       2. What are the issues with Hook Form? 
+       3. How to configure a form?
+       4. How to validate a form?
+Summary
+- Design Component
+- Style Binding
+- Class Binding
+- Data Binding
+- Event Binding
+- Forms 
+
+FAQ: What’s new in React 19 Forms?
+Ans:
+       a) form action    : It configures a server side function to execute on form submit. 
+          Syntax:
+                      <form  action={serverFunction} >
+       b) FormData        : It is a new API to collect the form data without manually creating 
+                                    reference for accessing data.
+Ex: form-new.jsx
+
+export function FormNew(){
+
+   function handleSubmit(e){
+       e.preventDefault();
+       const data = new FormData(e.target);
+       for(var item of data){
+           console.log(item[1]);
+       }
+   }
+   return(
+       <div className="container-fluid">
+           <h2>Register</h2>
+           <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" /></dd>
+                      <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" /></dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+7/08
+=====
+
+React Hook Form
+
+Features:
+
+1. Performant 
+   - Faster Mounting
+   - Avoids re-render
+   - Light weight 
+   - Uses Native HTML
+
+2. Flexible and Extensible 
+   - Dynamically can render elements.
+   - Add new features into form without modifying the form.
+
+3. Easy to Validate
+   - It uses HTML validations.
+   - It doesn’t require any validation library.
+  
+Issues: 
+   - It completely configured with hooks.
+   - It is not suitable for application that uses class components.
+   - HTML validations require customization.
+
+How to explore a library?
+- Library related all features are defined in “API”.
+- Developer must first explore the API of a library.
+- API gives a complete overview of library along with versions.
+- After overview to start using all features you have to go to “Get Started”.
+
+Setup and use Hook form:
+1. Install Hook Form for project
+        > npm  install   react-hook-form --save
+2. Import  “useForm()” hook into component
+      import   { useForm }  from  “react-hook-form”;
+3. Configure form 
+       const { register, handleSubmit,  formState: {errors} } = useForm(); 
+       register        : It refers to form and its elements.
+                         It can access all element properties and events.
+                               - value
+                               - name
+                               - onChange
+                               - onBlur etc.
+       handleSubmit: It defines actions to perform on submit.
+       formState        : It returns errors object that comprises of field errors.
+3. Configure submit action
+           const  submit  = (values) => {
+                   console.log(values);
+            }    
+4. Configure form and elements
+           <form  onSubmit= { handleSubmit(submit) } >
+           </form>
+           <input type=“text”  name=“UserName”  { …register(“UserName”, { required:true, minLength:4, pattern=/[A-Z]{4,10}/ }) } />
+           <input type=“text” name=“Mobile” { …register(“Mobile”, { required:true, pattern=/\+91\d{10}/ }) } />
+
+5. Handling Error message 
+           {  (errors.fieldName?.type===“required” ) ? <span> true </span> : <span> false </span> }
+           { (exp1 ) && (exp2) && (exp3) }
+
+Ex:
+       UserName : string        required, 4 to 15 chars
+       Mobile : string            required , +91 and 10 digits
+       Age : number            required , 15 to 30 only
+       City : string                required 
+                                                   Conditional Rendering
+                                                   Controlled Components
+
+
+8/08
+=====
+
+Controlled Components
+
+- Components are uncontrolled, which refer to absolute. 
+- You can reuse a component in the same way at every occurrence. 
+- You can’t customize according to requirements. 
+- React allows to create controlled components, which allow customization. 
+- A controlled component is usually controlled by the data from its parent. 
+- Technically controlled component is a function that takes “properties” as arguments and modify the functionality. 
+
+Syntax:
+
+                   function Component(props)
+                   {
+                        return( 
+                                   <>
+                                   </>
+                                   )    
+                   }
+
+-  “Props” is a formal parameter of “Object” type. 
+-  It is a key and value collection. 
+Syntax:
+               function  Component(props)
+               {
+                   return ( <h2> { props.title } </h2> )
+               }
+
+               <Component  title=“value” />
+
+Ex:
+
+1. Add a new folder into “src” by name “controlled-components”
+
+2. Add a new file by name  
+
+“navbar.jsx”
+
+export function Navbar(props){
+    return(
+        <nav className={`d-flex ${props.theme} my-2 align-items-center justify-content-between p-2 border border-1 border-secondary`}>
+            <div><span className="fs-4 fw-bold">{props.brandTitle}</span></div>
+            <div>
+                {
+                    props.navItems.map(item => <span key={item} className="mx-3"> {item} </span>)
+                }
+            </div>
+            <div>
+                <button className="btn btn-danger">Signin</button>
+            </div>
+        </nav>
+    )
+}
+
+3. Import Navbar into your components
+
+form-new.jsx
+
+import { useState } from "react";
+import { Navbar } from "../../controlled-components/navbar";
+export function FormNew(){
+    const [amazonItems] = useState(['Home', 'About', 'Mobiles', 'Fashion', 'Contact']);
+
+    function handleSubmit(e){
+        e.preventDefault();
+        const data = new FormData(e.target);
+        for(var item of data){
+            console.log(item[1]);
+        }
+    }
+  
+    return(
+        <div className="container-fluid">
+            <header className="mt-3">
+                <Navbar theme='bg-warning' brandTitle="Shopper." navItems={['Home', 'Shop', 'Pages', 'Blog', 'Docs']} />
+            </header>
+            <section>
+                <Navbar theme='bg-dark text-white' brandTitle="Amazon" navItems={amazonItems} />
+            </section>
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" /></dd>
+                      <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" /></dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+Ex:
+
+1. Enable bootstrap jQuery functionality “main.jsx”
+
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
+2. Controlled-components/ data-grid.jsx
+
+export function DataGrid(props){
+    return(
+        <table className="table table-hover caption-top">
+            <caption>{props.caption}</caption>
+            <thead>
+                <tr>
+                    {
+                        props.fields.map(field=>
+                        <th key={field}>{field} 
+                          <div className="dropdown d-inline">
+                             <button data-bs-toggle="dropdown" className="bi bi-three-dots-vertical btn"></button> 
+                             <ul className="dropdown-menu">
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-down"></span> Sort Ascending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-up"></span> Sort Descending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-flask"></span> Filter </span> </li>
+                             </ul>
+                          </div>
+                        </th>)
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.data.map((item,index)=>
+                     <tr key={index}>
+                        {
+                            Object.keys(item).map(key => <td key={key}> {item[key]} </td>)
+                        }
+                        <td>
+                            <button className="btn btn-warning bi bi-pen-fill"></button>
+                            <button className="btn btn-danger bi bi-trash mx-2"></button>
+                        </td>
+                     </tr>
+                    )
+                }
+            </tbody>
+        </table>
+    )
+}
+
+3.  controlled-demo.jsx
+
+import { DataGrid } from "../../controlled-components/data-grid";
+
+export function ControlledDemo(){
+    return(
+        <div className="container-fluid">
+            <h2>Employee Details</h2>
+            <DataGrid  caption='Employee Data - Update Aug 2025' fields={['First Name', 'Last Name', 'Designation', 'Salary']} data={[{FirstName:'Raj', LastName:'Kumar', Designation:'Clerk', Salary:45000},{FirstName:'Kiran', LastName:'Kumar', Designation:'Manager', Salary:75000}]} />
+            <h2>Product Details</h2>
+            <DataGrid caption='Products in Offer' fields={['Name', 'Price', 'Rating']} data={[{Name:'TV', Price:24000, Rating:4.2}, {Name:'Mobile', Price:12000, Rating:3.2}, {Name:'Watch', Price:3000, Rating:4.9}]} />
+        </div>
+    )
+}
+
+11/08
+======
+Conditional Rendering
+
+- It is the process of rendering content according to the state and situation. 
+- A component can change its format and behaviour accordingly.
+
+1. Conditionally Rendering Component
+   - You can access any another component and render into current context.
+   - It requires a reference for handling component. 
+   Syntax:
+           const [view, setView] = useState(null);
+
+           if(condition)
+           {
+               setView( <Component-1/>);
+           }
+           else 
+           {
+               setView( <Component-2 />);
+           }
+
+Ex: conditional-demo.jsx
+
+import { useState } from "react"
+import { EMICalculator } from "../emi-calculator/emi-calculator";
+import { CarouselDemo } from "../carousel-demo/carousel-demo";
+
+export function ConditionDemo(){
+
+    const [view, setView] = useState(null);
+
+    function handleEmi(){
+        setView(<EMICalculator />);
+    }
+    function handleCarousel(){
+        setView(<CarouselDemo />)
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Home</h2>
+            <button onClick={handleEmi} className="btn btn-primary">EMI Calculator</button>
+            <button onClick={handleCarousel} className="btn btn-warning mx-2">Carousel</button>
+            <hr />
+            <div>
+                {view}
+            </div>
+        </div>
+    )
+}
+
+2. A component can render different content according to specified condition.
+    It requires a component to configure with multiple return statements. 
+
+Syntax:
+       function Component(props)
+       {
+           if(props===‘’) {
+               return ( <div> JSX1 </div> );
+           }
+           else {
+               return ( <div> JSX 2 </div> );
+           }
+       }
+
+Ex:
+1. Go to  controlled-component/ data-grid.jsx
+
+export function DataGrid(props){
+
+    if(props.layout==='grid'){
+        return(
+        <table className="table table-hover caption-top">
+            <caption>{props.caption}</caption>
+            <thead>
+                <tr>
+                    {
+                        props.fields.map(field=>
+                        <th key={field}>{field} 
+                          <div className="dropdown d-inline">
+                             <button data-bs-toggle="dropdown" className="bi bi-three-dots-vertical btn"></button> 
+                             <ul className="dropdown-menu">
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-down"></span> Sort Ascending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-up"></span> Sort Descending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-flask"></span> Filter </span> </li>
+                             </ul>
+                          </div>
+                        </th>)
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.data.map((item,index)=>
+                     <tr key={index}>
+                        {
+                            Object.keys(item).map(key => <td key={key}> {item[key]} </td>)
+                        }
+                        <td>
+                            <button className="btn btn-warning bi bi-pen-fill"></button>
+                            <button className="btn btn-danger bi bi-trash mx-2"></button>
+                        </td>
+                     </tr>
+                    )
+                }
+            </tbody>
+        </table>
+    )
+    } else {
+        return(
+            <div className="d-flex flex-wrap">
+                
+                    {
+                        props.data.map((item,i)=> 
+                            <div key={i} className="card m-2 p-2" style={{width:'200px'}}>
+                                <div className="card-header">
+                                    {
+                                        Object.keys(item)[0]
+                                    }
+                                </div>
+                                <div className="card-body">
+                                    {
+                                        item[Object.keys(item)[0]]
+                                    }
+                                </div>
+                                <div className="card-footer"> 
+                                    <button className="btn btn-warning bi bi-pen-fill"></button>
+                                    <button className="btn mx-2 btn-danger bi bi-trash-fill"></button>
+                                </div>
+                            </div>
+                        )
+                    }                
+            </div>
+        )
+    }
+}
+
+2. Controlled-demo.jsx
+import { useState } from "react";
+
+import { DataGrid } from "../../controlled-components/data-grid";
+export function ControlledDemo(){
+
+    const [layoutName, setLayoutName] = useState('grid');
+
+    function handleLayoutChange(e){
+        setLayoutName(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid">
+           
+            <h2>Employee Details 
+                <select className="mx-2" onChange={handleLayoutChange}>
+                  <option>Select View</option> 
+                  <option value='grid'>Grid</option>   
+                  <option value='card'>Card</option>
+                </select> 
+            
+            </h2>
+            <DataGrid layout={layoutName} caption='Employee Data - Update Aug 2025' fields={['First Name', 'Last Name', 'Designation', 'Salary']} data={[{FirstName:'Raj', LastName:'Kumar', Designation:'Clerk', Salary:45000},{FirstName:'Kiran', LastName:'Kumar', Designation:'Manager', Salary:75000}]} />
+            <h2>Product Details</h2>
+            <DataGrid layout='card' caption='Products in Offer' fields={['Name', 'Price', 'Rating']} data={[{Name:'TV', Price:24000, Rating:4.2}, {Name:'Mobile', Price:12000, Rating:3.2}, {Name:'Watch', Price:3000, Rating:4.9}]} />
+        </div>
+    )
+}
+
+3. A component can render different content within specific context area. 
+   You can change the content inside component using conditional rendering.
+
+Syntax:
+       {
+         (condition) ? <span> A </span> : <span> B </span> 
+       }
+
+Ex: condition-demo.jsx
+
+import { useEffect, useState } from "react"
+export function ConditionDemo(){
+
+    const [username, setUserName] = useState(null);    
+
+    function handleNameChange(e){
+        setUserName(e.target.value);
+    }
+
+    function handleSigninClick(){
+        window.sessionStorage.setItem('uname', username);
+        location.reload();
+        
+    }
+    function handleSignoutClick(){
+        window.sessionStorage.removeItem('uname');
+        location.reload();
+    }
+   
+    useEffect(()=>{
+       
+    },[])
+
+    return(
+        <div className="container-fluid">
+            <header className="m-2 d-flex align-items-center justify-content-between p-2 border border-1">
+                <div className="fs-5 fw-bold">Amazon</div>
+                <nav>
+                    <span>Home</span>
+                    <span className="mx-4">Shop</span>
+                    <span>Contact</span>
+                </nav>
+                <div>
+                   {
+                     (window.sessionStorage.getItem('uname')===null) 
+                     ?
+                     <div className="input-group">
+                        <input type="text" className="form-control" onChange={handleNameChange} placeholder="User Name" />  <button onClick={handleSigninClick} className="btn btn-danger">Signin</button>
+                     </div> 
+                     :
+                     <div className="fw-bold">
+                        {
+                            window.sessionStorage.getItem('uname')
+                        }
+                        <button onClick={handleSignoutClick} className="btn mx-2 btn-danger">Signout</button>
+                     </div>
+                   }
+                </div>
+            </header>
+        </div>
+    )
+}

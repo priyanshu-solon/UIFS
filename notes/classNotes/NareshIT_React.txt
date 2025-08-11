@@ -3942,3 +3942,235 @@ export function ControlledDemo(){
         </div>
     )
 }
+
+11/08
+======
+Conditional Rendering
+
+- It is the process of rendering content according to the state and situation. 
+- A component can change its format and behaviour accordingly.
+
+1. Conditionally Rendering Component
+   - You can access any another component and render into current context.
+   - It requires a reference for handling component. 
+   Syntax:
+           const [view, setView] = useState(null);
+
+           if(condition)
+           {
+               setView( <Component-1/>);
+           }
+           else 
+           {
+               setView( <Component-2 />);
+           }
+
+Ex: conditional-demo.jsx
+
+import { useState } from "react"
+import { EMICalculator } from "../emi-calculator/emi-calculator";
+import { CarouselDemo } from "../carousel-demo/carousel-demo";
+
+export function ConditionDemo(){
+
+    const [view, setView] = useState(null);
+
+    function handleEmi(){
+        setView(<EMICalculator />);
+    }
+    function handleCarousel(){
+        setView(<CarouselDemo />)
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Home</h2>
+            <button onClick={handleEmi} className="btn btn-primary">EMI Calculator</button>
+            <button onClick={handleCarousel} className="btn btn-warning mx-2">Carousel</button>
+            <hr />
+            <div>
+                {view}
+            </div>
+        </div>
+    )
+}
+
+2. A component can render different content according to specified condition.
+    It requires a component to configure with multiple return statements. 
+
+Syntax:
+       function Component(props)
+       {
+           if(props===‘’) {
+               return ( <div> JSX1 </div> );
+           }
+           else {
+               return ( <div> JSX 2 </div> );
+           }
+       }
+
+Ex:
+1. Go to  controlled-component/ data-grid.jsx
+
+export function DataGrid(props){
+
+    if(props.layout==='grid'){
+        return(
+        <table className="table table-hover caption-top">
+            <caption>{props.caption}</caption>
+            <thead>
+                <tr>
+                    {
+                        props.fields.map(field=>
+                        <th key={field}>{field} 
+                          <div className="dropdown d-inline">
+                             <button data-bs-toggle="dropdown" className="bi bi-three-dots-vertical btn"></button> 
+                             <ul className="dropdown-menu">
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-down"></span> Sort Ascending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-sort-alpha-up"></span> Sort Descending </span> </li>
+                                <li className="dropdown-item"> <span className="dropdown-item-text"> <span className="bi bi-flask"></span> Filter </span> </li>
+                             </ul>
+                          </div>
+                        </th>)
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.data.map((item,index)=>
+                     <tr key={index}>
+                        {
+                            Object.keys(item).map(key => <td key={key}> {item[key]} </td>)
+                        }
+                        <td>
+                            <button className="btn btn-warning bi bi-pen-fill"></button>
+                            <button className="btn btn-danger bi bi-trash mx-2"></button>
+                        </td>
+                     </tr>
+                    )
+                }
+            </tbody>
+        </table>
+    )
+    } else {
+        return(
+            <div className="d-flex flex-wrap">
+                
+                    {
+                        props.data.map((item,i)=> 
+                            <div key={i} className="card m-2 p-2" style={{width:'200px'}}>
+                                <div className="card-header">
+                                    {
+                                        Object.keys(item)[0]
+                                    }
+                                </div>
+                                <div className="card-body">
+                                    {
+                                        item[Object.keys(item)[0]]
+                                    }
+                                </div>
+                                <div className="card-footer"> 
+                                    <button className="btn btn-warning bi bi-pen-fill"></button>
+                                    <button className="btn mx-2 btn-danger bi bi-trash-fill"></button>
+                                </div>
+                            </div>
+                        )
+                    }                
+            </div>
+        )
+    }
+}
+
+2. Controlled-demo.jsx
+import { useState } from "react";
+
+import { DataGrid } from "../../controlled-components/data-grid";
+export function ControlledDemo(){
+
+    const [layoutName, setLayoutName] = useState('grid');
+
+    function handleLayoutChange(e){
+        setLayoutName(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid">
+           
+            <h2>Employee Details 
+                <select className="mx-2" onChange={handleLayoutChange}>
+                  <option>Select View</option> 
+                  <option value='grid'>Grid</option>   
+                  <option value='card'>Card</option>
+                </select> 
+            
+            </h2>
+            <DataGrid layout={layoutName} caption='Employee Data - Update Aug 2025' fields={['First Name', 'Last Name', 'Designation', 'Salary']} data={[{FirstName:'Raj', LastName:'Kumar', Designation:'Clerk', Salary:45000},{FirstName:'Kiran', LastName:'Kumar', Designation:'Manager', Salary:75000}]} />
+            <h2>Product Details</h2>
+            <DataGrid layout='card' caption='Products in Offer' fields={['Name', 'Price', 'Rating']} data={[{Name:'TV', Price:24000, Rating:4.2}, {Name:'Mobile', Price:12000, Rating:3.2}, {Name:'Watch', Price:3000, Rating:4.9}]} />
+        </div>
+    )
+}
+
+3. A component can render different content within specific context area. 
+   You can change the content inside component using conditional rendering.
+
+Syntax:
+       {
+         (condition) ? <span> A </span> : <span> B </span> 
+       }
+
+Ex: condition-demo.jsx
+
+import { useEffect, useState } from "react"
+export function ConditionDemo(){
+
+    const [username, setUserName] = useState(null);    
+
+    function handleNameChange(e){
+        setUserName(e.target.value);
+    }
+
+    function handleSigninClick(){
+        window.sessionStorage.setItem('uname', username);
+        location.reload();
+        
+    }
+    function handleSignoutClick(){
+        window.sessionStorage.removeItem('uname');
+        location.reload();
+    }
+   
+    useEffect(()=>{
+       
+    },[])
+
+    return(
+        <div className="container-fluid">
+            <header className="m-2 d-flex align-items-center justify-content-between p-2 border border-1">
+                <div className="fs-5 fw-bold">Amazon</div>
+                <nav>
+                    <span>Home</span>
+                    <span className="mx-4">Shop</span>
+                    <span>Contact</span>
+                </nav>
+                <div>
+                   {
+                     (window.sessionStorage.getItem('uname')===null) 
+                     ?
+                     <div className="input-group">
+                        <input type="text" className="form-control" onChange={handleNameChange} placeholder="User Name" />  <button onClick={handleSigninClick} className="btn btn-danger">Signin</button>
+                     </div> 
+                     :
+                     <div className="fw-bold">
+                        {
+                            window.sessionStorage.getItem('uname')
+                        }
+                        <button onClick={handleSignoutClick} className="btn mx-2 btn-danger">Signout</button>
+                     </div>
+                   }
+                </div>
+            </header>
+        </div>
+    )
+}
