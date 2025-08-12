@@ -4174,3 +4174,164 @@ export function ConditionDemo(){
         </div>
     )
 }
+
+12/08
+======
+React Hooks
+
+- Hook is a service.
+- Service is a pre-defined business logic, which you can customize and implement according to the requirements.
+- Service is a set of factories.
+- Factory is a set of relative values and functions. 
+- Service uses a singleton pattern, where an object is created for first request and the same is used across multiple requests. 
+- Service comprises of various components
+   a) Provider
+   b) Injector
+   c) Consumer 
+
+- Consumer uses the service.
+- Provider locates the service in memory. 
+- Injector identifies the dependencies required for service and injects into component. 
+- The process of identifying dependencies and injecting into application is known as “Dependency Injection” [DI].
+
+Configuring Hook:
+- Technically hook is a JavaScript function.
+- Hook function name must be in camel case.   [ camelCase ]
+- It must return a value or function. 
+- It can’t be void type. 
+- It can be parameterless or parameterized. 
+- It can be accessed and used only at higher level of a component. 
+
+               function useHook()
+               {
+                    return ( );
+               }
+
+
+               function Component()
+               {
+                         const ref = useHook();    // valid
+                         function handleClick()
+                         {
+                            const [ref] = useState();  // invalid
+                         }
+               }
+
+- Hook can’t be used in a class component. 
+- JavaScript class member can be a 
+       a) Constructor
+       b) Property
+       c) Method
+       d) Accessor 
+- Function can’t be a class member.
+- Hook name must start with “use” from react 19x versions. 
+ 
+React Hook Library:
+- React allows to create custom hooks.
+- React also provides pre-defined hooks. 
+
+Custom Hook:
+1. Create a new folder by name “hooks” and add into “src” 
+
+2. Add a new “.jsx” file for hook
+
+           use-captcha.jsx
+
+
+export function useCaptcha()
+{
+    const code = `${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)}`;
+    return code;
+}
+
+
+3. Import and inject into component  “login.jsx”
+
+import './login.css';
+import { useCaptcha } from '../../hooks/use-captcha';
+
+export function Login(){
+
+
+    const code = useCaptcha();
+
+    return(
+        <>
+           <div className='d-flex justify-content-center'>
+              <form className="login-form mt-4 rounded rounded-2">
+                <h2 className='bi bi-person-circle'> User login</h2>
+                <dl>
+                  <dt>User Name</dt>
+                  <dd><input type="text" className='form-control' /></dd>
+                  <dt>Password</dt>
+                  <dd><input type="password" className='form-control' /></dd>
+                  <dt>Verify Code <button className='btn bi bi-arrow-clockwise'></button> </dt>
+                  <dd>{code}</dd>
+                </dl>
+                <button className='btn btn-warning w-100'>Login</button>
+            </form>
+           </div>
+        </>
+    )
+}
+
+Note: Hooks is a JSX file, hence it allows all React libraries.
+         You can use existing React libraries in a hook function. 
+
+Ex:
+1. Hooks / use-fetch.jsx
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+export function useFetch(url){
+    const [data, setData] = useState([]);
+
+
+    useEffect(()=>{
+
+        axios.get(url).then(response=>{
+        setData(response.data);
+       })
+
+    },[url])
+
+    return data;
+}
+
+2. Implement in any component  login.jsx
+
+import './login.css';
+import { useCaptcha } from '../../hooks/use-captcha';
+import { useFetch } from '../../hooks/use-fetch';
+
+export function Login(){
+
+    const code = useCaptcha();
+
+    const categories = useFetch('https://fakestoreapi.com/products/categories&#39;);
+
+    return(
+        <>
+           <div className='d-flex justify-content-center'>
+              <form className="login-form mt-4 rounded rounded-2">
+                <h2 className='bi bi-person-circle'> User login</h2>
+                <dl>
+                  <dt>User Name</dt>
+                  <dd><input type="text" className='form-control' /></dd>
+                  <dt>Password</dt>
+                  <dd><input type="password" className='form-control' /></dd>
+                  <dt>Verify Code <button className='btn bi bi-arrow-clockwise'></button> </dt>
+                  <dd>{code}</dd>
+                </dl>
+                <button className='btn btn-warning w-100'>Login</button>
+                <ul>
+                  {
+                    categories.map(category=> <li key={category}>{category}</li>)
+                  }
+                </ul>
+            </form>
+           </div>
+        </>
+    )
+}

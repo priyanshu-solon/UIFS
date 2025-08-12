@@ -27,14 +27,13 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // import HookFormV from './components/ReactHookForm/reactHFV.jsx';
 // import { FormNew } from './components/controlledComponents/formNew.jsx';
 // import { ControlledDemo } from './components/controlledComponents/controlledDemo.jsx';
-import { ConditionDemo } from './components/ConditionalRendering/conditionalRender.jsx';
-import { ConditionDemo2 } from './components/ConditionalRendering/conditionalRender2.jsx';
-import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
+// import { ConditionDemo } from './components/ConditionalRendering/conditionalRender.jsx';
+// import { ConditionDemo2 } from './components/ConditionalRendering/conditionalRender2.jsx';
+// import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
+import { Login } from './components/Login/login.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ConditionDemo3/>
-    <ConditionDemo/>
-    <ConditionDemo2/>
+    <Login/>
   </StrictMode>,
 )
