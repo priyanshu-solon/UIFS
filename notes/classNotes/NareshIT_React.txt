@@ -4335,3 +4335,43 @@ export function Login(){
         </>
     )
 }
+
+13/08
+======
+
+React Hooks
+- Custom Hooks
+
+Task:
+
+1. Create a hook for sorting the data
+
+          useSort(data, reverse:true/false)
+           data = [ string ]
+
+2. Create a hook for filtering data
+
+           useDataFilter(data, searchString);
+           data = [ { }, { } ]
+
+3. Create a hook for converting a string into title case. [every word first letter caps]
+
+           useTitleCase(msg);    
+           useTitleCase(“weLCOme to rEaCt”);   // Welcome To React
+
+React Built-In Hooks:
+
+1. useEffect()
+
+   - It defines actions to perform on component mount and unmount. 
+   - Every component have 3 phases
+           a) Mount
+           b) Update
+           c) Unmount 
+
+ Component Life Cycle:
+
+       componentWillMount()
+       componentDidMount()
+       componentDidUpdate()
+       componentWillUnmount()
