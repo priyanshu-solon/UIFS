@@ -30,10 +30,13 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // import { ConditionDemo } from './components/ConditionalRendering/conditionalRender.jsx';
 // import { ConditionDemo2 } from './components/ConditionalRendering/conditionalRender2.jsx';
 // import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
-import { Login } from './components/Login/login.jsx';
+// import { Login } from './components/Login/login.jsx';
+import { ToggleTable } from './components/ToggleTable/toggleTable.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Login/>
+    <>
+    <ToggleTable/>
+    </>
   </StrictMode>,
 )
