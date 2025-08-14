@@ -4375,3 +4375,124 @@ React Built-In Hooks:
        componentDidMount()
        componentDidUpdate()
        componentWillUnmount()
+
+
+14/08
+======
+
+1. useEffect()
+   
+FAQ: When a component unmounts?
+Ans:  Current component unmounts when user navigates to next component or closes the
+         application. 
+
+Syntax:
+           useEffect(()=> {
+                  // mount actions
+
+                  return ()=> { 
+                       // unmount actions
+                   }
+
+           },[ dependencies ])
+
+Ex:
+
+import { useEffect, useState } from "react"
+
+export function UserLogin(){
+
+    useEffect(()=>{
+        console.log('Login Component Mounted');
+        return()=>{
+            console.log('Login Component Unmounted');
+        }
+    },[])
+
+    return(
+        <div>
+            <h3>User Login</h3>
+        </div>
+    )
+}
+
+export function UserRegister(){
+    useEffect(()=>{
+        console.log('Register Component Mounted');
+        return()=>{
+            console.log('Register Component Unmounted');
+        }
+    },[])
+    return(
+        <div>
+            <h3>User Register</h3>
+        </div>
+    )
+}
+
+
+export function LifeCycleDemo(){
+
+    const [component, setComponent] = useState(null);
+
+    function handleLoginClick(){
+        setComponent(<UserLogin />);
+    }
+    function handleRegisterClick(){
+        setComponent(<UserRegister/>);
+    }
+
+   return(
+    <div className="container-fluid">
+        <h2>Life Cycle Home</h2>
+        <button onClick={handleLoginClick}>Login</button>
+        <button onClick={handleRegisterClick}>Register</button>
+        <hr />
+        <div>
+            {
+                component
+            }
+        </div>
+    </div>
+   )
+}
+
+
+2. useState() 
+   - It uses the local state configured for component.
+   - State of current component is not accessible to its child or other components. 
+   - It returns a getter and setter.
+
+Syntax:
+       const [getter, setter] = useState(‘initializer’);
+
+   FAQ: How react JSX can be strongly typed for state initialized with any value?
+   Ans:  useState in latest versions is design as “Generic” type in typescript. 
+
+             Generics are type safe and strongly typed. 
+              function useState<Type>(value:Type) 
+               {
+               }
+   Note: React 19x versions are built by using “React Fiber” which uses “TypeScript”              as language. 
+
+3. useContext()
+   - Context memory is allocated for parent component.
+   - Context memory is accessible to all child components that run with in the context of
+     parent. 
+   - It is accessible to child at any level of hierarchy. 
+   - If child is a uncontrolled component then Context API is required to transport data
+     from parent to child. 
+   - It requires a context memory to be created.
+
+   a) Create a new context memory 
+           let  context = createContext(null);
+
+   b) Configure the context provider in parent
+           <context.Provider   value={anyValue}>
+               … child component …
+           </context.Provider>
+
+   c) Child component can access the context memory by using useContext() hook
+
+           let  ref = useContext(context);
+           ref.value;

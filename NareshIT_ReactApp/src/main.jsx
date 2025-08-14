@@ -31,12 +31,13 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // import { ConditionDemo2 } from './components/ConditionalRendering/conditionalRender2.jsx';
 // import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
 // import { Login } from './components/Login/login.jsx';
-import { ToggleTable } from './components/ToggleTable/toggleTable.jsx';
+// import { ToggleTable } from './components/ToggleTable/toggleTable.jsx';
+import { LifeCycleDemo } from './components/LifeCycle/Lifecycle.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <>
-    <ToggleTable/>
+    <LifeCycleDemo/>
     </>
   </StrictMode>,
 )
