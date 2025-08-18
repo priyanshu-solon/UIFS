@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+import { ContextDemo } from './components/ContextApi/context-demo.jsx';
 
 // import {NetflixIndex} from './components/Netflix/netflix-index.jsx'
 // import { DataBinding } from './components/Data-Binding/data-binding.jsx';
@@ -32,12 +33,12 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // import { ConditionDemo3 } from './components/ConditionalRendering/conditionalRender3.jsx';
 // import { Login } from './components/Login/login.jsx';
 // import { ToggleTable } from './components/ToggleTable/toggleTable.jsx';
-import { LifeCycleDemo } from './components/LifeCycle/Lifecycle.jsx';
+// import { LifeCycleDemo } from './components/LifeCycle/Lifecycle.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <>
-    <LifeCycleDemo/>
+    <ContextDemo/>
     </>
   </StrictMode>,
 )

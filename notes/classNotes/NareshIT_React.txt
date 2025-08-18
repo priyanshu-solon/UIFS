@@ -221,14 +221,9 @@ Function Components:
 		const Name = function(){ 
 
 		}
-
-
 2. Every component function name must start with uppercase letter.
-
 3. Component function can't be void type.
-
 4. Component function must always return a JSX element. 
-
 Syntax:
 		function  Login()
 		{
@@ -4496,3 +4491,302 @@ Syntax:
 
            let  ref = useContext(context);
            ref.value;
+
+
+16/08
+======
+
+Context API
+
+ - CreateContext
+ - useContext
+
+Ex: context-demo.jsx
+
+import { createContext,  useContext, useState } from "react";
+
+let userContext = createContext(null);
+
+export function Level2(){
+    let context = useContext(userContext);
+    return(
+        <div className="bg-danger text-white p-4 m-4">
+            <h4>Level-2 - {context} </h4>
+        </div>
+    )
+}
+
+export function Level1(){
+
+    let context = useContext(userContext);
+
+    return(
+        <div className="bg-warning text-danger p-4 m-4">
+            <h4>Level-1 - {context} </h4>
+            <Level2 />
+        </div>
+    )
+}
+
+
+export function ContextDemo(){
+    const [msg, setMsg] = useState('Welcome');
+    function handleNameChange(e){
+       setMsg(e.target.value);
+
+    }
+    return(
+        <div className="container-fluid mx-4 bg-dark text-white p-4 mt-3">
+            <div>
+                <input type="text" onChange={handleNameChange} placeholder="User Name"/>
+            </div>
+            <h2>Parent Component - {msg} </h2>
+            <userContext.Provider value={msg} >
+                <Level1 />
+        </userContext.Provider>
+
+            
+        </div>
+    )
+}
+
+FAQ: How data is transported from child component to parent?
+Ans: 
+
+       1. You have to establish communication between child and parent. 
+               - Event can be used for communication.
+               - Event is a message sent by sender to its subscriber in order to notify change.
+               - Event follows an “Observer” pattern, which is a communication pattern. 
+       
+       2. Define a custom event for child component.
+
+               function Child( { eventName } )
+               {
+
+               }
+
+       3. Custom event requires a function that triggers action, and sends payload. 
+
+               function Child( {eventName} )
+               {
+                       function handlerName(){
+                              var data = { };
+                              eventName(data);         // “e” event argument
+                       }
+               }
+
+       4. Parent component can access and use child events.
+
+               parentScope
+               {
+                       <Child  eventName={ parent_functionName } />
+
+                       function  parent_functionName(e) {
+
+                       }
+
+
+               }
+
+Ex:  context-demo.jsx  [child to parent ]
+
+import { createContext, useContext, useState } from "react";
+let userContext = createContext(null);
+
+export function Level2(){
+    let context = useContext(userContext);
+    return(
+        <div className="bg-danger text-white p-4 m-4">
+            <h4>Level-2 - {context} </h4>
+        </div>
+    )
+}
+
+export function Level1({ onChildClick }){
+
+    let context = useContext(userContext);
+
+    function handleButtonClick(){
+        var data = {Name:'TV', Rating:4.2};
+        onChildClick(data);
+    }
+
+    return(
+        <div className="bg-warning text-danger p-4 m-4">
+            <h4>Level-1 - {context} </h4>
+            <button onClick={handleButtonClick} className="btn btn-light"> Send Data to Parent </button>
+            <Level2 />
+        </div>
+    )
+}
+
+
+export function ContextDemo(){
+    const [msg, setMsg] = useState('Welcome');
+    const [msgFromChild, setMsgFromChild] = useState({Name:null, Rating:0});
+    function handleNameChange(e){
+        setMsg(e.target.value);
+    }
+    function handleChildClick(e){
+        setMsgFromChild(e);
+    }
+    return(
+        <div className="container-fluid mx-4 bg-dark text-white p-4 mt-3">
+            <div>
+                <input type="text" onChange={handleNameChange} placeholder="User Name"/>
+            </div>
+            <h2>Parent Component - {msg}  <span className="mx-3"> {msgFromChild.Name} {msgFromChild.Rating}</span> </h2>
+            <userContext.Provider value={msg} >
+                <Level1 onChildClick={handleChildClick} />
+            </userContext.Provider>
+            
+        </div>
+    )
+}
+
+18/08
+======
+Context API
+Custom Events
+
+       https://fakestoreapi.com        
+       /products 
+       /products/categories
+       /products/1
+       
+Ex:  src/fakestore [folder]
+
+1. fakestore-index.jsx
+
+import { useState } from "react";
+import { FakestoreProducts } from "./fakestore-products";
+
+
+export function FakestoreIndex(){
+
+
+    const [cartItems, setCartItems] = useState([]);
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+
+    function handleAddToCartClick(e){
+        cartItems.push(e);
+        alert(`${e.title}\nAdded to cart`);
+        setCartItemsCount(cartItems.length);
+    }
+
+    return(
+        <div className="container-fluid">
+            <header className="border mt-2 border-1 p-4 d-flex justify-content-between">
+                <div className="fs-5 fw-bold">Fakestore</div>
+                <nav>
+                    <div className="input-group">
+                        <input type="text" className="form-control" placeholder="Search fakestore" />
+                        <button className="btn btn-warning bi bi-search"></button>
+                    </div>
+                </nav>
+                <div>
+                    <button data-bs-target="#cart" data-bs-toggle="offcanvas" className="btn btn-warning bi bi-cart4 position-relative"> Your Cart <span className="position-absolute bg-danger badge text-white fs-6 rounded rounded-circle" style={{right:'-10px', top:'-5px'}}>{cartItemsCount}</span> </button>
+                    <div className="offcanvas offcanvas-end" id="cart">
+                        <div className="offcanvas-header">
+                            <h3>Your Cart Items</h3>
+                            <button className="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div className="offcanvas-body">
+                            <table className="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Preview</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        cartItems.map(item=>
+                                            <tr key={item.id}>
+                                                <td>{item.title}</td>
+                                                <td><img src={item.image} width="50" height="50" /></td>
+                                                <td>{item.price}</td>
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section className="mt-4">
+                <FakestoreProducts addToCart={handleAddToCartClick} />
+            </section>
+        </div>
+    )
+}
+
+2. fakestore-products.jsx
+
+
+import axios from "axios"
+import { useEffect, useState } from "react"
+
+export function FakestoreProducts({addToCart}){
+
+    const [products, setProducts] = useState([{id:0, title:null, price:0, category:null, description:null, image:null}]);
+
+    useEffect(()=>{
+        axios.get(`https://fakestoreapi.com/products`)
+        .then(response=> {
+            setProducts(response.data);
+        })
+    },[])
+
+    function handleAddClick(product){
+        addToCart(product);
+    }
+
+
+    return(
+        <div className="d-flex overflow-auto flex-wrap" style={{height:'600px'}}>
+            {
+                products.map(product=>
+                    <div className="card m-2 p-2" key={product.id} style={{width:'200px'}}>
+                        <img src={product.image} className="card-img-top" height="120"/>
+                        <div className="card-header overflow-auto" style={{height:'120px'}}>
+                            {product.title}
+                        </div>
+                        <div className="card-body">
+                            <dl>
+                                <dt>Price</dt>
+                                <dd>{product.price}</dd>
+                            </dl>
+                        </div>
+                        <div className="card-footer">
+                            <button onClick={()=>{ handleAddClick(product) }} className="btn btn-warning bi bi-cart4 w-100"> Add to Cart</button>
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    )
+}
+
+ Task :  Use Context API and collect search string from parent to filter and return products              that contain search string.
+
+                                                            useReducer
+- It is used to configure and handle global application state for react application.
+- Application state comprises of data accessible across multiple sessions. 
+
+           Application_Start
+           {
+                   // application state
+                   
+                   Session_Start
+                   {
+                       // session state
+                   }  // Session_End
+
+           } // Application_End
+
+ - Application state is not easy to debug, test, predict and extend.
+ - Hence we need various 3rd party libraries to implement at large scale. 
+ - The popular 3rd party JavaScript library is “Redux”.
