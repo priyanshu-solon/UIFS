@@ -4790,3 +4790,118 @@ export function FakestoreProducts({addToCart}){
  - Application state is not easy to debug, test, predict and extend.
  - Hence we need various 3rd party libraries to implement at large scale. 
  - The popular 3rd party JavaScript library is “Redux”.
+
+ 19/08
+ ======
+
+ 4. useReducer
+
+ - It is used to configure global application state.
+ - It is available from Application_Start to Application_End.
+
+Reducer Components:
+1. Store
+       - It is a global application store where the data is kept. 
+       - It is global and accessible to all components in application. 
+       - It uses a diff mechanism to update the data.
+
+                    previousValue === currentValue => No Change Detected
+                    previousValue !== currentValue => Change Detected 
+
+       
+2. State
+       - It is a local state for component.
+       - It can access the data from store and provide to component. 
+       
+3. Reducer
+       - It configures state and actions.
+       - State comprises of data accessed from store.
+       - Action defines events used to update the data in store. 
+
+4. UI component 
+       - It is a consumer.
+       - It uses the data accessed from store.
+       - It allows changes in data. [ two way binding ]
+       - It dispatches the action with new data. 
+
+Implementing Reducer for global store
+
+1. Configure the global store.
+   - Typically global store is an object with key and value collection. 
+   - It comprises initial state.
+
+Syntax:
+           let  initialState = {
+                       key : value,
+                       key : value
+           }
+
+2. Configure a reducer function.
+   - Reducer is a function that comprises of state and actions.
+   - It can access the initial state.
+   - It can configure the events.
+   - It can update data into the store.
+
+Syntax:
+           function  reducer(state, action)
+           {
+                   switch(action.type)
+                   {
+                       case  “A”:
+                           return state with modifications;
+                       case “B”;
+                           return state with modifications;
+                   }
+           }
+
+
+3. You can use the reducer in any component 
+   - useReducer is a hook that can access reducer function.
+   - It will access the data from state.
+   - It will dispatch actions and update the data into store.
+
+Syntax:
+       const [state, dispatch] = useReducer(reducer, initialState);
+
+       state    => collects data from reducer and uses in component 
+       dispatch => triggers an action that sends payload to initialState and updates in store.
+Ex:
+     reducer-demo.jsx
+
+import { useReducer } from "react"
+
+let initialValues = {
+    usersCount: 0
+}
+
+function reducer(state, action){
+    switch(action.type){
+        case "join": 
+        return {usersCount: state.usersCount + 1}
+        case "exit": 
+        return {usersCount: state.usersCount - 1}
+    }
+}
+
+export function ReducerDemo(){
+
+    const [state, dispatch] = useReducer(reducer, initialValues);
+
+    function handleJoinClick(){
+        dispatch({type: "join"});
+    }
+    function handleExitClick(){
+        dispatch({type: "exit"});
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Live Users [{state.usersCount}]</h2>
+            <iframe width="500" src="https://www.youtube.com/embed/NJVQA10RPuA&quot; height="400"></iframe>
+            <div className="mt-2">
+                <button onClick={handleJoinClick} className="btn btn-primary bi bi-door-open"> Join </button>
+                <button onClick={handleExitClick} className="btn btn-warning mx-2 bi bi-door-closed "> Exit </button>
+            </div>
+        </div>
+    )
+}
