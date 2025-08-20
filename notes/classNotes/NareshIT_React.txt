@@ -4905,3 +4905,123 @@ export function ReducerDemo(){
         </div>
     )
 }
+
+20/08
+======
+useEffect
+useState
+useContext
+useReducer
+
+useRef()
+  - It configures a reference memory where you can store a value or function.
+  - The content in reference memory is used for internal process and not for rendering output in UI.
+
+Syntax:
+       let  thread = useRef(null);
+
+       thread.current = value / function;  
+
+useMemo()
+   - It is used to memorise a value and provide value across multiple requests.
+   - It will avoid unnecessary re-render if value is not changing for a specific duration of time interval. 
+   - It can save round trips and improve the performance. 
+   - Typically is used for complex computations. 
+
+Syntax:
+           let   referenceName =  useMemo(()=>{
+                      // handle complex computations 
+                     // return a value
+            }, [dependency])
+
+useCallback()
+   - It is used to memorise a function instead of value.
+   - The function configured in memory will execute only when the dependency changes.
+   - It avoids unnecessary re-render.
+
+Syntax:
+           let  referenceName = useCallback(()=>{
+
+                   // actions to perform when dependency changes
+
+           },[dependency])
+
+                                                            React Routing
+- Routing a technique used in web application to configure user and SEO friendly URL’s. 
+- User friendly URL allows to query any content directly from URL. 
+- SEO friendly URL allows crawlers to identify the exact location in page. 
+- Routing enables navigation in SPA. [Single Page Application]
+- User can stay on one page and can get access to everything from page. 
+- It allows to add new content into page without reloading the page.
+- It allows partial post backs. 
+- Routing can be configured for application both Client Side and Server Side. 
+       a) Server Side routes are used for API or server side application. 
+       b) Client Side routes are used for navigation within application UI.
+
+- React uses “react-router-dom” library for configuring client side routes. 
+- The latest router-dom library version is 7. It is a complete re-write of its previous versions. 
+
+1. Install react-router-dom for project
+           > npm  install   react-router-dom   --save
+
+2. It provides following components 
+
+           <BrowserRouter>        It is a provider for all routes in application. 
+           <Routes>                    It is a collection of routes in application.
+           <Route>                    It configures individual route.
+           <Link>                        It configures a hyperlink used for route navigation.
+           <Outlet>                    It defines location to render child content. 
+
+Syntax:
+           <BrowserRouter>
+                   <Routes>
+                           <Route  path=“name | wild-card”   element={ markup | component } >
+                                   <Route path=“child”  element={ child markup } />
+                           </Route>
+                           …
+                           …
+                   </Routes>
+           </BrowserRouter>
+
+           path=“/“                    refers to a request, if it is not for any specific.
+           path=“*”                    refers to a request if it is not found. 
+           element                    refers to custom markup or any component that renders markup. 
+           Syntax:
+           <Route   path=“/“    element={ <div> Home </div> } />
+           <Route   path=“/“    element={ <Home /> } />
+
+           <Link to=“pathName”>  Text | Image </Link>
+
+Ex:  portfolio-index.jsx
+
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { EMICalculator } from "../components/emi-calculator/emi-calculator";
+import { CarouselDemo } from "../components/carousel-demo/carousel-demo";
+
+
+export function PortfolioIndex(){
+    return(
+        <div className="container-fluid">
+            <BrowserRouter>
+                <header className="text-center">
+                    <div className="fs-2"> John </div>
+                    <div className="fs-5"> React Developer </div>   
+                    <div className="fs-5"> My Projects </div> 
+                    <nav>
+                        <span> <Link to="/">Home</Link> </span>
+                        <span className="mx-5"> <Link to="/emi"> EMI Calculator </Link> </span>
+                        <span> <Link to="/carousel"> Carousel  </Link> </span>
+                    </nav>
+                </header>            
+                <section>
+                    <Routes>
+                        <Route path="/" element={<div>Hello ! I am John React Developer.</div>} />
+                        <Route path="emi" element={<EMICalculator />} />
+                        <Route path="carousel" element={<CarouselDemo />} />
+                        <Route path="*" element={<div><h3>Requested Path Not Found </h3></div>} />
+                    </Routes>
+                </section>
+            </BrowserRouter>
+        </div>
+    )
+}

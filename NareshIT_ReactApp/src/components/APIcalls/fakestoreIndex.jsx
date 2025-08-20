@@ -5,11 +5,13 @@ export function FakestoreIndex(){
 
     const [cartItems, setCartItems] = useState([]);
     const [cartItemsCount, setCartItemsCount] = useState(0);
+    const [totalPrice,setTotalPrice] = useState(0);
 
     function handleAddToCartClick(e){
         cartItems.push(e);
         alert(`${e.title}\nAdded to cart`);
         setCartItemsCount(cartItems.length);
+        setTotalPrice(totalPrice+e.price)
     }
 
     return(
@@ -49,6 +51,12 @@ export function FakestoreIndex(){
                                         )
                                     }
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colSpan="2">Total Price</td>
+                                        <td>{totalPrice}</td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

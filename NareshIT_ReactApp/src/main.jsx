@@ -35,12 +35,14 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // import { LifeCycleDemo } from './components/LifeCycle/Lifecycle.jsx';
 // import { HooksData } from './components/taskHook/hook-data.jsx';
 import { FakestoreIndex } from './components/APIcalls/fakestoreIndex.jsx';
+import { ReducerDemo } from './components/reducer/reducer.jsx';
+import { PortfolioIndex } from './portfolio/portfolio-index';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <>
-    <FakestoreIndex/>
+    <PortfolioIndex/>
     </>
   </StrictMode>,
 )
