@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { EMICalculator } from "../components/emi-calculator/emi-calculator";
-import { CarouselDemo } from "../components/carousel-demo/carousel-demo";
+import { EMICalculator } from "../components/Event-Binding/emiCalc";
+import { CarouselDemo } from "../components/APIcalls/fakestore";
 
 
 export function PortfolioIndex(){
