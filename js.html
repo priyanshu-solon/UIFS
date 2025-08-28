@@ -1,0 +1,30 @@
+<script>
+const data = {name: "raj",age: 20,gender: "male"};
+
+function displayKeyValuePairs(jsonObject) {
+    // We'll store each "key=value" string in this list.
+    const pairs = [];
+
+    // Get all the "keys" (like 'name', 'age', 'gender') from the JSON object.
+    const keys = Object.keys(jsonObject);
+
+    // Now, we go through each key one by one using a traditional for loop.
+    for (let i = 0; i < keys.length; i++) {
+        // Get the current key from our list of keys using its index 'i'.
+        const key = keys[i];
+
+        // For this key, we find its matching "value" in the JSON object.
+        const value = jsonObject[key];
+
+        // Then, we combine the key and value into a string like "name=raj".
+        pairs.push(`${key}=${value}`);
+    }
+
+    // Finally, we take all the "key=value" strings from our list and join them
+    // together with a comma in between each one to make one big string.
+    return pairs.join(',');
+}
+
+const output = displayKeyValuePairs(data);
+console.log(output); // Expected: name=raj,age=20,gender=male
+</script>

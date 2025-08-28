@@ -1,0 +1,5 @@
+.bg-image {
+    background-image: url("video-banner.jpg");
+    background-size: cover;
+    height: 100vh;
+}

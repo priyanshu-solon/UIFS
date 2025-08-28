@@ -1,0 +1,6 @@
+.login-form{
+    border: 1px solid gray;
+    box-shadow: 2px 2px 2px black;
+    padding: 10px;
+    width: 250px;
+}

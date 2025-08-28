@@ -5025,3 +5025,272 @@ export function PortfolioIndex(){
         </div>
     )
 }
+
+21/08
+======
+
+Routing
+<BrowserRouter>
+<Routes>
+<Route>
+<Link>
+<Outlet>
+
+Route Parameters:
+ - A route parameter allows to query any content in a component.
+ - You can transport data from one component to another using route parameter.
+
+Syntax: Without route params 
+   https://www.amazon.in/products?category=electronics&type=mobiles&brand=apple
+
+Syntax: With route params
+   https://www.amazon.in/products/electronics/mobiles/apple
+
+ - You have to configure route with parameters.
+      <Route  path=“name/:param1/:param2…”    element= { <component /> } />
+
+- Actual values are passed from URL 
+       http://localhost:port/name/value1/value2
+
+       Note: Every parameter is a required parameter and has order dependency. 
+- You can access and use route parameters by using “useParams()” hook. It returns an object with key and value collection. 
+
+       let  params = useParams();      //   { param1 : value1, param2: value2 }
+       params.param1    = value1
+       params.param2 = value2
+
+FAQ: What is difference between “Absolute” & “Relative” path ?
+Ans:  Relative path is used within the context of a parent. It is for child routes.
+
+                           http://localhost:port/home
+                   <Link  to=“details”> Details </Link>
+                           http://localhost:port/home/details
+    Absolute path is not relative to any current context, it sets a new path by replacing the
+    existing path.
+                    <Link  to=“/details”> Details </Link>
+
+                   to = “details”            // relative
+                   to = “/details”            // absolute
+
+22/08
+======
+Configuring Child Routes:
+  - A route can have collection of child routes.
+  - Child routes are with in the context of parent. 
+  - Parent keeps all child routes relative to parent. 
+
+Syntax:
+           <Route   path=“parent”   element={<Parent />} >
+                   <Route path=“child” element={ <Child /> } />
+                   …
+           </Route>
+  - Child routes require “<outlet>”, which specifies the target location where resulting markup is rendered. 
+
+FAQ: Can we have multiple route outlets? 
+Ans:  Yes. React allows multiple route outlets. 
+
+FAQ: How to navigate dynamically?
+Ans:  By using “useNavigate()” hook.
+   Syntax:
+               let  navigate = useNavigate();
+               navigate(“/path”);
+
+FAQ: What are search params?
+Ans: It refers to “Query String”. 
+       A route can use route parameter along with Query string. 
+       localhost:port/path/param?key=value&key=value
+
+FAQ: Why we need search params?
+Ans:  Search parameters are required to collect data from a “form” and submit to any component both client side or server side.
+        Form submits its data by default as Query String on “GET” method.
+
+Syntax:
+           <form action=“/route-path”>
+            </form>
+
+FAQ: How to access search parameters?
+Ans:  By using “useSearchParams()” hook. 
+
+Syntax:
+           const [params] = new useSearchParams();
+           params.get(“key”);
+
+FAQ: How to access Search params using actual DOM techniques? 
+Ans:  By using window “URLSearchParams()”  object.
+           let  ref = new URLSearchParams(location.search);
+           ref.get(“key”);
+
+Ex:
+ 1. Add components
+       shopping-search.jsx
+       shopping-search-results.jsx
+
+2. Search comprises of form submit data to results.
+3. Results collects query string using useSearchParams().
+4. Update  shopping-index.jsx  with routes.
+
+FAQ: How to restrict access to any specific route?
+Ans: You can use various state management techniques or tokens. 
+       You have to implement any authentication process to restrict access. 
+       a) Session Storage
+       b) Local Storage
+       c) Cookies
+       d) JWT  etc.
+
+CRUD - JSON Server
+
+25/08
+======
+1. Install JSON-Server for your project
+
+           > npm  install  json-server  -g              [ Global ]
+           > npm  install  json-server                   [ Local ] 
+
+2. Go to project Root folder and add new file  “db.json”
+
+3. Add following  collections into db.json
+
+           admin        
+           - admin_id
+           - password 
+
+           users
+           - user_id
+           - user_name
+           - password
+           - email
+
+           categories
+           - category_id
+           - category_name
+       
+           videos
+           - title
+           - description
+           - url    
+           - likes
+           - dislikes
+           - views
+           - comments
+           - category_id
+
+Ex:
+{
+    "admin": [
+        {
+            "id": 1,
+            "admin_id": "john_admin",
+            "password": "john@123"
+        }
+    ],
+    "users": [
+        {
+            "id":1, 
+            "user_id": "david_nit",
+            "user_name": "David", 
+            "password": "david1",
+            "email": "david@outlook.com"
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "category_id": 1,
+            "category_name": "Java"
+        },
+         {
+            "id": 2,
+            "category_id": 2,
+            "category_name": "React"
+        },
+         {
+            "id": 3,
+            "category_id": 3,
+            "category_name": "AWS"
+        }
+    ],
+    "videos": [
+        {
+            "id": 1,
+            "title": "Java Stream API",
+            "description": "Java Tutorials",
+            "url": "https://www.youtube.com/embed/U2PiMIS75jU&quot;,
+            "likes": 200,
+            "dislikes": 0,            "views": 500,
+            "comments": "Thank you",
+            "category_id": 1
+        }
+    ]
+}
+
+4. Go to “package.json” and add shortcut for executing JSON server and start API 
+
+      “scripts”:
+       {
+         …,
+         “api”: “npx  json-server  db.json  --watch  --port=3000”
+       }
+
+5. You can start API every time using following command
+       > npm  run  api 
+
+API End Points:
+   GET     http://localhost:3000/admin
+   GET        http://localhost:3000/users
+   POST    http://localhost:3000/users
+   GET        http://localhost:3000/categories
+   GET        http://localhost:3000/videos 
+   POST    http://localhost:3000/videos 
+   PUT        http://localhost:3000/videos/id [edit]
+   DELETE    http://localhost:3000/videos/id [delete]
+
+Note: You can test API end points using any debugger like
+           a) postman
+           b) fiddler 
+           c) swagger etc.
+
+
+26/08
+======
+
+React Cookie Library
+ - Cookie is a simple text document that can be used for storing client details. 
+ - Cookie can be 
+   a) In Memory [Temporary]
+   b) Persistent [Permanent] 
+ - Cookie can be persistent when set with expiry date.
+
+1. Install React Cookie library for project
+           > npm  install   react-cookie  --save 
+
+2. Import “useCookies()” hook into component  and configure cookie
+       import { useCookies } from ‘react-cookie’;
+       const [ cookies, setCookie, removeCookie ] = useCookies([ ‘name’ ]);
+
+       cookies            : It is used to access cookie value.
+       setCookie        : It configure a value into cookie and defines expiry. 
+       removeCookie: It removes specified cookie.
+   Note: Cookies must be enabled in your browser. You can check by using JavaScript
+            “navigator” object.
+             > navigator.cookieEnabled  => returns true / false
+
+3. Save data into cookie by using setCookie()
+           setCookie(‘name’, value, { expires : ‘date’ });
+
+4. Access cookie   
+           cookies[‘name’]
+
+5. Remove cookie
+           removeCookie(‘name’);
+
+Note: Cookie is provided as a service, It requires a provider for locating values in memory
+        and injecting into components. 
+        You have to configure provider in “main.jsx”. 
+
+Syntax:     main.jsx
+
+       import  { CookiesProvider }  from ‘react-cookie’;
+
+       <CookiesProvider>
+            <YourIndexComponent />
+       </CookiesProvider>
