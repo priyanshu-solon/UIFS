@@ -5294,3 +5294,28 @@ Syntax:     main.jsx
        <CookiesProvider>
             <YourIndexComponent />
        </CookiesProvider>
+
+
+28/08
+======
+Formik Edit Action:
+ - Edit requires existing details to display.
+ - Initial values will not allow to re-initialize with new values. 
+ - You have to set “enableReinitialize” to true. 
+ 
+Syntax:
+   const formik = useFormik({
+         initialValues : {
+               id : videos.id,
+               title: videos.title
+         },
+        onSubmit: (values) => { },
+        enableReinitialize: true
+   })
+
+  - Initialized values are binded with elements using “formik.values”
+
+    <input type=“text”  value={formik.values.title}  onChange={ formik.handleChange } />
+
+Note: Create  edit, delete actions a relative actions [relative path] of admin dashboard.
+    Add validation for login, edit and add video form.
