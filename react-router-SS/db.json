@@ -13,6 +13,13 @@
       "user_name": "David",
       "password": "david1",
       "email": "david@outlook.com"
+    },
+    {
+      "id": "c566",
+      "user_id": "sam123",
+      "user_name": "Samson",
+      "password": "sam@11",
+      "email": "sam@gmail.com"
     }
   ],
   "categories": [
@@ -34,15 +41,26 @@
   ],
   "videos": [
     {
-      "id": "1",
-      "title": "Java Stream API",
-      "description": "Java Tutorials",
+      "title": "Java API By Mr. Ravishankar",
+      "description": "Java Stream API Tutorials",
       "url": "https://www.youtube.com/embed/U2PiMIS75jU",
-      "likes": 200,
+      "likes": 300,
+      "views": 700,
       "dislikes": 0,
-      "views": 500,
-      "comments": "Thank you",
-      "category_id": 1
+      "category_id": 1,
+      "comments": "thank you for new videos",
+      "id": "1"
+    },
+    {
+      "title": "React 19 FAQ's",
+      "description": "React JS Interview Tips",
+      "url": "https://www.youtube.com/embed/NJVQA10RPuA",
+      "likes": 300,
+      "views": 400,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "Please upload more videos",
+      "id": "123e"
     }
   ]
 }
