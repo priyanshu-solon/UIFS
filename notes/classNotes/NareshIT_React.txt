@@ -5319,3 +5319,303 @@ Syntax:
 
 Note: Create  edit, delete actions a relative actions [relative path] of admin dashboard.
     Add validation for login, edit and add video form.
+
+
+29/08
+======
+
+React Material UI 
+- MUI provides comprehensive suite for building interactive UI.
+- It is designed with React components, hence it is more native to React. 
+- MUI provides various products like
+       a) MUI
+       b) MUI-X
+       c) Toolpad 
+       d) Templates etc.
+
+- MUI-Core is free and provides a component library for building React applications.
+- MUI latest version is a complete re-write of its earlier versions. 
+- Latest MUI uses new “@emotion” library. 
+- It is available for React 18x and higher versions. 
+
+Setup MUI for project:
+
+1. Install the following libraries for project
+           > npm install @mui/material @emotion/react @emotion/styled  --save
+
+2. Import the relative component  and customize 
+
+Note: Components are controlled and use “props”, go to “API” and check all properties.
+
+1/09
+=====
+
+React Redux
+
+- Redux is a JavaScript library for global application state.  
+- It provides a toolkit for all JavaScript libraries and frameworks.
+- The toolkit enables easy tracking, debugging and testing of application state.
+- It makes global application state predictable.
+
+1. Install Redux for React
+   > npm install @reduxjs/toolkit   react-redux --save
+
+2. Install React Redux Dev tools for your browser.
+
+3. Create and configure a slicer for Redux 
+
+   Slicer
+   - It configures a slicer for application.
+   - It handles initial state.
+   - It configures a reducer with actions and definition.
+   - Actions collect the payload and update into initial state.
+   - Actions are dispatched from any component. 
+   - Slicer maps to actions in component. 
+   - Redux slicer is configured using “createSlice()” method.
+
+Syntax:  slicer.jsx
+       const  initialState = { data : value }
+    - Configure the slicer 
+
+Syntax:
+       const slicerName = createSlice({
+            name: “slice-name”,
+            initialState,
+            reducers : {
+                   action1: (state, action) => { },  // action.payload  collects data from component
+                   action2: (state, action) => { }   // update data into initialState, by using “state”.
+            }
+       })
+
+    - Export the actions and slicer from module 
+      export const  { action1, action2} = slicerName.actions;
+      export default slicerName.reducer;
+
+    - Every slicer is defined with 2 components
+               a) reducer
+               b) actions
+
+  4. Create a store and import the slicer 
+
+    Store:
+       - It comprises of initialState and finalState.
+       - It uses a diff mechanism to track changes in data and update data.
+       - It is a global store for providing data to components across all sessions from
+         application start to end.
+
+Syntax: store.jsx
+
+       import { configureStore }  from  “@reduxjs/toolkit”;
+       import  slicer from  “slicer”;    // slicer jsx
+       export default configureStore({ 
+           reducer : slicer                // slicer have data and actions
+       })
+
+   5. Configure Provider in “main.jsx”
+
+    Provider:
+        - It locates the data in memory.
+        - It can inject into any component.
+        - It makes the data available only for components that run within the provider scope.
+
+                       “main.jsx”
+
+       import  { store }  from  “store.jsx”;
+       import  { Provider } from “react-redux”;
+
+       <Provider store={ store } >
+           <IndexComponent />
+       </Provider>
+
+     6. You have to dispatch the data from component 
+
+    - Import  useDispatch from “react-redux” library.
+    - Import  the actions from slicer actions.
+
+                       component.jsx
+
+      import { action1 }  from  “./slicerName”;      // slicer.jsx
+      import { useDispatch} from “react-redux”;
+      const dispatch = useDispatch()
+
+       function handleEvent()
+       {
+            dispatch(action(data));     // data refers to data coming from component & used as
+       }                                            payload
+
+    7. Import store from any component and access the global store. 
+        import  { store }  from  “store” ; // store.jsx
+        store.getState().storeData      // data updated into global state can be accessed
+
+
+2/08
+=====
+
+React Class Components
+
+- JavaScript Classes
+- Class Declaration & Expression
+- Class Members
+   a) Property
+   b) Accessor
+   c) Method
+   d) Constructor
+- Inheritance [extends] 
+- Prefixes “_, #”
+- Static members [ static keyword ]
+
+1. A class component must extend  “React.Component” or “React.PureComponent”.
+
+       export class Component extends React.Component | React.PureComponent
+       {
+
+       }
+
+FAQ: What are pure & impure functions in JavaScript?
+Ans:  A pure function returns same result across multiple requests.
+       An impure function returns different result even when the parameter is same across 
+       multiple requests. 
+
+Ex: Impure 
+   <script>
+     var c = 0;
+     function Counter(a){
+          c++;
+          return c + a;
+     }
+    document.write(Counter(10) + "<br>");
+    document.write(Counter(10) + "<br>");
+    document.write(Counter(10) + "<br>");
+    document.write(Counter(10) + "<br>");
+</script>
+
+  FAQ: What is a pure component?
+  Ans : It returns same across multiple requests.
+         It can change only when the dependency changes.
+ 
+2. Component requires a constructor that calls super constructor. 
+
+     export class Component extends React.Component
+     {
+              constructor() {
+                super();
+              }
+     }
+
+3. Component class can return JSX element by using “render()” method of base class. 
+
+     export class Component extends React.Component
+       {
+           constructor() {
+               super();
+           }
+           render() {
+                 return (
+                           <div> JSX </div>
+                          );
+            }
+       }
+
+State in Class component:
+ - Class components are stateful.
+ - React Component base provides a state for custom component. 
+ - You have to configure state while creating instance of class. 
+
+Syntax:
+           constructor()
+           {
+               super();
+               this.state = { key:value, .. }
+           }
+
+           <p> { this.state.key } </p>
+
+  - State in class is object type with key and value collection. 
+  - You can set state by using “this.setState()” method. 
+  - You can set state only on mount phase or on any specific event.
+  - Component phases in class are defined using following methods
+   
+           a) componentWillMount()
+           b) componentDidMount()
+           c) componentDidUpdate()
+           d) componentWillUnmount() 
+
+Ex:  customer-login.jsx
+
+import React from "react";
+
+export class CustomerLogin extends React.Component
+{
+      constructor(){
+          super();
+          this.state = {
+              title: "Class Components",
+              categories: ['All', 'Mobiles', 'Watches']
+          }
+      }
+      componentDidMount(){
+         this.setState({title: "Select Category"})
+      }
+      render(){
+         return(
+            <div className="container-fluid p-4">
+                <h2>{this.state.title}</h2>
+                <select>
+                    {
+                        this.state.categories.map(category=>
+                            <option key={category}>{category}</option>
+                        )
+                    }
+                </select>
+            </div>
+         )
+      }
+}
+
+ - Data Binding            ]
+ - Style Binding        ] Same as in function component
+ - Class Binding        ]
+
+Event Binding:
+   - Class components use method as subscriber.
+   - Subscriber defines the actions to perform. 
+   - All events are derived from “SyntheticEvent” base.
+   - If your events are using state then it is mandatory to binding even handler with current
+     class memory.
+   - It requires “bind()” method. 
+
+Ex:
+import React from "react";
+
+export class CustomerLogin extends React.Component
+{
+      constructor(){
+          super();
+          this.state = {
+              title: "Class Components",
+              msg: ""
+          }
+          this.handleInsertClick = this.handleInsertClick.bind(this);
+      }
+      componentDidMount(){
+         this.setState({title: "Select Category"})
+      }
+
+      handleInsertClick(e){
+         this.setState({msg: `${e.target.value} Clicked`});
+      }
+      handleDeleteClick(e){
+         this.setState({msg: `${e.target.value} Clicked`});
+      }
+
+      render(){
+         return(
+            <div className="container-fluid p-4">
+                <h2>{this.state.title}</h2>
+                <button onClick={this.handleInsertClick} value='Insert'>Insert</button>
+                <button onClick={this.handleDeleteClick.bind(this)} value='Delete'>Delete</button>
+                <p>{this.state.msg}</p>
+            </div>
+         )
+      }
+}
