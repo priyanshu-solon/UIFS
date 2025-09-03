@@ -5619,3 +5619,222 @@ export class CustomerLogin extends React.Component
          )
       }
 }
+
+3/08
+======
+
+Class Props
+- Class Component
+- Pure & Impure 
+- State in Class 
+- Style Binding, Class Binding, Data Binding 
+- Event Binding in Class
+- bind() method 
+
+FAQ: How to configure event with state without bind() method?
+Ans:  You have to return the event handler with default arguments, which allows to us
+        the class memory.
+
+       <button onClick={ (e) => { this.handleClick(e) } }>  Click </button>
+
+import React from "react";
+
+export class CustomerLogin extends React.Component
+{
+      constructor(){
+          super();
+          this.state = {
+              title: "Class Components",
+              msg: ""
+          }
+          this.handleInsertClick = this.handleInsertClick.bind(this);
+      }
+      componentDidMount(){
+         this.setState({title: "Select Category"})
+      }
+
+
+      handleInsertClick(e){
+         this.setState({msg: `${e.target.value} Clicked`});
+      }
+      handleDeleteClick(e){
+         this.setState({msg: `${e.target.value} Clicked`});
+      }
+      handleUpdateClick(e){
+         this.setState({msg: `${e.target.value} Clicked`});
+      }
+
+      render(){
+         return(
+            <div className="container-fluid p-4">
+                <h2>{this.state.title}</h2>
+                <button onClick={this.handleInsertClick} value='Insert'>Insert</button>
+                <button onClick={this.handleDeleteClick.bind(this)} value='Delete'>Delete</button>
+                <button onClick={(e)=> {this.handleUpdateClick(e)} } value='Update'> Update </button>
+                <p>{this.state.msg}</p>
+            </div>
+         )
+      }
+}
+
+
+- Connecting with API is same, you can use “axios”. 
+- Handling forms with validation requires “formik” components and “yup” library.
+- You can’t use any library with hooks.
+
+Ex: API
+
+import React from "react";
+import axios from "axios";
+
+export class CustomerLogin extends React.Component
+{
+      constructor(){
+          super();
+          this.state = {
+k              categories: []
+          }
+          
+      }
+      LoadCategories(){
+         axios.get('https://fakestoreapi.com/products/categories')
+         .then(response=>{
+             this.setState({categories: response.data});
+         })
+      }
+      componentDidMount(){
+          this.LoadCategories();
+      }
+
+
+      render(){
+         return(
+            <div className="container-fluid p-4">
+               <ul>
+                  {
+                     this.state.categories.map(category=><li key={category}>{category}</li>)
+                  }
+           </ul>
+
+            </div>
+
+      )
+
+      }
+}
+
+Ex:  Form
+
+import React from "react";
+import axios from "axios";
+import { Field, Form, Formik } from "formik";
+
+export class CustomerLogin extends React.Component
+{
+      constructor(){
+          super();
+          this.state = {
+              
+          }
+          
+      }
+      
+      componentDidMount(){
+         
+      }
+
+
+
+      render(){
+         return(
+            <div className="container-fluid p-4">
+               <h3>Register</h3>
+               <Formik initialValues={{UserName:'', Mobile:''}} onSubmit={(user)=>{console.log(user)}} >
+                  <Form>
+                     <dl>
+                        <dt>User Name</dt>
+                        <dd> <Field type="text" name="UserName"></Field> </dd>
+                        <dt>Mobile</dt>
+                        <dd> <Field type="text" name="Mobile"></Field> </dd>
+                     </dl>
+                     <button type="submit">Register</button>
+                  </Form>
+               </Formik>
+            </div>
+         )
+      }
+}
+
+Controlled Class Components:
+   - Controlled component is controlled by the data from parent. 
+   - It uses “properties”.
+   - Class comprises of built-in “props” object.
+
+Syntax:
+       render()
+       {
+         return( 
+           <div> { this.props.key } </div>      // key is a dynamic name
+         )
+       }
+
+       <Component key={value} />
+
+Ex:  controlled-component/nav.jsx
+
+import React from "react";
+
+export class Nav extends React.PureComponent
+{
+     constructor(){
+         super();
+     }
+     render(){
+        return(
+            <nav className="d-flex justify-content-between p-2 border border-1">
+                <div className="fs-3 fw-bold">{this.props.title}</div>
+                <div>
+                    {
+                        this.props.navItems.map(item=><span className="mx-3" key={item}>{item}</span>)
+                    }
+                </div>
+                <div>
+                    <span className="bi bi-person"></span>
+                    <span className="bi bi-cart mx-2"></span>
+                </div>
+            </nav>
+        )
+     }
+}
+
+                                                 TypeScript Language
+Issues with JavaScript:
+   - It is not strongly typed.
+   - It is not implicitly strictly typed.
+   - It is not an OOP language.
+   - It supports few features of OOP.
+   - Code level security issues.
+   - Extensibility issues. 
+
+What is TypeScript?
+ - Typescript is a language introduced by Microsoft. 
+ - “Anders Hejlberg” is the architect of Typescript. [ well known for C# language ].
+ - It is strictly typed superset of JavaScript. 
+ - It is used to build large scale applications. 
+ - It is build in Typescript.
+ - It is native to OS services. 
+ - It is strongly typed.
+ - It is implicitly strictly typed. 
+ - It must be trans compiled into JavaScript. 
+
+     Developer => writes in TypeScript => trans compiled into => JavaScript => Browser
+
+TypeScript Architecture 
+Pasted Graphic.png
+Install TypeScript for your device
+
+- Open command prompt or terminal and run the command
+       > npm  install  -g  typescript 
+
+- Check the version
+       > tsc  -v

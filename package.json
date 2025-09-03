@@ -26,5 +26,8 @@
     "formik": "^2.4.6",
     "react-cookie": "^8.0.1",
     "react-hook-form": "^7.62.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
