@@ -5886,7 +5886,7 @@ Create a new typescript project:
            > npm init  -y            // package.json
            > tsc  -init                // tsconfig.json   [ tslint.json - deprecated ] 
 
-4. Add “index.ts” into root folder 
+4. Add “index.ts” into root  folder 
 
            console.log(“Welcome”);
 

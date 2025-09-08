@@ -1,0 +1,7 @@
+/* You can add custom styles or override Bootstrap variables here */
+/* @import 'bootstrap/scss/bootstrap.scss'; */
+
+.card-img-top {
+  object-fit: cover;
+  height: 250px; /* Adjust as needed */
+}
