@@ -6177,4 +6177,469 @@ function Product(...details:any[])
    - All function concepts are same in Typescript.
    - React component function type will be “JSXElement”.
 
+
+8/09
+=====
+
 TypeScript OOP
+
+
+1. Contracts
+   - A contract defines rules for any component.
+   - A contract configures reusable and extensible rules. 
+   - Technically contract refers to an “Interface”. 
+   - A contract must contain only rules not the implementation. 
+
+Syntax:
+       interface IName
+       {
+           rule: type;
+           rule: type = value; // invalid
+       }
+
+   - A contract must contain only declaration and not the definition.
+   - A contract can contain optional rules configured using null reference character [ ? ].
+   
+Syntax:
+       interface Name
+       {
+           rule?: type;
+       }
+   
+   FAQ: Why a contract can have optional rules?
+   Ans: To configure “goal”. 
+           “Goal” is not time bound and not always achievable. 
+   
+   - A contract can have “readonly” rules.
+   - It will not allow to assign after initialization. 
+
+Syntax:
+       interface Name
+       {
+           readonly rule: type;
+       }
+
+   - A contract can configure rules for methods or actions. 
+   - Rule for method defines return type or void.
+   - It can’t have definition for method. 
+   - It can have optional method. 
+
+Syntax:
+       interface Name
+       {
+           rule?():void | type;
+       }
+
+   - You can extend and reuse a contract by using “inheritance”.
+   - Contract will not support aggregation, as there is no constructor in contract. 
+   - A contract can extend multiple contracts. 
+
+Syntax:
+       interface  FinalContract extends Contract1, Contract2
+       {
+       }
+       
+       let obj : FinalContract = {  }         // must implement rules from all contracts [1, 2, final] 
+       
+   - If multiple contract have identical members then it implements only the first occurrence 
+     contract member. 
+
+Ex:
+interface ICategory
+{
+     CategoryName:string;
+}
+interface IVendor 
+{
+     VendorName:string;
+}
+
+
+
+interface IProduct extends ICategory, IVendor
+{
+     Name:string;
+     readonly Price:number;
+     Stock:boolean;
+     Rating?:number;
+     Qty:number;
+     Total():number;
+     Print?():void;
+}
+let product:IProduct = {
+     Name: "TV",
+     Price: 34000,
+     Stock: true,
+     Rating: 3.5,
+     CategoryName: "Electronics",
+     VendorName: "Reliance Digital",
+     Qty: 2,
+     Total: function(){
+          return this.Qty * this.Price;
+     },
+     Print:function(){
+          console.log(`Name=${this.Name}\nPrice=${this.Price}\nRating=${this.Rating}\nTotal=${this.Total()}\nCategory=${this.CategoryName}\nVendor=${this.VendorName}`)
+    }
+
+}
+product.Name = "Samsung TV";
+product.Print();
+
+2. Components
+       - A class is technically configured as component.
+       - You can declare a class or use it as expression. 
+       - Class members are same as in JS
+           a) Constructor
+           b) Method
+           c) Property
+           d) Accessor
+       - Class can configure static and non static members. 
+           a) Static    : It refers to continuous memory
+           b) Non Static: It refers to discreet memory
+       - Typescript class member can be configure with access modifiers 
+           a) public
+           b) private 
+           c) protected 
+
+       public    :  It is accessible from any location.
+                      You can access within the class.
+                      You can access outside class.
+                      You can access using super class object or derived class object.
+
+       private        : It is accessible only within the class.
+
+       protected    : It is accessible within the class.
+                        You can access outside class but only in derived class and only by using
+                        derived class reference. 
+
+   Note: The default access modifier set to members is “public”.
+
+Ex:
+
+class Product
+{
+     public Name:string = "";
+     private Price:number = 0;
+     protected Stock:boolean = false; 
+     Print(){
+          this.Name;
+          this.Price;
+          this.Stock;
+     }
+}
+class Derived extends Product
+{
+     Print() {
+          let obj = new Derived();
+          obj.Stock; // protected
+     }
+}
+
+9/09
+=====
+
+Contracts - Interface 
+
+- Reuse Contracts
+- Rules for properties & methods
+- Read Only Rules
+- Optional Rules
+- Extending Contracts
+
+Components - Class
+- Class Configuration
+- Class Members
+       Property, Method, Accessor, Constructor 
+- Static Members
+- Access Modifiers
+       public, private, protected 
+
+Class using Contract: 
+     - A class can be configured with rules. 
+   - Rules are defined using contract.
+   - Class can implement a contract. 
+   - Class can implement multiple contracts. It supports multiple inheritance of contracts. 
+   - It is mandatory to implement all required rules of contract.
+   - You can add more features into class in addition to rules defined in contract. 
+   - Class is a program template hence it allows customization. 
+
+Syntax:
+       class Name implements  Contract1, Contract2
+       {
+           
+       }
+
+Ex:
+interface IProduct
+{
+     Name:string;
+     Price:number;
+     Qty:number;
+     Total():number;
+     Print():void;
+}
+interface ICategory
+{
+     CategoryName:string;
+}
+class Product implements IProduct, ICategory
+{
+     public Name:string = "";
+     public Price:number = 0;
+     public Qty: number = 0;
+     public CategoryName: string = "";
+     public Total(): number {
+          return this.Qty * this.Price;
+     }
+     public Print(): void {
+          console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+     }
+}
+let tv = new Product();
+tv.Name = "Samsung TV";
+tv.Price = 35000;
+tv.Qty = 2;
+tv.CategoryName = "Electronics";
+tv.Print();
+
+Templates in OOP:
+
+   - A template comprises of pre-defined business logic which you can implement and customize according to the requirements.
+   - Templates are used in various situations like
+           a) Rollouts
+           b) Implementation of secured modules 
+   - Templates hide the structure and provide only implementation, which is known as 
+     “abstraction”.
+   - You can configure a template as “abstract” class. 
+   - A class marked with abstract comprises of few members, which are already implemented 
+     and few others require implementation. 
+   - The incomplete properties and methods, which need to be implemented are marked as
+     “abstract”. 
+   - You can’t directly create an object for abstract class, as it is incomlete class. 
+   - You have to extend the abstract class and implement the functionality. 
+
+Syntax:
+       abstract class Name  implements Contract
+       {
+            abstract Property: type;
+            abstract Method(): type;
+            nonAbstract Property: type;
+       }
+       class Component extends Abstract_Class
+       {
+           // implement abstract members
+       }
+
+Ex:
+interface ProductContract
+{
+     Name:string;
+     Price:number;
+     Qty:number;
+     Total():number;
+     Print():void;
+}
+abstract class ProductTemplate implements ProductContract
+{
+     public Name: string = "";
+     public Price: number = 0;
+     public Qty: number = 1;
+     abstract Total(): number;
+     abstract Print(): void;
+}
+class Product extends ProductTemplate
+{
+     Name = "Samsung TV";
+     Price = 450000;
+     Qty = 2;
+     Total() {
+          return this.Qty * this.Price
+     }
+     Print(){
+          console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`)
+     }
+}
+
+let tv = new Product();
+tv.Print();
+
+Generics, Enum, Module, Namespace
+
+10/09
+=======
+
+- Interface                Contract
+- Abstract Class        Template
+- Class                    Component
+- Class Inheritance, Aggregation 
+- Polymorphism 
+
+Generics
+   - Generic refers to “type safe”.
+   - A type safe member can handle any type of data and make it strongly typed after knowing the data type. 
+   - Type safe can be defined for
+           a) function
+           b) function parameter  & return
+           c) class 
+           d) property 
+           e) method
+
+Syntax: Generic Function & Parameter 
+
+           function Name<Type>( param:Type) : Type
+           {
+           }
+
+Ex:
+interface IProduct
+{
+     Name:string;
+     Price:number;
+}
+function FetchData<T>(data:T) : T
+{
+     return data;    
+}
+console.log(FetchData<number>(20));
+console.log(FetchData<string>("A"));
+console.log(FetchData<string[]>(["A", "B"]));
+console.log(FetchData<IProduct>({Name: 'TV', Price:50000}));
+console.log(FetchData<IProduct[]>([{Name:'Mobile', Price:21000}, {Name:'Watch', Price: 23400}]));
+
+Ex: Generic class & property
+
+interface IMongoDB
+{
+     url:string;
+}
+interface IMySQL
+{
+     host:string;
+     user:string;
+     password:string;
+}
+class Database<T>
+{
+     public ConnectionString:T|null = null;
+     public Connect():void {
+          Object.keys(this.ConnectionString).map(key=>{
+               console.log(`${key} : ${this.ConnectionString[key]}`);
+          })
+     }
+}
+
+// Project-1 Database MySQL
+
+let mysql = new Database<IMySQL>();
+mysql.ConnectionString = {host: 'localhost', user:'root', password:'1234'};
+mysql.Connect();
+
+// Project-2 Database MongoDB
+
+let mongo = new Database<IMongoDB>();
+mongo.ConnectionString = {url: 'mongodb://127.0.0.1:27017'};
+mongo.Connect();
+
+Ex: Generic Method
+
+interface IMongoDB
+{
+     url:string;
+}
+interface IMySQL
+{
+     host:string;
+     user:string;
+     password:string;
+}
+class Database
+{
+    public Connect<T>(connectionString:T){
+       for(var key in connectionString){
+           console.log(`${key}: ${connectionString[key]}`);
+       }
+    }
+}
+
+let mongo = new Database();
+mongo.Connect<IMongoDB>({url: 'mongodb://localhost:27017'});
+
+Note: Generic Constructors are supported in TypeScript. 
+         A constructor can’t be generic but its parameter can be generic. 
+
+Ex: Generic constructor parameter
+
+interface IMongoDB
+{
+     url:string;
+}
+interface IMySQL
+{
+     host:string;
+     user:string;
+     password:string;
+}
+
+class Database<T>
+{
+    constructor(connectionString:T){
+       for(var key in connectionString){
+           console.log(`${key}: ${connectionString[key]}`);
+       }
+    }
+}
+
+let mongo = new Database<IMongoDB>({url:"mongodb://localhost:27017"});
+let mysql = new Database<IMySQL>({host:'localhost', user:'root', password:'123'});
+
+
+Enumeration [ Enum ]
+   - Enum Is a collection of constants. 
+   - Constants are initialized with a value, which remains constant across requests. 
+   - You can assign a new value, but can use the constant value. 
+   - Enum constants can be
+       a) number
+       b) string & 
+       c) expression 
+   - Enum can’t have boolean as constant. 
+   - Enum can initialize values automatically for numeric constants.
+   - Next value depends on the previous value. If there is no previous value then it starts with
+     zero “0”.
+
+Syntax:
+       enum Name
+       {
+         Key = value,
+         Key,
+       }
+       Name.key                // returns value
+       Name[value]            // returns key - reverse mapping
+
+   - Enum with string can’t auto implement the values.
+   
+       enum Name
+       {
+           NotFound = “Page not found”,
+           OK,                // invalid
+       }
+
+
+Ex:
+enum StatusCodes
+{
+     Ok,                      // 0
+     NotFound = 404,
+     Unauthorized             // 405
+}
+console.log(`${StatusCodes.NotFound} : ${StatusCodes[404]}`);
+
+Ex:
+     enum StatusCodes
+     {
+          A = 10,
+          B = 20,
+          C = A + B
+     }
+     console.log(`Addition=${StatusCodes.C}`);
+
+Module & Namespace
