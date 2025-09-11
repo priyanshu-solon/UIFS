@@ -6643,3 +6643,156 @@ Ex:
      console.log(`Addition=${StatusCodes.C}`);
 
 Module & Namespace
+
+11/09
+======
+
+Generic - Typesafe 
+
+Note: Generic types will not allow operators to configure any expression. You have to handle
+
+        by using functions. 
+
+Syntax:
+           function Name<T>(a:T, b:T) : T
+           {
+               return a + b; // invalid
+               return sum(a,b); // valid
+           }
+
+Ex:
+function Sum(a:any,b:any){
+     return a + b;
+}
+function Calculate<T>(a:T, b:T):T 
+{
+     return Sum(a,b);
+}
+Calculate<number>(10, 20);
+
+- Enum
+
+                                                 Namespace
+- Namespace is a collection of sub-namespaces and classes. 
+- It allows to built large scale libraries to enable easy 
+       a) reusability 
+       b) extensibility 
+       c) mantainability 
+       d) testability 
+
+Syntax:
+       namespace  Name
+       {
+           // contracts
+           // templates
+           // components
+           // functions 
+       }
+   - Namespace is imported into any project by using “/// <reference />” directive
+Syntax:
+           /// <reference  path=“./library” />
+           import  aliasName = Namespace.Contract | Template | Component; 
+
+   - You can’t directly compile namespace library, it requires a “outFile” flag.
+           > tsc  -outFile   target.js    source.ts
+
+1. Add a new folder by name “library”
+
+           library
+               |
+               |_contracts
+               |    |_ ProductContract.ts
+               |_templates
+               |    |_ProductTemplate.ts
+               |_components
+                   |_ProductComponent.ts
+           app
+               |_ index.ts
+
+   Note: The outer namespace is default export, hence export is not defined for outer
+            namespace.
+
+ Contracts/ProductContract.ts
+
+namespace Project 
+{
+     export namespace Contracts
+     {
+         export interface ProductContract
+         {
+             Name:string;
+             Price:number;
+             Qty:number;
+             Total():number;
+             Print():void;
+         }
+     }
+}
+
+Templates/ProductTemplate.ts
+
+///<reference path="../contracts/ProductContract.ts" />
+
+import ProductContract = Project.Contracts.ProductContract;
+
+namespace Project 
+{
+    export namespace Templates
+    {
+         export abstract class ProductTemplate implements ProductContract
+         {
+              public Name:string = "";
+              public Price:number = 0;
+              public Qty:number = 0;
+              public abstract Total():number;
+              public abstract Print():void;
+         }
+    }
+}
+
+Components/ProductComponent.ts
+
+///<reference path="../templates/ProductTemplate.ts" />
+
+import ProductTemplate = Project.Templates.ProductTemplate;
+
+namespace Project 
+{
+     export namespace Components 
+     {
+          export class ProductComponent extends ProductTemplate 
+          {
+              Name = "Samsung TV";
+              Price = 45000;
+              Qty = 2;
+              Total(){
+                return this.Qty * this.Price;
+              }
+              Print(){
+                console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+              }
+          }
+     }
+}
+
+App/index.ts
+
+///<reference path="../library/components/ProductComponent.ts" />
+
+ import ProductComponent = Project.Components.ProductComponent;
+
+ let obj = new ProductComponent();
+ obj.Print();
+
+   app > tsc -outFile  index.js  index.ts
+          > node index.js
+
+Creating a React Typescript Application:
+
+ > npm  create   vite@latest    app_name  
+         framework    : react
+       variant            : typescript 
+
+ > change into app folder  
+ > cd app_name
+ > npm install
