@@ -6796,3 +6796,179 @@ Creating a React Typescript Application:
  > change into app folder  
  > cd app_name
  > npm install
+
+ 13/09
+ =======
+ Vite React - TypeScript
+
+Typescript File System for React:
+   
+           .tsx                components, hooks, slicers, store, reducers, main 
+           .ts                    contracts, templates. [interface, abstract classes]
+           .test.ts    ]        test files
+           .spec.ts    ]        test files
+
+Note: You have to import contracts or templates using “type” reference. 
+         Components are imported using the same module system technique you used in JS.
+
+Syntax:
+               import  { component }   from  “path”;
+               import  type { contract } from “path”;
+
+State in TSX component:
+   - State is generic type.
+   - It is type safe member. 
+   - You have to define the type for state while allocating memory.
+
+   Syntax:
+           const [get, set] = useState<T>();
+
+   - If state is not initialized with type then it may return null. Hence while accessing you have
+     to use null reference character “?”.
+
+   - If state is initialized then null reference is not required.
+
+Syntax:
+           const [categories, setCategories] = useState<string[]>( [ ] );
+           
+           {   categories.map()   }
+
+           const [categories, setCategories] = useState<string[]>( );
+           
+           {   categories?map()  }
+
+Ex: Data Binding
+
+  src/contract/product-contract.ts
+
+
+export interface ProductContract
+{
+    id:number;
+    title:string;
+    price:number;
+    description:string;
+    image:string;
+    rating: {rate:number, count:number},
+    category:string;
+}
+
+  src/component/data-binding.tsx
+
+import { useEffect, useState } from "react";
+import type { ProductContract } from "../../contracts/product-contract";
+import axios from "axios";
+
+export function DataBinding(){
+
+    const [categories, setCategories] = useState<string[]>();
+    const [products, setProducts] = useState<ProductContract[]>();
+
+    function GetCategories(){
+        axios.get(`https://fakestoreapi.com/products/categories`)
+        .then(response=>{
+            setCategories(response.data);
+        })
+    }
+    function GetProducts(){
+        axios.get(`https://fakestoreapi.com/products`)
+        .then(response=>{
+            setProducts(response.data);
+        })
+    }
+
+    useEffect(()=>{
+        GetCategories();
+        GetProducts();
+    },[]);
+
+    return(
+        <div>
+            <h2>Select Category</h2>
+            <select>
+               {
+                    categories?.map(category=> <option key={category}>{category}</option>) 
+               }
+            </select>
+            <div>
+                <ul>
+                    {
+                        products?.map(product=> <li key={product.id}> <img src={product.image} width="50" height="50" /> {product.title} </li>)
+                    }
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+Event Binding
+   - All event binding rules are same.
+   - The event argument requires a data type configuration. 
+   - “event” reference uses “any” as type.
+   - Custom arguments require the relative types to define. 
+   - You can use a local contract for configuring complex types. 
+
+Syntax:
+       function handleClick(e:any, param:contract)
+       {
+       }
+   
+       <button onClick={ (event) => handleClick(event, { key: value } ) }>
+
+Ex: data-binding.tsx
+
+import { useEffect, useState } from "react";
+import type { ProductContract } from "../../contracts/product-contract";
+import axios from "axios";
+
+interface IProduct
+{
+    Name:string;
+}
+
+export function DataBinding(){
+
+    const [categories, setCategories] = useState<string[]>();
+    const [products, setProducts] = useState<ProductContract[]>();
+
+    function GetCategories(){
+        axios.get(`https://fakestoreapi.com/products/categories`)
+        .then(response=>{
+            setCategories(response.data);
+        })
+    }
+    function GetProducts(){
+        axios.get(`https://fakestoreapi.com/products`)
+        .then(response=>{
+            setProducts(response.data);
+        })
+    }
+
+    useEffect(()=>{
+        GetCategories();
+        GetProducts();
+    },[]);
+
+    function handleClick(e:any, product:IProduct ){
+        alert(`Clicked ${e.target.name} \n ${e.clientX} \n${product.Name} `);
+    }
+
+    return(
+        <div>
+            <h2>Select Category</h2>
+            <button onClick={(event)=> handleClick(event, {Name:'TV'})}> Click Test</button>
+            <select>
+               {
+                    categories?.map(category=> <option key={category}>{category}</option>) 
+               }
+            </select>
+            <div>
+                <ul>
+                    {
+                        products?.map(product=> <li key={product.id}> <img src={product.image} width="50" height="50" /> {product.title} </li>)
+                    }
+                </ul>
+            </div>
+        </div>
+    )
+}
