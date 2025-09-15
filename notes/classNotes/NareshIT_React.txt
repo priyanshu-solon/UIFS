@@ -6802,7 +6802,7 @@ Creating a React Typescript Application:
  Vite React - TypeScript
 
 Typescript File System for React:
-   
+
            .tsx                components, hooks, slicers, store, reducers, main 
            .ts                    contracts, templates. [interface, abstract classes]
            .test.ts    ]        test files
@@ -6972,3 +6972,173 @@ export function DataBinding(){
         </div>
     )
 }
+
+
+15/09
+=======
+
+Controlled components in Typescript app:
+   - A controlled component is managed by using “props”, which accept data from parent. 
+   - Typescript requires the “props” to be an object type with strongly typed structure.
+
+Syntax:
+       export function ControlledComponent(props: Contract)
+       {
+                   // props.key
+       }
+
+Ex:
+   src/contracts/INavbar.ts
+
+export interface INavbar
+{
+    brand:string;
+    navItems:string[];
+}
+
+   src/controlled-components/navbar.tsx
+
+import type { INavbar } from "../contracts/Inavbar";
+
+export function Navbar(props:INavbar)
+{
+     return (
+        <nav className="border m-2 border-1 p-2 d-flex justify-content-between">
+            <div className="fs-4 fw-bold">{props.brand}</div>
+            <div>
+                {
+                    props.navItems.map(item=><span className="mx-4" key={item}>{item}</span>)
+                }
+            </div>
+        </nav>
+     )
+}
+
+   src/components/data-binding.tsx
+
+import { useEffect, useState } from "react";
+import type { ProductContract } from "../../contracts/product-contract";
+import axios from "axios";
+import { Navbar } from "../../controlled-components/navbar";
+
+interface IProduct
+{
+    Name:string;
+}
+
+export function DataBinding(){
+
+    const [categories, setCategories] = useState<string[]>();
+    const [products, setProducts] = useState<ProductContract[]>();
+
+    function GetCategories(){
+        axios.get(`https://fakestoreapi.com/products/categories`)
+        .then(response=>{
+            setCategories(response.data);
+        })
+    }
+    function GetProducts(){
+        axios.get(`https://fakestoreapi.com/products`)
+        .then(response=>{
+            setProducts(response.data);
+        })
+    }
+
+    useEffect(()=>{
+        GetCategories();
+        GetProducts();
+    },[]);
+
+    function handleClick(e:any, product:IProduct ){
+        alert(`Clicked ${e.target.name} \n ${e.clientX} \n${product.Name} `);
+    }
+
+    return(
+        <div>
+            <Navbar brand="Shopping." navItems={['Home', 'Shop', 'Pages', 'Blog', 'Docs']} />
+            <h2>Select Category</h2>
+            <button onClick={(event)=> handleClick(event, {Name:'TV'})}> Click Test</button>
+            <select>
+               {
+                    categories?.map(category=> <option key={category}>{category}</option>) 
+               }
+            </select>
+            <div>
+                <ul>
+                    {
+                        products?.map(product=> <li key={product.id}> <img src={product.image} width="50" height="50" /> {product.title} </li>)
+                    }
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+React Fullstack Application
+   - A fullstack application requires
+
+               a) database 
+               b) server scripts with API
+               c) middleware 
+               d) client side library / framework 
+   - MERN stack
+               M                MongoDB
+               E                Express JS
+               R                React
+               N                Node JS
+
+                                                           Next JS
+ - Next JS is a React Framework.
+ - Framework allows to build application and control the application flow.
+ - It provides server side actions with middleware support. 
+
+Features:
+   1. Basic Page Routing
+   2. Nested Routes
+   3. Dynamic Routes
+   4. Optimization
+   5. Server Side Components 
+   6. Modular 
+   7. Fluid Interactions 
+   8. Supports CSS framework like Tailwind, Sass etc.
+   9. Pre Rendering [ SSR]    
+   10. Static Site Generation [ SSG ]
+   11. Code Splitting & Automatic Bundling 
+   12. Faster Refresh 
+   13. SEO & Meta Data
+   14. Deployment Ready Environment 
+
+React Next JS App:
+   - Open any location on your PC in terminal 
+   - Run the following command
+   
+           > npx   create-next-app@latest     [app_name_optional]
+
+✔ Would you like to use TypeScript? … No / Yes
+✔ Which linter would you like to use? › ESLint
+✔ Would you like to use Tailwind CSS? … No / Yes
+✔ Would you like your code inside a `src/` directory? … No / Yes
+✔ Would you like to use App Router? (recommended) … No / Yes
+✔ Would you like to use Turbopack? (recommended) … No / Yes
+✔ Would you like to customize the import alias (`@/*` by default)? … No / Yes
+
+           > npm run dev
+
+   - Default routes are supported with file system architecture
+   - Application automatically can start with a file by name “page.tsx / page.js / page.jsx”
+   - Routing is configured automatically if files are defined in  “app” or “pages” folder.
+
+1. Add new folders into “app”
+           products/page.tsx
+                   export default function ProductHome()
+                   {
+                     return (<div> </div>);
+                   }
+           employees/page.tsx
+                   export default function EmployeeHome()
+                   {
+                      return (<div> </div>);
+                   }
+
+2. You can navigate using “next/link” => Add in  src/page.tsx 
+           <Link href=“/products”> Product Home </Link>
