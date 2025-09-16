@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
-import { ShoppingIndex } from './shopping/shopping-index.jsx';
+
+// import { ShoppingIndex } from './shopping/shopping-index.jsx';
 // import { ContextDemo } from './components/ContextApi/context-demo.jsx';
 // import {NetflixIndex} from './components/Netflix/netflix-index.jsx'
 // import { DataBinding } from './components/Data-Binding/data-binding.jsx';
@@ -39,11 +40,10 @@ import { ShoppingIndex } from './shopping/shopping-index.jsx';
 // import { ReducerDemo } from './components/reducer/reducer.jsx';
 // import { PortfolioIndex } from './portfolio/portfolio-index';
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <>
-    <ShoppingIndex/>
+    </>
     </>
   </StrictMode>,
 )

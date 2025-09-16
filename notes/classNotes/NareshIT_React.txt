@@ -7142,3 +7142,153 @@ React Next JS App:
 
 2. You can navigate using “next/link” => Add in  src/page.tsx 
            <Link href=“/products”> Product Home </Link>
+
+
+16/09
+======
+
+Next JS
+
+ - Creating Server Side App
+ - Server Routes
+
+Next JS Application Flow:
+   - Application runs in development environment using  “npm run dev”
+   - “layout.tsx”  comprises of root which renders static HTML.
+   -  It executes the server components and renders the result into client component.
+   -  Client component is rendered into UI.
+
+       Layout => Server Components => Client Components 
+
+Server Components:
+   - All Next JS components are by default server components.
+   - Components are functions that render JSX server side.
+   - Server components are good for database logic, API interactions and server events.
+   - You can’t use hooks in server components. 
+   - You can use the methods suitable for server interactions.
+   - You can’t use DOM methods.
+   - You can mark server components by using “use server”, but not required. 
+   - Save with extension “.jsx, .js, tsx”.
+
+Client Components:
+   - It is a function that returns JSX.
+   - It must use “use client” to run on browser.
+   - You can run a client component inside server component. 
+   - It supports all DOM methods & hooks. 
+   - Save with extension “.jsx, .tsx, .js”.
+
+Syntax: Server Side Promise
+
+       const res = await fetch(“url”);         
+       const data = await res.json();
+
+       - Make sure that the server component is an asynchronous function.
+
+       export default async function ServerComponent()
+       {
+               // await actions
+       }
+
+   Note: Client components are used as controlled component. 
+             Server component sends data into client, which can be JSX or TSX.
+
+
+             You can’t access a server component inside client.
+
+Ex:
+  /app/components/products-list.tsx
+
+"use client";
+
+export default function ProductsList({products}:any){
+    return(
+        <div>
+            <h4>Products List - Client Component</h4>
+            <ol>
+                {
+                    products.map((product:any)=><li key={product.id}>{product.title}</li>)
+                }
+            </ol>
+        </div>
+    )
+}
+
+ /app/products/page.tsx
+
+import ProductsList from '../components/products-list';
+
+export default async function ProductHome(){
+
+    const res = await fetch('https://fakestoreapi.com/products&#39;);
+    const products = await res.json();
+
+    return(
+        <div>
+            <h2>Product Home - Server Component</h2>
+            <ProductsList products={products} />
+        </div>
+    )
+} 
+
+   http://localhost:3000/products
+
+   Note: The rules for data are also defined as local type. But they are not reusable
+   
+               type  ref = {
+                     property: datatype;
+               } 
+
+               let obj : ref = {  }
+
+Ex: With local types
+
+  app/components/products-list.tsx
+
+"use client";
+
+type product = {
+    id:number;
+    title:string;
+}
+
+type Props = {
+    products: product[];
+}
+
+export default function ProductsList({products}:Props){
+    return(
+        <div>
+            <h4>Products List - Client Component</h4>
+            <ol>
+                {
+                    products.map((product:product)=><li key={product.id}>{product.title}</li>)
+                }
+            </ol>
+        </div>
+    )
+}
+
+ app/products/page.tsx
+
+import ProductsList from '../components/products-list';
+
+type product = {
+    id:number;
+    title:string;
+}
+
+export default async function ProductHome(){
+
+    const res = await fetch('https://fakestoreapi.com/products&#39;);
+    const products:product[] = await res.json();
+
+    return(
+        <div>
+            <h2>Product Home - Server Component</h2>
+            <ProductsList products={products} />
+        </div>
+  )
+
+} 
+
+                                       MERN Stack
