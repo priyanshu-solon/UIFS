@@ -7292,3 +7292,100 @@ export default async function ProductHome(){
 } 
 
                                        MERN Stack
+
+17/09
+=======
+
+MERN Stack
+   M        MongoDB    Database
+   E        Express        Middleware 
+   R        React            Front end Library
+   N        Node JS        Server Side Script
+
+Server Side API’s using Node & Express:
+
+   - Node JS is an open source and cross platform JavaScript runtime used by developers
+     for creating web apps, servers, command line tools, scripts etc.
+   - Express JS is a middleware used to enable communication between server side app
+     and database. It also allows communication between client and server app. 
+
+1. Create a new folder  “server-app” on your PC
+
+2. Open in VS code
+
+3. Initialize Project with package.json
+
+               > npm  init  -y
+
+4. Install express library
+
+               > npm   install    express  --save
+               > npm   install    cors  --save 
+
+   CORS is a library required to handle requests like GET, POST, PUT, PATH, DELETE 
+   It allows to enable or disable request methods. 
+
+5. Add a new file “server.js” into root level
+
+6. You have to configure API requests 
+
+       const express = require(“express”);     // importing express module in CJS system
+       const app = express();                            // creating a server app 
+       app.get(“/path/:param”, (req, res)=>{})
+       app.post( )    
+       app.put()
+       app.delete()
+
+       Note: “request” object can request data from client, which includes query string,
+                   form body, URL encoded etc.
+
+                   “response” object can send response to client, which includes, HTML, File
+                    XML, JSON etc.
+       app.listen(port);                             // starts your API on specific port number
+
+   Ex: 
+           server.js
+
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+
+// API Routes 
+
+app.get("/users", (req, res)=>{
+     const users = [
+        {UserName:'John123', Password:'john@11'},
+        {UserName:'David', Password:'david11'}
+    ];
+     res.send(users);
+     res.end();
+});
+
+app.get("/videos", (req, res)=>{
+    res.send("sends all videos");
+    res.end();
+});
+
+app.get("/video/:id", (req, res)=>{
+    const id = parseInt(req.params.id);
+    res.send(`You are fetching video with ID=${id}`);
+    res.end();
+});
+
+app.post("/add-video", (req, res)=>{
+
+     // connect with database and send video into DB table.
+     res.send("Video Posted");
+     res.end();
+})
+app.listen(4000);
+console.log(`Server Started http://127.0.0.1:4000`);
+       > node server.js
+
+MongoDB Database 
+   - Install MongoDB Community Server on your PC
+   - Install MongoDB Compass [ GUI tool for database ]
+
+   https://www.mongodb.com/try/download/community
