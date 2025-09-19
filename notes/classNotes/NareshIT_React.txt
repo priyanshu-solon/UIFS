@@ -7389,3 +7389,309 @@ MongoDB Database
    - Install MongoDB Compass [ GUI tool for database ]
 
    https://www.mongodb.com/try/download/community
+
+
+18/09
+========
+
+TO-DO Application using MERN Stack
+   - User Can Register
+   - User Can Login
+   - User Dashboard Shows All his appointments.
+   - User Can Add, Edit or Remove appointments.
+Database Model
+
+       Database Name        : to-do
+       Collections                    : users, appointments
+       users
+           - user_id [ PK ]
+           - user_name
+           - password
+           - email
+
+       appointments
+           - appointment_id [PK]
+           - title
+           - description
+           - date 
+           - user_id [FK]
+
+Database - MongoDB
+
+       1. Download and Install MongoDB community server on your device 
+                   https://www.mongodb.com/try/download/community
+       2. Download and Install MongoDB Compass 
+                   https://www.mongodb.com/products/tools/compass
+
+           MongoDB Server : It is the location where data is kept.
+           MongoDB Compass: It is client tool used to connect with server and manage data.
+       Note: Windows users make sure that server started
+                   Programs => services.msc => Right click on “MongoDB Server” => start
+
+        3. Open MongoDB Compass on your PC and connect to server
+                       Select New Connection =>  mongodb://localhost:27017  => Save & Connect
+MongoDB Terminology 
+               Oracle / MySQL        MongoDB
+                Database                    Database
+                Table                            Collection 
+                Record                        Document
+
+1. Create new database
+           “to-do”
+
+2. Create new collections
+           a) users
+           b) appointments
+
+3. MongoDB collection is BSON [JSON] type
+           - Go to users collection and add a new document [ Insert Document ]
+
+                      {
+                         “user_id”: “john_nit”,
+                         “user_name”: “John”,
+                         “password”: “john@123”,
+                         “email”: “john@gmail.com”
+                      }
+           - Go to appointments collection and add new appointment 
+                   {
+                         "appointment_id": 1,
+                         "title": "Client Meeting",
+                       "description": "Prepare Meeting Note File",
+                        "date": “2025-09-22”,
+                       "user_id": "john_nit"
+                   }
+
+MongoDB Commands            
+
+   1. Query data from collection 
+
+                   db.collection.find({ field: value/{query} })
+                   db.appointments.find({ });                                // return all appointments
+                   db.appointments.find({ appointment_id: 2 })          //  return specific appointment                    db.appointments.find({ user_id: “john_nit” })
+   2. Inserting Document
+                   db.appointments.insertOne({ field:value, .. })
+                   db.appointments.insertMany([ { }, { } ])
+
+   3. Updating Document
+                   db.appointments.updateOne({findQuery}, {updateQuery});
+                   db.appointments.updateOne({appointment_id:2}, { $set: { date: “2025-09-23” } });
+
+   4. Delete Document
+                   db.appointments.deleteOne({ findQuery })
+                   db.appointments.deleteOne({ appointment_id: 2 })
+
+Create API  [ Node JS & Express JS ]
+
+   To-Do API End Points:
+           GET                /users            returns all users
+           GET                /appointments/user_id    returns appointments of specific user
+           POST            /add-appointment    insert new appointment into database.
+           PUT                /edit-appointment/id    updates appointment based on “id”.
+           DELETE        /delete-appointment/id    delete appointment based on “id”.
+           POST            /add-user    add new user details [register]
+1. Create a server app
+
+2. Install packages
+
+           > npm  install   express   cors     mongodb  --save
+
+3. server.js
+
+const express = require("express");
+const cors = require("cors");
+const mongoClient = require("mongodb").MongoClient;
+
+const app = express();
+app.use(cors());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+// API end points
+
+app.get("/users", (req, res)=>{
+    mongoClient.connect("mongodb://localhost:27017")
+    .then(clientobject => {
+        var database = clientobject.db("to-do");
+        database.collection("users").find({}).toArray().then(documents=>{
+             res.send(documents);
+             res.end();
+        })
+    })
+});
+
+app.listen(3000);
+console.log(`Server Started http://127.0.0.1:3000`);
+
+19/09
+=======
+
+React Vite TypeScript App with API and UI
+1. Create a new React Application with typescript as language
+           > npm    create   vite@latest    react-to-do    
+
+                       framework        : react
+                       variant            : typescript 
+2. Add a new folder “server” into root level directory 
+3. Add a new file into server folder by name “api.cjs”
+4. Install following server libraries
+           > npm  install  express   mongodb     cors     --save 
+
+5. Add API code into “api.cjs”
+
+const express = require("express");
+const cors = require("cors");
+const mongoClient = require("mongodb").MongoClient;
+
+const app = express();
+app.use(cors());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+const connectionString = "mongodb://localhost:27017";
+
+// API end points
+
+app.get("/users", (req, res)=>{
+    mongoClient.connect(connectionString)
+    .then(clientobject => {
+        var database = clientobject.db("to-do");
+        database.collection("users").find({}).toArray().then(documents=>{
+             res.send(documents);
+             res.end();
+        })
+    })
+});
+
+app.get("/appointments/:userid", (req, res)=>{
+     mongoClient.connect(connectionString).then(clientobject=>{
+          var database = clientobject.db("to-do");
+          database.collection("appointments").find({user_id:req.params.userid}).toArray().then(documents=>{
+            res.send(documents);
+            res.end();
+          })
+     })
+});
+
+app.get("/appointment/:id", (req, res)=>{
+     mongoClient.connect(connectionString).then(clientobject=>{
+          var database = clientobject.db("to-do");
+          database.collection("appointments").findOne({appointment_id:parseInt(req.params.id)}).then(document=>{
+             res.send(document);
+             res.end();
+          })
+     })
+});
+
+app.post("/register-user",(req, res)=>{
+        var user = {
+            user_id : req.body.user_id,
+            user_name: req.body.user_name,
+            password: req.body.password,
+            email: req.body.email
+        }
+        mongoClient.connect(connectionString).then(clientobject=>{
+            var database = clientobject.db("to-do");
+            database.collection("users").insertOne(user).then(()=>{
+                 console.log("User Inserted");
+                 res.end();
+            })
+        })
+});
+
+app.post("/add-appointment",(req, res)=>{
+        var appointment = {
+            appointment_id : parseInt(req.body.appointment_id),
+            title: req.body.title,
+            description: req.body.description,
+            date: new Date(req.body.date),
+            user_id: req.body.user_id
+        }
+        mongoClient.connect(connectionString).then(clientobject=>{
+            var database = clientobject.db("to-do");
+            database.collection("appointments").insertOne(appointment).then(()=>{
+                 console.log("Appointment Inserted");
+                 res.end();
+            })
+        })
+});
+
+app.put("/edit-appointment/:id",(req, res)=>{
+        var appointment = {
+            appointment_id : parseInt(req.body.appointment_id),
+            title: req.body.title,
+            description: req.body.description,
+            date: new Date(req.body.date),
+            user_id: req.body.user_id
+        }
+        mongoClient.connect(connectionString).then(clientobject=>{
+            var database = clientobject.db("to-do");
+            database.collection("appointments").updateOne({appointment_id:parseInt(req.params.id)},{$set:appointment})
+            .then(()=>{
+                console.log("Appointment Updated");
+                res.end();
+            })
+        })
+});
+
+app.delete("/delete-appointment/:id",(req, res)=>{
+
+        mongoClient.connect(connectionString).then(clientobject=>{
+            var database = clientobject.db("to-do");
+            database.collection("appointments").deleteOne({appointment_id:parseInt(req.params.id)})
+            .then(()=>{
+                console.log("Appointment Deleted");
+                res.end();
+            })
+        })
+});
+app.listen(3000);
+console.log(`Server Started http://127.0.0.1:3000`);
+
+ 6. Go to “package.json” and add a command to run “api”
+
+       “scripts”: {
+                   …
+                   …
+                   “api”: “node   ./server/api.cjs”,
+                   …
+               }
+       > npm   run    api                      // you can use this command to run api every time 
+
+  7. Install all client libraries for building UI
+
+           > npm  install   bootstrap  bootstrap-icons  --save
+           > npm  install   axios    formik  yup --save
+           > npm  install  react-cookie --save 
+           > npm  install  react-router-dom --save
+
+   8. Add components folder with following components 
+
+           user-register.tsx
+           user-login.tsx
+           user-dashboard.tsx
+           add-appointment.tsx
+           edit-appointment.tsx
+           delete-appointment.tsx
+           to-do-home.tsx
+
+    9. Add contracts folder with following contracts
+
+           user-contract.ts
+
+               export interface UserContract
+               {
+                   user_id: string;
+                   user_name:string;
+                   password:string;
+                   email:string;
+               }
+
+          appointment-contract.ts
+
+             export interface AppointmentContract
+               {
+                 appointment_id: number;
+                 title:string;
+                 description:string;
+                 date: date;
+                 user_id: string;
+              }
