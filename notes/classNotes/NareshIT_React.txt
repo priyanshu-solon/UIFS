@@ -7493,7 +7493,7 @@ Create API  [ Node JS & Express JS ]
 
 2. Install packages
 
-           > npm  install   express   cors     mongodb  --save
+           > npm install express cors mongodb --save
 
 3. server.js
 
@@ -7695,3 +7695,87 @@ console.log(`Server Started http://127.0.0.1:3000`);
                  date: date;
                  user_id: string;
               }
+
+
+22/09
+=======
+
+Redux in TO-DO Application
+   - Archive the tasks using Redux tool kit.
+
+1. Add a “archive” button into task. 
+
+2. On Archive click is removed from dashboard and kept in Archives. 
+   a) Create a slicer in redux with actions & initial state.
+   b) Create a store that stores the archives 
+               {
+                  “archives”: [ ],
+                  “archivesCount”: number
+               }
+   c) In dashboard dispatch task on “archive” click and store in application state.
+
+                   slicer.tsx
+                   store.tsx
+
+3. Keep “archives” button in dashboard, which will display the archived tasks.
+   a) Access the task from store and display in dashboard.
+
+Validations into TO-DO App
+ - Register must verify new user available or not.
+ - Set Validation for register and login form.
+ - Set validation for add-appointment form. 
+ - In Add appointment use “MUI” date picker for appointment date. 
+
+Date Picker from MUI-X 
+   - Add Appointment
+   - Edit Appointment
+
+Ex: MUI Date picker
+
+1. Install MUI
+       > npm install @mui/material @emotion/react @emotion/styled  --save
+
+2. Install Date & Date Adapter  [ Dayjs / Moment / Luxon ] 
+       > npm  install   @mui/x-date-pickers     dayjs     --save
+
+3. Go to “main.tsx” and import  Localization Provider & Adapter Day JS. 
+  import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+     <LocalizationProvider dateAdapter={AdapterDayjs} >
+            <App />
+   </LocalizationProvider>
+
+4. In any component you can import Date picker 
+   import { DatePicker } from "@mui/x-date-pickers"
+   <DatePicker />
+
+What is New from React 18x version?
+
+1. Automatic Batching 
+   - React upto 17x version uses multiple renders if multiple state values are changing.
+   - They can’t update state on single render.
+   - React 18x uses Automatic Batching implicitly to update all state values in one render.
+   - It reduces the number of renders and improves the performance of application.
+   - “react-dom” uses “flushSync” callback that updates a sequence of operations on one
+      render.
+
+Syntax:
+       import { flushSync } from "react-dom";
+      const [appointment, setAppointment] = useState<string>('');
+    const [user, setUser] = useState<string>('');
+
+       function handleClick(){
+        flushSync(()=>{
+            setAppointment('Birthday');
+            setUser('David');
+        }) 
+    }
+
+   Note: Batch program comprises of a sequence of commands to execute one after another.
+             It requires a single reference to run all given tasks. 
+                       npm run build         => build is a batch name
+                       - compiles the project
+                       - starts a local server
+                       - runs your project on local server  “http://localhost:port”
+
+2. React Suspense
