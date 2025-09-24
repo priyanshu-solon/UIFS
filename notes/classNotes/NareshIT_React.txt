@@ -7779,3 +7779,209 @@ Syntax:
                        - runs your project on local server  “http://localhost:port”
 
 2. React Suspense
+
+23/09
+======
+
+1. Automatic Batching 
+       FlushSync()
+2. React Suspense 
+   - A task defined for background process needs to provide status.
+   - Suspense is a concept of showing the status of task performed. 
+   - React Suspense provides various features like
+       a) Lazy Loading
+       b) Concurrent Execution
+       c) Async etc.
+
+   - Lazy loading allows to load only when it is requested. 
+   - React provides “lazy()” promise that imports the library only when required.
+   
+Syntax:
+       const   Component  = lazy(()=> import(‘../path/component’ );
+
+   - Make sure that the component is marked as “default” export. 
+   - You can render the component into UI using <Suspense> 
+   - It uses a “fallBack” that provides status of loading component. 
+
+Syntax:
+       <Suspense  fallBack={ <div> Loading.. </div> } >
+               <Component />
+       </Suspense>
+
+   - Suspense can render multiple components
+
+       <Suspense fallBack={ <div> Loading components </div> }>
+           <Component1 />
+           <Component2 />
+       </Suspense>
+
+Ex:
+import { useState, lazy, Suspense } from "react"
+
+
+const UserLogin = lazy(()=> import('../user-login'))
+const UserRegister = lazy(()=> import('../user-register'))
+
+
+export function SuspenseDemo(){
+
+    const [component, setComponent] = useState<any>();
+
+    function LoginClick(){
+        setComponent(<UserLogin />)
+    }
+   
+    return(
+        <div>
+            <button onClick={LoginClick}>Login</button>
+            <Suspense fallback={<h3>Loading Please wait</h3>}>
+                {component}
+            </Suspense>
+        </div>
+    )
+}
+
+   Features:
+       - Minimises the bundle size. [script to render]
+       - It renders only the requested. 
+       - Component specific library is imported.
+       - It makes the component light weight.
+       - It is faster in rendering. 
+       - It can render without blocking other requests. [Async]
+
+3. Server Side Rendering
+       - It requires server side framework like “next.js”, “remix” etc.
+       - They support Static Site Generation, which is pre-rendered markup on server sent to
+          client on request.
+       - They support Server Side Rendering, which renders component on server and sends
+          UI response to client.  [ SSR ]
+
+4. New Hooks
+       - useLayoutEffect()
+               * A component presents its content in UI as a result of “Paint”.
+               * useEffect() defines actions while painting. 
+               * useLayoutEffect() defines actions while layout generation, which is a state 
+                  before paint. 
+               * It improves the performance & component rendering. 
+
+Syntax:
+           useLayoutEffect(()=>{ }, [dependency])
+
+       - useMemo()
+       - useCallBack()
+
+24/09
+=======
+
+React New & React Native
+useEffect()
+useLayoutEffect()
+useMemo()
+useCallback()
+useRef()
+useReducer()
+useTransition()
+   - It keeps the client side UI responsive while updating data on server. 
+   - It shows status of task performed, which includes time elapsed, time remaining etc.
+   - It is used for handling complex interactions on server like searching, filtering, sorting
+     large amount of data. 
+
+Syntax:
+
+           const [isPending, startTransition] = useTransition();
+           startTransition        : It is a function that performs complex operations.
+           isPending                : It shows status of task.
+           startTransition(()=> { 
+                   // filter, sort etc..
+           })
+           { isPending && <div> Loading … </div> }
+           { filterResults }
+
+Ex: admin-dashboard.jsx    [ video tutorial project ]
+
+    const [isPending, startTransition] = useTransition();
+
+     startTransition(()=>{
+             if (searchTerm.trim() !== "") {
+                const lowerSearch = searchTerm.toLowerCase();
+                filtered = filtered.filter(
+                    (video) =>
+                        (video.title && video.title.toLowerCase().includes(lowerSearch)) ||
+                        (video.description &&
+                            video.description.toLowerCase().includes(lowerSearch))
+                );
+            }
+        })
+
+useOptimistic() 
+       - It is used with server and client component combination.
+       - Client component comprises of a task, which needs to be performed on server.
+       - Client sends a request to perform on server and get confirmation immediately. 
+       - However the server component is still updating your request on server.
+       - It makes the UI more light weight and faster in output. 
+       - It is mostly used for actions like comments, likes, view etc.
+
+Syntax:
+       const [ optimisticData, addOptimisticData ] = useOptimistic( data, (state, refData) => data)
+       state            : It is a reducer function with initial state.
+       refData        : It is a reducer action that updates the data.
+       useOptimistic( initialState, (state, action) => value)
+
+Ex: Next JS app 
+
+1.  Client Component
+
+           likes-button.tsx
+
+"use client";
+import { useOptimistic, useState } from "react";
+
+export default function LikesButton({initalLikes}:any){
+    const [likes, setLikes] = useState<any>();
+    const [optimisticLike, addOptimisticLike] = useOptimistic(likes, (state:any, setLike )=> setLike + state);
+    addOptimisticLike(setLikes(likes + 1));
+    return(
+        <button> {optimisticLike} Like</button>
+    )
+}
+
+2. Server Likes
+       server-like.tsx
+
+import { useState } from "react";
+import LikesButton from "./likes-button";
+export default function ServerLike(){
+    const [like, setLike] = useState(0);
+
+    function ServerPost(){
+        setLike(like + 1);
+        // API request for posting like into database
+    }
+
+    return(
+        <div>
+            <LikesButton initalLikes={like} />
+        </div>
+    )
+}
+
+                                                React Native
+
+- React can be used for building native UI.
+- It requires mobile native frameworks 
+       a) Apache Cordova
+       b) Ionic
+       c) Native Script
+       d) Flutter 
+       e) React Native etc..
+- They provide components for Native apps. 
+- They require mobile platforms like android studio and iOS.
+
+1.  Download and Install “expo” framework, which is used for building mobile apps using react.
+       > npm install -g  expo-cli    
+
+2.  Create native app
+       > npx    create-expo-app     app_name
+
+3. Run
+       > npm run web
