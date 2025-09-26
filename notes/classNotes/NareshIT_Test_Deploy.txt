@@ -1,0 +1,211 @@
+25/09
+=======
+
+Deploying
+React Native - Using Expo Library
+
+React Native Components:
+
+           <View>                        Container like div to display any content
+           <Text>                        To display text
+           <Image>                       To display image
+           <Button>                      Button
+           <ScrollView>                  Scrollable container
+           <TextInput>                   Input type text
+
+Syntax:
+       <Button title=“signin” onPress={ handleClick }> </Button>
+       <Text> Welcome </Text>
+
+ Note: To modify Home Screen  go to  “app/tabs/index.tsx”
+          The root level navigation is defined in “app/tabs/layout.tsx”
+
+                                                    Deployment 
+- It is the process of hosting your React application on server
+- You can host on local servers
+       a) IIS
+       b) Tomcat
+       c) WAMP
+       d) XAMP
+       etc.
+- You can host on cloud servers 
+       a) AWS
+       b) AZURE
+       c) Firebase
+       d) Netlify 
+       e) Vercel etc.
+
+Ex: Firebase  [ Google Cloud ]
+
+1. Download and Install Firebase Tools on your PC
+           C:\> npm    install   -g   firebase-tools    
+
+2. Go to  firebase and create new project [ from console of firebase website ]
+               https://firebase.google.com/
+   Login with Google Account => Goto Console => Create new Project
+               Name : react-developer-portfolio
+               Account : Default Account 
+3. Go to your React Application in VS Code
+4. Run the command
+               >npm  run build
+
+   - It will build your project for production [ Go Live ]
+   - It create “dist” folder, which is used for production. 
+
+5. Open Terminal and run 
+               > firebase login
+               > firebase init 
+
+               ? Why you want to use..  : hosting 
+               ? Use Existing Project : select project name “react-developer-portfolio”
+               ? Select production folder : dist 
+               ? re-write index.html   : NO
+
+6. Deploy 
+               > firebase deploy
+               https://react-developer-portfolio.web.app
+
+Note: Every time when you modify the project
+    
+                > npm  run build         // updates changes into “dist” [production folder]
+                > firebase deploy        // uploads the new updates into cloud
+
+
+26/09
+=======
+
+	
+Testing
+Testing React Vite Application
+   - Testing is the process of verifying “AS-IS” & “TO-BE”.
+   - AS-IS refers to what developer designed.
+   - TO-BE refers to what client requires. 
+
+           AS-IS === TO-BE      => Test Pass
+           AS-IS !== TO-BE        => Test Fail
+   
+   - React components, hooks, services are tested.
+   - Testing includes UI & Logic. 
+   - Unit Testing is the process of testing every function individually. 
+   - React can use JavaScript Frameworks 
+           a) Jasmine Karma
+           b) JEST  etc.
+   - React Vite application is configured with JEST framework.
+
+Enable Test framework “JEST”
+
+1. Install Testing library with JEST DOM & Vitest 
+       > npm  install  --save-dev vitest @testing-library/react   @testing-library/jest-dom   jsdom
+
+2. Add a new file into “src” folder  by name  “setupTests.js”
+       import '@testing-library/jest-dom';
+
+   - JEST DOM can access your virtual DOM and test the component UI
+
+3. Go to “vite.config.js” in root level
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true, 
+    environment: 'jsdom',
+    setupFiles: ['./src/setupTests.js']
+  }
+})
+
+
+4. To run tests 
+       
+           > npx vitest 
+
+Test Files
+   - React Vite test files have extension “jsx” 
+
+                   component.test.jsx.   ] vitest 
+                   component.spec.js       ] other testing frameworks
+                   component.test.js    ]
+
+   - Testing every component function comprises of 3 phases
+
+                   a) Arrange        (test, render, screen ..)
+                   b) Act            (expect)
+                   c) Assert        (toBe, toHave etc..)
+
+   - Arrange is the process of configuring the component to test. 
+   - Act is the process of defining which functionality to test.
+   - Assert is checking the returning the result. 
+
+Syntax:
+               test ( ‘case-name’, ()=>{
+
+                       render(<component />);
+
+                       var ref = screen.getBy..( “/id, pattern, name”);
+
+                       expect(ref).toBe..();
+                       expect(ref).toHave..();
+
+               })
+
+Ex: 
+       login.jsx
+
+import './login.css';
+import { useCaptcha } from '../../hooks/use-captcha';
+
+export function Login(){
+
+    
+    const code = useCaptcha();
+
+    return(
+        <>
+           <div className='d-flex justify-content-center'>
+              <form className="login-form mt-4 rounded rounded-2">
+                <h2 data-testid='title' className='bi bi-person-circle'> Customer Login</h2>
+                <dl>
+                  <dt>User Name</dt>
+                  <dd><input type="text" className='form-control' /></dd>
+                  <dt>Password</dt>
+                  <dd><input type="password" className='form-control' /></dd>
+                  <dt>Verify Code <button className='btn bi bi-arrow-clockwise'></button> </dt>
+                  <dd>{code}</dd>
+                </dl>
+                <button className='btn btn-warning w-100'>Login</button>
+                <a href='/Forgot-Password'>Forgot Password</a>
+            </form>
+           </div>
+        </>
+    )
+}
+
+   login.test.jsx
+
+
+import { test, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Login } from "./login";
+
+// Case-1 Title Testing
+
+test('Title Test', ()=>{
+      render(<Login/>);
+      var title = screen.getByTestId('title');
+      expect(title).toHaveTextContent(/Customer Login/);
+})
+
+// Case-2 Forgot Password Link Testing 
+
+test('Forgot Password Link Test',()=>{
+     render(<Login />);
+     var link = screen.getByText(/Forgot Password/);
+     expect(link).toBeInTheDocument();
+     expect(link).toHaveAttribute('href', '/Forgot-Password');
+})
+
+
+   > npx vitest
